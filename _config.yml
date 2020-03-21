@@ -1,0 +1,18 @@
+
+# html lang
+language: en
+
+# main menu navigation
+menu:
+  Home: /
+  About: /about
+  Contact: /contact
+  Archives: /archives
+
+# stylesheets loaded in the <head>
+stylesheets:
+- /css/arknights.css
+
+# scripts loaded in the end of the body
+scripts:
+- /js/arknights.js
