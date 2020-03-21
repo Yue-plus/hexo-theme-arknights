@@ -17,26 +17,27 @@ html(lang=config.language)
       each url in theme.stylesheets
         link(rel='stylesheet', href=url)
   body
-    #menu-outer
+    header
       nav#menu-inner
         each url, label in theme.menu
           a(href=url)= label
-    #content-outer
-      #content-inner
-        if body
-          div!= body
-        else
-          block content
-    #bottom-outer
-      #bottom-inner
-        span Site construction by
-        span= ' ' + config.author + ' '
-        span using
-        a(href='http://hexo.io')
-          span hexo blog framework
-        span .
-        br
-        a(href=config.root) Home
+    main
+      article
+        #content-inner
+          if body
+            div!= body
+          else
+            block content
+      aside
+        #bottom-inner
+          span Site construction by
+          span= ' ' + config.author + ' '
+          span using
+          a(href='http://hexo.io')
+            span hexo blog framework
+          span .
+          br
+          a(href=config.root) Home
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts
