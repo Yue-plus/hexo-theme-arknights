@@ -16,3 +16,6 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
 ```
 修改 `<test>/_config.yml` 中的 `theme:` 改为 `arknights`
 然后,打开 `<test>/themes/arknights` 下编辑主题
+```bash
+hexo serve --debug
+```

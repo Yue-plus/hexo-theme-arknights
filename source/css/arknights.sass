@@ -2,10 +2,13 @@ html, body
   height: 100%
 
 body
-  margin: 0
+  margin: 0 auto
   color: #c4c4c4
   background-color: #141516
   font-family: sans-serif
+  display: flex
+  flex-direction: column
+  align-items: stretch
 
 h1, h2, h3, h4, h5, h6
   color: #fff
@@ -19,20 +22,41 @@ a
     color: #000
     background-color: #22bbff
 
-header
+header nav a
   height: 40px
-  nav
-    height: 100%
-    a
-      height: 100%
-      padding: 0 10px
-      line-height: 100%
-      text-align: center
-      vertical-align: middle
-      display: inline-block
-
-article, aside
+  line-height: 40px
+  padding: 0 12px
   display: inline-block
 
+main
+  display: flex
+  flex-grow: 1
+  flex-direction: row-reverse
+  flex-wrap: nowrap
+  justify-content: space-between
+  align-items: flex-start
+
 aside
-  width: 700px
+  position: sticky
+  top: 40px
+
+article
+  flex-grow: 1
+
+@media ( max-width: 768px )
+  body
+    margin: 0 18px
+  main
+    flex-direction: column
+@media ( min-width: 768px )
+  body
+    width: 730px
+@media ( min-width: 992px )
+  body
+    width: 860px
+@media ( min-width: 1200px )
+  body
+    width: 1000px
+@media ( min-width: 1920px )
+  body
+    width: 1800px

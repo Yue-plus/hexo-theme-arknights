@@ -11,6 +11,7 @@ doctype html
 html(lang=config.language)
   head
     meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title= pageTitle
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from _config.yml
@@ -18,26 +19,28 @@ html(lang=config.language)
         link(rel='stylesheet', href=url)
   body
     header
-      nav#menu-inner
+      nav
         each url, label in theme.menu
           a(href=url)= label
     main
+      aside
+        span Logo
+        footer
+          #bottom-inner
+            span Site construction by
+            span= ' ' + config.author + ' '
+            span using
+            a(href='http://hexo.io')
+              span hexo blog framework
+            span .
+            br
+            a(href=config.root) Home
       article
         #content-inner
           if body
             div!= body
           else
             block content
-      aside
-        #bottom-inner
-          span Site construction by
-          span= ' ' + config.author + ' '
-          span using
-          a(href='http://hexo.io')
-            span hexo blog framework
-          span .
-          br
-          a(href=config.root) Home
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts
