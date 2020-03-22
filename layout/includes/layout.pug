@@ -24,17 +24,16 @@ html(lang=config.language)
           a(href=url)= label
     main
       aside
-        span Logo
+        img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
         footer
-          #bottom-inner
-            span Site construction by
-            span= ' ' + config.author + ' '
-            span using
-            a(href='http://hexo.io')
-              span hexo blog framework
-            span .
-            br
-            a(href=config.root) Home
+          span Site construction by
+          span= ' ' + config.author + ' '
+          span using
+          a(href='http://hexo.io')
+            span hexo blog framework
+          span .
+          br
+          //- a(href=config.root) Home
       article
         #content-inner
           if body

@@ -22,11 +22,15 @@ a
     color: #000
     background-color: #22bbff
 
-header nav a
-  height: 40px
-  line-height: 40px
-  padding: 0 12px
-  display: inline-block
+header
+  position: sticky
+  top: 0
+  background-color: #141516
+  nav a
+    height: 40px
+    line-height: 40px
+    padding: 0 12px
+    display: inline-block
 
 main
   display: flex
@@ -39,8 +43,12 @@ main
 aside
   position: sticky
   top: 40px
+  padding: 0 20px
+  img
+    width: 70%
 
 article
+  padding: 0 12px
   flex-grow: 1
 
 @media ( max-width: 768px )
@@ -48,15 +56,29 @@ article
     margin: 0 18px
   main
     flex-direction: column
+  aside img
+    opacity: .1
+    position: fixed
+    bottom: 1%
+    left: -33%
+    z-index: -1
 @media ( min-width: 768px )
   body
     width: 730px
+  aside
+    width: 180px
 @media ( min-width: 992px )
   body
     width: 860px
+  aside
+    width: 230px
 @media ( min-width: 1200px )
   body
     width: 1000px
+  aside
+    width: 280px
 @media ( min-width: 1920px )
   body
     width: 1800px
+  aside
+    width: auto
