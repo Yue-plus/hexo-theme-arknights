@@ -23,19 +23,19 @@ html(lang=config.language)
         each url, label in theme.menu
           a(href=url)= label
     main
-      aside
-        a(href=config.root)
-          img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
-        footer
-          span='©2020 ' + config.author
-          br/
-          span Power by
-            a(href='http://hexo.io') Hexo
       article
         if body
           div!= body
         else
           block content
+      aside
+        a(href=config.root)#home-page
+          img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
+        footer
+          span='©2020 ' + config.author + ' '
+          br
+          span Power by 
+            a(href='http://hexo.io') Hexo
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts

@@ -1,11 +1,8 @@
-html, body
-  height: 100%
-
 body
   margin: 0 auto
   color: #c4c4c4
   background-color: #141516
-  font-family: sans-serif
+  font-family: BenderLight, sans-serif
   display: flex
   flex-direction: column
   align-items: stretch
@@ -35,63 +32,70 @@ header
 main
   display: flex
   flex-grow: 1
-  flex-direction: row-reverse
+  flex-direction: row
   flex-wrap: nowrap
-  justify-content: space-between
-  align-items: stretch
+  align-items: flex-start
 
 aside
+  padding: 0 20px
+  flex-shrink: 0
   position: sticky
   top: 40px
-  padding: 0 20px
-  display: flex
-  flex-direction: column
-  flex-shrink: 0
-  justify-content: space-between
-  a
+  #home-page
     width: 70%
+    height: 5px
+    display: inline-block
+    padding: 0
     img
       width: 100%
   footer
     width: 100%
     padding: 30px 3px
+    position: fixed
+    bottom: 0
 
 article
   padding: 0 12px
   flex-grow: 1
+  overflow-y: auto
 
 @media ( max-width: 768px )
   body
     margin: 0 18px
   main
-    flex-direction: column-reverse
+    flex-direction: column
   aside
+    width: 100%
+    padding: 0
     img
-      opacity: .1
+      opacity: .05
       position: fixed
-      bottom: 1%
-      left: -33%
+      bottom: -50px
+      left: -46%
       pointer-events: none
     footer
       text-align: center
       padding: 10px 0
+      position: static
 @media ( min-width: 768px )
   body
-    width: 730px
+    width: 90%
   aside
     width: 160px
+    a img
+      transition: background-color 1s
+      &:hover
+        background-color: rgba(#fff , .1)
 @media ( min-width: 992px )
-  body
-    width: 860px
   aside
     width: 210px
 @media ( min-width: 1200px )
-  body
-    width: 1000px
   aside
     width: 300px
 @media ( min-width: 1920px )
-  body
-    width: 1800px
   aside
     width: auto
+
+@font-face
+  font-family: BenderLight
+  src: url("/font/BenderLight.ttf")
