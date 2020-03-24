@@ -24,22 +24,18 @@ html(lang=config.language)
           a(href=url)= label
     main
       aside
-        img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
+        a(href=config.root)
+          img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
         footer
-          span Site construction by
-          span= ' ' + config.author + ' '
-          span using
-          a(href='http://hexo.io')
-            span hexo blog framework
-          span .
-          br
-          //- a(href=config.root) Home
+          span='©2020 ' + config.author
+          br/
+          span Power by
+            a(href='http://hexo.io') Hexo
       article
-        #content-inner
-          if body
-            div!= body
-          else
-            block content
+        if body
+          div!= body
+        else
+          block content
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts

@@ -38,14 +38,23 @@ main
   flex-direction: row-reverse
   flex-wrap: nowrap
   justify-content: space-between
-  align-items: flex-start
+  align-items: stretch
 
 aside
   position: sticky
   top: 40px
   padding: 0 20px
-  img
+  display: flex
+  flex-direction: column
+  flex-shrink: 0
+  justify-content: space-between
+  a
     width: 70%
+    img
+      width: 100%
+  footer
+    width: 100%
+    padding: 30px 3px
 
 article
   padding: 0 12px
@@ -55,28 +64,32 @@ article
   body
     margin: 0 18px
   main
-    flex-direction: column
-  aside img
-    opacity: .1
-    position: fixed
-    bottom: 1%
-    left: -33%
-    z-index: -1
+    flex-direction: column-reverse
+  aside
+    img
+      opacity: .1
+      position: fixed
+      bottom: 1%
+      left: -33%
+      pointer-events: none
+    footer
+      text-align: center
+      padding: 10px 0
 @media ( min-width: 768px )
   body
     width: 730px
   aside
-    width: 180px
+    width: 160px
 @media ( min-width: 992px )
   body
     width: 860px
   aside
-    width: 230px
+    width: 210px
 @media ( min-width: 1200px )
   body
     width: 1000px
   aside
-    width: 280px
+    width: 300px
 @media ( min-width: 1920px )
   body
     width: 1800px

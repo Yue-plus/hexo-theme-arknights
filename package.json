@@ -1,6 +1,16 @@
 {
-  "name": "arknights",
+  "name": "hexo-theme-arknights",
   "version": "0.0.0",
   "description": "一个明日方舟的 Hexo 主题，正在开发中……",
+  "author": {
+    "name": "Yue_plus",
+    "email": "Yue_plus@foxmail.com",
+    "url": "https://github.com/Yue-plus"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yue-plus/hexo-theme-arknights.git"
+  },
+  "license": "MIT",
   "private": true
 }
