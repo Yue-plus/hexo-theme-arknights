@@ -32,8 +32,22 @@ html(lang=config.language)
         a(href=config.root)#logo
           img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
           //- img(src="/img/logo.png", alt="Logo")
+        section#total
+          #total-archives
+            span.total-title Archives Total: 
+            span.total-number 78900
+          #total-tags
+            span.total-title Tags: 
+            span.total-number 80
+          #total-categories
+            span.total-title Categories: 
+            span.total-number 320
         footer
-          nobr='©2020 ' + config.author + ' '
+          nobr
+            span.text-title ©
+            span.text-content 2020-03-26
+          wbr
+          nobr=' Dr.' + config.author + ' '
           wbr
           nobr Power by 
             a(href='http://hexo.io') Hexo
