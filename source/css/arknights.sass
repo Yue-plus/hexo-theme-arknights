@@ -28,6 +28,8 @@ a
     color: #000
     background-color: #22bbff
 
+
+
 // ========= 类样式
 // ====== class style
 .text-title, .text-content
@@ -41,6 +43,8 @@ a
 .text-content
   padding: 0 28px 0 5px
   background-color: #fff
+
+
 
 // ========= 布局样式
 // ====== layout style
@@ -62,41 +66,6 @@ main
   flex-direction: row
   flex-wrap: nowrap
   align-items: flex-start
-
-aside
-  color: #fff
-  padding: 0 20px
-  flex-shrink: 0
-  position: sticky
-  top: 60px
-  footer
-    padding: 30px 3px
-    position: fixed
-    bottom: 0
-#logo
-  width: 100%
-  height: 5px
-  display: inline-block
-  padding: 0
-  img
-    width: 100%
-#total
-  margin: 10px 0
-  perspective: 30px
-  div
-    transform: rotateY(-1deg)
-#total-archives
-  border-left: 5px solid #fff
-  padding: 0 0 0 10px
-  .total-title
-    font-size: 23px
-    display: block
-  .total-number
-    font-weight: bolder
-    font-size: 52px
-#total-tags, #total-categories
-  display: inline-block
-  margin: 15px 0 0 15px
 
 article
   padding: 0 12px
@@ -156,11 +125,12 @@ article
 #paginator
   margin: 20px 0
   display: flex
+  flex-wrap: wrap
   justify-content: center
   a, span
     color: #fff
     font-weight: bold
-    margin: 0 10px
+    margin: 5px 10px 0 0
     border: 1px solid #2bf
     padding: 5px 10px
     &:hover
@@ -168,6 +138,45 @@ article
   .current
     color: #000
     background-color: #2bf
+
+aside
+  color: #fff
+  padding: 0 20px
+  flex-shrink: 0
+  position: sticky
+  top: 60px
+  footer
+    padding: 30px 3px
+    position: fixed
+    bottom: 0
+#logo
+  width: 100%
+  height: 5px
+  display: inline-block
+  padding: 0
+  img
+    width: 100%
+#total
+  margin: 10px 0
+  div
+    display: inline-block
+  // perspective: 30px
+  // div
+  //   transform: rotateY(-1deg)
+#total-archives
+  width: 100%
+  border-left: 5px solid #fff
+  padding: 0 0 0 10px
+  .total-title
+    font-size: 23px
+    display: block
+  .total-number
+    font-weight: bolder
+    font-size: 52px
+#total-tags, #total-categories
+  margin: 15px 0 0 15px
+
+
 
 // ========= 弹性布局
 // ====== flex layout
@@ -182,18 +191,31 @@ article
   aside
     width: 100%
     padding: 0
-    #logo
-      height: 0
-      img
-        opacity: .05
-        position: fixed
-        bottom: -50px
-        left: -46%
-        pointer-events: none
     footer
       text-align: center
       padding: 10px 0
       position: static
+  #logo
+    height: 0
+    img
+      opacity: .05
+      position: fixed
+      bottom: -50px
+      left: -46%
+      pointer-events: none
+  #paginator
+    margin: 20px 0 0 0
+    a, span
+      margin: 5px 5px 0 0
+  #total
+    text-align: center
+    margin: 0
+    .total-title
+      font-size: medium
+    .total-number
+      font-size: large
+  #total-archives
+    width: auto
 @media ( min-width: 768px )
   body
     width: 90%
@@ -212,6 +234,8 @@ article
 @media ( min-width: 1920px )
   aside
     width: 450px
+
+
 
 // ========= 字体
 // ====== font 
