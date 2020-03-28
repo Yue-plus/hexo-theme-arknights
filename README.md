@@ -10,7 +10,7 @@
 yarn global add hexo-cli yo generator-hexo-theme
 hexo init <test>
 cd <test>
-yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass
+yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
 cd <test>/themes
 git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
 ```
