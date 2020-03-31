@@ -1,7 +1,7 @@
 if page.posts.length > 0
   each post in page.posts.sort('date', -1).limit(10).toArray()
     a(href=url_for(post.path)).recent-post
-      - console.log(post.tags)
+      //- - console.log(post.tags)
       if post.date
         time(datetime=post.date.toJSON())= date(post.date, date_format)
       span.tags Unknown Tags
