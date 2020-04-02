@@ -10,14 +10,13 @@ body
   background-position: 50% 40px
   background-repeat: no-repeat
   background-size: cover
-  font-family: BenderLight, sans-serif
+  font-family: sans-serif
   display: flex
   flex-direction: column
   align-items: stretch
 
 h1, h2, h3, h4, h5, h6
   color: #fff
-  font-family: sans-serif
 
 a
   color: #22bbff
@@ -44,6 +43,24 @@ a
   padding: 0 28px 0 5px
   background-color: #fff
 
+.tag-list
+  list-style: none
+  display: block
+  margin: 0
+  padding: 0
+.tag-list-item
+  line-height: 23px
+  background-color: #494949
+  display: inline-block
+  margin: 5px
+.tag-list-link
+  color: #fff
+  padding: 3px 12px
+  display: inline-block
+  &:hover
+    color: #fff
+    background-color: #2bf
+
 
 
 // ========= 布局样式
@@ -54,6 +71,7 @@ header
   z-index: 1
   margin: 0 0 20px 0
   background-color: #141516
+  font-family: BenderLight
   nav a
     height: 40px
     line-height: 40px
@@ -149,6 +167,7 @@ aside
     padding: 30px 3px
     position: fixed
     bottom: 0
+    font-family: BenderLight
 #logo
   width: 100%
   height: 5px
@@ -158,6 +177,7 @@ aside
     width: 100%
 #total
   margin: 10px 0
+  font-family: BenderLight
   div
     display: inline-block
   // perspective: 30px

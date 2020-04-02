@@ -19,3 +19,6 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
 ```bash
 hexo serve --debug
 ```
+
+### 点个 star 把~
+给颗小星星吧 `(/▽＼)`
