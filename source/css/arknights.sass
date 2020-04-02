@@ -184,15 +184,24 @@ aside
   // div
   //   transform: rotateY(-1deg)
 #total-archives
+  color: #fff
   width: 100%
   border-left: 5px solid #fff
   padding: 0 0 0 10px
+  display: block
+  transition: 1s
   .total-title
     font-size: 23px
     display: block
   .total-number
     font-weight: bolder
     font-size: 52px
+    transition: .8s
+  &:hover
+    border-color: #2bf
+    background-color: rgba(#fff, .1)
+    .total-number
+      color: #2bf
 #total-tags, #total-categories
   margin: 15px 0 0 15px
 
@@ -265,7 +274,7 @@ aside
 
 
 // ========= 字体
-// ====== font 
+// ====== font
 @font-face
   font-family: BenderLight
   src: url("/font/BenderLight.ttf")

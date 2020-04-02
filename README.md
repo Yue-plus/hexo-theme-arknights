@@ -19,6 +19,13 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
 ```bash
 hexo serve --debug
 ```
+一个bug，修改 `.pug` 模板文件无法自动刷新页面。
+解决方法：到 Hexo 目录下的
+`./node_modules/hexo-renderer-pug/lib/pug.js`
+中的
+`pugRenderer.compile = pugCompile;`
+注释掉。
+
 
 ### 点个 star 把~
 给颗小星星吧 `(/▽＼)`

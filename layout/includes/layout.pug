@@ -5,7 +5,7 @@
 - if (is_category()) pageTitle = 'Category: ' + page.category
 - if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
 - if (is_year()) pageTitle += ': ' + page.year
-- pageTitle += ' [ ' + config.title + ' ]'
+- pageTitle += ' - ' + config.title
 
 doctype html
 html(lang=config.language)
@@ -33,15 +33,15 @@ html(lang=config.language)
           img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
           //- img(src="/img/logo.png", alt="Logo")
         section#total
-          #total-archives
-            span.total-title Archives Total: 
-            span.total-number 
+          a#total-archives(href="/archives")
+            span.total-title Archives Total:
+            span.total-number= site.posts.length
           #total-tags
-            span.total-title Tags: 
-            span.total-number 80
+            span.total-title Tags:
+            span.total-number= site.tags.length
           #total-categories
-            span.total-title Categories: 
-            span.total-number 320
+            span.total-title Categories:
+            span.total-number= site.categories.length
         footer
           nobr
             span.text-title ©
@@ -49,7 +49,7 @@ html(lang=config.language)
           wbr
           nobr=' Dr.' + config.author + ' '
           wbr
-          nobr Powered by 
+          nobr Powered by
             a(href='http://hexo.io') Hexo
     canvas#particle
     if theme.scripts !== undefined && theme.scripts.length > 0
