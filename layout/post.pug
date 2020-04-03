@@ -1,6 +1,8 @@
 extends includes/layout.pug
 
 block content
-  h1= page.title
-  != page.content
-  #paginator!= paginator()
+  #post-bg
+    h1= page.title
+    hr#title-hr
+    != page.content
+    #paginator!= paginator()

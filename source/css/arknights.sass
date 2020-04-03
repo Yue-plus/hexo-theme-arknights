@@ -157,6 +157,23 @@ article
     color: #000
     background-color: #2bf
 
+#post-bg
+  padding: 20px 30px
+  border-right: #fe2 solid 2px
+  margin: 0 40px 40px 0
+  background-color: rgba(#141516, .8)
+#title-hr
+  height: 0
+  color: #535353
+  &:before
+    width: 13%
+    height: 3px
+    content: ''
+    display: block
+    background-color: #fff
+    position: relative
+    top: -2px
+
 aside
   color: #fff
   padding: 0 20px
@@ -188,7 +205,7 @@ aside
   width: 100%
   border-left: 5px solid #fff
   padding: 0 0 0 10px
-  display: block
+  display: inline-block
   transition: 1s
   .total-title
     font-size: 23px
@@ -196,6 +213,7 @@ aside
   .total-number
     font-weight: bolder
     font-size: 52px
+    padding: 0 10px
     transition: .8s
   &:hover
     border-color: #2bf
@@ -224,6 +242,13 @@ aside
     article
       width: 100%
       padding: 0
+  #paginator
+    margin: 20px 0 0 0
+    a, span
+      margin: 5px 5px 0 0
+  #post-bg
+    margin: 0
+    padding: 5px 10px
   aside
     width: 100%
     padding: 0
@@ -239,10 +264,6 @@ aside
       bottom: -50px
       left: -46%
       pointer-events: none
-  #paginator
-    margin: 20px 0 0 0
-    a, span
-      margin: 5px 5px 0 0
   #total
     text-align: center
     margin: 0
@@ -252,6 +273,8 @@ aside
       font-size: large
   #total-archives
     width: auto
+    .total-title
+      display: inline-block
 @media ( min-width: 768px )
   body
     width: 90%
