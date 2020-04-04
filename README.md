@@ -14,18 +14,24 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 cd <test>/themes
 git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
 ```
-修改 `<test>/_config.yml` 中的 `theme:` 改为 `arknights`
+修改 `<test>/_config.yml` 中 `theme:` 的值改为 `arknights`
 然后,打开 `<test>/themes/arknights` 下编辑主题
 ```bash
 hexo serve --debug
 ```
 一个bug，修改 `.pug` 模板文件无法自动刷新页面。
-解决方法：到 Hexo 目录下的
+解决方法：将 Hexo 目录下的
 `./node_modules/hexo-renderer-pug/lib/pug.js`
 中的
 `pugRenderer.compile = pugCompile;`
 注释掉。
 
+## 参与开发可能需要的文档
+[SASS 中文网](https://www.sass.hk/guide/)
+> 注意，这个中文网标的是 SASS 但写的是 SCSS 的语法。
+> 其最大区别是 SASS 不要写分号和花括号、文件拓展名不同。
+
+[Pug 模板引擎中文文档](https://pugjs.bootcss.com/api/getting-started.html)
 
 ### 点个 star 把~
 给颗小星星吧 `(/▽＼)`

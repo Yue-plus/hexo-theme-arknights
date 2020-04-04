@@ -1,0 +1,61 @@
+// ========= 弹性布局
+// ====== flex layout
+@media ( max-width: 768px )
+  body
+    margin: 0 18px
+  main
+    flex-direction: column
+    article
+      width: 100%
+      padding: 0
+  #paginator
+    margin: 20px 0 0 0
+    a, span
+      margin: 5px 5px 0 0
+  #post-bg
+    margin: 0
+    padding: 5px 10px
+  aside
+    width: 100%
+    padding: 0
+    footer
+      text-align: center
+      padding: 10px 0
+      position: static
+  #logo
+    height: 0
+    img
+      opacity: .05
+      position: fixed
+      bottom: -50px
+      left: -46%
+      pointer-events: none
+  #total
+    text-align: center
+    margin: 0
+    .total-title
+      font-size: medium
+    .total-number
+      font-size: large
+  #total-archives
+    width: auto
+    .total-title
+      display: inline-block
+@media ( min-width: 768px )
+  body
+    width: 90%
+  aside
+    width: 160px
+    a img
+      transition: background-color 1s
+      &:hover
+        background-color: rgba(#fff , .1)
+@media ( min-width: 992px )
+  aside
+    width: 210px
+@media ( min-width: 1200px )
+  aside
+    width: 280px
+@media ( min-width: 1920px )
+  aside
+    width: 450px

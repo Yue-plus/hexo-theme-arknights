@@ -1,0 +1,54 @@
+article
+  padding: 0 12px
+  flex-grow: 1
+  overflow-y: auto
+  .recent-post
+    height: 100px
+    display: block
+    margin-bottom: -1px
+    border: 1px solid #898989
+    padding: 13px 15px
+    // background-color: rgba(#141516, .8)
+    transition: .3s
+    .tags
+      font-weight: bolder
+      &::after
+        content: ''
+        width: 10%
+        display: block
+        height: 5px
+        background-color: #2bf
+        position: relative
+        bottom: -15px
+    time
+      color: #898989
+      display: inline-block
+      float: right
+    h1
+      font-size: medium
+      font-weight: normal
+      font-family: sans-serif
+      color: #fff
+      margin: 0
+      padding: 30px 0 0 0
+    // display: inline
+    .read-more
+      color: #141516
+      display: block
+      float: right
+      text-align: right
+      font-size: smaller
+      font-weight: 600
+      background-color: #22bbff
+      padding: 3px 10px 3px 40px
+    // position: absolute
+    // bottom: 30px
+    &:hover
+      background-color: #2bf
+      .tags::after
+        background-color: #000
+      time, h1
+        color: #000
+      .read-more
+        color: #fff
+        background-color: #000
