@@ -1,9 +1,18 @@
 if page.posts.length > 0
   each post in page.posts.sort('date', -1).limit(10).toArray()
-    a(href=url_for(post.path)).recent-post
-      //- - console.log(post.tags)
-      if post.date
-        time(datetime=post.date.toJSON())= date(post.date, date_format)
-      span.tags Unknown Tags
-      h1= post.title
+    div(onclick=url_for(post.path)).recent-post
+      .recent-info
+        span.tags
+          if post.tags.length > 0
+            each tag in post.tags.data
+              span= tag.name
+          else
+            span NO INFO
+        if post.date
+          time(datetime=post.date.toJSON())= date(post.date, date_format)
+      h1.recent-title= post.title
+      //if post.extends.length > 0
+        hr
+      .recent-excerpt!= post.excerpt
       span.read-more READ MORE +
+       - console.log(post.categories)
