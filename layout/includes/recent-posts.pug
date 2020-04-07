@@ -1,18 +1,26 @@
 if page.posts.length > 0
   each post in page.posts.sort('date', -1).limit(10).toArray()
-    div(onclick=url_for(post.path)).recent-post
+    //div(onclick=url_for(post.path)).recent-post
+    a(href=url_for(post.path)).recent-post
       .recent-info
+        span.categories
+          if post.categories.length > 0
+            each category in post.categories.data
+              object
+                a(href=url_for(category.path))= category.name
+          else
+            span NO CATEGORY
         span.tags
           if post.tags.length > 0
             each tag in post.tags.data
-              span= tag.name
+              object
+                a(href=url_for(tag.path))= tag.name
           else
-            span NO INFO
+            span empty
         if post.date
           time(datetime=post.date.toJSON())= date(post.date, date_format)
       h1.recent-title= post.title
-      //if post.extends.length > 0
+      if post.excerpt.length > 0
         hr
-      .recent-excerpt!= post.excerpt
+        .recent-excerpt!= post.excerpt
       span.read-more READ MORE +
-       - console.log(post.categories)

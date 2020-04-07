@@ -18,6 +18,9 @@
   aside
     width: 100%
     padding: 0
+    h1
+      text-align: center
+      margin: 0
     footer
       text-align: center
       padding: 10px 0
@@ -46,6 +49,9 @@
     width: 90%
   aside
     width: 160px
+    transition: 0s
+    h1
+      font-size: x-large
     a img
       transition: background-color 1s
       &:hover
@@ -53,9 +59,30 @@
 @media ( min-width: 992px )
   aside
     width: 210px
+    transition: .3s
+    h1
+      font-size: xx-large
 @media ( min-width: 1200px )
   aside
     width: 280px
+    h1
+      font-size: 48px
+    #total-archives
+      .total-title
+        font-size: 36px
+      .total-number
+        font-size: 48px
+    #total-tags, #total-categories
+      font-size: 23px
 @media ( min-width: 1920px )
   aside
     width: 450px
+    h1
+      font-size: 68px
+    #total-archives
+      .total-title
+        font-size: 42px
+      .total-number
+        font-size: 53px
+    #total-tags, #total-categories
+      font-size: 32px

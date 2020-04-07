@@ -3,19 +3,26 @@ article
   flex-grow: 1
 
 .recent-post
-  //height: 100px
+  color: #898989
   display: block
   margin-bottom: -1px
   border: 1px solid #898989
   padding: 13px 15px
   // background-color: rgba(#141516, .8)
   transition: .3s
-  .tags
+  .categories, .tags
     font-family: BenderLight, sans-serif
-    font-size: smaller
-    span
+    transition: .3s
+  .categories
+    color: #2bf
+    font-size: large
+    font-weight: bold
+    padding: 0 10px 0 0
+  .tags
+    font-size: small
+    span, object
       display: inline-block
-      padding: 0 5px
+      padding: 0 5px 0 0
   time
     color: #898989
     display: inline-block
@@ -24,8 +31,9 @@ article
   hr
     color: #898989
     border-color: #898989
+    transition: .3s
   h1
-    font-weight: normal
+    //font-weight: normal
     font-family: sans-serif
     color: #fff
     margin: 0
@@ -33,19 +41,30 @@ article
   p
     margin: 12px 0 28px 0
   &:hover
+    color: #000
     background-color: #2bf
-    .tags
+    a:hover
+      color: #fff
+    a, time, .categories
       color: #000
     .recent-info::after
       background-color: #000
-    time, p
-      color: #000
     hr
       color: #2bf
       border-color: #2bf
     .read-more
       color: #fff
       background-color: #000
+
+.recent-info::after
+  content: ''
+  width: 13%
+  display: block
+  height: 5px
+  background-color: #2bf
+  position: relative
+  bottom: -6px
+  transition: .3s
 
 .read-more
   color: #141516
@@ -57,13 +76,4 @@ article
   margin-top: -21px
   padding: 3px 10px 3px 40px
   font-family: BenderLight
-
-.recent-info
-  &::after
-    content: ''
-    width: 13%
-    display: block
-    height: 5px
-    background-color: #2bf
-    position: relative
-    bottom: -6px
+  transition: .3s

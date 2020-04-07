@@ -1,6 +1,10 @@
-
 # html lang
 language: zh
+
+# Copyright
+copyright:
+  ©: 1970 to 2020
+#  ICP: ——备案号——
 
 # main menu navigation
 menu:

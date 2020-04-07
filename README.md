@@ -27,11 +27,16 @@ hexo serve --debug
 注释掉。
 
 ## 参与开发可能需要的文档
-[SASS 中文网](https://www.sass.hk/guide/)
-> 注意，这个中文网标的是 SASS 但写的是 SCSS 的语法。
-> 其最大区别是 SASS 不要写分号和花括号、文件拓展名不同。
+- [Hexo 官方文档](https://hexo.io/zh-cn/docs/templates)
+- [SASS 中文网](https://www.sass.hk/guide/)
+  > 注意，这个中文网标的是 SASS 但写的是 SCSS 的语法。
+  > 其最大区别是 SASS 不要写分号和花括号、文件拓展名不同。
+- [Pug 模板引擎中文文档](https://pugjs.bootcss.com/api/getting-started.html)
 
-[Pug 模板引擎中文文档](https://pugjs.bootcss.com/api/getting-started.html)
+另外引用几个大佬的blog
+> - [Hexo主题开发 - ﹏猴子请来的救兵 - 博客园](https://www.cnblogs.com/yyhh/p/11058985.html)
+> - 【墙】[Hexo主题开发经验杂谈 | MARKSZのBlog](https://molunerfinn.com/make-a-hexo-theme/)
+> - 【墙】[Hexo 主题开发指南 | Peak Xin's Blog](https://xinyufeng.net/2019/04/15/hexo-theme-guide/)
 
 ### 点个 star 把~
 给颗小星星吧 `(/▽＼)`
