@@ -10,13 +10,14 @@ article
   padding: 13px 15px
   // background-color: rgba(#141516, .8)
   transition: .3s
+  *, .recent-info::after
+    transition: .3s
   object
     h1, h2, h3, h4, h5, h6
       font-size: large
       margin: 0
   .categories, .tags
     font-family: BenderLight, sans-serif
-    transition: .3s
   .categories
     color: #2bf
     font-size: large
@@ -35,7 +36,6 @@ article
   hr
     color: #898989
     border-color: #898989
-    transition: .3s
   h1
     //font-weight: normal
     font-family: sans-serif
@@ -57,6 +57,11 @@ article
     hr
       color: #2bf
       border-color: #2bf
+    figure table
+      .gutter
+        background-color: #fe2
+      .code
+        background-color: rgba(#141516, .8)
     .read-more
       color: #fff
       background-color: #000
@@ -69,7 +74,6 @@ article
   background-color: #2bf
   position: relative
   bottom: -6px
-  transition: .3s
 
 .recent-excerpt
   margin: 12px 0 28px 0
@@ -84,4 +88,3 @@ article
   margin-top: -21px
   padding: 3px 10px 3px 40px
   font-family: BenderLight
-  transition: .3s
