@@ -20,7 +20,8 @@ if page.posts.length > 0
         if post.date
           time(datetime=post.date.toJSON())= date(post.date, date_format)
       h1.recent-title= post.title
-      if post.excerpt.length > 0
-        hr
-        .recent-excerpt!= post.excerpt
+      .recent-excerpt
+        if post.excerpt.length > 0
+          hr
+          object!= post.excerpt
       span.read-more READ MORE +

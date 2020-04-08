@@ -19,12 +19,21 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
 ```bash
 hexo serve --debug
 ```
-一个bug，修改 `.pug` 模板文件无法自动刷新页面。
+
+## 开发中可能遇见的 BUG 及解决方法
+
+### 修改 `.pug` 模板文件无法自动刷新页面。
+
 解决方法：将 Hexo 目录下的
 `./node_modules/hexo-renderer-pug/lib/pug.js`
 中的
 `pugRenderer.compile = pugCompile;`
 注释掉。
+
+### 运行 ‘hexo serve’ 时，长文章渲染不全
+
+这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布
+解决方法：禁用该插件。（反正不影响发布，不管也行）
 
 ## 参与开发可能需要的文档
 - [Hexo 官方文档](https://hexo.io/zh-cn/docs/templates)

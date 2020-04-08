@@ -10,6 +10,10 @@ article
   padding: 13px 15px
   // background-color: rgba(#141516, .8)
   transition: .3s
+  object
+    h1, h2, h3, h4, h5, h6
+      font-size: large
+      margin: 0
   .categories, .tags
     font-family: BenderLight, sans-serif
     transition: .3s
@@ -38,8 +42,6 @@ article
     color: #fff
     margin: 0
     padding: 15px 0 0 0
-  p
-    margin: 12px 0 28px 0
   &:hover
     color: #000
     background-color: #2bf
@@ -49,6 +51,9 @@ article
       color: #000
     .recent-info::after
       background-color: #000
+    .recent-excerpt
+      object a
+        color: #fff
     hr
       color: #2bf
       border-color: #2bf
@@ -65,6 +70,9 @@ article
   position: relative
   bottom: -6px
   transition: .3s
+
+.recent-excerpt
+  margin: 12px 0 28px 0
 
 .read-more
   color: #141516

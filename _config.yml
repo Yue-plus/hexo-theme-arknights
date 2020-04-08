@@ -16,7 +16,9 @@ menu:
 # stylesheets loaded in the <head>
 stylesheets:
 - /css/arknights.css
+- https://cdn.bootcss.com/highlight.js/9.18.1/styles/atom-one-dark-reasonable.min.css
 
 # scripts loaded in the end of the body
 scripts:
+#- //cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js
 - /js/arknights.js
