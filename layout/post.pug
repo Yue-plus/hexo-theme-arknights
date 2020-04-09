@@ -1,8 +1,29 @@
 extends includes/layout.pug
 
 block content
+  - const prev = page.prev
+  - const next = page.next
   #post-bg
     h1= page.title
     hr#title-hr
     != page.content
     #paginator!= paginator()
+    hr.footer-hr
+    if prev !== undefined
+      a(href=url_for(prev.path))
+        |← Prev
+        =' ' + prev.title
+    if prev && next
+      <span style="color: #fe2"> | </span>
+    if next !== undefined
+      a(href=url_for(next.path))
+        =next.title + ' '
+        |Next →
+    hr.footer-hr
+
+block index
+  - const tocContent = toc(page.content, theme.toc)
+  if tocContent.length > 0
+    #post-index
+      h1 Index
+      != tocContent

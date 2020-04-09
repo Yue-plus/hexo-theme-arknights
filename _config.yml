@@ -6,6 +6,12 @@ copyright:
   ©: 1970 to 2020
 #  ICP: ——备案号——
 
+# 文章内目录
+toc:
+  list_number: true # true / false ；是否显示编号
+  max_depth: 6 # 最大目录深度
+  min_depth: 1 #最小目录深度
+
 # main menu navigation
 menu:
   Home: /
