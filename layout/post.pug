@@ -3,23 +3,39 @@ extends includes/layout.pug
 block content
   - const prev = page.prev
   - const next = page.next
+  - const dateConf = theme.post.date
+  - const updatedConf = theme.post.updated
   #post-bg
-    h1= page.title
-    hr#title-hr
-    != page.content
-    #paginator!= paginator()
-    hr.footer-hr
-    if prev !== undefined
-      a(href=url_for(prev.path))
-        |← Prev
-        =' ' + prev.title
-    if prev && next
-      <span style="color: #fe2"> | </span>
-    if next !== undefined
-      a(href=url_for(next.path))
-        =next.title + ' '
-        |Next →
-    hr.footer-hr
+    #post-title
+      if dateConf || updatedConf
+        #post-date
+          if dateConf
+            span date:
+              time(datetime=page.date.toJSON())#date
+                = ' ' + date(page.date, date_format)
+          if dateConf && updatedConf
+            br
+          if updatedConf
+            span updated:
+              time(datetime=page.updated.toJSON())#updated
+                = ' ' + date(page.updated, date_format)
+      h1= page.title
+      hr
+    #post-content
+      != page.content
+      #paginator!= paginator()
+      hr.footer-hr
+      if prev !== undefined
+        a(href=url_for(prev.path))
+          |← Prev
+          =' ' + prev.title
+      if prev && next
+        <span style="color: #fe2"> | </span>
+      if next !== undefined
+        a(href=url_for(next.path))
+          =next.title + ' '
+          |Next →
+      hr.footer-hr
     #to-top
       a(href="#" title="to top")
 

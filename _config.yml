@@ -10,7 +10,12 @@ copyright:
 toc:
   list_number: true # true / false ；是否显示编号
   max_depth: 6 # 最大目录深度
-  min_depth: 1 #最小目录深度
+  min_depth: 1 # 最小目录深度
+
+# 显示发布日期与修改日期
+post:
+  date: true # true / false ；是否显示发布日期
+  updated: true # true / false ；是否显示修改日期
 
 # main menu navigation
 menu:
