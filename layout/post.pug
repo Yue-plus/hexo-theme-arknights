@@ -24,7 +24,8 @@ block content
     #post-content
       != page.content
       #paginator!= paginator()
-      hr.footer-hr
+    #post-footer
+      hr
       if prev !== undefined
         a(href=url_for(prev.path))
           |← Prev

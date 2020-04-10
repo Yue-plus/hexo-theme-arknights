@@ -27,29 +27,36 @@
     color: #2bf
     font-weight: 900
 
-figure table
-  td
-    border: 0
-  code
-    background-color: transparent!important
-  .gutter
-    color: #000
-    text-align: right
-    background-color: #2bf
-  .code
-    width: 100%
-    background-color: rgba(#fff, .05)
-    transition: .3s
-    &:hover
-      background-color: rgba(#fff, .1)
+.highlight
+  overflow-x: auto
+  table
+    td
+      border: 0
+    code
+      background-color: transparent!important
+    .gutter
+      color: #000
+      text-align: right
+      background-color: #2bf
+      position: relative
+      left: 0
+      &, pre, span
+        user-select: none
+        pointer-events: none
+    .code
+      width: 100%
+      background-color: rgba(#fff, .05)
+      transition: .3s
+      &:hover
+        background-color: rgba(#fff, .1)
 
-.footer-hr
-  color: #fe2
-  background-color: #fe2
+#post-footer hr
+  border-color: #fe2
 
 #to-top
   position: sticky
   bottom: 0
+  z-index: 1
   a
     width: 40px
     height: 40px
