@@ -27,6 +27,15 @@
     color: #2bf
     font-weight: 900
 
+#post-content
+  h1, h2, h3, h4, h5, h6
+    &:before
+      content: ''
+      display: block
+      margin-top: -50px
+      height: 50px
+      visibility: hidden
+
 .highlight
   overflow-x: auto
   table
