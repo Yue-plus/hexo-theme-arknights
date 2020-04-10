@@ -10,7 +10,7 @@ aside
     margin-top: 0
   footer
     color: #898989
-    padding: 30px 3px
+    padding: 0 3px 30px 3px
     position: fixed
     bottom: 0
     font-family: BenderLight
@@ -57,8 +57,9 @@ aside
   margin: 15px 0 0 15px
 
 #post-index
-  position: sticky
-  top: 60px
+  //position: sticky
+  //top: 60px
+  margin-bottom: 90px
   flex-grow: 1
   &, h1
     transition: 1s
@@ -69,17 +70,23 @@ aside
   h1
     color: #000
     background-color: #fff
-    margin: 0 0 10px 0
+    margin: 0
     padding: 0 10px
     font-size: medium
   .toc
-    margin: 0 0 60px 0
-    padding: 0 0 10px 10px
+    margin: 0
+    padding: 10px
     list-style: none
   .toc-child
-    padding: 0 0 0 10px
+    padding: 0
     list-style: none
   .toc-item
-    padding: 1px 0
-
+    white-space: nowrap
+    overflow: hidden
+  .toc-link
+    width: 100%
+    display: inline-block
+    &:hover
+      .toc-number
+        display: none
 
