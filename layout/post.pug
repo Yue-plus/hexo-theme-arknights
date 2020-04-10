@@ -38,9 +38,9 @@ block content
           |Next →
       hr.footer-hr
     #to-top
-      a(href="#" title="to top")
+      a(href="#post-title" title="to top")
 
-block index
+block post-index
   - const tocContent = toc(page.content, theme.toc)
   if tocContent.length > 0
     #post-index

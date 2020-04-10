@@ -29,21 +29,22 @@ html(lang=config.language)
         else
           block content
       aside
-        a(href=config.root)#logo
-          img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
-          //- img(src="/img/logo.png", alt="Logo")
-        h1=' Dr.' + config.author
-        section#total
-          a#total-archives(href="/archives")
-            span.total-title Archives Total:
-            span.total-number= site.posts.length
-          #total-tags
-            span.total-title Tags:
-            span.total-number= site.tags.length
-          #total-categories
-            span.total-title Categories:
-            span.total-number= site.categories.length
-        block index
+        #about
+          a(href=config.root)#logo
+            img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
+            //- img(src="/img/logo.png", alt="Logo")
+          h1=' Dr.' + config.author
+          section#total
+            a#total-archives(href="/archives")
+              span.total-title Archives Total:
+              span.total-number= site.posts.length
+            #total-tags
+              span.total-title Tags:
+              span.total-number= site.tags.length
+            #total-categories
+              span.total-title Categories:
+              span.total-number= site.categories.length
+        block post-index
         footer
           nobr
             each content, title in theme.copyright

@@ -2,19 +2,16 @@
 // ====== flex layout
 @media ( max-width: 768px )
   body
-    margin: 0
+    margin: 0 12px
   main
     flex-direction: column
+    overflow: visible
     article
       width: 100%
+      max-height: none
       padding: 0
-  #paginator
-    margin: 20px 0 0 0
-    a, span
-      margin: 5px 5px 0 0
-  #post-bg
-    margin: 0
-    padding: 5px 10px 0 10px
+      flex-shrink: 0
+      overflow: visible
   .highlight
     margin: 0
   aside
@@ -27,10 +24,18 @@
       text-align: center
       padding: 10px 0
       position: static
+  #paginator
+    margin: 20px 0 0 0
+    a, span
+      margin: 5px 5px 0 0
+  #post-bg
+    margin: 0
+    padding: 5px 10px 0 10px
   #post-index
     margin: 0
   #logo
     height: 0
+    margin: 0
     img
       opacity: .05
       position: fixed
@@ -49,9 +54,13 @@
     .total-title
       display: inline-block
   #to-top a
-    bottom: -36px
+    bottom: 16px
     right: 0
+  #post-index
+    margin: 16px 10px 0 10px
 @media ( min-width: 769px )
+  body
+    width: 96%
   aside
     width: 160px
     transition: 0s
