@@ -40,9 +40,8 @@ block content
     #to-top
       a(href="#post-title" title="to top")
 
-block post-index
+block aside-block
   - const tocContent = toc(page.content, theme.toc)
   if tocContent.length > 0
-    #post-index
-      h1 Index
-      != tocContent
+    h1 INDEX
+    != tocContent

@@ -8,7 +8,6 @@ aside
   flex-direction: column
   justify-content: space-between
   align-content: stretch
-
   h1
     font-family: BenderLight, sans-serif
     margin-top: 0
@@ -59,7 +58,7 @@ aside
 #total-tags, #total-categories
   margin: 15px 0 0 15px
 
-#post-index
+#aside-block
   background-color: rgba(20, 21, 22, 0.8)
   &, h1
     transition: 1s
@@ -86,7 +85,21 @@ aside
   .toc-link
     width: 100%
     display: inline-block
+    &:visited
+      color: #fe2
     &:hover
       .toc-number
         display: none
+      .toc-text
+        padding-left: 10px
 
+
+#navigation
+  a
+    width: 100%
+    display: inline-block
+    padding: 6px 0
+    font-size: x-large
+    font-weight: 900
+    font-family: BenderLight
+    text-align: center

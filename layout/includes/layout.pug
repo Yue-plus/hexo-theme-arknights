@@ -44,7 +44,8 @@ html(lang=config.language)
             #total-categories
               span.total-title Categories:
               span.total-number= site.categories.length
-        block post-index
+        #aside-block
+          block aside-block
         footer
           nobr
             each content, title in theme.copyright
