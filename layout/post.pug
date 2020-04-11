@@ -44,4 +44,4 @@ block aside-block
   - const tocContent = toc(page.content, theme.toc)
   if tocContent.length > 0
     h1 INDEX
-    != tocContent
+    #post-index!= tocContent
