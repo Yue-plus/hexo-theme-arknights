@@ -6,21 +6,51 @@
 ## 搭建开发环境
 
 先装好 [nodejs](https://nodejs.org/) 和 [yarn](https://classic.yarnpkg.com/zh-Hans/) ，然后执行以下命令：
-```bash
+```shell script
 yarn global add hexo-cli yo generator-hexo-theme
 hexo init <test>
 cd <test>
-yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
+yarn add hexo-renderer-kramed hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
 cd <test>/themes
 git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
 ```
 修改 `<test>/_config.yml` 中 `theme:` 的值改为 `arknights`
 然后,打开 `<test>/themes/arknights` 下编辑主题
-```bash
+```shell script
 hexo serve --debug
 ```
 
+
 ## 开发中可能遇见的 BUG 及解决方法
+### 开启 LaTeX 支持
+> 来源：[让 Hexo 搭建的博客支持 LaTeX](http://cps.ninja/2019/03/16/hexo-with-latex/)
+```shell script
+yarn add hexo-math
+yarn remove hexo-renderer-marked
+yarn add hexo-renderer-kramed
+```
+打开 `<test>/node_modules\kramed\lib\rules\inline.js`
+将第 11 行修改为：
+```yaml
+escape: /^\\([`*\[\]()#$+\-.!_>])/,
+```
+将第 20 行修改为：
+```yaml
+em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+```
+修改 `<test>/_config.yml`,添加如下内容：
+```yaml
+# MathJax
+math:
+  engine: 'mathjax'
+  mathjax:
+    src: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML
+```
+然后重启 Hexo，并运行以下指令
+```shell script
+hexo clean
+hexo s
+```
 
 ### 修改 `.pug` 模板文件无法自动刷新页面。
 
@@ -30,7 +60,7 @@ hexo serve --debug
 `pugRenderer.compile = pugCompile;`
 注释掉。
 
-### 运行 ‘hexo serve’ 时，长文章渲染不全
+### 运行 ‘hexo serve --debug’ 时，长文章渲染不全
 
 这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布
 解决方法：禁用该插件。（反正不影响发布，不管也行）

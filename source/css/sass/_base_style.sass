@@ -57,14 +57,38 @@ code
   background-color: rgba(#fff, .1)
   padding: 0 3px
 
+kbd
+  color: #000
+  background-color: #fe2
+  margin: 0 2px
+  border-radius: 2px
+  padding: 0 3px
+  font-family: "JetBrains Mono"
+
+strong em
+  color: rgb(236, 48, 0)
+
+blockquote
+  border-left: #2bf solid 5px
+  padding: 10px 20px
+  background-color: rgba(#fff, .05)
+  transition: .3s
+  blockquote
+    margin: 0
+    padding-right: 0
+  &:hover
+    background-color: rgba(#fff, .1)
+
 table
   border: 0
   border-collapse: collapse
   th
     color: #000
-    background-color: #2bf
-    border: #2bf solid 1px
-    padding: 3px 10px
+    background-color: #fff
+    border: #fff solid 1px
+    padding: 0 10px
   td
-    border: #2bf solid 1px
     padding: 5px 8px
+    border: #2bf solid 1px
+    &:hover
+      background-color: rgba(#2bf, .1)
