@@ -5,10 +5,12 @@ block content
   - const next = page.next
   - const dateConf = theme.post.date
   - const updatedConf = theme.post.updated
+  - const sourceConf = theme.post.source
+  - const excerptConf = theme.post.excerpt
   #post-bg
     #post-title
       if dateConf || updatedConf
-        #post-date
+        #post-info
           if dateConf
             span date:
               time(datetime=page.date.toJSON())#date
@@ -19,13 +21,22 @@ block content
             span updated:
               time(datetime=page.updated.toJSON())#updated
                 = ' ' + date(page.updated, date_format)
+          if sourceConf
+            br
+            span#post-source Source File:
+              br
+              span= page.source
       h1= page.title
       hr
     #post-content
-      != page.content
+      if excerptConf
+        != page.content
+      else
+        != page.more
       #paginator!= paginator()
     #post-footer
-      hr
+      if prev || next
+        hr
       if prev !== undefined
         a(href=url_for(prev.path))
           |← Prev
@@ -36,7 +47,8 @@ block content
         a(href=url_for(next.path))
           =next.title + ' '
           |Next →
-      hr.footer-hr
+      if prev || next
+        hr
     #to-top
       a(href="#post-title" title="to top")
 

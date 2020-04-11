@@ -10,22 +10,26 @@
   h1
     display: inline-block
   hr
-    height: 0
     color: #535353
+    position: relative
     &:before
+      content: ''
       width: 13%
       height: 3px
-      content: ''
       display: block
+      position: absolute
       background-color: #fff
-      position: relative
-      top: -2px
-#post-date
+      top: -3px
+      left: -1px
+#post-info
   float: right
   text-align: right
   time
     color: #2bf
     font-weight: 900
+#post-source span
+  color: #fe2
+  background-color: #555
 
 #post-content
   h1, h2, h3, h4, h5, h6
