@@ -2,11 +2,19 @@
 extends includes/layout.pug
 
 block content
-  - var categoriesList = list_categories({ show_count: false })
-  - var tagsList = list_tags({ show_count: false })
+  -
+    var categoriesList = list_categories({
+      order: 1
+      , show_count: theme.archives.categories_count
+    })
+  -
+    var tagsList = list_tags({
+      order: -1
+      , show_count: theme.archives.tags_count
+    })
   -
     var archivesList = list_archives({
-      type: yearly
+      type: 'yearly'
       , order: -1
       , show_count: false
     })
@@ -15,9 +23,10 @@ block content
     #Archives
       h1 archives
       if archivesList
-        != archivesList
+        //!= archivesList
         - page.posts.each(function(article){
         .archive-list-item
+          // - console.log(article)
           a(href=url_for(article.path))= article.title
           time(datetime=date_xml(article.date))= date(article.date)
         - })
@@ -28,55 +37,14 @@ block content
         h1 categories
         if categoriesList
           != categoriesList
+        else
+          p None.
       #Tags
         h1 tags
         if tagsList
           != tagsList
-    //if !is_year()
-    //
-    //  h1 Archives
-    //
-    //  if theme.atom
-    //    p The feed is available via&nbsp;
-    //      a(href=theme.atom) atom
-    //      span .
-    //    br
-    //
-    //  aside
-    //    h2 Categories
-    //    if categoriesList
-    //      != categoriesList
-    //    else
-    //      p None.
-    //  br
-    //
-    //  aside
-    //    h2 Tags
-    //    if tagsList
-    //      != tagsList
-    //    else
-    //      p None.
-    //  br
-    //
-    //  aside
-    //    h2 Archives
-    //    if archivesList
-    //      != archivesList
-    //    else
-    //      p None.
-    //  br
-    //
-    //else
-    //
-    //  h1= page.month + '/' + page.year
-    //
-    //  - page.posts.each(function(article){
-    //    .archive-list-item
-    //      a(href=url_for(article.path))= article.title
-    //      time(datetime=date_xml(article.date))= date(article.date)
-    //  - })
-
-      #paginator!= paginator()
+        else
+          p None.
 
 block aside-block
   h1 NAVIGATION

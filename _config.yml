@@ -6,18 +6,21 @@ copyright:
   ©: 1970 to 2020
 #  ICP: ——备案号——
 
-# 文章内目录
-toc:
-  list_number: true # true / false ；是否显示编号
-  max_depth: 6 # 最大目录深度
-  min_depth: 1 # 最小目录深度
-
 # post 文章页面配置；true / false
 post:
   date: true # 是否显示发布日期
   updated: true # 是否显示修改日期
   source: false # 是否显示源文件路径
   excerpt: false # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
+# 文章内目录
+toc:
+  list_number: true # true / false ；是否显示编号
+  max_depth: 6 # 最大目录深度
+  min_depth: 1 # 最小目录深度
+# 归档页；true / false
+archives:
+  categories_count: true # 是否显示分类总数
+  tags_count: true # 是否显示标签总数
 
 # main menu navigation
 menu:

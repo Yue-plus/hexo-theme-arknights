@@ -40,31 +40,60 @@
   list-style: none
   display: block
   margin: 0
-  padding: 10px
 
+.category-list
+  padding: 0
+.category-list-item
+  position: relative
+  &:hover
+    a
+      color: #2bf
+      border-left: #2bf solid 5px
+      background-color: rgba(#fff, .1)
+    span
+      color: #fff
 .category-list-link
   width: 100%
-  padding: 3px 0
+  padding: 6px 40% 6px 10px
   display: inline-block
   box-sizing: border-box
   &:before, &:after
     color: #2bf
     content: '#'
     padding: 0 5px
-  &:hover
-    color: #2bf
-    border-left: #2bf solid 5px
-    background-color: rgba(#fff, .1)
+.category-list-count
+  padding: 3px 10px
+  position: absolute
+  right: 0
 
+.tag-list
+  padding: 10px
 .tag-list-item
   line-height: 23px
-  background-color: #494949
+  background-color: #313131
   display: inline-block
   margin: 5px
+  border: #313131 solid 1px
+  border-radius: 3px
+  &, a, span
+    transition: .3s
+  &:hover
+    border-color: #2bf
+    a
+      color: #000
+      background-color: #2bf
+    span
+      background-color: #313131
+  &:active
+    border-color: #fe2
+    a
+      background-color: #fe2
 .tag-list-link
   color: #fff
-  padding: 3px 12px
+  padding: 3px 6px 3px 12px
   display: inline-block
-  &:hover
-    color: #fff
-    background-color: #2bf
+.tag-list-count
+  display: inline-block
+  padding: 3px 6px
+  color: #fff
+  background-color: #494949
