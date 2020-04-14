@@ -13,11 +13,49 @@
   padding: 0 28px 0 5px
   background-color: #fff
 
-.tag-list
+.highlight
+  overflow-x: auto
+  table
+    td
+      border: 0
+    code
+      background-color: transparent!important
+    .gutter
+      color: #000
+      text-align: right
+      background-color: #2bf
+      position: relative
+      left: 0
+      &, pre, span
+        user-select: none
+        pointer-events: none
+    .code
+      width: 100%
+      background-color: rgba(#fff, .05)
+      transition: .3s
+      &:hover
+        background-color: rgba(#fff, .1)
+
+.category-list, .tag-list
   list-style: none
   display: block
   margin: 0
-  padding: 0
+  padding: 10px
+
+.category-list-link
+  width: 100%
+  padding: 3px 0
+  display: inline-block
+  box-sizing: border-box
+  &:before, &:after
+    color: #2bf
+    content: '#'
+    padding: 0 5px
+  &:hover
+    color: #2bf
+    border-left: #2bf solid 5px
+    background-color: rgba(#fff, .1)
+
 .tag-list-item
   line-height: 23px
   background-color: #494949

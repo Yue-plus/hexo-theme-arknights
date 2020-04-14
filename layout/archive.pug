@@ -14,9 +14,13 @@ block content
   #archive-flex
     #Archives
       h1 archives
-      - console.log(archivesList)
       if archivesList
         != archivesList
+        - page.posts.each(function(article){
+        .archive-list-item
+          a(href=url_for(article.path))= article.title
+          time(datetime=date_xml(article.date))= date(article.date)
+        - })
       else
         p None.
     #archive-aside
