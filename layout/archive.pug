@@ -3,17 +3,17 @@ extends includes/layout.pug
 
 block content
   -
-    var categoriesList = list_categories({
+    const categoriesList = list_categories({
       order: 1
       , show_count: theme.archives.categories_count
     })
   -
-    var tagsList = list_tags({
+    const tagsList = list_tags({
       order: -1
       , show_count: theme.archives.tags_count
     })
   -
-    var archivesList = list_archives({
+    const archivesList = list_archives({
       type: 'yearly'
       , order: -1
       , show_count: false
@@ -22,14 +22,38 @@ block content
   #archive-flex
     #Archives
       h1 archives
+      .archives
+        // -
+          let posts = []
+          page.posts.each(function (post) {
+            posts.push(post)
+          })
+          let sortPosts = _[_.orderBy ? 'orderBy' : 'sortByOrder'](posts, ['date'], ['desc'])
+          let y = 0, m = 0
+          sortPosts.forEach(function (post, i) {
+            let dt = post.date
+            let ny = post.date.year()
+            let nm = post.date.month()
+            if (ny !== y || nm !== m)
+              y = ny
+              m = nm
+            - console.log(dt)
+
       if archivesList
-        //!= archivesList
         - page.posts.each(function(article){
         .archive-list-item
-          // - console.log(article)
           a(href=url_for(article.path))= article.title
           time(datetime=date_xml(article.date))= date(article.date)
         - })
+
+        //.archives-item
+        //  .archives-info
+        //    .categories Example
+        //    .tags code
+        //    time 2020-04-14
+        //  .archives-title
+        //    h2 Hello World !
+        //#paginator!= paginator()
       else
         p None.
     #archive-aside
