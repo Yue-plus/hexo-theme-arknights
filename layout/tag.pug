@@ -1,11 +1,43 @@
 extends includes/layout.pug
 
 block content
-  div#tag
-    h1= 'Tag: ' + page.tag
-    - page.posts.each(function(article){
-      a(href=url_for(article.path))= article.title
-      time(datetime=date_xml(article.date))= date(article.date)
-      br.clear
-    - })
-  #paginator!= paginator()
+  -
+    const categoriesList = list_categories({
+      order: 1
+      , show_count: theme.archives.categories_count
+    })
+  -
+    const tagsList = list_tags({
+      order: -1
+      , show_count: theme.archives.tags_count
+    })
+  -
+    const archivesList = list_archives({
+      type: 'yearly'
+      , order: -1
+      , show_count: false
+    })
+  #archive-flex
+    #Archives
+      #category
+        #tag
+          h1= 'Tag: ' + page.tag
+          - page.posts.each(function(article){
+          a(href=url_for(article.path))= article.title
+          time(datetime=date_xml(article.date))= date(article.date)
+          br.clear
+          - })
+        #paginator!= paginator()
+    #archive-aside
+      #Categories
+        h1 categories
+        if categoriesList
+          != categoriesList
+        else
+          p None.
+      #Tags
+        h1 tags
+        if tagsList
+          != tagsList
+        else
+          p None.
