@@ -19,14 +19,13 @@ block content
     })
   #archive-flex
     #Archives
-      #category
-        #tag
-          h1= 'Tag: ' + page.tag
-          - page.posts.each(function(article){
-          a(href=url_for(article.path))= article.title
-          time(datetime=date_xml(article.date))= date(article.date)
-          br.clear
-          - })
+      h1= 'Tag: ' + page.tag
+      #Archives-bg
+        - page.posts.each(function(article){
+        time(datetime=date_xml(article.date))= date(article.date)
+        a(href=url_for(article.path))= article.title
+        br.clear
+        - })
         #paginator!= paginator()
     #archive-aside
       #Categories

@@ -1,5 +1,6 @@
 #archive-flex
   height: 100%
+  min-height: 600px
   padding-bottom: 30px
   box-sizing: border-box
   display: flex
@@ -34,11 +35,24 @@
 #Archives
   flex-grow: 5
   h2
-    margin: 0
+    margin: 10px 0
+    font-size: large
+    &:before
+      content: ''
+      display: inline-block
+      width: 5px
+      height: 15px
+      margin-right: 5px
+      background-color: #fe2
   time
-    float: right
+    color: #fff
+    padding: 0 10px 0 20px
 .categories, .tags
   display: inline-block
+#Archives-bg
+  height: 100%
+  box-sizing: border-box
+  padding: 10px
 
 #Categories
   flex-grow: 1

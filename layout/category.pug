@@ -19,12 +19,12 @@ block content
     })
   #archive-flex
     #Archives
-      #category
-        h1= page.category
+      h1= page.category
+      #Archives-bg
         - page.posts.each(function(article){
         .category-item
-          a(href=url_for(article.path))= article.title
           time(datetime=date_xml(article.date))= date(article.date)
+          a(href=url_for(article.path))= article.title
         - })
       #paginator!= paginator()
     #archive-aside

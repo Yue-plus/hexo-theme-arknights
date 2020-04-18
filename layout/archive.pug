@@ -22,40 +22,18 @@ block content
   #archive-flex
     #Archives
       h1 archives
-      .archives
-        // -
-          let posts = []
-          page.posts.each(function (post) {
-            posts.push(post)
-          })
-          let sortPosts = _[_.orderBy ? 'orderBy' : 'sortByOrder'](posts, ['date'], ['desc'])
-          let y = 0, m = 0
-          sortPosts.forEach(function (post, i) {
-            let dt = post.date
-            let ny = post.date.year()
-            let nm = post.date.month()
-            if (ny !== y || nm !== m)
-              y = ny
-              m = nm
-            - console.log(dt)
-
-      if archivesList
-        - page.posts.each(function(article){
-        .archive-list-item
-          a(href=url_for(article.path))= article.title
-          time(datetime=date_xml(article.date))= date(article.date)
+      #Archives-bg
+        - let year
+        - page.posts.each(function (article) {
+          - let yearMonth = date(article.date, 'YYYY-MM')
+          if yearMonth !== year
+            - year = yearMonth
+            h2= year
+          .article-item
+            time= date(article.date, 'MM-DD')
+            a(href=url_for(article.path) target="_blank")
+              = article.title || 'No Title'
         - })
-
-        //.archives-item
-        //  .archives-info
-        //    .categories Example
-        //    .tags code
-        //    time 2020-04-14
-        //  .archives-title
-        //    h2 Hello World !
-        //#paginator!= paginator()
-      else
-        p None.
     #archive-aside
       #Categories
         h1 categories
