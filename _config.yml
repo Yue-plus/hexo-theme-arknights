@@ -1,6 +1,8 @@
 # html lang
 language: zh
 
+dr: https://github.com/Yue-plus # 侧边栏 Dr. 链接
+
 # Copyright
 copyright:
   ©: 1970 to 2020
