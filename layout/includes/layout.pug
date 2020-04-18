@@ -1,11 +1,12 @@
-
-- var pageTitle = page.title || config.subtitle || ''
-- if (is_archive()) pageTitle = 'Archives'
-- if (is_tag()) pageTitle = 'Tag: ' + page.tag
-- if (is_category()) pageTitle = 'Category: ' + page.category
-- if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
-- if (is_year()) pageTitle += ': ' + page.year
-- pageTitle += ' | ' + config.title
+-
+  var pageTitle = page.title || config.subtitle || ''
+  if (is_post()) pageTitle = page.title + ' | '
+  if (is_archive()) pageTitle = 'Archives | '
+  if (is_tag()) pageTitle = 'Tag: ' + page.tag + ' | '
+  if (is_category()) pageTitle = 'Category: ' + page.category + ' | '
+  if (is_month()) pageTitle += ': ' + page.month + '/' + page.year + ' | '
+  if (is_year()) pageTitle += ': ' + page.year + ' | '
+  pageTitle += config.title
 
 doctype html
 html(lang=config.language)
@@ -53,8 +54,14 @@ html(lang=config.language)
               span.text-title= title
               span.text-content= content
           wbr
-          nobr Powered by
-            a(href='http://hexo.io') Hexo
+          nobr published with&nbsp;
+            a(href='http://hexo.io') Hexo&nbsp;
+          wbr
+          nobr Theme&nbsp;
+            a(href='https://github.com/Yue-plus/hexo-theme-arknights') Arknight&nbsp;
+          wbr
+          nobr by&nbsp;
+            a(href='https://github.com/Yue-plus') Yue_plus
     canvas#canvas-dust
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
