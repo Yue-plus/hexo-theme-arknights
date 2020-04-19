@@ -1,7 +1,48 @@
 # hexo-theme-arknights
 
-明日方舟的 Hexo 主题
-开发中……
+## 预览
+预览 | Demo：<http://ark.theme.yueplus.ink/>
+![预览](https://api.yueplus.ink/Arknights.png)
+
+## 安装
+根据需要执行以下代码
+```shell script
+hexo init Hexo
+cd Hexo
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install
+git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
+```
+
+### 安装依赖
+npm 用户：
+```shell script 
+cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
+```
+yarn 用户：
+```shell script
+yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
+```
+> `hexo-renderer-sass` 很可能会安装失败，请多试几次。
+
+### 修改配置文件
+- 参照 [Hexo 官网](https://hexo.io/zh-cn/docs/configuration) 修改 `Hexo/` 目录下的 `_config.yml`。
+  并把 `theme:` 的值改为 `arknights`
+- 查看 `Hexo/themes/arknights/`目录下的 `_config.yml`。
+  主题的配置文件可参照中文注释修改。
+
+### 修改资源文件
+可按需修改 `Hexo/themes/arknights/source/` 目录下的
+- `CNAME`: GitHub Pages 部署时的自定义域名
+- `README.md`: 部署仓库的 README
+- `img/`目录下的 `Alipay.png` 与 `WeChat.png` 可替换为自己的二维码；
+  1:1 比例的 `png` 图片；
+
+## 写作
+- 可参考 [Hexo 官网](https://hexo.io/zh-cn/docs/writing)。
+- 在主题仓库的 Hexo 分支有一些示例文本可以取用：
+  <https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts>
+- 在 `<!-- more -->` 之前的内容称之为摘要会显示在首页上，并且可以设置是否在正文显示。
 
 ## 参与开发
 
@@ -54,5 +95,10 @@ hexo serve --debug
   > - 【墙】[Hexo主题开发经验杂谈 | MARKSZのBlog](https://molunerfinn.com/make-a-hexo-theme/)
   > - 【墙】[Hexo 主题开发指南 | Peak Xin's Blog](https://xinyufeng.net/2019/04/15/hexo-theme-guide/)
 
-## 点个 star 把~
-给颗小星星吧 `(/▽＼)`
+## 支援主题开发
+喜欢这个主题的话可以：
+- 给颗小星星吧 `(/▽＼)`
+- 打赏、赞助:
+    > 支付宝：![支付宝](https://ark.theme.yueplus.ink/img/Alipay.png)
+    > 微信：![微信](https://ark.theme.yueplus.ink/img/WeChat.png)
+    
