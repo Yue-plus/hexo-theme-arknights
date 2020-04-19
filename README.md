@@ -100,5 +100,6 @@ hexo serve --debug
 喜欢这个主题的话可以：
 - 给颗小星星吧 `(/▽＼)`
 - 打赏、赞助:
-  ![赞助收款码](https://api.yueplus.ink/support.jpg)
+
+![赞助收款码](https://api.yueplus.ink/support.jpg)
     
