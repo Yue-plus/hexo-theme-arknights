@@ -7,6 +7,7 @@ block content
   - const updatedConf = theme.post.updated
   - const sourceConf = theme.post.source
   - const excerptConf = theme.post.excerpt
+  - const reward = theme.post.reward
   #post-bg
     #post-title
       if dateConf || updatedConf
@@ -51,6 +52,17 @@ block content
         hr
     #to-top
       a(href="#post-title" title="to top")
+    if reward === true
+      details#reward
+        summary 打赏
+        #alipay
+          span 支付宝 | Alipay
+          br
+          img(src='/img/Alipay.png')
+        #wechat
+          span 微信 | WeChat
+          br
+          img(src='/img/WeChat.png')
 
 block aside-block
   - const tocContent = toc(page.content, theme.toc)
