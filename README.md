@@ -1,7 +1,8 @@
 # hexo-theme-arknights
 
 ## 预览
-预览 | Demo：<http://ark.theme.yueplus.ink/>
+**预览 | Demo：<http://ark.theme.yueplus.ink/>**
+
 ![预览](https://api.yueplus.ink/Arknights.png)
 
 ## 安装
@@ -99,6 +100,5 @@ hexo serve --debug
 喜欢这个主题的话可以：
 - 给颗小星星吧 `(/▽＼)`
 - 打赏、赞助:
-    > 支付宝：![支付宝](https://ark.theme.yueplus.ink/img/Alipay.png)
-    > 微信：![微信](https://ark.theme.yueplus.ink/img/WeChat.png)
+  ![赞助收款码](https://api.yueplus.ink/support.jpg)
     
