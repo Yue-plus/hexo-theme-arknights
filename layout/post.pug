@@ -1,13 +1,16 @@
 extends includes/layout.pug
 
 block content
-  - const prev = page.prev
-  - const next = page.next
-  - const dateConf = theme.post.date
-  - const updatedConf = theme.post.updated
-  - const sourceConf = theme.post.source
-  - const excerptConf = theme.post.excerpt
-  - const reward = theme.post.reward
+  -
+    const prev = page.prev
+    const next = page.next
+    const dateConf = theme.post.date
+    const updatedConf = theme.post.updated
+    const sourceConf = theme.post.source
+    const excerptConf = theme.post.excerpt
+    const reward = theme.post.reward
+    const appID = theme.valine.app_id
+    const appKey = theme.valine.app_key
   #post-bg
     #post-title
       if dateConf || updatedConf
@@ -63,6 +66,14 @@ block content
           span 微信 | WeChat
           br
           img(src='/img/WeChat.png')
+    #Valine
+    script
+      |new Valine({
+      |  el: '#Valine'
+      |  , appId: '#{appID}'
+      |  , appKey: '#{appKey}'
+      |  , placeholder: '此条评论委托企鹅物流发送'
+      |})
 
 block aside-block
   - const tocContent = toc(page.content, theme.toc)

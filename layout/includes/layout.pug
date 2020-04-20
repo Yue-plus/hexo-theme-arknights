@@ -14,6 +14,7 @@ html(lang=config.language)
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title= pageTitle
+    script(src='https://cdn.bootcss.com/valine/1.4.4/Valine.min.js')
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from _config.yml
       each url in theme.stylesheets

@@ -25,6 +25,11 @@ archives:
   categories_count: true # 是否显示分类总数
   tags_count: true # 是否显示标签总数
 
+# Valine 无后端评论系统
+valine:
+  app_id: b9rrhQ0X1nPTnVAG0chxbgpP-gzGzoHsz
+  app_key: bGVok8pAb8SaD6obPXosuxbB
+
 # main menu navigation
 menu:
   Home: /

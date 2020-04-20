@@ -3,7 +3,7 @@
 ## 预览
 **预览 | Demo：<http://ark.theme.yueplus.ink/>**
 
-<img src="https://api.yueplus.ink/Arknights.png" alt="预览图片" />
+![主题预览图片](https://api.yueplus.ink/img/Arknights.png)
 
 ## 安装
 根据需要执行以下代码
@@ -45,7 +45,13 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
   <https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts>
 - 在 `<!-- more -->` 之前的内容称之为摘要会显示在首页上，并且可以设置是否在正文显示。
 
+## 评论系统
+本主题支持[Valine](https://valine.js.org/) 。
+请修改主题目录下 `_config.yml` 文件中 `valine:` 的 `app_id:` 与 `app_key:` 。
+参考 [Valine 快速开始](https://valine.js.org/quickstart.html)
+
 ## 参与开发
+欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 
 ### 分支说明
 | 分支     | 说明                                           |
@@ -99,7 +105,10 @@ hexo serve --debug
 ## 支援主题开发
 喜欢这个主题的话可以：
 - 给颗小星星吧 `(/▽＼)`
+- 开发者的B服ID：`YuePlus#6221`
+- 加入 QQ 群：618221514
+    > 群内开发为主，吹水晒卡，分享线索7也都欢迎哦~ `d=====(￣▽￣*)b`
 - 打赏、赞助:
 
-<img src="https://api.yueplus.ink/support.jpg"  alt="收款二维码"/>
+![收款二维码](https://api.yueplus.ink/img/support.jpg)
     
