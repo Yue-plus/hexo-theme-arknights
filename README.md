@@ -3,7 +3,7 @@
 ## 预览
 **预览 | Demo：<http://ark.theme.yueplus.ink/>**
 
-![预览](https://api.yueplus.ink/Arknights.png)
+<img src="https://api.yueplus.ink/Arknights.png" alt="预览图片" />
 
 ## 安装
 根据需要执行以下代码
@@ -101,5 +101,5 @@ hexo serve --debug
 - 给颗小星星吧 `(/▽＼)`
 - 打赏、赞助:
 
-![赞助收款码](https://api.yueplus.ink/support.jpg)
+<img src="https://api.yueplus.ink/support.jpg"  alt="收款二维码"/>
     
