@@ -5,6 +5,8 @@
 
 ![主题预览图片](https://api.yueplus.ink/img/Arknights.png)
 
+如果使用了这个主题，欢迎在这儿贴预览链接~
+
 ## 安装
 根据需要执行以下代码
 ```shell script
@@ -48,7 +50,10 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 ## 评论系统
 本主题支持[Valine](https://valine.js.org/) 。
 请修改主题目录下 `_config.yml` 文件中 `valine:` 的 `app_id:` 与 `app_key:` 。
+
 参考 [Valine 快速开始](https://valine.js.org/quickstart.html)
+
+开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
 ## 参与开发
 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
