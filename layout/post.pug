@@ -53,8 +53,9 @@ block content
           |Next →
       if prev || next
         hr
-    #to-top
-      a(href="#post-title" title="to top")
+    #bottom-btn
+      a#to-index(href="#post-index" title="index") ≡
+      a#to-top(href="#post-title" title="to top") ∧
     if reward === true
       details#reward
         summary 打赏
