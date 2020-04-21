@@ -1,5 +1,5 @@
 -
-  var pageTitle = page.title || config.subtitle || ''
+  let pageTitle = page.title || config.subtitle || ''
   if (is_post()) pageTitle = page.title + ' | '
   if (is_archive()) pageTitle = 'Archives | '
   if (is_tag()) pageTitle = 'Tag: ' + page.tag + ' | '
@@ -7,6 +7,8 @@
   if (is_month()) pageTitle += ': ' + page.month + '/' + page.year + ' | '
   if (is_year()) pageTitle += ': ' + page.year + ' | '
   pageTitle += config.title
+
+  const asideBlock = theme.aside.block ? 'order: -1' : ''
 
 doctype html
 html(lang=config.language)
@@ -36,7 +38,7 @@ html(lang=config.language)
             img(src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png", alt="Logo")
             //- img(src="/img/logo.png", alt="Logo")
           h1#Dr
-            a(href= theme.dr)=' Dr.' + config.author
+            a(href= theme.aside.dr)=' Dr.' + config.author
           section#total
             a#total-archives(href="/archives")
               span.total-title Archives Total:
@@ -47,13 +49,14 @@ html(lang=config.language)
             #total-categories
               span.total-title Categories:
               span.total-number= site.categories.length
-        #aside-block
+        #aside-block(style= asideBlock)
           block aside-block
         footer
-          nobr
-            each content, title in theme.copyright
+          each content, title in theme.aside.copyright
+            nobr
               span.text-title= title
               span.text-content= content
+            wbr
           wbr
           nobr published with&nbsp;
             a(href='http://hexo.io') Hexo&nbsp;

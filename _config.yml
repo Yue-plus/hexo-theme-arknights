@@ -1,12 +1,13 @@
 # html lang
 language: zh
 
-dr: https://github.com/Yue-plus # 侧边栏 Dr. 链接
-
-# Copyright
-copyright:
-  ©: 1970 to 2020
-#  ICP: ——备案号——
+# 右侧边栏
+aside:
+  dr: / # 侧边栏 Dr. 链接
+  block: false # 目前为侧边栏文章目录置顶
+  copyright: # 版权声明、备案号等
+    ©: 1970 to 2020
+    ICP: ——备案号——
 
 # post 文章页面配置；true / false
 post:

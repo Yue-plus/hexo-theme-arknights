@@ -11,6 +11,7 @@ block content
     const reward = theme.post.reward
     const appID = theme.valine.app_id
     const appKey = theme.valine.app_key
+    const tocContent = toc(page.content, theme.toc)
   #post-bg
     #post-title
       if dateConf || updatedConf
@@ -54,7 +55,8 @@ block content
       if prev || next
         hr
     #bottom-btn
-      a#to-index(href="#post-index" title="index") ≡
+      if tocContent.length > 0
+        a#to-index(href="#post-index" title="index") ≡
       a#to-top(href="#post-title" title="to top") ∧
     if reward === true
       details#reward
