@@ -1,11 +1,13 @@
 # hexo-theme-arknights
 
 ## 预览
-**预览 | Demo：<http://ark.theme.yueplus.ink/>**
+- **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
+- **Dr.Ye: <https://laurenfrost.github.io/>**
+
+如果使用了这个主题，欢迎在这儿贴预览链接~
 
 ![主题预览图片](https://api.yueplus.ink/img/Arknights.png)
 
-如果使用了这个主题，欢迎在这儿贴预览链接~
 
 ## 安装
 根据需要执行以下代码
