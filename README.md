@@ -36,6 +36,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 
 ### 修改资源文件
 可按需修改 `Hexo/themes/arknights/source/` 目录下的
+- `favicon.ico`：浏览器标签页上的图标
 - `CNAME`: GitHub Pages 部署时的自定义域名
 - `README.md`: 部署仓库的 README
 - `img/`目录下的 `Alipay.png` 与 `WeChat.png` 可替换为自己的二维码；
