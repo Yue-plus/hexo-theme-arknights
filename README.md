@@ -6,7 +6,7 @@
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
-![主题预览图片](https://api.yueplus.ink/img/Arknights.png)
+![主题预览图片](https://api.yueplus.ink/img/arknights_demo.png)
 
 
 ## 安装
@@ -32,7 +32,12 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 
 ### 修改配置文件
 - 参照 [Hexo 官网](https://hexo.io/zh-cn/docs/configuration) 修改 `Hexo/` 目录下的 `_config.yml`。
-  并把 `theme:` 的值改为 `arknights`
+    - 把 `theme:` 的值改为 `arknights`
+    - 开启代码高亮：
+      ```yml
+      highlight:
+        hljs: true
+      ```
 - 查看 `Hexo/themes/arknights/`目录下的 `_config.yml`。
   主题的配置文件可参照中文注释修改。
 
