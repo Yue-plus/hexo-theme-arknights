@@ -1,49 +1,42 @@
-class dust {
-  private canvas: HTMLCanvasElement | undefined
-  private ctx: CanvasRenderingContext2D | null
-
-  constructor(canvasID: string) {
-    const canvas: HTMLCanvasElement =
-      document.getElementById(canvasID) as HTMLCanvasElement
-    if (canvas) {
-      this.canvas = canvas
-      this.ctx = canvas.getContext('2d')
-      this.build()
-      window.addEventListener('resize', ()=> this.resize())
-    } else {
-      throw new Error('canvasID 无效')
+"use strict";
+var dust = /** @class */ (function () {
+    function dust(canvasID) {
+        var _this = this;
+        var canvas = document.getElementById(canvasID);
+        if (canvas) {
+            this.canvas = canvas;
+            this.ctx = canvas.getContext('2d');
+            this.build();
+            window.addEventListener('resize', function () { return _this.resize(); });
+        }
+        else {
+            throw new Error('canvasID 无效');
+        }
     }
-  }
-
-  private build(): void {
-    this.resize()
-  }
-
-
-  private resize(): boolean {
-    if (!(!this.canvas || !this.ctx)) {
-      this.canvas.width = window.innerWidth
-      this.canvas.height = window.innerHeight
-      return true
-    } else {
-      return false
-    }
-  }
-}
-
-new dust('canvas-dust')
-
-
+    dust.prototype.build = function () {
+        this.resize();
+    };
+    dust.prototype.resize = function () {
+        if (!(!this.canvas || !this.ctx)) {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    return dust;
+}());
+new dust('canvas-dust');
 // var dustQuantity = Math.floor((window.innerWidth + window.innerHeight) / 8);
 // var point;
 // var i = 0;
-
 // // 设置 canvas 占满页面
 // function canvasResize() {
 //     canvas.width = window.innerWidth;
 //     canvas.height = window.innerHeight;
 // }
-
 // // 取屏幕随机点
 // function getPoint() {
 //     point = {
@@ -52,7 +45,6 @@ new dust('canvas-dust')
 //     }
 //     return point;
 // }
-
 // // 生成灰尘
 // function bulidPoint() {
 //     while (i < dustQuantity) {
@@ -65,7 +57,6 @@ new dust('canvas-dust')
 //         i++;
 //     }
 // }
-
 // canvasResize();
 // window.addEventListener("resize", canvasResize());
 // bulidPoint();
