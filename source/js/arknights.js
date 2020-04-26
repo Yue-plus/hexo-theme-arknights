@@ -53,6 +53,7 @@ var dust = /** @class */ (function () {
         }
     };
     dust.getPoint = function (number) {
+        if (number === void 0) { number = 1; }
         var point = [];
         for (var i = 1; i < number; i++) {
             var x = Math.floor(Math.random() * window.innerWidth);

@@ -1,6 +1,9 @@
 # html lang
 language: zh
 
+# canvas 动态背景
+canvas_dust: true
+
 # 右侧边栏
 aside:
   logo: https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png #图片链接，建议 1:1 比例

@@ -55,7 +55,7 @@ class dust {
     }
   }
 
-  private static getPoint(number: number): Array<[number, number]> {
+  private static getPoint(number: number = 1): Array<[number, number]> {
     let point: Array<[number, number]> = []
     for (let i: number=1; i<number; i++) {
       const x: number = Math.floor(Math.random() * window.innerWidth)
