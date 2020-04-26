@@ -1,6 +1,7 @@
 class dust {
-  private canvas: HTMLCanvasElement | undefined
-  private ctx: CanvasRenderingContext2D | null
+  private readonly canvas: HTMLCanvasElement | undefined
+  private readonly ctx: CanvasRenderingContext2D | null
+  private dustQuantity: number = Math.floor((window.innerWidth + window.innerHeight) / 10)
 
   constructor(canvasID: string) {
     const canvas: HTMLCanvasElement =
@@ -16,9 +17,12 @@ class dust {
   }
 
   private build(): void {
+    const point = dust.getPoint(this.dustQuantity)
     this.resize()
+    for (let i of point) {
+      this.dust(i[0], i[1])
+    }
   }
-
 
   private resize(): boolean {
     if (!(!this.canvas || !this.ctx)) {
@@ -29,43 +33,37 @@ class dust {
       return false
     }
   }
+
+  private dust(x: number, y: number) {
+    let ctx: CanvasRenderingContext2D | null = this.ctx
+    const shadowBlur: number = Math.floor(Math.random() * 2)
+    const shadowX: number = Math.floor(Math.random() * 2)
+    const shadowY: number = Math.floor(Math.random() * 2)
+    const radiusX: number = Math.floor(Math.random() * 3)
+    const radiusY: number = Math.floor(Math.random() * 3)
+    const rotation: number = Math.PI *  Math.floor(Math.random() *2)
+    if (ctx) {
+      ctx.beginPath()
+      ctx.shadowBlur = shadowBlur
+      ctx.shadowColor = '#fff'
+      ctx.shadowOffsetX = shadowX
+      ctx.shadowOffsetY = shadowY
+      ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fillStyle='#fff'
+      ctx.fill()
+    }
+  }
+
+  private static getPoint(number: number): Array<[number, number]> {
+    let point: Array<[number, number]> = []
+    for (let i: number=1; i<number; i++) {
+      const x: number = Math.floor(Math.random() * window.innerWidth)
+      const y: number = Math.floor(Math.random() * window.innerHeight)
+      point.push([x, y])
+    }
+    return point
+  }
 }
 
 new dust('canvas-dust')
-
-
-// var dustQuantity = Math.floor((window.innerWidth + window.innerHeight) / 8);
-// var point;
-// var i = 0;
-
-// // 设置 canvas 占满页面
-// function canvasResize() {
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-// }
-
-// // 取屏幕随机点
-// function getPoint() {
-//     point = {
-//         x = Math.floor(Math.random() * window.innerWidth),
-//         y = Math.floor(Math.random() * window.innerHeight)
-//     }
-//     return point;
-// }
-
-// // 生成灰尘
-// function bulidPoint() {
-//     while (i < dustQuantity) {
-//         point = getPoint();
-//         ctx.beginPath();
-//         ctx.lineWidth="1";
-//         ctx.strokeStyle="red";
-//         ctx.rect(point.x, point.y, 5, 5);
-//         ctx.stroke();
-//         i++;
-//     }
-// }
-
-// canvasResize();
-// window.addEventListener("resize", canvasResize());
-// bulidPoint();
