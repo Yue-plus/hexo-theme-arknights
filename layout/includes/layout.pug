@@ -67,7 +67,8 @@ html(lang=config.language)
           wbr
           nobr by&nbsp;
             a(href='https://github.com/Yue-plus') Yue_plus
-    canvas#canvas-dust
+    if theme.canvas_dust
+      canvas#canvas-dust
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts
