@@ -1,7 +1,8 @@
 class dust {
   private readonly canvas: HTMLCanvasElement | undefined
   private readonly ctx: CanvasRenderingContext2D | null
-  private dustQuantity: number = Math.floor((window.innerWidth + window.innerHeight) / 10)
+  private dustQuantity: number = Math.floor((window.innerWidth + window.innerHeight) / 20)
+  private dust : Array<[number, number]>
 
   constructor(canvasID: string) {
     const canvas: HTMLCanvasElement =
@@ -9,6 +10,7 @@ class dust {
     if (canvas) {
       this.canvas = canvas
       this.ctx = canvas.getContext('2d')
+      this.dust = dust.getPoint(this.dustQuantity)
       this.build()
       window.addEventListener('resize', ()=> this.resize())
     } else {
@@ -17,11 +19,15 @@ class dust {
   }
 
   private build(): void {
-    const point = dust.getPoint(this.dustQuantity)
-    this.resize()
-    for (let i of point) {
-      this.dust(i[0], i[1])
-    }
+    // const point = dust.getPoint(this.dustQuantity)
+    // this.resize()
+    // for (let i of point) {
+    //   this.dust(i[0], i[1])
+    // }
+    // for (let i of point) {
+    //
+    // }
+    // setTimeout(this.build(), 3)
   }
 
   private resize(): boolean {
@@ -35,22 +41,23 @@ class dust {
   }
 
   private dust(x: number, y: number) {
-    let ctx: CanvasRenderingContext2D | null = this.ctx
-    const shadowBlur: number = Math.floor(Math.random() * 2)
-    const shadowX: number = Math.floor(Math.random() * 2)
-    const shadowY: number = Math.floor(Math.random() * 2)
-    const radiusX: number = Math.floor(Math.random() * 3)
-    const radiusY: number = Math.floor(Math.random() * 3)
+    const ctx: CanvasRenderingContext2D | null = this.ctx
+    const color: string = '#fff'
+    const shadowBlur: number = Math.random() * 3
+    const shadowX: number = (Math.random() * 2) -1
+    const shadowY: number = (Math.random() * 2) -1
+    const radiusX: number = Math.random() * 3
+    const radiusY: number = Math.random() * 3
     const rotation: number = Math.PI *  Math.floor(Math.random() *2)
     if (ctx) {
       ctx.beginPath()
       ctx.shadowBlur = shadowBlur
-      ctx.shadowColor = '#fff'
+      ctx.shadowColor = color
       ctx.shadowOffsetX = shadowX
       ctx.shadowOffsetY = shadowY
       ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, Math.PI * 2)
       ctx.closePath()
-      ctx.fillStyle='#fff'
+      ctx.fillStyle=color
       ctx.fill()
     }
   }

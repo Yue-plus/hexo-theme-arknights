@@ -2,11 +2,12 @@
 var dust = /** @class */ (function () {
     function dust(canvasID) {
         var _this = this;
-        this.dustQuantity = Math.floor((window.innerWidth + window.innerHeight) / 10);
+        this.dustQuantity = Math.floor((window.innerWidth + window.innerHeight) / 20);
         var canvas = document.getElementById(canvasID);
         if (canvas) {
             this.canvas = canvas;
             this.ctx = canvas.getContext('2d');
+            this.dust = dust.getPoint(this.dustQuantity);
             this.build();
             window.addEventListener('resize', function () { return _this.resize(); });
         }
@@ -15,12 +16,15 @@ var dust = /** @class */ (function () {
         }
     }
     dust.prototype.build = function () {
-        var point = dust.getPoint(this.dustQuantity);
-        this.resize();
-        for (var _i = 0, point_1 = point; _i < point_1.length; _i++) {
-            var i = point_1[_i];
-            this.dust(i[0], i[1]);
-        }
+        // const point = dust.getPoint(this.dustQuantity)
+        // this.resize()
+        // for (let i of point) {
+        //   this.dust(i[0], i[1])
+        // }
+        // for (let i of point) {
+        //
+        // }
+        // setTimeout(this.build(), 3)
     };
     dust.prototype.resize = function () {
         if (!(!this.canvas || !this.ctx)) {
@@ -34,21 +38,22 @@ var dust = /** @class */ (function () {
     };
     dust.prototype.dust = function (x, y) {
         var ctx = this.ctx;
-        var shadowBlur = Math.floor(Math.random() * 2);
-        var shadowX = Math.floor(Math.random() * 2);
-        var shadowY = Math.floor(Math.random() * 2);
-        var radiusX = Math.floor(Math.random() * 3);
-        var radiusY = Math.floor(Math.random() * 3);
+        var color = '#fff';
+        var shadowBlur = Math.random() * 3;
+        var shadowX = (Math.random() * 2) - 1;
+        var shadowY = (Math.random() * 2) - 1;
+        var radiusX = Math.random() * 3;
+        var radiusY = Math.random() * 3;
         var rotation = Math.PI * Math.floor(Math.random() * 2);
         if (ctx) {
             ctx.beginPath();
             ctx.shadowBlur = shadowBlur;
-            ctx.shadowColor = '#fff';
+            ctx.shadowColor = color;
             ctx.shadowOffsetX = shadowX;
             ctx.shadowOffsetY = shadowY;
             ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, Math.PI * 2);
             ctx.closePath();
-            ctx.fillStyle = '#fff';
+            ctx.fillStyle = color;
             ctx.fill();
         }
     };
