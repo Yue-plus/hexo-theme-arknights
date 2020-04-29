@@ -1,8 +1,20 @@
 class dust {
+  x: number = 50
+  y: number = 50
+  color: string = '#fff'
+  shadowBlur: number = Math.random() * 3
+  shadowX: number = (Math.random() * 2) -1
+  shadowY: number = (Math.random() * 2) -1
+  radiusX: number = Math.random() * 3
+  radiusY: number = Math.random() * 3
+  rotation: number = Math.PI *  Math.floor(Math.random() *2)
+}
+
+class canvasDust {
   private readonly canvas: HTMLCanvasElement | undefined
-  private readonly ctx: CanvasRenderingContext2D | null
-  private dustQuantity: number = Math.floor((window.innerWidth + window.innerHeight) / 20)
-  private dust : Array<[number, number]>
+  private readonly ctx: CanvasRenderingContext2D | null | undefined
+  private dustQuantity: number = 50
+  private dustArr:Array<dust> = []
 
   constructor(canvasID: string) {
     const canvas: HTMLCanvasElement =
@@ -10,56 +22,50 @@ class dust {
     if (canvas) {
       this.canvas = canvas
       this.ctx = canvas.getContext('2d')
-      this.dust = dust.getPoint(this.dustQuantity)
       this.build()
       window.addEventListener('resize', ()=> this.resize())
-    } else {
-      throw new Error('canvasID 无效')
     }
   }
 
-  private build(): void {
-    // const point = dust.getPoint(this.dustQuantity)
-    // this.resize()
-    // for (let i of point) {
-    //   this.dust(i[0], i[1])
-    // }
-    // for (let i of point) {
-    //
-    // }
-    // setTimeout(this.build(), 3)
-  }
-
-  private resize(): boolean {
-    if (!(!this.canvas || !this.ctx)) {
-      this.canvas.width = window.innerWidth
-      this.canvas.height = window.innerHeight
-      return true
-    } else {
-      return false
+  private build() {
+    if (this.ctx) {
+      const point = canvasDust.getPoint(this.dustQuantity)
+      this.resize()
+      for (let i of point) {
+        const dustObj = new dust()
+        this.buildDust(i[0], i[1], dustObj)
+        this.dustArr.push(dustObj)
+      }
+      console.log(this.dustArr)
     }
   }
 
-  private dust(x: number, y: number) {
-    const ctx: CanvasRenderingContext2D | null = this.ctx
-    const color: string = '#fff'
-    const shadowBlur: number = Math.random() * 3
-    const shadowX: number = (Math.random() * 2) -1
-    const shadowY: number = (Math.random() * 2) -1
-    const radiusX: number = Math.random() * 3
-    const radiusY: number = Math.random() * 3
-    const rotation: number = Math.PI *  Math.floor(Math.random() *2)
+  private buildDust(x: number, y: number, dust: dust) {
+    const ctx = this.ctx
+    if (x) dust.x = x
+    if (y) dust.y = y
     if (ctx) {
       ctx.beginPath()
-      ctx.shadowBlur = shadowBlur
-      ctx.shadowColor = color
-      ctx.shadowOffsetX = shadowX
-      ctx.shadowOffsetY = shadowY
-      ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, Math.PI * 2)
+      ctx.shadowBlur = dust.shadowBlur
+      ctx.shadowColor = dust.color
+      ctx.shadowOffsetX = dust.shadowX
+      ctx.shadowOffsetY = dust.shadowY
+      ctx.ellipse(dust.x, dust.y, dust.radiusX, dust.radiusY, dust.rotation, 0, Math.PI * 2)
       ctx.closePath()
-      ctx.fillStyle=color
+      ctx.fillStyle=dust.color
       ctx.fill()
     }
+  }
+
+  private resize(): void {
+    const canvas = this.canvas
+    const width = window.innerWidth
+    const height = window.innerHeight
+    if (canvas !== undefined) {
+      canvas.width = width
+      canvas.height = height
+    }
+    this.dustQuantity = Math.floor((window.innerWidth + window.innerHeight) / 20)
   }
 
   private static getPoint(number: number = 1): Array<[number, number]> {
@@ -73,4 +79,4 @@ class dust {
   }
 }
 
-new dust('canvas-dust')
+new canvasDust('canvas-dust')
