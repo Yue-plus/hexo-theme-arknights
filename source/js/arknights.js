@@ -3,8 +3,8 @@ var dust = /** @class */ (function () {
     function dust() {
         this.x = 50;
         this.y = 50;
-        this.vx = Math.random() * 7;
-        this.vy = Math.random() * 14 - 7;
+        this.vx = Math.random() * 5 + 5;
+        this.vy = Math.random() * 5;
         this.color = '#fff';
         this.shadowBlur = Math.random() * 3;
         this.shadowX = (Math.random() * 2) - 1;
@@ -18,6 +18,8 @@ var dust = /** @class */ (function () {
 var canvasDust = /** @class */ (function () {
     function canvasDust(canvasID) {
         var _this = this;
+        this.width = 300;
+        this.height = 300;
         var canvas = document.getElementById(canvasID);
         if (canvas) {
             this.canvas = canvas;
@@ -45,12 +47,21 @@ var canvasDust = /** @class */ (function () {
     canvasDust.prototype.play = function () {
         var _a;
         var dustArr = canvasDust.dustArr;
-        (_a = this.ctx) === null || _a === void 0 ? void 0 : _a.clearRect(0, 0, 2000, 1000);
+        (_a = this.ctx) === null || _a === void 0 ? void 0 : _a.clearRect(0, 0, this.width, this.height);
         for (var _i = 0, dustArr_1 = dustArr; _i < dustArr_1.length; _i++) {
-            var dustObj = dustArr_1[_i];
-            var x = dustObj.x - dustObj.vx;
-            var y = dustObj.y - dustObj.vy;
-            this.buildDust(x, y, dustObj);
+            var i = dustArr_1[_i];
+            if (i.x < 0 || i.y < 0) {
+                var x = this.width;
+                var y = Math.floor(Math.random() * window.innerHeight);
+                i.x = x;
+                i.y = y;
+                this.buildDust(x, y, i);
+            }
+            else {
+                var x = i.x - i.vx;
+                var y = i.y - i.vy;
+                this.buildDust(x, y, i);
+            }
         }
     };
     canvasDust.prototype.buildDust = function (x, y, dust) {
@@ -75,6 +86,8 @@ var canvasDust = /** @class */ (function () {
         var canvas = this.canvas;
         var width = window.innerWidth;
         var height = window.innerHeight;
+        this.width = width;
+        this.height = height;
         if (canvas !== undefined) {
             canvas.width = width;
             canvas.height = height;

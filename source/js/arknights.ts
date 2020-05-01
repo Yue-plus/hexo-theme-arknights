@@ -1,8 +1,8 @@
 class dust {
   public x: number = 50
   public y: number = 50
-  public vx: number = Math.random() * 7
-  public vy: number = Math.random() * 14 - 7
+  public vx: number = Math.random() * 5 + 5
+  public vy: number = Math.random() * 5
   public color: string = '#fff'
   public shadowBlur: number = Math.random() * 3
   public shadowX: number = (Math.random() * 2) -1
@@ -15,6 +15,8 @@ class dust {
 class canvasDust {
   private readonly canvas: HTMLCanvasElement | undefined
   private readonly ctx: CanvasRenderingContext2D | null | undefined
+  public width: number = 300
+  public height: number = 300
   private static dustQuantity: number = 50
   public static dustArr:Array<dust> = []
 
@@ -46,11 +48,19 @@ class canvasDust {
 
   private play() {
     const dustArr = canvasDust.dustArr
-    this.ctx?.clearRect(0,0, 2000, 1000)
-    for (let dustObj of dustArr) {
-      const x = dustObj.x - dustObj.vx
-      const y = dustObj.y - dustObj.vy
-      this.buildDust(x, y, dustObj)
+    this.ctx?.clearRect(0,0, this.width, this.height)
+    for (let i of dustArr) {
+      if (i.x < 0 || i.y < 0) {
+        const x: number = this.width
+        const y: number = Math.floor(Math.random() * window.innerHeight)
+        i.x = x
+        i.y = y
+        this.buildDust(x, y, i)
+      } else {
+        const x = i.x - i.vx
+        const y = i.y - i.vy
+        this.buildDust(x, y, i)
+      }
     }
   }
 
@@ -75,6 +85,8 @@ class canvasDust {
     const canvas = this.canvas
     const width = window.innerWidth
     const height = window.innerHeight
+    this.width = width
+    this.height = height
     if (canvas !== undefined) {
       canvas.width = width
       canvas.height = height
