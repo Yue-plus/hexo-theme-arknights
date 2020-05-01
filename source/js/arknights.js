@@ -3,6 +3,8 @@ var dust = /** @class */ (function () {
     function dust() {
         this.x = 50;
         this.y = 50;
+        this.vx = Math.random() * 7;
+        this.vy = Math.random() * 14 - 7;
         this.color = '#fff';
         this.shadowBlur = Math.random() * 3;
         this.shadowX = (Math.random() * 2) - 1;
@@ -16,8 +18,6 @@ var dust = /** @class */ (function () {
 var canvasDust = /** @class */ (function () {
     function canvasDust(canvasID) {
         var _this = this;
-        this.dustQuantity = 50;
-        this.dustArr = [];
         var canvas = document.getElementById(canvasID);
         if (canvas) {
             this.canvas = canvas;
@@ -27,16 +27,30 @@ var canvasDust = /** @class */ (function () {
         }
     }
     canvasDust.prototype.build = function () {
+        var _this = this;
         if (this.ctx) {
-            var point = canvasDust.getPoint(this.dustQuantity);
+            var point = canvasDust.getPoint(canvasDust.dustQuantity);
             this.resize();
             for (var _i = 0, point_1 = point; _i < point_1.length; _i++) {
                 var i = point_1[_i];
                 var dustObj = new dust();
                 this.buildDust(i[0], i[1], dustObj);
-                this.dustArr.push(dustObj);
+                canvasDust.dustArr.push(dustObj);
             }
-            console.log(this.dustArr);
+            setInterval(function () {
+                _this.play();
+            }, 80);
+        }
+    };
+    canvasDust.prototype.play = function () {
+        var _a;
+        var dustArr = canvasDust.dustArr;
+        (_a = this.ctx) === null || _a === void 0 ? void 0 : _a.clearRect(0, 0, 2000, 1000);
+        for (var _i = 0, dustArr_1 = dustArr; _i < dustArr_1.length; _i++) {
+            var dustObj = dustArr_1[_i];
+            var x = dustObj.x - dustObj.vx;
+            var y = dustObj.y - dustObj.vy;
+            this.buildDust(x, y, dustObj);
         }
     };
     canvasDust.prototype.buildDust = function (x, y, dust) {
@@ -65,18 +79,20 @@ var canvasDust = /** @class */ (function () {
             canvas.width = width;
             canvas.height = height;
         }
-        this.dustQuantity = Math.floor((window.innerWidth + window.innerHeight) / 20);
+        canvasDust.dustQuantity = Math.floor((width + height) / 20);
     };
     canvasDust.getPoint = function (number) {
         if (number === void 0) { number = 1; }
         var point = [];
-        for (var i = 1; i < number; i++) {
+        for (var i = 0; i < number; i++) {
             var x = Math.floor(Math.random() * window.innerWidth);
             var y = Math.floor(Math.random() * window.innerHeight);
             point.push([x, y]);
         }
         return point;
     };
+    canvasDust.dustQuantity = 50;
+    canvasDust.dustArr = [];
     return canvasDust;
 }());
 new canvasDust('canvas-dust');

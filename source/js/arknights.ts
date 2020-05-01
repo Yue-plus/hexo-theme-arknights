@@ -1,20 +1,22 @@
 class dust {
-  x: number = 50
-  y: number = 50
-  color: string = '#fff'
-  shadowBlur: number = Math.random() * 3
-  shadowX: number = (Math.random() * 2) -1
-  shadowY: number = (Math.random() * 2) -1
-  radiusX: number = Math.random() * 3
-  radiusY: number = Math.random() * 3
-  rotation: number = Math.PI *  Math.floor(Math.random() *2)
+  public x: number = 50
+  public y: number = 50
+  public vx: number = Math.random() * 7
+  public vy: number = Math.random() * 14 - 7
+  public color: string = '#fff'
+  public shadowBlur: number = Math.random() * 3
+  public shadowX: number = (Math.random() * 2) -1
+  public shadowY: number = (Math.random() * 2) -1
+  public radiusX: number = Math.random() * 3
+  public radiusY: number = Math.random() * 3
+  public rotation: number = Math.PI *  Math.floor(Math.random() *2)
 }
 
 class canvasDust {
   private readonly canvas: HTMLCanvasElement | undefined
   private readonly ctx: CanvasRenderingContext2D | null | undefined
-  private dustQuantity: number = 50
-  private dustArr:Array<dust> = []
+  private static dustQuantity: number = 50
+  public static dustArr:Array<dust> = []
 
   constructor(canvasID: string) {
     const canvas: HTMLCanvasElement =
@@ -29,14 +31,26 @@ class canvasDust {
 
   private build() {
     if (this.ctx) {
-      const point = canvasDust.getPoint(this.dustQuantity)
+      const point = canvasDust.getPoint(canvasDust.dustQuantity)
       this.resize()
       for (let i of point) {
         const dustObj = new dust()
         this.buildDust(i[0], i[1], dustObj)
-        this.dustArr.push(dustObj)
+        canvasDust.dustArr.push(dustObj)
       }
-      console.log(this.dustArr)
+      setInterval(()=>{
+        this.play()
+      }, 80)
+    }
+  }
+
+  private play() {
+    const dustArr = canvasDust.dustArr
+    this.ctx?.clearRect(0,0, 2000, 1000)
+    for (let dustObj of dustArr) {
+      const x = dustObj.x - dustObj.vx
+      const y = dustObj.y - dustObj.vy
+      this.buildDust(x, y, dustObj)
     }
   }
 
@@ -65,12 +79,12 @@ class canvasDust {
       canvas.width = width
       canvas.height = height
     }
-    this.dustQuantity = Math.floor((window.innerWidth + window.innerHeight) / 20)
+    canvasDust.dustQuantity = Math.floor((width + height) / 20)
   }
 
   private static getPoint(number: number = 1): Array<[number, number]> {
     let point: Array<[number, number]> = []
-    for (let i: number=1; i<number; i++) {
+    for (let i: number=0; i<number; i++) {
       const x: number = Math.floor(Math.random() * window.innerWidth)
       const y: number = Math.floor(Math.random() * window.innerHeight)
       point.push([x, y])
