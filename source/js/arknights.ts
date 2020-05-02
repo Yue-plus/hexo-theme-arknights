@@ -17,8 +17,8 @@ class canvasDust {
   private readonly ctx: CanvasRenderingContext2D | null | undefined
   public width: number = 300
   public height: number = 300
-  private static dustQuantity: number = 50
-  public static dustArr:Array<dust> = []
+  private dustQuantity: number = 50
+  public dustArr:Array<dust> = []
 
   constructor(canvasID: string) {
     const canvas: HTMLCanvasElement =
@@ -28,17 +28,19 @@ class canvasDust {
       this.ctx = canvas.getContext('2d')
       this.build()
       window.addEventListener('resize', ()=> this.resize())
+    } else {
+      throw new Error('canvasID 无效')
     }
   }
 
   private build() {
+    this.resize()
     if (this.ctx) {
-      const point = canvasDust.getPoint(canvasDust.dustQuantity)
-      this.resize()
+      const point = canvasDust.getPoint(this.dustQuantity)
       for (let i of point) {
         const dustObj = new dust()
         this.buildDust(i[0], i[1], dustObj)
-        canvasDust.dustArr.push(dustObj)
+        this.dustArr.push(dustObj)
       }
       setInterval(()=>{
         this.play()
@@ -47,7 +49,7 @@ class canvasDust {
   }
 
   private play() {
-    const dustArr = canvasDust.dustArr
+    const dustArr = this.dustArr
     this.ctx?.clearRect(0,0, this.width, this.height)
     for (let i of dustArr) {
       if (i.x < 0 || i.y < 0) {
@@ -87,11 +89,11 @@ class canvasDust {
     const height = window.innerHeight
     this.width = width
     this.height = height
+    this.dustQuantity = Math.floor((width + height) / 20)
     if (canvas !== undefined) {
       canvas.width = width
       canvas.height = height
     }
-    canvasDust.dustQuantity = Math.floor((width + height) / 20)
   }
 
   private static getPoint(number: number = 1): Array<[number, number]> {

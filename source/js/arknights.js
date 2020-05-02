@@ -20,6 +20,8 @@ var canvasDust = /** @class */ (function () {
         var _this = this;
         this.width = 300;
         this.height = 300;
+        this.dustQuantity = 50;
+        this.dustArr = [];
         var canvas = document.getElementById(canvasID);
         if (canvas) {
             this.canvas = canvas;
@@ -27,17 +29,20 @@ var canvasDust = /** @class */ (function () {
             this.build();
             window.addEventListener('resize', function () { return _this.resize(); });
         }
+        else {
+            throw new Error('canvasID 无效');
+        }
     }
     canvasDust.prototype.build = function () {
         var _this = this;
+        this.resize();
         if (this.ctx) {
-            var point = canvasDust.getPoint(canvasDust.dustQuantity);
-            this.resize();
+            var point = canvasDust.getPoint(this.dustQuantity);
             for (var _i = 0, point_1 = point; _i < point_1.length; _i++) {
                 var i = point_1[_i];
                 var dustObj = new dust();
                 this.buildDust(i[0], i[1], dustObj);
-                canvasDust.dustArr.push(dustObj);
+                this.dustArr.push(dustObj);
             }
             setInterval(function () {
                 _this.play();
@@ -46,7 +51,7 @@ var canvasDust = /** @class */ (function () {
     };
     canvasDust.prototype.play = function () {
         var _a;
-        var dustArr = canvasDust.dustArr;
+        var dustArr = this.dustArr;
         (_a = this.ctx) === null || _a === void 0 ? void 0 : _a.clearRect(0, 0, this.width, this.height);
         for (var _i = 0, dustArr_1 = dustArr; _i < dustArr_1.length; _i++) {
             var i = dustArr_1[_i];
@@ -88,11 +93,11 @@ var canvasDust = /** @class */ (function () {
         var height = window.innerHeight;
         this.width = width;
         this.height = height;
+        this.dustQuantity = Math.floor((width + height) / 20);
         if (canvas !== undefined) {
             canvas.width = width;
             canvas.height = height;
         }
-        canvasDust.dustQuantity = Math.floor((width + height) / 20);
     };
     canvasDust.getPoint = function (number) {
         if (number === void 0) { number = 1; }
@@ -104,8 +109,6 @@ var canvasDust = /** @class */ (function () {
         }
         return point;
     };
-    canvasDust.dustQuantity = 50;
-    canvasDust.dustArr = [];
     return canvasDust;
 }());
 new canvasDust('canvas-dust');
