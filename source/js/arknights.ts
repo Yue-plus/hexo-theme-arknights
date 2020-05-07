@@ -1,15 +1,15 @@
 class dust {
   public x: number = 50
   public y: number = 50
-  public vx: number = Math.random() * 5 + 5
-  public vy: number = Math.random() * 5
+  public vx: number = Math.random() * 2 + 2
+  public vy: number = Math.random() * 2
   public color: string = '#fff'
   public shadowBlur: number = Math.random() * 3
   public shadowX: number = (Math.random() * 2) -1
   public shadowY: number = (Math.random() * 2) -1
   public radiusX: number = Math.random() * 3
   public radiusY: number = Math.random() * 3
-  public rotation: number = Math.PI *  Math.floor(Math.random() *2)
+  public rotation: number = Math.PI *  Math.floor(Math.random() * 2)
 }
 
 class canvasDust {
@@ -44,7 +44,7 @@ class canvasDust {
       }
       setInterval(()=>{
         this.play()
-      }, 80)
+      }, 40)
     }
   }
 
@@ -89,7 +89,7 @@ class canvasDust {
     const height = window.innerHeight
     this.width = width
     this.height = height
-    this.dustQuantity = Math.floor((width + height) / 20)
+    this.dustQuantity = Math.floor((width + height) / 38)
     if (canvas !== undefined) {
       canvas.width = width
       canvas.height = height
@@ -107,4 +107,40 @@ class canvasDust {
   }
 }
 
+class index {
+  headerLink: HTMLCollection
+  tocLink: HTMLCollection
+  postContent: HTMLElement | null
+  article: HTMLElement | undefined
+  index: Array<number> = []
+
+  constructor() {
+    this.headerLink = document.getElementsByClassName("headerlink")
+    this.tocLink = document.getElementsByClassName("toc-link")
+    this.postContent = document.getElementById("post-content")
+    this.article = document.getElementsByTagName("article")[0]
+    console.log(this.headerLink)
+    if (this.article) {
+      this.article.addEventListener("scroll", ()=>{
+        for (let i = 0; i < this.headerLink.length; i++) {
+          const link = this.headerLink.item(i) as HTMLElement
+          if (link) {
+            this.index.push(link.getBoundingClientRect().top)
+          }
+        }
+        for (let i in this.index) {
+          const item = this.tocLink.item(Number(i)) as HTMLElement
+          if (this.index[i] > 0) {
+            item.classList.add('active')
+          } else {
+            item.classList.remove('active')
+          }
+        }
+        this.index = []
+      })
+    }
+  }
+}
+
 new canvasDust('canvas-dust')
+new index()
