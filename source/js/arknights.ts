@@ -119,7 +119,6 @@ class index {
     this.tocLink = document.getElementsByClassName("toc-link")
     this.postContent = document.getElementById("post-content")
     this.article = document.getElementsByTagName("article")[0]
-    console.log(this.headerLink)
     if (this.article) {
       this.article.addEventListener("scroll", ()=>{
         for (let i = 0; i < this.headerLink.length; i++) {
@@ -130,10 +129,13 @@ class index {
         }
         for (let i in this.index) {
           const item = this.tocLink.item(Number(i)) as HTMLElement
+          item.classList.remove('active')
+        }
+        for (let i in this.index) {
+          const item = this.tocLink.item(Number(i)) as HTMLElement
           if (this.index[i] > 0) {
             item.classList.add('active')
-          } else {
-            item.classList.remove('active')
+            break
           }
         }
         this.index = []
