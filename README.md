@@ -3,6 +3,7 @@
 ## 预览
 - **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
+- **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
