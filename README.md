@@ -55,7 +55,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
   <https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts>
 - 在 `<!-- more -->` 之前的内容称之为摘要会显示在首页上，并且可以设置是否在正文显示。
 
-# 顶部导航栏新建自定义页面
+## 顶部导航栏新建自定义页面
 - 例如：新建一个 `about` 页面
   在 `Hexo` 目录下执行
   ```shell script
