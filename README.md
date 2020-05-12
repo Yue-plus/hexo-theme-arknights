@@ -11,6 +11,9 @@
 
 
 ## 安装
+### [一键下载](https://github.com/Yue-plus/hexo-theme-arknights/releases)
+
+## 手动安装
 根据需要执行以下代码
 ```shell script
 hexo init Hexo
@@ -23,7 +26,7 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 ### 安装依赖
 npm 用户：
 ```shell script 
-cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
+cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts --save
 ```
 yarn 用户：
 ```shell script
@@ -92,18 +95,12 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 先装好 [nodejs](https://nodejs.org/) 和 [yarn](https://classic.yarnpkg.com/zh-Hans/) ，然后执行以下命令：
 ```shell script
 yarn global add hexo-cli yo generator-hexo-theme
-hexo init <test>
-cd <test>
-yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
-cd <test>/themes
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git arknights
-```
-修改 `<test>/_config.yml` 中 `theme:` 的值改为 `arknights`
-然后,打开 `<test>/themes/arknights` 下编辑主题
-```shell script
+git clone -b hexo https://github.com/Yue-plus/hexo-theme-arknights.git
+cd hexo-theme-arknights
+git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
+yarn install
 hexo serve --debug
 ```
-
 
 ### 开发中可能遇见的 BUG 及解决方法
 #### 修改 `.pug` 模板文件无法自动刷新页面。
