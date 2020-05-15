@@ -269,7 +269,7 @@ article {
   border: 1px solid #898989;
   padding: 13px 15px;
   transition: .3s; }
-  .recent-post *, .recent-post .recent-info::after {
+  .recent-post .recent-info::after {
     transition: .3s; }
   .recent-post object h1, .recent-post object h2, .recent-post object h3, .recent-post object h4, .recent-post object h5, .recent-post object h6 {
     font-size: large;
@@ -560,9 +560,12 @@ aside {
     color: #2bf; }
     #Valine .vcard .vnick:hover {
       color: #000; }
+  #Valine .vsys {
+    background-color: transparent; }
   #Valine .vmeta .vat {
     color: #fe2; }
   #Valine .vcontent {
+    color: #c4c4c4;
     border-left: #fe2 solid 3px;
     padding-left: 20px;
     background-color: rgba(255, 255, 255, 0.05);
@@ -574,6 +577,9 @@ aside {
       background: linear-gradient(180deg, rgba(26, 26, 26, 0), rgba(26, 26, 26, 0.9)); }
     #Valine .vcontent::after {
       background: rgba(26, 26, 26, 0.9); }
+    #Valine .vcontent p {
+      color: #fff;
+      padding-bottom: 14px; }
 
 #veditor {
   color: #fff;
