@@ -54,10 +54,18 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
   1:1 比例的 `png` 图片；
 
 ## 写作
-- 可参考 [Hexo 官网](https://hexo.io/zh-cn/docs/writing)。
-- 在主题仓库的 Hexo 分支有一些示例文本可以取用：
-  <https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts>
-- 在 `<!-- more -->` 之前的内容称之为摘要会显示在首页上，并且可以设置是否在正文显示。
+- 可参考 [Hexo | 写作](https://hexo.io/zh-cn/docs/writing)。
+- 在主题仓库的 Hexo 分支有一些[示例文本](https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts)可以取用
+- 添加文章标签与分类，更多特性可参考 [Hexo | Front-matter](https://hexo.io/zh-cn/docs/front-matter) ，示例：
+  ```markdown
+  ---
+  title: 'Hello World !'
+  date: 2020-04-15 21:54:02
+  tags: code
+  category: Example
+  ---
+  ```
+- 在 `<!-- more -->` 之前的内容称之为摘要，会显示在首页上，并且可以设置是否也在正文显示。
 
 ## 顶部导航栏新建自定义页面
 - 例如：新建一个 `about` 页面
