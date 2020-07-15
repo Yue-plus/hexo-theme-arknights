@@ -90,7 +90,11 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
 ## 参与开发
-欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
+### 开发人员
+- [Yue_plus](https://github.com/Yue-plus)
+- [Laurenfrost](https://github.com/Laurenfrost)
+
+> 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 
 ### 分支说明
 | 分支     | 说明                                           |
