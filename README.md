@@ -97,38 +97,43 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 
 ### 安装
 1. 在 Hexo 目录下执行以下指令：
-  ```shell script
-  #卸载默认的渲染器
-  npm un hexo-renderer-marked --save
-  # 安装 hexo-renderer-markdown-it-plus 插件
-  cnpm i hexo-renderer-markdown-it-plus --save
-  ```
+
+```shell script
+#卸载默认的渲染器
+npm un hexo-renderer-marked --save
+# 安装 hexo-renderer-markdown-it-plus 插件
+cnpm i hexo-renderer-markdown-it-plus --save
+```
+
 2. 修改 `<Hexo>/_config.yml` 文件：
-  把：
-  ```yml
+
+把：
+```yml
   highlight:
-    enable: true
-    line_number: true
-    auto_detect: false
-    tab_replace: ''
-    wrap: true
-    hljs: true
-  ```
-  替换为：
-  ```yml
-  markdown_it_plus:
-      highlight: true
-      html: true
-      xhtmlOut: true
-      breaks: true
-      langPrefix:
-      linkify: true
-      typographer:
-      quotes: “”‘’
-      pre_class: highlight
-  ```
-3. 修改 `<Hexo>/themes/arknights/_config.yml`
-  删除 `- https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css` 前面的 `# `（取消注释）
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: true
+```
+替换为：
+```yml
+markdown_it_plus:
+    highlight: true
+    html: true
+    xhtmlOut: true
+    breaks: true
+    langPrefix:
+    linkify: true
+    typographer:
+    quotes: “”‘’
+    pre_class: highlight
+```
+
+3. 修改 `<Hexo>/themes/arknights/_config.yml` 文件：
+
+删除 `- https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css` 前面的 `# `（取消注释）
 
 ## 参与开发
 ### 开发人员
@@ -183,6 +188,7 @@ hexo serve --debug
 ## 支援主题开发
 喜欢这个主题的话可以：
 - 给颗小星星吧 `(/▽＼)`
+  > 100star 做个新主题哦~
 - 开发者的B服ID：`YuePlus#6221`
 - 加入 QQ 群：618221514
     > 群内开发为主，吹水晒卡，分享线索7也都欢迎哦~ `d=====(￣▽￣*)b`
