@@ -11,7 +11,7 @@ aside:
   block_in_top: false # 目前为侧边栏文章目录置顶
   copyright: # 版权声明、备案号等
     ©: 1970 to 2020
-    ICP: ——备案号——
+    ICP: 赣ICP备19008355号
 
 # post 文章页面配置；true / false
 post:
@@ -46,6 +46,7 @@ menu:
 stylesheets:
 - /css/arknights.css
 - https://cdn.bootcss.com/highlight.js/9.18.1/styles/atom-one-dark-reasonable.min.css
+# - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css
 
 # scripts loaded in the end of the body
 scripts:

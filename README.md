@@ -92,6 +92,44 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
+## 数学公式
+使用 [hexo-renderer-markdown-it-plus](https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus) Hexo 渲染器来显示数学公式
+
+### 安装
+1. 在 Hexo 目录下执行以下指令：
+  ```shell script
+  #卸载默认的渲染器
+  npm un hexo-renderer-marked --save
+  # 安装 hexo-renderer-markdown-it-plus 插件
+  cnpm i hexo-renderer-markdown-it-plus --save
+  ```
+2. 修改 `<Hexo>/_config.yml` 文件：
+  把：
+  ```yml
+  highlight:
+    enable: true
+    line_number: true
+    auto_detect: false
+    tab_replace: ''
+    wrap: true
+    hljs: true
+  ```
+  替换为：
+  ```yml
+  markdown_it_plus:
+      highlight: true
+      html: true
+      xhtmlOut: true
+      breaks: true
+      langPrefix:
+      linkify: true
+      typographer:
+      quotes: “”‘’
+      pre_class: highlight
+  ```
+3. 修改 `<Hexo>/themes/arknights/_config.yml`
+  删除 `- https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css` 前面的 `# `（取消注释）
+
 ## 参与开发
 ### 开发人员
 - [Yue_plus](https://github.com/Yue-plus)
