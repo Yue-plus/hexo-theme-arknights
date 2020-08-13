@@ -109,7 +109,7 @@ cnpm i hexo-renderer-markdown-it-plus --save
 
 把：
 ```yml
-  highlight:
+highlight:
   enable: true
   line_number: true
   auto_detect: false
@@ -120,15 +120,15 @@ cnpm i hexo-renderer-markdown-it-plus --save
 替换为：
 ```yml
 markdown_it_plus:
-    highlight: true
-    html: true
-    xhtmlOut: true
-    breaks: true
-    langPrefix:
-    linkify: true
-    typographer:
-    quotes: “”‘’
-    pre_class: highlight
+  highlight: true
+  html: true
+  xhtmlOut: true
+  breaks: true
+  langPrefix:
+  linkify: true
+  typographer:
+  quotes: “”‘’
+  pre_class: highlight
 ```
 
 3. 修改 `<Hexo>/themes/arknights/_config.yml` 文件：
@@ -180,6 +180,7 @@ hexo serve --debug
 - [Pug 模板引擎中文文档](https://pugjs.bootcss.com/api/getting-started.html)
 
 - 另外引用几个大佬的blog
+  > - <https://easyhexo.com/>
   > - [让 Hexo 搭建的博客支持 LaTeX](http://cps.ninja/2019/03/16/hexo-with-latex/)
   > - [Hexo主题开发 - ﹏猴子请来的救兵 - 博客园](https://www.cnblogs.com/yyhh/p/11058985.html)
   > - 【墙】[Hexo主题开发经验杂谈 | MARKSZのBlog](https://molunerfinn.com/make-a-hexo-theme/)
