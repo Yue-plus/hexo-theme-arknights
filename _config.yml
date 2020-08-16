@@ -45,10 +45,9 @@ menu:
 # stylesheets loaded in the <head>
 stylesheets:
 - /css/arknights.css
-- https://cdn.bootcss.com/highlight.js/9.18.1/styles/atom-one-dark-reasonable.min.css
-# - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css
+- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css
 
 # scripts loaded in the end of the body
 scripts:
-#- //cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js
+- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js
 - /js/arknights.js
