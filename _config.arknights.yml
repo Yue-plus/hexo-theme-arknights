@@ -1,0 +1,51 @@
+# html lang
+language: zh
+
+# canvas 动态背景
+canvas_dust: true
+
+# 右侧边栏
+aside:
+  logo: https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png #图片链接，建议 1:1 比例
+  dr: https://github.com/Yue-plus # 侧边栏 Dr. 链接
+  block_in_top: false # 目前为侧边栏文章目录置顶
+  copyright: # 版权声明、备案号等
+    ©: 1970 to 2020
+    ICP: 赣ICP备19008355号
+
+# post 文章页面配置；true / false
+post:
+  date: true # 是否显示发布日期
+  updated: true # 是否显示修改日期
+  source: false # 是否显示源文件路径
+  excerpt: false # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
+  reward: true # 文章末显示打赏二维码
+# 文章内目录
+toc:
+  list_number: true # true / false ；是否显示编号
+  max_depth: 6 # 最大目录深度
+  min_depth: 1 # 最小目录深度
+# 归档页；true / false
+archives:
+  categories_count: true # 是否显示分类总数
+  tags_count: true # 是否显示标签总数
+
+# Valine 无后端评论系统
+valine:
+  app_id: b9rrhQ0X1nPTnVAG0chxbgpP-gzGzoHsz # <APP ID>
+  app_key: bGVok8pAb8SaD6obPXosuxbB # <APP KEY>
+
+# main menu navigation
+menu:
+  Home: ''
+#  About: about/
+#  Contact: contact/
+  Archives: archives/
+
+# stylesheets loaded in the <head>
+stylesheets:
+- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css
+
+# scripts loaded in the end of the body
+scripts:
+- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js
