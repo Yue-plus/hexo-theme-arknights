@@ -37,17 +37,15 @@ valine:
 
 # main menu navigation
 menu:
-  Home: /
-#  About: /about
-#  Contact: /contact
-  Archives: /archives
+  Home: ''
+#  About: about/
+#  Contact: contact/
+  Archives: archives/
 
 # stylesheets loaded in the <head>
 stylesheets:
-- /css/arknights.css
 - https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css
 
 # scripts loaded in the end of the body
 scripts:
 - https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js
-- /js/arknights.js
