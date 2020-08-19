@@ -37,11 +37,10 @@ html(lang=config.language)
         #about
           a(href=config.root)#logo
             img(src=asideLogo, alt="Logo")
-            //- img(src="/img/logo.png", alt="Logo")
           h1#Dr
             a(href= theme.aside.dr)=' Dr.' + config.author
           section#total
-            a#total-archives(href="/archives")
+            a#total-archives(href= config.root + "archives")
               span.total-title Archives Total:
               span.total-number= site.posts.length
             #total-tags
