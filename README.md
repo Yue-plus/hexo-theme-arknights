@@ -78,8 +78,8 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-
   ```shell script
   hexo new page 'about'
   ```
-  然后 `Hexo\source\` 目录下会多一个 `about` 文件夹
-- 编辑 `Hexo\source\about\index.md` 文件
+  然后 `Hexo/source/` 目录下会多一个 `about` 文件夹
+- 编辑 `Hexo/source/about/index.md` 文件
 - 编辑主题目录下的 `_config.yml`，添加一个链接：
   ```yml
   menu:
