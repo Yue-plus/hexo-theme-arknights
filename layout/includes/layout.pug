@@ -18,15 +18,25 @@ html(lang=config.language)
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title= pageTitle
     script(src='https://cdn.bootcss.com/valine/1.4.4/Valine.min.js')
+    link(rel="stylesheet", href=config.root + "css/arknights.css")
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from _config.yml
       each url in theme.stylesheets
         link(rel='stylesheet', href=url)
+    style
+      |@font-face {
+      |  font-family: BenderLight;
+      |  src: local('Bender'), url("#{config.root}font/BenderLight.ttf");
+      |}
+      |@font-face {
+      |  font-family: 'JetBrains Mono';
+      |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
+      |}
   body
     header
       nav
         each url, label in theme.menu
-          a(href=url)= label
+          a(href= config.root + url)= label
     main
       article
         if body
@@ -37,11 +47,10 @@ html(lang=config.language)
         #about
           a(href=config.root)#logo
             img(src=asideLogo, alt="Logo")
-            //- img(src="/img/logo.png", alt="Logo")
           h1#Dr
             a(href= theme.aside.dr)=' Dr.' + config.author
           section#total
-            a#total-archives(href="/archives")
+            a#total-archives(href= config.root + "archives")
               span.total-title Archives Total:
               span.total-number= site.posts.length
             #total-tags
@@ -69,6 +78,7 @@ html(lang=config.language)
             a(href='https://github.com/Yue-plus') Yue_plus
     if theme.canvas_dust
       canvas#canvas-dust
+    script(src=config.root + "js/arknights.js")
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts
