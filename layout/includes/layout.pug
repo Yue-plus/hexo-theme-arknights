@@ -11,6 +11,13 @@
   const asideLogo = theme.aside.logo
   const asideBlock = theme.aside.block_in_top ? 'order: -1' : ''
 
+  var mainStyle = ""
+  var footerStyles = ""
+  if (theme.aside.in_left) {
+    mainStyle = "flex-direction: row-reverse"
+    footerStyle = "text-align: right"
+  }
+
 doctype html
 html(lang=config.language)
   head
@@ -37,7 +44,7 @@ html(lang=config.language)
       nav
         each url, label in theme.menu
           a(href= config.root + url)= label
-    main
+    main(style=mainStyle)
       article
         if body
           div!= body
@@ -61,7 +68,7 @@ html(lang=config.language)
               span.total-number= site.categories.length
         #aside-block(style= asideBlock)
           block aside-block
-        footer
+        footer(style=footerStyle)
           each content, title in theme.aside.copyright
             nobr
               span.text-title= title

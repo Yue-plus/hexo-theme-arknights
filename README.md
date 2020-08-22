@@ -189,7 +189,7 @@ hexo serve --debug
 - [SASS 中文网](https://www.sass.hk/guide/)
   > 注意，这个中文网标的是 SASS 但写的是 SCSS 的语法。
   > 其最大区别是 SASS 不要写分号和花括号、文件拓展名不同。
-- [Pug 模板引擎中文文档](https://pugjs.bootcss.com/api/getting-started.html)
+- [Pug 模板引擎中文文档](https://www.pugjs.cn/api/getting-started.html)
 
 - 另外引用几个大佬的blog
   > - <https://easyhexo.com/>
