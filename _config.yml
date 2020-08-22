@@ -4,8 +4,9 @@ language: zh
 # canvas 动态背景
 canvas_dust: true
 
-# 右侧边栏
+# 侧边栏
 aside:
+  in_left: false # 侧边栏在左 true / false
   logo: https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png #图片链接，建议 1:1 比例
   dr: / # 侧边栏 Dr. 链接
   block_in_top: false # 目前为侧边栏文章目录置顶
