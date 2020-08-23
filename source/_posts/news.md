@@ -1,5 +1,5 @@
 ---
-title: '[活动预告]SideStory「火蓝之心」复刻活动开启'
+title: '[活动预告]夏季限时活动即将开启'
 date: 2020-08-20 08:45:16
 tags: Arknights
 category: 活动
@@ -278,6 +278,12 @@ permalink: /news/
 **领取条件：**2020年09月08日16:00前所有注册并创建角色的玩家（含游客账号）
 
 **领取期限：**邮件发放的7日内
+
+## [明日方舟]刻俄柏的灰蕈迷境 -【集成战略】模式简介
+
+![img](https://ak.hypergryph.com/upload/images/20200822/63fae62f162c87f79c40977ad117b9de.jpg)
+
+![img](https://ak.hypergryph.com/upload/images/20200822/2d222c9273310414cd4eec661f6be443.jpg)
 
 *更多活动内容请持续关注《明日方舟》游戏内公告、官网、官方微博及微信公众号*
 

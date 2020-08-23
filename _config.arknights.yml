@@ -46,10 +46,7 @@ menu:
 # stylesheets loaded in the <head>
 stylesheets:
 - https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css
-- https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css
 
 # scripts loaded in the end of the body
 scripts:
 - https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js
-- https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js
-- https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js
