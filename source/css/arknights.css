@@ -104,6 +104,14 @@ table {
     table td:hover {
       background-color: rgba(34, 187, 255, 0.1); }
 
+@font-face {
+  font-family: BenderLight;
+  src: local("Bender"), url("/font/BenderLight.ttf"); }
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local("JetBrains Mono"), url("/font/JetBrainsMono-Regular.woff2") format("woff2"); }
+
 .text-title, .text-content {
   height: 18px;
   line-height: 18px;
@@ -257,6 +265,7 @@ main {
 
 article {
   flex-grow: 1;
+  line-height: 150%;
   min-width: 1px;
   max-height: 100%;
   overflow-y: auto; }
@@ -710,6 +719,7 @@ aside {
     overflow: visible; }
     main article {
       width: 100%;
+      line-height: 150%;
       max-height: none;
       padding: 0;
       flex-shrink: 0;
