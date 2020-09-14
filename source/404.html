@@ -1,56 +1,84 @@
 <!DOCTYPE html>
 <html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>エラー発生。</title>
-    <style>
-      @font-face {
-        font-family: 'JetBrains Mono';
-        src: local('JetBrains Mono'),
-        url('/font/JetBrainsMono-Regular.woff2') format('woff2');
-      }
 
-      html, body {height: 100%;}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>エラー発生。</title>
+  <style>
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+    }
 
-      body {
-        height: auto;
-        margin: auto auto;
-        color: #FFF;
-        text-align: center;
-        background-color: #141516;
-        background-image: url(https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg);
-      }
+    html,
+    body {
+      height: 100%;
+    }
 
-      #logo {
-        vertical-align: middle;
-        display: inline-block;
-      }
+    body {
+      margin: 0;
+      color: #FFF;
+      background-color: #141516;
+      background-image: url(https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg);
+    }
 
+    main {
+      text-align: center;
+    }
+
+    #logo {
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    #logo img {
+      width: 300px;
+    }
+
+    #error {
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    #error a {
+      color: #2BF;
+      padding: 3px 10px;
+      font-size: larger;
+      text-decoration: none;
+    }
+
+    #error a:hover {
+      color: #000;
+      background-color: #2BF;
+    }
+
+    h1 {
+      font-size: 60px;
+      color: #FE2;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-family: "JetBrains Mono";
+    }
+
+    @media (max-width: 768px) {
       #logo img {
-        width: 300px;
-      }
+        width: auto;
+        height: 380px;
+        opacity: .23;
+        position: fixed;
+        bottom: -30px;
+        left: -38%;
+        pointer-events: none;
+      }      
+    }
+  </style>
+</head>
 
-      #error {
-        vertical-align: middle;
-        display: inline-block;
-      }
-
-      a {
-        color: #2BF;
-      }
-
-      h1 {
-        font-size: 60px;
-        color: #FE2;
-      }
-
-      h2 {
-        font-family: "JetBrains Mono";
-      }
-    </style>
-  </head>
-  <body>
+<body>
+  <main>
     <a id="logo" href="/">
       <img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="to home" />
     </a>
@@ -59,8 +87,11 @@
       <h2 style="text-align: left;">404 NOT FOUND</h2>
       <p style="text-align: left;">
         <a href="/">首页</a>
-        <a href="">上一页</a>
+        <a onClick="history.back();">上一页</a>
       </p>
     </div>
-  </body>
+  </main>
+
+</body>
+
 </html>
