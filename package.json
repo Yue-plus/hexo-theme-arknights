@@ -1,15 +1,27 @@
 {
   "name": "hexo-theme-arknights",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "一款明日方舟罗德岛阵营的 Hexo 主题",
-  "author": {
-    "name": "yue-plus",
-    "email": "Yue_plus@foxmail.com",
-    "url": "https://github.com/Yue-plus"
-  },
+  "author": "yue-plus <Yue_plus@foxmail.com> (https://github.com/Yue-plus)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Yue-plus/hexo-theme-arknights.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yue-plus/hexo-theme-arknights/issues"
+  },
+  "homepage": "https://github.com/Yue-plus/hexo-theme-arknights#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "dependencies": {
+    "hexo-browsersync": "^0.3.0",
+    "hexo-renderer-pug": "^1.0.0",
+    "hexo-renderer-sass": "^0.4.0",
+    "hexo-server": "^2.0.0"
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
