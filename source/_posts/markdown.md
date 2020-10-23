@@ -328,8 +328,8 @@ _   下划线
 !   感叹号
 ```
 
-## 公式
-当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。如：
+## 数学公式
+当需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。如：
 
 > 参考 [使用 `hexo-filter-mathjax` 过滤器来显示数学公式](https://github.com/Yue-plus/hexo-theme-arknights#数学公式)
 
@@ -355,6 +355,49 @@ $$
 $$
 ```
 
+## 流程图
+
+主题支持通过 [mermaid-js](http://mermaid-js.github.io/mermaid/)（[GitHub](https://github.com/mermaid-js/mermaid)）绘制各种图表。
+
+支持：
+- [流程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/flowchart.html)
+- [序列图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/sequenceDiagram.html)
+- [类图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/classDiagram.html)
+- [状态图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/stateDiagram.html)
+- [实体关系图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/entityRelationshipDiagram.html)
+- [用户旅程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/user-journey.html)
+- [甘特图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/gantt.html)
+- [指令图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/directives.html)
+- [饼图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/pie.html)
+
+> [关于写作那些事之快速上手Mermaid流程图](https://baijiahao.baidu.com/s?id=1666117882411053133)
+
+> <div class="mermaid">
+> sequenceDiagram
+>     autonumber
+>     Alice->>John: Hello John, how are you?
+>     loop Healthcheck
+>         John->>John: Fight against hypochondria
+>     end
+>     Note right of John: Rational thoughts!
+>     John-->>Alice: Great!
+>     John->>Bob: How about you?
+>     Bob-->>John: Jolly good!
+> </div>
+
+```html
+<div class="mermaid">
+sequenceDiagram
+    Alice ->> Bob: Hello Bob, how are you?
+    Bob-->>John: How about you John?
+    Bob--x Alice: I am good thanks!
+    Bob-x John: I am good thanks!
+    Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+    Bob-->Alice: Checking with John...
+    Alice->John: Yes... John, how are you?
+</div>
+```
 
 [^阿米娅]: 博士，您还有很多事情需要处理。现在还不能休息哦。
 
