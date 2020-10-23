@@ -357,7 +357,7 @@ $$
 
 ## 流程图
 
-主题支持通过 [mermaid-js](http://mermaid-js.github.io/mermaid/)（[GitHub](https://github.com/mermaid-js/mermaid)）绘制各种图表。
+主题通过 [mermaid-js](http://mermaid-js.github.io/mermaid/)（[GitHub](https://github.com/mermaid-js/mermaid)）绘制各种图表。
 
 支持：
 - [流程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/flowchart.html)
