@@ -25,6 +25,8 @@ html(lang=config.language)
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title= pageTitle
     script(src='https://cdn.bootcss.com/valine/1.4.4/Valine.min.js')
+    if theme.mermaid === true
+      script mermaid.initialize({startOnLoad:true);
     link(rel="stylesheet", href=config.root + "css/arknights.css")
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from _config.yml

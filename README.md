@@ -147,6 +147,21 @@ mathjax: true
 
 > 也可以尝试更换能更好处理数学公式的渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)
 
+## 图表支持
+
+主题通过 mermaid-js 绘制各种图表。**[查看示例](https://ark.theme.yueplus.ink/2020/04/15/markdown/#流程图)**
+
+支持：
+- [流程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/flowchart.html)
+- [序列图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/sequenceDiagram.html)
+- [类图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/classDiagram.html)
+- [状态图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/stateDiagram.html)
+- [实体关系图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/entityRelationshipDiagram.html)
+- [用户旅程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/user-journey.html)
+- [甘特图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/gantt.html)
+- [指令图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/directives.html)
+- [饼图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/pie.html)
+
 ## 参与开发
 ### 开发人员
 - [Yue_plus](https://github.com/Yue-plus)

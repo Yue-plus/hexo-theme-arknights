@@ -36,6 +36,9 @@ valine:
   app_id: # <APP ID>
   app_key: # <APP KEY>
 
+# 图表支持
+mermaid: false
+
 # main menu navigation
 menu:
   Home: ''
@@ -50,3 +53,4 @@ stylesheets:
 # scripts loaded in the end of the body
 scripts:
 - https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js
+# - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
