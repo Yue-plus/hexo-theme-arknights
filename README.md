@@ -149,18 +149,20 @@ mathjax: true
 
 ## 图表支持
 
-主题通过 mermaid-js 绘制各种图表。**[查看示例](https://ark.theme.yueplus.ink/2020/04/15/markdown/#流程图)**
+修改 **主题文件夹** 下的 `_config.yml` 文件，将 `mermaid:` 设为 `true`。
+
+主题通过 mermaid-js 绘制各种图表。**[查看示例](https://ark.theme.yueplus.ink/mermaid/)**
 
 支持：
-- [流程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/flowchart.html)
-- [序列图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/sequenceDiagram.html)
-- [类图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/classDiagram.html)
-- [状态图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/stateDiagram.html)
-- [实体关系图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/entityRelationshipDiagram.html)
-- [用户旅程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/user-journey.html)
-- [甘特图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/gantt.html)
-- [指令图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/directives.html)
-- [饼图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/pie.html)
+- [流程图](https://ark.theme.yueplus.ink/mermaid/#%E6%B5%81%E7%A8%8B%E5%9B%BE)
+- [序列图](https://ark.theme.yueplus.ink/mermaid/#%E5%BA%8F%E5%88%97%E5%9B%BE)
+- [类图](https://ark.theme.yueplus.ink/mermaid/#%E7%B1%BB%E5%9B%BE)
+- [状态图](https://ark.theme.yueplus.ink/mermaid/#%E7%8A%B6%E6%80%81%E5%9B%BE)
+- [实体关系图](https://ark.theme.yueplus.ink/mermaid/#%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E5%9B%BE)
+- [用户旅程图](https://ark.theme.yueplus.ink/mermaid/#%E7%94%A8%E6%88%B7%E6%97%85%E7%A8%8B%E5%9B%BE)
+- [甘特图](https://ark.theme.yueplus.ink/mermaid/#%E7%94%98%E7%89%B9%E5%9B%BE)
+- [指令图](https://ark.theme.yueplus.ink/mermaid/#%E6%8C%87%E4%BB%A4%E5%9B%BE)
+- [饼图](https://ark.theme.yueplus.ink/mermaid/#%E9%A5%BC%E5%9B%BE)
 
 ## 参与开发
 ### 开发人员
