@@ -26,7 +26,12 @@ html(lang=config.language)
     title= pageTitle
     script(src='https://cdn.bootcss.com/valine/1.4.4/Valine.min.js')
     if theme.mermaid === true
-      script mermaid.initialize({startOnLoad:true);
+      script(src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.2/mermaid.min.js")
+      script
+        | mermaid.initialize({
+        |   startOnLoad: true
+        |   , theme: 'dark'
+        | });
     link(rel="stylesheet", href=config.root + "css/arknights.css")
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from _config.yml
