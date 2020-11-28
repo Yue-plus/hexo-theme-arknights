@@ -218,7 +218,8 @@ hexo serve --debug
 ## 支援主题开发
 喜欢这个主题的话可以：
 - 给颗小星星吧 `(/▽＼)`
-  > 100star 做个新主题哦~
+  > √ `ヾ(✿ﾟ▽ﾟ)ノ` 100star 做个新主题哦~
+  > 新主题开发中 [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - 开发者的B服ID：`YuePlus#6221`
 - 加入 QQ 群：618221514
     > 群内开发为主，吹水晒卡，分享线索7也都欢迎哦~ `d=====(￣▽￣*)b`
