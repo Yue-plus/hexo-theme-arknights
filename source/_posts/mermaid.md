@@ -6,24 +6,24 @@ category: Example
 permalink: /mermaid/
 ---
 
-![mermaid](https://mermaid-js.github.io/mermaid/assets/img/header.png)
+![mermaid](https://mermaid-js.github.io/mermaid/img/header.png)
 
 <!-- more -->
 
-主题通过 [mermaid-js](http://mermaid-js.github.io/mermaid/)（[GitHub](https://github.com/mermaid-js/mermaid)）绘制各种图表。
+主题通过 [mermaid-js](https://mermaid-js.github.io/mermaid/#/)（[GitHub](https://github.com/mermaid-js/mermaid)）绘制各种图表。
 
 支持：
-- [流程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/flowchart.html)
-- [序列图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/sequenceDiagram.html)
-- [类图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/classDiagram.html)
-- [状态图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/stateDiagram.html)
-- [实体关系图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/entityRelationshipDiagram.html)
-- [用户旅程图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/user-journey.html)
-- [甘特图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/gantt.html)
+- [流程图](https://mermaid-js.github.io/mermaid/#/flowchart)
+- [序列图](https://mermaid-js.github.io/mermaid/#/sequenceDiagram)
+- [类图](https://mermaid-js.github.io/mermaid/#/classDiagram)
+- [状态图](https://mermaid-js.github.io/mermaid/#/stateDiagram)
+- [实体关系图](https://mermaid-js.github.io/mermaid/#/entityRelationshipDiagram)
+- [用户旅程图](https://mermaid-js.github.io/mermaid/#/user-journey)
+- [甘特图](https://mermaid-js.github.io/mermaid/#/gantt)
 - [指令图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/directives.html)
-- [饼图](http://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/pie.html)
+- [饼图](https://mermaid-js.github.io/mermaid/#/pie)
 
-> [关于写作那些事之快速上手Mermaid流程图](https://baijiahao.baidu.com/s?id=1666117882411053133)
+> [关于写作那些事之快速上手 Mermaid 流程图](https://baijiahao.baidu.com/s?id=1666117882411053133)
 
 ## 流程图
 
