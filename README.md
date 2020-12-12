@@ -165,6 +165,48 @@ mathjax: true
 - [指令图](https://ark.theme.yueplus.ink/mermaid/#%E6%8C%87%E4%BB%A4%E5%9B%BE)
 - [饼图](https://ark.theme.yueplus.ink/mermaid/#%E9%A5%BC%E5%9B%BE)
 
+<!--## 文档加密
+
+可以使用 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件进行文档加密。
+**注意： 前端加密并不可靠！**
+
+> 详细参考 [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md)
+
+```sh
+cnpm install hexo-blog-encrypt --save
+```
+
+在 `<Hexo>/_config.yml` 文件中添加以下内容：
+
+```yml
+# Security
+encrypt: # hexo-blog-encrypt
+  abstract: 与 Rhodes Island™ 取得弱神经连接时需要口令
+  message: 请输入与 Rhodes Island™ 取得弱神经连接时的口令：
+  tags:
+  - {name: tagName, password: 密码A}
+  - {name: tagName, password: 密码B}
+  template: <div id="hexo-blog-encrypt" data-wpm="{{hbeWrongPassMessage}}" data-whm="{{hbeWrongHashMessage}}"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="{{hbeMessage}}" /><label>{{hbeMessage}}</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="{{hbeHmacDigest}}">{{hbeEncryptedData}}</script></div>
+  wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
+  wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
+```
+
+**或** 在文章的 [Front-matter](https://hexo.io/zh-cn/docs/front-matter) 区内设置：
+
+```markdown
+---
+title: Hello World
+tags:
+- 作为日记加密
+date: 2016-03-30 21:12:21
+password: mikemessi
+abstract: 与 Rhodes Island™ 取得弱神经连接时需要口令
+message: 请输入与 Rhodes Island™ 取得弱神经连接时的口令：
+wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
+wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
+---
+```
+-->
 ## 参与开发
 ### 开发人员
 - [Yue_plus](https://github.com/Yue-plus)
@@ -219,8 +261,8 @@ hexo serve --debug
 ## 支援主题开发
 喜欢这个主题的话可以：
 - 给颗小星星吧 `(/▽＼)`
-  > √ `ヾ(✿ﾟ▽ﾟ)ノ` 100star 做个新主题哦~
-  > 新主题开发中 [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
+  > - √ `ヾ(✿ﾟ▽ﾟ)ノ` 100star 做个新主题哦~
+  > - 新主题开发中 [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - 开发者的B服ID：`YuePlus#6221`
 - 加入 QQ 群：618221514
     > 群内开发为主，吹水晒卡，分享线索7也都欢迎哦~ `d=====(￣▽￣*)b`
