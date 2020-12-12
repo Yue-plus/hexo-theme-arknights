@@ -7,6 +7,7 @@
 - **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
+- **Dr.hastin: <http://hastin-blog.cn/>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 
