@@ -7,6 +7,7 @@
   justify-content: stretch
 
 #archive-aside
+  height: 100%
   display: flex
   order: -1
   flex-grow: 1
@@ -14,10 +15,9 @@
 
 
 #Archives, #Categories, #Tags
-  height: 100%
-  //border-radius: 6px
   margin: 0 10px
   background-color: rgba(#141516, .8)
+  overflow-y: auto
   &, h1
     transition: .3s
   h1
@@ -33,6 +33,7 @@
       background-color: #2bf
 
 #Archives
+  height: 100%
   flex-grow: 5
   h2
     margin: 10px 0
@@ -55,10 +56,12 @@
   padding: 10px
 
 #Categories
+  height: 50%
   flex-grow: 1
   margin-bottom: 20px
 
 #Tags
+  height: 100%
   flex-grow: 1
 
 #navigation

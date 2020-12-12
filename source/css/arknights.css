@@ -646,15 +646,16 @@ aside {
   justify-content: stretch; }
 
 #archive-aside {
+  height: 100%;
   display: flex;
   order: -1;
   flex-grow: 1;
   flex-direction: column; }
 
 #Archives, #Categories, #Tags {
-  height: 100%;
   margin: 0 10px;
-  background-color: rgba(20, 21, 22, 0.8); }
+  background-color: rgba(20, 21, 22, 0.8);
+  overflow-y: auto; }
   #Archives, #Archives h1, #Categories, #Categories h1, #Tags, #Tags h1 {
     transition: .3s; }
   #Archives h1, #Categories h1, #Tags h1 {
@@ -670,6 +671,7 @@ aside {
       background-color: #2bf; }
 
 #Archives {
+  height: 100%;
   flex-grow: 5; }
   #Archives h2 {
     margin: 10px 0;
@@ -694,10 +696,12 @@ aside {
   padding: 10px; }
 
 #Categories {
+  height: 50%;
   flex-grow: 1;
   margin-bottom: 20px; }
 
 #Tags {
+  height: 100%;
   flex-grow: 1; }
 
 #navigation a {
