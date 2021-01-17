@@ -1,0 +1,71 @@
+我就不懂了，为啥这些字体用不了
+
+
+// @font-face
+//   font-family: "SourceHanSerifSubset"
+//   src: url("https://ak.hypergryph.com/assets/index/fonts/SourceHanSerifSubset.woff2") format("woff2")
+
+// @font-face 
+//   font-family: HelveticaInserat
+//   src: url("https://ak.hypergryph.com/assets/index/fonts/HelveticaInserat.woff2") format("woff2")
+// @font-face
+//   font-family: SourceHanSansSubset
+//   src: url("https://ak.hypergryph.com/assets/index/fonts/SourceHanSansSubset.woff2") format("woff2")
+
+
+
+
+
+
+
+@font-face {
+font-family:'nc_iconfont';
+  src:url("//at.alicdn.com/t/font_1465353706_4784257.eot");
+  src:url("//at.alicdn.com/t/font_1465353706_4784257.eot?#iefix") format('embedded-opentype'),
+  url("//at.alicdn.com/t/font_1465353706_4784257.woff") format('woff'),
+  url("//at.alicdn.com/t/font_1465353706_4784257.ttf") format('truetype'),
+  url("//at.alicdn.com/t/font_1465353706_4784257.svg#iconfont") format('svg')
+}
+@font-face {
+font-family:'ncpc_iconfont';
+  src:url("//at.alicdn.com/t/font_384029_rhzpmteb25oecdi.eot");
+  src:url("//at.alicdn.com/t/font_384029_rhzpmteb25oecdi.eot?#iefix") format('embedded-opentype'),
+  url("//at.alicdn.com/t/font_384029_rhzpmteb25oecdi.woff") format('woff'),
+  url("//at.alicdn.com/t/font_384029_rhzpmteb25oecdi.ttf") format('truetype'),
+  url("//at.alicdn.com/t/font_384029_rhzpmteb25oecdi.svg#ncpc_iconfont") format('svg')
+}
+
+
+
+
+
+@font-face
+  font-family:Bender
+  src:url(https://ak.hypergryph.com/assets/index/fonts/Bender.eot)
+  src:url(https://ak.hypergryph.com/assets/index/fonts/Bender.eot?#iefix) format('embedded-opentype'),
+  url(https://ak.hypergryph.com/assets/index/fonts/Bender.woff2) format('woff2'),
+  url(https://ak.hypergryph.com/assets/index/fonts/Bender.woff) format('woff'),
+  url(https://ak.hypergryph.com/assets/index/fonts/Bender.ttf) format('truetype')
+@font-face
+  font-family:SourceHanSerifSubset
+  src:url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSerifSubset.eot)
+  src:url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSerifSubset.eot?#iefix) format('embedded-opentype'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSerifSubset.woff2) format('woff2'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSerifSubset.woff) format('woff'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSerifSubset.ttf) format('truetype')
+@font-face
+  font-family:SourceHanSansSubset
+  src:local('Source Han Sans'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSansSubset.eot) format('embedded-opentype'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSansSubset.eot?#iefix) format('embedded-opentype'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSansSubset.woff2) format('woff2'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSansSubset.woff) format('woff'),
+  url(https://ak.hypergryph.com/assets/index/fonts/SourceHanSansSubset.ttf) format('truetype')
+@font-face
+  font-family:HelveticaInserat
+  src:local('HelveticaInserat'),
+  url(/assets/index/fonts/HelveticaInserat.eot) format('embedded-opentype'),
+  url(/assets/index/fonts/HelveticaInserat.eot?#iefix) format('embedded-opentype'),
+  url(/assets/index/fonts/HelveticaInserat.woff2) format('woff2'),
+  url(/assets/index/fonts/HelveticaInserat.woff) format('woff'),
+  url(/assets/index/fonts/HelveticaInserat.ttf) format('truetype')
