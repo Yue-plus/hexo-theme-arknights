@@ -8,6 +8,7 @@
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
 - **Dr.hastin: <http://hastin-blog.cn/>**
+- **Dr.XIMU：<http://b.ligzs.cn/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
