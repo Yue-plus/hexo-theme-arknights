@@ -1769,10 +1769,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hexo-blog-encrypt@^3.0.15:
-  version "3.1.2"
-  resolved "https://registry.npm.taobao.org/hexo-blog-encrypt/download/hexo-blog-encrypt-3.1.2.tgz#ff183cc542b51e09ec1b0756790820d8b94c5b0a"
-  integrity sha1-/xg8xUK1HgnsGwdWeQgg2LlMWwo=
+hexo-blog-encrypt@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.npm.taobao.org/hexo-blog-encrypt/download/hexo-blog-encrypt-3.1.4.tgz#e210fd93776531343c3a70794c6833b4a958734e"
+  integrity sha1-4hD9k3dlMTQ8OnB5TGgztKlYc04=
   dependencies:
     hexo-fs "^1.0.2"
     hexo-log "^0.2.0"
