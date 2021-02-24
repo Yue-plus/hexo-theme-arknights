@@ -45,6 +45,7 @@ menu:
 #  About: about/
 #  Contact: contact/
   Archives: archives/
+  独立页面: demo/
 
 # stylesheets loaded in the <head>
 stylesheets:
