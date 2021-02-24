@@ -207,6 +207,24 @@ wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时
 ---
 ```
 -->
+
+## Front-matter
+
+除了 Hexo 支持的 [Front-matter](https://hexo.io/zh-cn/docs/front-matter)
+
+还支持：
+
+```yaml
+# 文章页右上角发布/更新日期
+post-info: true/false
+
+# 侧边栏的目录
+post-index: true/false
+
+# 打赏框
+reward: true/false
+```
+
 ## 参与开发
 ### 开发人员
 - [Yue_plus](https://github.com/Yue-plus)

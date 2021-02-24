@@ -14,7 +14,7 @@ block content
     const tocContent = toc(page.content, theme.toc)
   #post-bg
     #post-title
-      if dateConf || updatedConf
+      if (dateConf || updatedConf) && page.post-info
         #post-info
           if dateConf
             span date:
@@ -58,7 +58,7 @@ block content
       if tocContent.length > 0
         a#to-index(href="#post-index" title="index") ≡
       a#to-top(href="#post-title" title="to top") ∧
-    if reward === true
+    if reward === true && page.reward
       details#reward
         summary 打赏
         #alipay
@@ -69,17 +69,18 @@ block content
           span 微信 | WeChat
           br
           img(src= config.root + 'img/WeChat.png')
-    #Valine
-    script
-      |new Valine({
-      |  el: '#Valine'
-      |  , appId: '#{appID}'
-      |  , appKey: '#{appKey}'
-      |  , placeholder: '此条评论委托企鹅物流发送'
-      |})
+    if page.comments
+      #Valine
+      script
+        |new Valine({
+        |  el: '#Valine'
+        |  , appId: '#{appID}'
+        |  , appKey: '#{appKey}'
+        |  , placeholder: '此条评论委托企鹅物流发送'
+        |})
 
 block aside-block
   - const tocContent = toc(page.content, theme.toc)
-  if tocContent.length > 0
+  if (tocContent.length > 0) && page.post-index
     h1 INDEX
     #post-index!= tocContent
