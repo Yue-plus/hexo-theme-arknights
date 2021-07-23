@@ -10,7 +10,7 @@ aside:
   logo: https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png #图片链接，建议 1:1 比例
   dr: https://github.com/Yue-plus # 侧边栏 Dr. 链接
   block_in_top: false # 目前为侧边栏文章目录置顶
-  copyright: # 版权声明、备案号等
+  copyright: # 版权声明、备案号等，设置为 null 不显示
     ©: 1970 to 2020
     ICP: 赣ICP备19008355号
 
