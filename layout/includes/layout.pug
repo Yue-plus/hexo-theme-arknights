@@ -76,11 +76,12 @@ html(lang=config.language)
         #aside-block(style= asideBlock)
           block aside-block
         footer(style=footerStyle)
-          each content, title in theme.aside.copyright
-            nobr
-              span.text-title= title
-              span.text-content= content
-            wbr
+          if theme.aside.copyright !== null
+            each content, title in theme.aside.copyright
+              nobr
+                span.text-title= title
+                span.text-content= content
+              wbr
           wbr
           nobr published with&nbsp;
             a(href='http://hexo.io') Hexo&nbsp;
