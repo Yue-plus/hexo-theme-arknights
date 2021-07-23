@@ -34,6 +34,8 @@ block content
             a(href=url_for(article.path) target="_blank")
               = article.title || 'No Title'
         - })
+        if config.per_page != 0
+          #paginator!= paginator()
     #archive-aside
       #Categories
         h1 categories
