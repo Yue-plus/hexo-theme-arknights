@@ -6,11 +6,11 @@ category: 活动
 permalink: /news/
 ---
 
-![img](0859d340cd56468bff33d201d0aee1ea.jpg)
+![img](/images/0859d340cd56468bff33d201d0aee1ea.jpg)
 
 <!-- more -->
 
-![img](0859d340cd56468bff33d201d0aee1ea.jpg)
+![img](/images/0859d340cd56468bff33d201d0aee1ea.jpg)
 
 # 夏日嘉年华活动Part.1
 
