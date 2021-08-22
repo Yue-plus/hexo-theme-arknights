@@ -8,6 +8,7 @@
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
 - **Dr.XIMU：<http://b.ligzs.cn/>**
+- **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
@@ -229,6 +230,7 @@ reward: true/false
 ### 开发人员
 - [Yue_plus](https://github.com/Yue-plus)
 - [Laurenfrost](https://github.com/Laurenfrost)
+- [ToUNVRSe](https://github.com/ToUNVRSe)
 
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 

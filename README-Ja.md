@@ -162,8 +162,11 @@ mathjax: true
 
 ## テーマの開発にあなたの力を
 ### メンバー
-- [Yue_plus](https://github.com/Yue-plus)
-- [Laurenfrost](https://github.com/Laurenfrost)
+- ### **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
+- **Dr.Ye: <https://laurenfrost.github.io/>**
+- **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
+- **Dr.XIMU：<http://b.ligzs.cn/>**
+- **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 
 >  [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) と [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)は大歓迎。  
 
