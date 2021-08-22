@@ -1,5 +1,5 @@
 if page.posts.length > 0
-  each post in page.posts.sort('date', -1).limit(10).toArray()
+  each post in page.posts.sort('date', -1).limit((config.per_page === 0) ? 9999999 : config.per_page).toArray()
     a(href=url_for(post.path)).recent-post
       .recent-info
         span.categories
