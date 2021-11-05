@@ -33,8 +33,20 @@ archives:
 
 # Valine 无后端评论系统
 valine:
+  enable: false
   app_id: # <APP ID>
   app_key: # <APP KEY>
+
+gitalk:
+  enable: false
+  clientID: # GitHub Application Client ID
+  clientSecret: # GitHub Application Client Secret
+  repo: # GitHub repository
+  owner: # GitHub repository owner
+  admin: ["''"] # GitHub repository owner and collaborators (Users who having write access to this repository)
+                # Example: ["'adminA'","'adminB'"]
+  id: # The unique id of the page
+      # Example: location.pathname
 
 # 图表支持
 mermaid: false
