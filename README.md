@@ -231,6 +231,7 @@ reward: true/false
 - [Yue_plus](https://github.com/Yue-plus)
 - [Laurenfrost](https://github.com/Laurenfrost)
 - [ToUNVRSe](https://github.com/ToUNVRSe)
+- [飞龙project](https://github.com/feilongproject)
 
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 
