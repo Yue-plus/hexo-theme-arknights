@@ -24,7 +24,7 @@ html(lang=config.language)
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title= pageTitle
-    script(src='https://cdn.bootcss.com/valine/1.4.4/Valine.min.js')
+    script(src='//unpkg.com/valine/dist/Valine.min.js')
     if theme.gitalk.enable === true
       link(rel="stylesheet" href=config.root + "css/gitalk.css")
       script(src=config.root + "js/gitalk.js")
