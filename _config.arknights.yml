@@ -37,7 +37,9 @@ valine:
   app_key: bGVok8pAb8SaD6obPXosuxbB # <APP KEY>
 
 # 图表支持
-mermaid: true
+mermaid:
+  enable: true
+  version: '8.13.5'
 
 # main menu navigation
 menu:
