@@ -28,8 +28,8 @@ html(lang=config.language)
     if theme.gitalk.enable === true
       link(rel="stylesheet" href=config.root + "css/gitalk.css")
       script(src=config.root + "js/gitalk.js")
-    if theme.mermaid === true
-      script(src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.11.0/mermaid.min.js")
+    if theme.mermaid.enable === true && theme.mermaid.version !== undefined
+      script(src= "https://unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
       script
         | mermaid.initialize({
         |   startOnLoad: true

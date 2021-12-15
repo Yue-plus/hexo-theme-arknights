@@ -49,7 +49,9 @@ gitalk:
       # Example: location.pathname
 
 # 图表支持
-mermaid: false
+mermaid:
+  enable: false
+  version: '8.13.5'
 
 # main menu navigation
 menu:
