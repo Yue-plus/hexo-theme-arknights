@@ -174,6 +174,20 @@ mathjax: true
 | [指令图](https://ark.theme.yueplus.ink/mermaid/#%E6%8C%87%E4%BB%A4%E5%9B%BE)
 | [饼图](https://ark.theme.yueplus.ink/mermaid/#%E9%A5%BC%E5%9B%BE)
 
+语法：
+
+```html
+<div class="mermaid">
+  graph LR
+  A[Hard edge] -->|Link text| B(Round edge)
+  B --> C{Decision}
+  C -->|One| D[Result one]
+  C -->|Two| E[Result two]
+</div>
+```
+
+> 如果习惯使用 `代码块` 可以尝试使用 [hexo-filter-mermaid-diagrams](https://github.com/webappdevelp/hexo-filter-mermaid-diagrams)
+
 <!--## 文档加密
 
 可以使用 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件进行文档加密。
