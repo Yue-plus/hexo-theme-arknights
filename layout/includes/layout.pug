@@ -49,7 +49,7 @@ html(lang=config.language)
       |  font-family: 'JetBrains Mono';
       |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
       |}
-  body
+  body(style={'background-image': `url(${theme.background_image})`})
     header
       nav
         each url, label in theme.menu
