@@ -31,13 +31,12 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 ### 安装依赖
 npm 用户：
 ```shell script 
-cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts --save
+cnpm install hexo-server hexo-browsersync hexo-renderer-pug --save
 ```
 yarn 用户：
 ```shell script
-yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
+yarn add hexo-server hexo-browsersync hexo-renderer-pug
 ```
-> `hexo-renderer-sass` 很可能会安装失败，请多试几次。
 
 ### 修改配置文件
 - 参照 [Hexo 官网](https://hexo.io/zh-cn/docs/configuration) 修改 `Hexo/` 目录下的 `_config.yml`。
@@ -267,7 +266,7 @@ reward: true/false
 ### 搭建开发环境
 先装好 [nodejs](https://nodejs.org/) 和 [yarn](https://classic.yarnpkg.com/zh-Hans/) ，然后执行以下命令：
 ```shell script
-yarn global add hexo-cli yo generator-hexo-theme
+yarn global add hexo-cli yo generator-hexo-theme sass
 git clone -b hexo https://github.com/Yue-plus/hexo-theme-arknights.git
 cd hexo-theme-arknights
 git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
@@ -276,12 +275,15 @@ hexo serve --debug
 ```
 
 ### 开发中可能遇见的 BUG 及解决方法
+
+<!--
 #### 修改 `.pug` 模板文件无法自动刷新页面。
 解决方法：将 Hexo 目录下的
 `./node_modules/hexo-renderer-pug/lib/pug.js`
 中的
 `pugRenderer.compile = pugCompile;`
 注释掉。
+-->
 
 #### 运行 ‘hexo serve --debug’ 时，长文章渲染不全
 这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布

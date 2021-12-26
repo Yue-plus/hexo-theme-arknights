@@ -41,11 +41,11 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 
 npm ユーザー：
 ```shell script 
-cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
+cnpm install hexo-server hexo-browsersync hexo-renderer-pug
 ```
 yarn ユーザー：
 ```shell script
-yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-sass hexo-renderer-ts
+yarn add hexo-server hexo-browsersync hexo-renderer-pug
 ```
 
 > パッケージ`hexo-renderer-sass`　はインストールエラーが発生しかねません。もう一度インストールしたら、意外と成功したケースは少なくありません。  
