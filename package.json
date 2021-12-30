@@ -19,7 +19,7 @@
   "keywords": [],
   "dependencies": {
     "hexo-browsersync": "^0.3.0",
-    "hexo-renderer-pug": "^2.1.1",
+    "hexo-renderer-pug": "^2.0.0",
     "hexo-server": "^2.0.0"
   }
 }
