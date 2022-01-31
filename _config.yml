@@ -65,8 +65,8 @@ menu:
 
 # stylesheets loaded in the <head>
 stylesheets:
-- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css
+- //unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css
 
 # scripts loaded in the end of the body
 scripts:
-- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js
+- //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
