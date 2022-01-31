@@ -33,8 +33,9 @@ archives:
 
 # Valine 无后端评论系统
 valine:
-  app_id: b9rrhQ0X1nPTnVAG0chxbgpP-gzGzoHsz # <APP ID>
-  app_key: bGVok8pAb8SaD6obPXosuxbB # <APP KEY>
+  enable: true
+  app_id: LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz # <APP ID>
+  app_key: Fu9giJfnidkCamaW89FUpidw # <APP KEY>
 
 # 图表支持
 mermaid:
@@ -49,10 +50,3 @@ menu:
   Archives: archives/
   独立页面: demo/
 
-# stylesheets loaded in the <head>
-stylesheets:
-- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css
-
-# scripts loaded in the end of the body
-scripts:
-- https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js
