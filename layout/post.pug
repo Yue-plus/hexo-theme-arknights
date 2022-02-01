@@ -77,6 +77,8 @@ block content
           |  el: '#Valine'
           |  , appId: '#{appID}'
           |  , appKey: '#{appKey}'
+          if theme.valine.serverURLs
+            |  , serverURLs: '#{theme.valine.serverURLs}'
           |  , placeholder: '此条评论委托企鹅物流发送'
           |})
       if theme.gitalk.enable === true

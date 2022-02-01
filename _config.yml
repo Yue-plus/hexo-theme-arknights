@@ -39,6 +39,7 @@ valine:
   enable: false
   app_id: # <APP ID>
   app_key: # <APP KEY>
+  serverURLs: # <APP DOMAIN>
 
 gitalk:
   enable: false
