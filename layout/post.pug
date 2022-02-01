@@ -78,15 +78,15 @@ block content
           |  , appId: '#{appID}'
           |  , appKey: '#{appKey}'
           if theme.valine.serverURLs
-            |  , serverURLs: '#{theme.valine.serverURLs}'
+            |  , serverURLs: '#{theme.valine.server_url}'
           |  , placeholder: '此条评论委托企鹅物流发送'
           |})
       if theme.gitalk.enable === true
         #comments
         script
           |var gitalk = new Gitalk({
-          |  clientID: '#{theme.gitalk.clientID}',
-          |  clientSecret: '#{theme.gitalk.clientSecret}',
+          |  clientID: '#{theme.gitalk.client_id}',
+          |  clientSecret: '#{theme.gitalk.client_secret}',
           |  repo: '#{theme.gitalk.repo}',
           |  owner: '#{theme.gitalk.owner}',
           |  admin: [#{theme.gitalk.admin}],
