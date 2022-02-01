@@ -46,7 +46,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
       highlight:
         hljs: true
       ```
-- 查看 `Hexo/themes/arknights/`目录下的 `_config.yml`。
+- 复制 `Hexo/themes/arknights/_config.yml` 到 Hexo 目录下，并重命名为 `_config.arknights.yml`。
   > 建议参考：[使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   
   主题的配置文件可参照中文注释修改。
@@ -88,15 +88,41 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
   ```
 
 ## 评论系统
+### Valine
 本主题支持[Valine](https://valine.js.org/) 。
-请修改主题目录下 `_config.yml` 文件中 `valine:` 的 `app_id:` 与 `app_key:` 。
+请参考 [Valine 快速开始](https://valine.js.org/quickstart.html) 修改 Hexo 目录下的 `_config.arknights.yml` 文件：
 
-参考 [Valine 快速开始](https://valine.js.org/quickstart.html)
+```yaml
+# Valine 无后端评论系统
+valine:
+  enable: false
+  app_id: # <APP ID>
+  app_key: # <APP KEY>
+  server_url: # <APP DOMAIN>（LeanCloud 国际版）
+```
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
-> 特别地，当 Valine 使用的 LeanCloud 为国际版时，需要额外配置主题目录下 `_config.yml` 文件中 `valine:` 的 `serverURLs:` 。  
+> **注意！** 当 Valine 使用 *LeanCloud 国际版* 时，才需要配置 `server_url:`。  
 > 该设置可在 LeanCloud 应用中的 `设置->应用凭证->域名白名单->Request 域名` 中找到以 `.api.lncldglobal.com` 结尾的域名，加上 `https://` 前缀即可。
+
+### Gitalk
+本主题支持 [Gitalk](https://gitalk.github.io/) 。
+请参考 [gitalk/readme-cn.md](https://github.com/gitalk/gitalk/blob/master/readme-cn.md) 修改 Hexo 目录下的 `_config.arknights.yml` 文件：
+
+```yaml
+gitalk:
+  enable: false
+  client_id: # GitHub Application Client ID
+  client_secret: # GitHub Application Client Secret
+  repo: # GitHub repository
+  owner: # GitHub repository owner
+  admin: ["''"] # GitHub repository owner and collaborators (Users who having write access to this repository)
+                # Example: ["'adminA'","'adminB'"]
+  id: # The unique id of the page
+      # Example: location.pathname
+```
+
 ## 数学公式
 使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器来显示数学公式：
 

@@ -39,12 +39,12 @@ valine:
   enable: false
   app_id: # <APP ID>
   app_key: # <APP KEY>
-  serverURLs: # <APP DOMAIN>
+  server_url: # <APP DOMAIN>（LeanCloud 国际版）
 
 gitalk:
   enable: false
-  clientID: # GitHub Application Client ID
-  clientSecret: # GitHub Application Client Secret
+  client_id: # GitHub Application Client ID
+  client_secret: # GitHub Application Client Secret
   repo: # GitHub repository
   owner: # GitHub repository owner
   admin: ["''"] # GitHub repository owner and collaborators (Users who having write access to this repository)
