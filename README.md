@@ -95,6 +95,8 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
+> 特别地，当 Valine 使用的 LeanCloud 为国际版时，需要额外配置主题目录下 `_config.yml` 文件中 `valine:` 的 `serverURLs:` 。  
+> 该设置可在 LeanCloud 应用中的 `设置->应用凭证->域名白名单->Request 域名` 中找到以 `.api.lncldglobal.com` 结尾的域名，加上 `https://` 前缀即可。
 ## 数学公式
 使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器来显示数学公式：
 
