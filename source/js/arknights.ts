@@ -202,14 +202,14 @@ class indexs {
 }
 
 class codes {
-  private reverse(item: Element, strA: string, strB: string): void {
+  private reverse(item: Element, s0: string, s1: string): void {
     const block = item.parentElement
-    if (block.classList.contains(strA)){
-      block.classList.remove(strA)
-      block.classList.add(strB)
+    if (block.classList.contains(s0)){
+      block.classList.remove(s0)
+      block.classList.add(s1)
     } else {
-      block.classList.remove(strB)
-      block.classList.add(strA)
+      block.classList.remove(s1)
+      block.classList.add(s0)
     }
   }
 
@@ -220,7 +220,7 @@ class codes {
 
   private doAsCode(item: Element): void {
     const codeType = item.classList[1], lineCount= item.getElementsByClassName('gutter').item(0).children[0].childElementCount >> 1
-    item.classList.add(lineCount < 16 ? 'CD-open' : 'CD-fold')
+    item.classList.add(lineCount < 16 ? 'open' : 'fold')
     item.innerHTML=
     '<span class="code-header"><span class="code-title">\
         <div class="code-icon"></div>' +
@@ -239,18 +239,8 @@ class codes {
     })
     item.getElementsByClassName('code-header').item(0).addEventListener('click', (click : MouseEvent)=>{
       if (!(click.target as HTMLElement).classList.contains('code-copy')){
-        this.reverse(click.currentTarget as HTMLElement, 'CD-open', 'CD-fold')
+        this.reverse(click.currentTarget as HTMLElement, 'open', 'fold')
       }
-    })
-  }
-
-
-  private doAsAdmon(item: Element): void {
-    item.classList.add('AD-open')
-    const header = item.children[0];
-    header.innerHTML= '<div class="admon-icon"></div>' + header.innerHTML;
-    item.getElementsByClassName('admonition-title').item(0).addEventListener('click', (click : MouseEvent)=>{
-      this.reverse(click.currentTarget as HTMLElement, 'AD-open', 'AD-fold');
     })
   }
 
@@ -263,11 +253,6 @@ class codes {
       } else {
         this.doAsCode(item)
       }
-    }
-    codeBlocks = document.getElementsByClassName('admonition')
-    for (let i = 0; i < codeBlocks.length; i++) {
-      const item = codeBlocks.item(i) as HTMLElement
-      this.doAsAdmon(item)
     }
   }
 
@@ -377,7 +362,6 @@ class cursors {
     this.pushHolder(document.getElementsByTagName('button'));
     this.pushHolder(document.getElementsByClassName('code-header'));
     this.pushHolder(document.getElementsByClassName('gt-user-inner'));
-    this.pushHolder(document.getElementsByClassName('admonition-title'));
     this.pushHolder(document.getElementsByClassName('gt-header-textarea'));
   }
 
