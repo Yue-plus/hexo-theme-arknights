@@ -38,7 +38,8 @@ html(lang=config.language)
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title= pageTitle
-    script(src='//unpkg.com/valine/dist/Valine.min.js')
+    if theme.valine.enable === true
+      script(src='//unpkg.com/valine/dist/Valine.min.js')
     script var config = !{configs}
     if theme.gitalk.enable === true
       link(rel="stylesheet" href=config.root + "css/gitalk.css")
