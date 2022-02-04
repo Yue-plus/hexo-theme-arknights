@@ -14,6 +14,7 @@ block content
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
   #post-bg
+    #post-title
       h1= page.title
       if (dateConf || updatedConf) && page.published
         #post-info
@@ -33,7 +34,7 @@ block content
               div(style="display:inline-block;width:90px")
                 time(datetime=page.updated.toJSON())#updated
                   = ' ' + date(page.updated, date_format)
-      hr
+    hr
     #post-content
       if excerptConf
         != page.content
@@ -42,7 +43,6 @@ block content
       #paginator!= paginator()
     #post-footer
       if prev || next
-        hr
         #pages
           if prev !== undefined
             #footer-link(style="right: calc(50% - 1px);order: 1;border-right: 1px solid #fe2;padding-left: unset;max-width: calc(50% - 4px);")
