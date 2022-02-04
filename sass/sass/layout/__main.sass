@@ -1,29 +1,38 @@
-// ========= 布局样式
-// ====== layout style
-header
-  position: sticky
+body header
+  position: fixed
   top: 0
-  z-index: 2
-  margin: 0 0 20px 0
+  left: 0
+  z-index: 3
+  width: -webkit-fill-available
   background-color: #141516
+  box-shadow: 0 5px 1.5rem 0 rgba(#fff, 0.1)
+  transition: .3s
   font-family: BenderLight
+  display: flex
+  justify-content: space-between
+  align-items: center
+  &:hover
+    box-shadow: 0 5px 1.5rem 0 rgba(#fff, 0.2)
   nav a
+    position: relative
     height: 40px
     line-height: 40px
     padding: 0 12px
     display: inline-block
 
 main
+  transition: .3s
+  padding-top: 40px
   display: flex
   flex-grow: 1
   flex-direction: row
   flex-wrap: nowrap
   align-items: stretch
-  overflow-y: auto
   z-index: 1
+  height: calc(100% - 40px)
 
-// 翻页器/分页器
 #paginator
+  user-select: none
   margin: 20px 0
   display: flex
   flex-wrap: wrap
@@ -34,14 +43,15 @@ main
     margin: 5px 10px 0 0
     border: 1px solid #2bf
     padding: 5px 10px
-    &:hover
-      color: #000
+    @media ( min-width: 769px )
+      &:hover
+        color: #000
   .current
     color: #000
     background-color: #2bf
 
-// 页面灰尘粒子效果
 #canvas-dust
+  z-index: -65536
   pointer-events: none
   position: fixed
   top: 0

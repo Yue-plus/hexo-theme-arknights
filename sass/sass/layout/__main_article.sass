@@ -1,8 +1,10 @@
 article
+  min-height: calc(100% - 10px)
+  height: fit-content
+  border-right: #fe2 solid 2px
+  padding-block-start: 10px
   flex-grow: 1
   min-width: 1px
-  max-height: 100%
-  overflow-y: auto
   #post-content p, .recent-excerpt p
     line-height: 150%
 
@@ -47,40 +49,41 @@ article
     color: #fff
     margin: 0
     padding: 15px 0 0 0
-  &:hover
-    color: #000
-    background-color: #2bf
-    a
+  @media ( min-width: 769px )
+    &:hover
       color: #000
-      &:active
-        color: #000!important
-      &:hover
-        color: #fff
-    time, .categories
-      color: #000
-    .recent-info::after
-      background-color: #000
-    .recent-excerpt
-      object a
-        color: #fff
-    hr
-      color: #2bf
-      border-color: #2bf
-    figure table
-      .gutter
-        background-color: #fe2
-      .code
-        background-color: rgba(#141516, .8)
+      background-color: #2bf
+      a
+        color: #000
+        &:active
+          color: #000!important
+        &:hover
+          color: #fff
+      time, .categories
+        color: #000
+      .recent-info::after
+        background-color: #000
+      .recent-excerpt
+        object a
+          color: #fff
+      hr
+        color: #2bf
+        border-color: #2bf
+      figure table
+        .gutter
+          background-color: #fe2
+        .code
+          background-color: rgba(#141516, .8)
+          &, &:hover
+            color: #fff
+      blockquote
         &, &:hover
           color: #fff
-    blockquote
-      &, &:hover
+          border-color: #fe2
+          background-color: rgba(#141516, .8)
+      .read-more
         color: #fff
-        border-color: #fe2
-        background-color: rgba(#141516, .8)
-    .read-more
-      color: #fff
-      background-color: #000
+        background-color: #000
 
 .recent-info:after
   content: ''
