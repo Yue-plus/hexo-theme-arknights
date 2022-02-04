@@ -30,7 +30,8 @@ block content
             - year = yearMonth
             h2= year
           .article-item
-            time= date(article.date, 'MM-DD')
+            div(style="width:75px;display:inline-block")
+              time= date(article.date, 'MM-DD')
             a(href=url_for(article.path) target="_blank")
               = article.title || 'No Title'
         - })
