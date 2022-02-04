@@ -47,8 +47,8 @@ gitalk:
   client_secret: # GitHub Application Client Secret
   repo: # GitHub repository
   owner: # GitHub repository owner
-  admin: ["''"] # GitHub repository owner and collaborators (Users who having write access to this repository)
-                # Example: ["'adminA'","'adminB'"]
+  admin: [] # GitHub repository owner and collaborators (Users who having write access to this repository)
+                # Example: [adminA,adminB]
   id: # The unique id of the page
       # Example: location.pathname
 
@@ -56,6 +56,11 @@ gitalk:
 mermaid:
   enable: false
   version: '8.13.5'
+
+# pjax 支持
+pjax:
+  enable: true
+  version: '0.2.8'
 
 # main menu navigation
 menu:
