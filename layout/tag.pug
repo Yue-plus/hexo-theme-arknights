@@ -22,7 +22,8 @@ block content
       h1= 'Tag: ' + page.tag
       #Archives-bg
         - page.posts.each(function(article){
-        time(datetime=date_xml(article.date))= date(article.date)
+        div(style="width:115px;display:inline-block")
+          time(datetime=date_xml(article.date))= date(article.date)
         a(href=url_for(article.path))= article.title
         br.clear
         - })
