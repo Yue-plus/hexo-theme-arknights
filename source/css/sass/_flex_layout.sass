@@ -78,12 +78,21 @@
   body
     width: 96%
     main
-      article
-        margin-right: 190px
+      &.right
+        article
+          margin-right: 190px
+        margin-left: 2.5%
+        left: 1%
+        aside
+          right: 0
+      &.left
+        article
+          margin-left: 190px
+        right: 1%
+        aside
+          left: 0
       position: relative
-      left: 1%
       aside
-        right: 0
         width: 160px
         transition: 0s
         #description p
@@ -102,10 +111,16 @@
   body
     width: 90%
     main
-      article
-        margin-right: 210px
-      position: relative
-      left: 2.5%
+      &.right
+        article
+          margin-right: 210px
+        margin-left: 2.5%
+        left: 2.5%
+      &.left
+        article
+          margin-left: 210px
+        margin-right: 2.5%
+        right: 2.5%
       aside
         width: 210px
         transition: .3s
@@ -124,9 +139,14 @@
     nav
       margin: 0 5% 0 5%
     main
-      article
-        margin-right: 240px
-      margin-left: 2.5%
+      &.right
+        article
+          margin-right: 240px
+        margin-left: 2.5%
+      &.left
+        article
+          margin-left: 240px
+        margin-right: 2.5%
       aside
         width: 270px
         h1
@@ -152,11 +172,19 @@
     nav
       margin: 0 10% 0 10%
     main
-      article
-        margin-right: 300px
-      margin-left: 5%
+      &.right
+        article
+          margin-right: 300px
+        margin-left: 5%
+        aside
+          right: 5%
+      &.left
+        article
+          margin-left: 240px
+        margin-right: 5%
+        aside
+         left: 5%
       aside
-        right: 5%
         h1
           font-size: 55px
         #total-archives

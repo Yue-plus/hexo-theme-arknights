@@ -26,12 +26,7 @@
     path    : searchConfig.path !== undefined ? searchConfig.path : '',
     }) : null
 
-  var mainStyle = ""
-  var footerStyles = ""
-  if (theme.aside.in_left) {
-    mainStyle = "flex-direction: row-reverse"
-    footerStyle = "text-align: right"
-  }
+  var mainClass = theme.aside.in_left !== undefined &&theme.aside.in_left ? "left" : "right"
 doctype html
 html(lang=config.language)
   head
@@ -73,14 +68,16 @@ html(lang=config.language)
       nav
         each url, label in theme.menu
           a(href= config.root + url)= label
-      .search-header
-        input(autocomplete="off" autocorrect="off" autocapitalize="none"
-             placeholder="数据检索" spellcheck="false" maxlength="50"
-             type="text" id="search-input")
-    .search-pop-overlay(style="max-height: 0;")
-      .popup
-        #search-result
-    main(style=mainStyle)
+      if configs !== null
+        .search-header
+          input(autocomplete="off" autocorrect="off" autocapitalize="none"
+               placeholder="数据检索" spellcheck="false" maxlength="50"
+               type="text" id="search-input")
+    if configs !== null
+      .search-pop-overlay(style="max-height: 0;")
+        .popup
+          #search-result
+    main(class=mainClass)
       article
         if body
           div!= body
