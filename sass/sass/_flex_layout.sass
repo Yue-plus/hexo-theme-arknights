@@ -1,0 +1,122 @@
+// ========= 弹性布局
+// ====== flex layout
+@media ( max-width: 768px )
+  body
+    margin: 0 12px
+  main
+    flex-direction: column
+    overflow: visible
+    article
+      width: 100%
+      max-height: none
+      padding: 0
+      flex-shrink: 0
+      overflow: visible
+  .highlight, blockquote
+    margin: 0
+  aside
+    width: 100%
+    height: auto
+    padding: 0
+    h1
+      text-align: center
+      margin: 0
+    footer
+      text-align: center
+      padding: 10px 0
+      position: static
+  #paginator
+    margin: 20px 0 0 0
+    a, span
+      margin: 5px 5px 0 0
+  #post-bg
+    margin: 0
+    padding: 5px 10px 0 10px
+  #post-index
+    margin: 0
+  #logo
+    height: 0
+    margin: 0
+    img
+      opacity: .05
+      position: fixed
+      bottom: -50px
+      left: -46%
+      pointer-events: none
+  #total
+    text-align: center
+    margin: 0
+    .total-title
+      font-size: medium
+    .total-number
+      font-size: large
+  #total-archives
+    width: auto
+    .total-title
+      display: inline-block
+  #to-index, #to-top
+    right: -10px!important
+  #to-index
+    bottom: 56px
+  #to-top
+    bottom: 16px
+  #post-index
+    margin: 16px 10px 0 10px
+  #archive-flex
+    flex-direction: column
+  #archive-aside
+    order: 1
+  #Categories
+    margin: 10px
+@media ( min-width: 769px )
+  body
+    width: 96%
+  aside
+    width: 160px
+    transition: 0s
+    h1
+      font-size: x-large
+    a img
+      transition: background-color 1s
+      &:hover
+        background-color: rgba(#fff , .1)
+  #archive-aside
+    max-width: 36%
+@media ( min-width: 992px )
+  body
+    width: 90%
+  aside
+    width: 210px
+    transition: .3s
+    h1
+      font-size: xx-large
+@media ( min-width: 1200px )
+  .recent-post img
+    width: 90%
+    margin: 0 auto
+    display: block
+  aside
+    width: 280px
+    h1
+      font-size: 48px
+    #total-archives
+      .total-title
+        font-size: 36px
+      .total-number
+        font-size: 48px
+    #total-tags, #total-categories
+      font-size: 23px
+@media ( min-width: 1920px )
+  .recent-post img
+    width: 80%
+  aside
+    width: 450px
+    h1
+      font-size: 68px
+    #total-archives
+      .total-title
+        font-size: 42px
+      .total-number
+        font-size: 53px
+    #total-tags, #total-categories
+      font-size: 32px

@@ -98,7 +98,7 @@ class canvasDust {
 
   private static getPoint(number: number = 1): Array<[number, number]> {
     let point: Array<[number, number]> = []
-    for (let i: number = 0; i<number; i++) {
+    for (let i: number=0; i<number; i++) {
       const x: number = Math.floor(Math.random() * window.innerWidth)
       const y: number = Math.floor(Math.random() * window.innerHeight)
       point.push([x, y])
@@ -107,276 +107,42 @@ class canvasDust {
   }
 }
 
-class indexs {
+class index {
   headerLink: HTMLCollection
   tocLink: HTMLCollection
   postContent: HTMLElement | null
+  article: HTMLElement | undefined
   index: Array<number> = []
-  totop: HTMLElement = document.getElementById('to-top')
-  scrollID: number = null
-  scrolling: number = 0
-
-  private setItem(item: Element){
-    item.classList.add('active')
-    let $parent = item.parentElement, brother = $parent.children
-    for (let i = 0; i < brother.length; i++) {
-      const item = brother.item(i) as HTMLElement
-      if (item.classList.contains('toc-child')) {
-        item.classList.add('has-active')
-        break
-      }
-    }
-    for (let $parent = item.parentElement; $parent.classList[0] != 'toc'; $parent = $parent.parentElement) {
-      if ($parent.classList[0] == 'toc-child') {
-        $parent.classList.add('has-active')
-      }
-    }
-  }
-
-  private reset(): void {
-    let tocs = document.getElementsByClassName('active')
-    let tocTree = document.getElementsByClassName('has-active')
-    for (; tocs.length;) {
-      const item = tocs.item(0) as HTMLElement
-      item.classList.remove('active')
-    }
-    for (; tocTree.length;) {
-      const item = tocTree.item(0) as HTMLElement
-      item.classList.remove('has-active')
-    }
-  }
-
-  private modifyIndex(): void {
-    for (let i = 0; i < this.headerLink.length; i++) {
-      const link = this.headerLink.item(i) as HTMLElement
-      if (link) {
-        this.index.push(link.getBoundingClientRect().top)
-      }
-    }
-    this.reset()
-    for (let i = 0; i < this.tocLink.length; ++i) {
-      const item = this.tocLink.item(i) as HTMLElement
-      if (i + 1 == this.index.length || (this.index[i + 1] > 150 && (this.index[i] <= 150 || i == 0))) {
-        this.setItem(item)
-        break
-      }
-    }
-    this.index = []
-  }
-
-  private scrolltop(){
-    window.scroll({top: 0,left: 0,behavior: 'smooth'});
-    document.getElementById('to-top').style.opacity = '0';
-  }
 
   constructor() {
-    this.headerLink = document.getElementsByClassName('headerlink')
-    this.tocLink = document.getElementsByClassName('toc-link')
-    this.postContent = document.getElementById('post-content')
-    const totop = document.getElementById('to-top')
-    if (totop != null)
-      totop.style.opacity = '0';
-    if (this.tocLink.length > 0) {
-      this.setItem(this.tocLink.item(0))
-      document.addEventListener('scroll', ()=>{
-        ++this.scrolling
-        if (this.scrollID == null) {
-          this.scrollID = setInterval(this.modifyIndex.bind(this), 50)
-        }
-        setTimeout(()=>{
-          if (--this.scrolling == 0) {
-            clearInterval(this.scrollID)
-            this.scrollID = null
-            const totop = document.getElementById('to-top')
-            if (this.totop !== null
-              && document.getElementById('post-title').getBoundingClientRect().top < -200) {
-              totop.style.opacity = '1';
-            } else {
-              totop.style.opacity = '0';
-            }
+    this.headerLink = document.getElementsByClassName("headerlink")
+    this.tocLink = document.getElementsByClassName("toc-link")
+    this.postContent = document.getElementById("post-content")
+    this.article = document.getElementsByTagName("article")[0]
+    if (this.article) {
+      this.article.addEventListener("scroll", ()=>{
+        for (let i = 0; i < this.headerLink.length; i++) {
+          const link = this.headerLink.item(i) as HTMLElement
+          if (link) {
+            this.index.push(link.getBoundingClientRect().top)
           }
-        }, 200);
-      }, {passive: true})
+        }
+        for (let i in this.index) {
+          const item = this.tocLink.item(Number(i)) as HTMLElement
+          item.classList.remove('active')
+        }
+        for (let i in this.index) {
+          const item = this.tocLink.item(Number(i)) as HTMLElement
+          if (this.index[i] > 0) {
+            item.classList.add('active')
+            break
+          }
+        }
+        this.index = []
+      })
     }
   }
 }
 
-class codes {
-  private reverse(item: Element, s0: string, s1: string): void {
-    const block = item.parentElement
-    if (block.classList.contains(s0)){
-      block.classList.remove(s0)
-      block.classList.add(s1)
-    } else {
-      block.classList.remove(s1)
-      block.classList.add(s0)
-    }
-  }
-
-  private doAsMermaid(item: Element): void {
-    let Amermaid = item.getElementsByClassName('mermaid').item(0) as HTMLElement
-    item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>'
-  }
-
-  private doAsCode(item: Element): void {
-    const codeType = item.classList[1], lineCount= item.getElementsByClassName('gutter').item(0).children[0].childElementCount >> 1
-    item.classList.add(lineCount < 16 ? 'open' : 'fold')
-    item.innerHTML=
-    '<span class="code-header"><span class="code-title">\
-        <div class="code-icon"></div>' +
-        (codeType !== 'plaintext' ? codeType.toUpperCase() : 'TEXT') + ' 共 ' + lineCount + ' 行</span>\
-        <span class="code-header-tail">\
-          <button class="code-copy"></button>\
-          <span class="code-space">展开</span>\
-        </span>\
-    </span></span>\
-    <div class="code-box">' + item.innerHTML + '</div>'
-    item.getElementsByClassName('code-copy').item(0).addEventListener('click', (click : MouseEvent)=>{
-      const button = click.target as HTMLElement
-      navigator.clipboard.writeText(item.getElementsByTagName('code').item(0).innerText)
-      button.classList.add('copied')
-      setTimeout(()=> button.classList.remove('copied'), 1200)
-    })
-    item.getElementsByClassName('code-header').item(0).addEventListener('click', (click : MouseEvent)=>{
-      if (!(click.target as HTMLElement).classList.contains('code-copy')){
-        this.reverse(click.currentTarget as HTMLElement, 'open', 'fold')
-      }
-    })
-  }
-
-  private findCode(): void{
-    let codeBlocks = document.getElementsByClassName('highlight')
-    for (let i = 0; i < codeBlocks.length; i++) {
-      const item = codeBlocks.item(i) as HTMLElement
-      if (item.getElementsByClassName('mermaid').length > 0) {
-        this.doAsMermaid(item)
-      } else {
-        this.doAsCode(item)
-      }
-    }
-  }
-
-  constructor() {
-    this.findCode()
-  }
-}
-
-class cursors {
-  now: MouseEvent
-  first: boolean = true
-  outer = document.getElementById('cursor-outer').style
-  effecter = document.getElementById('cursor-effect').style
-  scale: number
-  opacity: number = 0
-  ishead: boolean = true
-  moveEventID: number = null
-  fadeEventID: number = null
-
-  private move(): void {
-    if (this.now !== undefined) {
-      let SX = this.outer.left, SY = this.outer.top
-      let preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2))
-      let nxtX = this.now.x, nxtY = this.now.y
-      let delX = (nxtX - preX) / 13, delY = (nxtY - preY) / 13
-      let equal = true
-      if (Math.abs(delX) >= 0.1) {
-        this.outer.left = String(preX + delX) + 'px'
-        equal = false
-      } else {
-        this.outer.left = String(nxtX) + 'px'
-      }
-      if (Math.abs(delY) >= 0.1) {
-        this.outer.top = String(preY + delY) + 'px'
-        equal = false
-      } else {
-        this.outer.top = String(nxtY) + 'px'
-      }
-      if (equal) {
-        clearInterval(this.moveEventID)
-        this.moveEventID = null
-      }
-    }
-  }
-
-  private reset(mouse): void {
-    if (this.moveEventID === null) {
-      this.moveEventID = window.setInterval(this.move.bind(this), 1)
-    }
-    this.now = mouse
-    if (this.first) {
-      this.first = false
-      this.outer.left = String(this.now.x) + 'px'
-      this.outer.top = String(this.now.y) + 'px'
-    }
-  }
-
-  private fadeOut(): void {
-    if (this.opacity > 0) {
-      let delta = this.opacity * 0.11
-      if (delta < 0.001) {
-        delta = this.opacity
-      }
-      this.effecter.transform = 'translate(-50%, -50%) scale(' + String(this.scale += delta) + ')'
-      this.effecter.opacity = String((this.opacity -= delta))
-    } else {
-      clearInterval(this.fadeEventID)
-      this.fadeEventID = null
-    }
-  }
-
-  private Aeffect(mouse): void {
-    if (this.fadeEventID === null) {
-      this.fadeEventID = window.setInterval(this.fadeOut.bind(this), 10)
-      this.effecter.left = String(mouse.x) + 'px'
-      this.effecter.top = String(mouse.y) + 'px'
-      this.effecter.transform = 'translate(-50%, -50%) scale(0)'
-      this.effecter.opacity = '1'
-      this.scale = 0
-      this.opacity = 1
-    }
-  }
-
-  private hold(): void {
-    this.outer.height = '24px'
-    this.outer.width = '24px'
-    this.outer.background = "rgba(255, 255, 255, 0.5)"
-  }
-
-  private relax(): void {
-    this.outer.height = '36px'
-    this.outer.width = '36px'
-    this.outer.background = "unset"
-  }
-
-  private pushHolder(items: HTMLCollection): void {
-    for (let i = 0; i < items.length; i++) {
-      const item = items.item(i)
-      item.addEventListener('mouseover',()=> this.hold(), {passive: true})
-      item.addEventListener('mouseout',()=> this.relax(), {passive: true})
-    }
-  }
-
-  private pushHolders(): void {
-    this.pushHolder(document.getElementsByTagName('a'));
-    this.pushHolder(document.getElementsByTagName('input'));
-    this.pushHolder(document.getElementsByTagName('button'));
-    this.pushHolder(document.getElementsByClassName('code-header'));
-    this.pushHolder(document.getElementsByClassName('gt-user-inner'));
-    this.pushHolder(document.getElementsByClassName('gt-header-textarea'));
-  }
-
-  constructor() {
-    document.querySelector('header').addEventListener('mouseenter', ()=> this.ishead = true, {passive: true});
-    document.querySelector('header').addEventListener('mouseout', ()=> this.ishead = false, {passive: true});
-    window.addEventListener('mousemove', mouse => this.reset(mouse), {passive: true})
-    window.addEventListener('click', mouse => this.Aeffect(mouse), {passive: true})
-    this.pushHolders()
-    const observer = new MutationObserver(this.pushHolders.bind(this));
-    observer.observe(document, {childList: true, subtree: true});
-  }
-}
-
-let index = new indexs()
-let code = new codes()
-let cursor = new cursors()
 new canvasDust('canvas-dust')
+new index()

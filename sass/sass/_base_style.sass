@@ -2,33 +2,6 @@
 // ====== base style
 html, body
   height: 100%
-  cursor: url(../cursor-inner.png) 3 3, default
-  position: static
-
-a, button
-  cursor: url(../cursor-inner.png) 3 3, pointer
-
-#cursor-container
-  #cursor-outer
-    position: fixed
-    z-index: 65536
-    transform: translate3d(-50%, -50%, 0px)
-    height: 36px
-    width: 36px
-    border: 1px solid #ccc
-    border-radius: 50%
-    pointer-events: none
-    transition: background-color .3s, width .3s, height .3s
-  #cursor-effect
-    position: fixed
-    z-index: 65535
-    transform: translate3d(-50%, -50%, 0px) scale(0)
-    height: 80px
-    width: 80px
-    border: 4px solid #ccc
-    border-radius: 50%
-    opacity: 0
-    pointer-events: none
 
 html
   -ms-scrollbar-base-color: #fe2
@@ -42,7 +15,9 @@ html
   background-color: #fe2
   border-radius: .25em
 ::-webkit-scrollbar-track
+  border-radius: .25em
   background-color: #9b8b16
+
 body
   margin: 0 auto
   color: #c4c4c4
@@ -52,44 +27,24 @@ body
   background-repeat: no-repeat
   background-size: cover
   font-family: "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
-  overflow-y: auto
-  overflow-x: hidden
+  display: flex
+  flex-direction: column
+  align-items: stretch
 
 h1, h2, h3, h4, h5, h6
   color: #fff
-  margin-block-start: 0.33em
-  margin-block-end: 0.23em
-  padding-top: 0.2em
-  padding-bottom: 0.2em
-
-#post-content
-  h1, h2, h3, h4 ,h5, h6
-    border-bottom: #89898966 solid 1px
-  h1
-    font-size: 1.75em
-  h2
-    font-size: 1.60em
-  h3
-    font-size: 1.45em
-  h4
-    font-size: 1.30em
-  h5
-    font-size: 1.15em
-  h6
-    font-size: 1em
 
 a
   color: #22bbff
   padding: 0 3px
   text-decoration: none
   transition: .3s
-  @media ( min-width: 769px )
-    &:hover
-      color: #000
-      background-color: #22bbff
-    &:active
-      color: #000
-      background-color: #fe2
+  &:hover
+    color: #000
+    background-color: #22bbff
+  &:active
+    color: #000
+    background-color: #fe2
 
 time
   font-family: BenderLight
@@ -97,11 +52,9 @@ time
 code, pre
   font-family: "JetBrains Mono"
 code
-  margin: 0!important
   background-color: rgba(#fff, .1)
-  padding: 0 3px!important
+  padding: 0 3px
 pre
-  margin: 6px 0
   background-color: transparent
 
 kbd
@@ -117,12 +70,11 @@ em
 strong, em
   color: #fff
 strong em, em strong
-  font-family: "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
-  color: #C0392B
+  color: red
 
 blockquote
   border-left: #2bf solid 5px
-  padding: 3px 20px
+  padding: 10px 20px
   background-color: rgba(#fff, .05)
   transition: .3s
   blockquote
@@ -130,10 +82,6 @@ blockquote
     padding-right: 0
   &:hover
     background-color: rgba(#fff, .1)
-
-li blockquote
-  margin: 0
-  padding-right: 0
 
 table
   border: 0
@@ -143,15 +91,12 @@ table
     background-color: #fff
     border: #fff solid 1px
     padding: 0 10px
+    em, strong
+      color: #000
+    strong em, em strong
+      color: #C0392B
   td
-    padding: 0px 8px
+    padding: 5px 8px
     border: #2bf solid 1px
     &:hover
       background-color: rgba(#2bf, .1)
-
-input
-  cursor: url(../cursor-inner.png) 3 3, text
-  user-select: none
-
-mjx-container
-  padding: 5px 0

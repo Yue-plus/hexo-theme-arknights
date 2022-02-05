@@ -6,15 +6,13 @@
   display: flex
   justify-content: stretch
 
-.article-item
-  display: flex
-
 #archive-aside
   height: 100%
   display: flex
   order: -1
   flex-grow: 1
   flex-direction: column
+
 
 #Archives, #Categories, #Tags
   margin: 0 10px
@@ -29,13 +27,13 @@
     background-color: #fff
     font-size: medium
     font-family: BenderLight
-  @media ( min-width: 769px )
-    &:hover, &:target
-      background-color: rgba(#fff, .05)
-      h1
-        background-color: #2bf
+  &:hover, &:target
+    background-color: rgba(#fff, .05)
+    h1
+      background-color: #2bf
 
 #Archives
+  height: 100%
   flex-grow: 5
   h2
     margin: 10px 0
@@ -53,9 +51,9 @@
 .categories, .tags
   display: inline-block
 #Archives-bg
+  height: 100%
   box-sizing: border-box
   padding: 10px
-  padding-bottom: 25px
 
 #Categories
   height: 50%

@@ -1,0 +1,191 @@
+#post-bg
+  padding: 20px 30px 0 30px
+  border-right: #fe2 solid 2px
+  margin-bottom: 40px
+  background-color: rgba(#141516, .8)
+  img
+    max-width: 100%
+
+#post-title
+  h1
+    display: inline-block
+  hr
+    color: #535353
+    position: relative
+    &:before
+      content: ''
+      width: 13%
+      height: 3px
+      display: block
+      position: absolute
+      background-color: #fff
+      top: -3px
+      left: -1px
+#post-info
+  float: right
+  text-align: right
+  time
+    color: #2bf
+    font-weight: 900
+#post-source span
+  color: #fe2
+  background-color: #555
+
+#post-content
+  h1, h2, h3, h4, h5, h6
+    &:before
+      content: ''
+      display: block
+      margin-top: -50px
+      height: 50px
+      visibility: hidden
+    &:target
+      color: #2bf
+      font-size: xx-large
+      margin: 20px 0
+      a
+        margin-right: 10px
+        background-color: #fe2
+  table
+    width: 100%
+  .footnote-ref:before
+    content: ''
+    display: inline-block
+    margin-top: -60px
+    width: 1px
+    height: 60px
+    visibility: hidden
+  .footnotes ol li:before
+    content: ''
+    display: block
+    margin-top: -60px
+    height: 60px
+    visibility: hidden
+
+#post-footer hr
+  border-color: #fe2
+
+#bottom-btn
+  position: sticky
+  bottom: 0
+  z-index: 1
+  a
+    width: 40px
+    height: 40px
+    color: #fff
+    line-height: 40px
+    text-align: center
+    font-size: 40px
+    font-weight: 900
+    padding: 0
+    position: absolute
+    right: -30px
+    user-select: none
+    &:hover
+      color: #000
+      line-height: 30px
+      background-color: #fe2
+#to-index
+  bottom: 48px
+#to-top
+  bottom: 8px
+
+#reward
+  color: #000
+  text-align: center
+  background-color: rgba(#fff, .1)
+  summary
+    background-color: #fe2
+  div
+    width: 45%
+    margin: 0
+    padding: 20px 0
+    display: inline-block
+  span
+    color: #2bf
+    padding-right: 10px
+  img
+    width: 80%
+    max-width: 280px
+    padding: 0 20px
+
+#Valine
+  color: #fff
+  padding: 10px 0
+  code
+    font-family: "JetBrains Mono"
+  .vpanel
+    .vwrap
+      background-color: rgba(#fff, .05)
+      transition: .3s
+      &:hover
+        background-color: rgba(#fff, .1)
+        border-color: #fe2
+      .vheader .vinput
+        border-bottom-style: solid
+        &:focus
+          color: #2bf
+          border-bottom-color: #fe2
+      .vicon:hover
+        background-color: unset
+    .vsubmit
+      &:hover
+        color: #fe2
+        border-color: #fe2
+        background-color: rgba(#fff, .2)
+  .vcard .vnick
+    color: #2bf
+    &:hover
+      color: #000
+  .vsys
+    background-color: transparent
+  .vmeta .vat
+    color: #fe2
+  .vcontent
+    color: #c4c4c4
+    border-left: #fe2 solid 3px
+    padding-left: 20px
+    background-color: rgba(#fff, .05)
+    transition: .3s
+    &:hover
+      border-color: #2bf
+      background-color: rgba(#fff, .1)
+    &::before
+      background: linear-gradient(180deg,hsla(0,0%,10%,0),hsla(0,0%,10%,.9))
+    &::after
+      background: hsla(0,0%,10%,.9)
+    p
+      color: #fff
+      padding-bottom: 14px
+#veditor
+  color: #fff
+  font-family: "JetBrains Mono"
+
+#post-index
+  .toc
+    margin: 0
+    padding: 10px
+    list-style: none
+  .toc-child
+    padding: 0
+    list-style: none
+  .toc-item
+    white-space: nowrap
+    overflow: hidden
+  .toc-link
+    width: 100%
+    display: inline-block
+    &:visited
+      color: #fe2
+    &:hover
+      .toc-number
+        display: none
+      .toc-text
+        padding-left: 10px
+  .active
+    color: #000
+    background-color: #2bf
+    .toc-number
+      display: none
+    .toc-text
+      padding-left: 10px
