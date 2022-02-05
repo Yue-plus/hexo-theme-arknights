@@ -31,11 +31,11 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 ### 安装依赖
 npm 用户：
 ```shell script 
-cnpm install hexo-server hexo-browsersync hexo-renderer-pug --save
+cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass --save
 ```
 yarn 用户：
 ```shell script
-yarn add hexo-server hexo-browsersync hexo-renderer-pug
+yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass
 ```
 
 ### 修改配置文件
