@@ -11,28 +11,30 @@ block content
     const reward = theme.post.reward
     const appID = theme.valine.app_id
     const appKey = theme.valine.app_key
-    const tocContent = toc(page.content, theme.toc)
+    const encrypted = page.encrypt || page.password
+    const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
   #post-bg
     #post-title
-      if (dateConf || updatedConf) && page.post-info
+      h1= page.title
+      if (dateConf || updatedConf) && page.published
         #post-info
+          if sourceConf
+            a(herf=page.source) View Source File
+          if sourceConf && dateConf
+            br
           if dateConf
-            span date:
-              time(datetime=page.date.toJSON())#date
-                = ' ' + date(page.date, date_format)
-          if dateConf && updatedConf
+            span First Post:
+              div(style="display:inline-block;width:90px")
+                time(datetime=page.date.toJSON())#date
+                  = ' ' + date(page.date, date_format)
+          if (sourceConf || dateConf) && updatedConf
             br
           if updatedConf
-            span updated:
-              time(datetime=page.updated.toJSON())#updated
-                = ' ' + date(page.updated, date_format)
-          if sourceConf
-            br
-            span#post-source Source File:
-              br
-              span= page.source
-      h1= page.title
-      hr
+            span Last Update:
+              div(style="display:inline-block;width:90px")
+                time(datetime=page.updated.toJSON())#updated
+                  = ' ' + date(page.updated, date_format)
+    hr
     #post-content
       if excerptConf
         != page.content
@@ -41,23 +43,17 @@ block content
       #paginator!= paginator()
     #post-footer
       if prev || next
-        hr
-      if prev !== undefined
-        a(href=url_for(prev.path))
-          |← Prev
-          =' ' + prev.title
-      if prev && next
-        <span style="color: #fe2"> | </span>
-      if next !== undefined
-        a(href=url_for(next.path))
-          =next.title + ' '
-          |Next →
-      if prev || next
-        hr
-    #bottom-btn
-      if tocContent.length > 0
-        a#to-index(href="#post-index" title="index") ≡
-      a#to-top(href="#post-title" title="to top") ∧
+        #pages
+          if prev !== undefined
+            #footer-link(style="right: calc(50% - 1px);order: 1;border-right: 1px solid #fe2;padding-left: unset;max-width: calc(50% - 4px);")
+              a(href=url_for(prev.path))
+                |← Next
+                =' ' + prev.title
+          if next !== undefined
+            #footer-link(style="left: 50%;order: 0;border-left: 1px solid #fe2;padding-right: unset;max-width: calc(50% - 5px);")
+              a(href=url_for(next.path))
+                =next.title + ' '
+                |Prev →
     if reward === true
       details#reward
         summary 打赏
@@ -83,19 +79,27 @@ block content
           |})
       if theme.gitalk.enable === true
         #comments
+        - gitAdmin = ''
+        for str in theme.gitalk.admin
+          - gitAdmin= gitAdmin + "'" + str + "'"
         script
           |var gitalk = new Gitalk({
           |  clientID: '#{theme.gitalk.client_id}',
           |  clientSecret: '#{theme.gitalk.client_secret}',
           |  repo: '#{theme.gitalk.repo}',
           |  owner: '#{theme.gitalk.owner}',
-          |  admin: [#{theme.gitalk.admin}],
+          |  admin: [#{gitAdmin}],
           |  id: location.pathname,
           |})
           |gitalk.render("comments")
 
 block aside-block
-  - const tocContent = toc(page.content, theme.toc)
+  - 
+    const encrypted = page.encrypt || page.password
+    const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
   if (tocContent.length > 0)
     h1 INDEX
-    #post-index!= tocContent
+    if (encrypted !== undefined)
+      #toc-div(style="display:none")!= tocContent
+    else
+      #toc-div!= tocContent

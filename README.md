@@ -1,6 +1,6 @@
 # hexo-theme-arknights
 
-## 多国语言Readme  
+## 多国语言Readme
 [日本語バージョン](README-Ja.md)  
 
 ## 预览
@@ -31,11 +31,11 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 ### 安装依赖
 npm 用户：
 ```shell script 
-cnpm install hexo-server hexo-browsersync hexo-renderer-pug --save
+cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass --save
 ```
 yarn 用户：
 ```shell script
-yarn add hexo-server hexo-browsersync hexo-renderer-pug
+yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass
 ```
 
 ### 修改配置文件
@@ -117,8 +117,8 @@ gitalk:
   client_secret: # GitHub Application Client Secret
   repo: # GitHub repository
   owner: # GitHub repository owner
-  admin: ["''"] # GitHub repository owner and collaborators (Users who having write access to this repository)
-                # Example: ["'adminA'","'adminB'"]
+  admin: [] # GitHub repository owner and collaborators (Users who having write access to this repository)
+                # Example: [adminA,adminB]
   id: # The unique id of the page
       # Example: location.pathname
 ```
@@ -213,7 +213,7 @@ mathjax: true
 </div>
 ```
 
-> 如果习惯使用 `代码块` 可以尝试使用 [hexo-filter-mermaid-diagrams](https://github.com/webappdevelp/hexo-filter-mermaid-diagrams)
+> 如果习惯使用 `代码块` 也完全支持。
 
 <!--## 文档加密
 
