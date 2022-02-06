@@ -9,11 +9,11 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "5.4.1"
+    "version": "6.0.0"
   },
   "dependencies": {
-    "hexo": "^5.4.1",
-    "hexo-blog-encrypt": "^3.1.4",
+    "hexo": "^6.0.0",
+    "hexo-blog-encrypt": "^3.1.6",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-filter-mathjax": "^0.5.3",
@@ -24,5 +24,9 @@
     "hexo-render-pug": "^2.1.4",
     "hexo-renderer-marked": "^4.0.0",
     "hexo-server": "^2.0.0"
+  },
+  "devDependencies": {
+    "hexo-renderer-dartsass": "^0.1.2",
+    "hexo-renderer-ts": "^1.3.0"
   }
 }

@@ -5,6 +5,8 @@ tags: code
 category: Example
 ---
 
+# JavaScript
+
 ```js
 console.log("Hello World");
 ```

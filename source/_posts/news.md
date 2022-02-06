@@ -10,7 +10,6 @@ permalink: /news/
 
 <!-- more -->
 
-![](https://ak.hycdn.cn/announce/images/20220111/ea5973ba50e8f022ee9f19f8252d0bd2.JPG)
 ## 一、全新活动SideStory「将进酒」，活动关卡开启
 
 活动说明：活动期间将开放「将进酒」活动关卡，玩家可通过活动关卡作战、完成相关活动任务以及活动商店获取相关活动奖励

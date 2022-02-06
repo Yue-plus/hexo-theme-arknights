@@ -1,8 +1,9 @@
 ---
-title: 加密文档
+title: 加密文档（密码：yueplus）
 date: 2020-12-1 14:24:01
 tags: encrypt
 category: Example
+excerpt: true
 password: yueplus
 ---
 

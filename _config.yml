@@ -109,6 +109,13 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: arknights
 
+render:
+  ts:
+    target: ES2015
+    removeComments: true
+    newLine: Lf
+    pretty: false
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
