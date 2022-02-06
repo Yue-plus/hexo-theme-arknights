@@ -1,9 +1,11 @@
 # hexo-theme-arknights
 
 ## 多国语言Readme
+
 [日本語バージョン](README-Ja.md)  
 
 ## 预览
+
 - ### **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
@@ -14,31 +16,39 @@
 
 ![主题预览图片](./demo.png)
 
+## 系统环境
+
+- [Node.js `16.13.x` 以上](https://nodejs.org/zh-cn/)
+- [最新版 Hexo](https://hexo.io/zh-cn/)
+  > Hexo `6.0.0` 以上；
+  > hexo-cli `4.3.0` 以上；
+- 中国大陆用户推荐使用 `cnpm` 安装依赖包，参考 [中国 NPM 镜像](https://npmmirror.com/)
 
 ## 安装
-### [一键下载](https://github.com/Yue-plus/hexo-theme-arknights/releases)
 
-## 手动安装
-根据需要执行以下代码
+### 使用 `hexo-cli` 新建博客项目：
+
 ```shell script
 hexo init Hexo
 cd Hexo
-npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install
 git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 ```
 
 ### 安装依赖
+
 npm 用户：
 ```shell script 
 cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass --save
 ```
+
 yarn 用户：
 ```shell script
 yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass
 ```
 
 ### 修改配置文件
+
 - 参照 [Hexo 官网](https://hexo.io/zh-cn/docs/configuration) 修改 `Hexo/` 目录下的 `_config.yml`。
     - 把 `theme:` 的值改为 `arknights`
     - 开启代码高亮：
@@ -52,16 +62,17 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass
   主题的配置文件可参照中文注释修改。
 
 ### 修改资源文件
+
 可按需修改 `Hexo/themes/arknights/source/` 目录下的
 - `favicon.ico`：浏览器标签页上的图标
 - `CNAME`: GitHub Pages 部署时的自定义域名
 - `README.md`: 部署仓库的 README
-- `img/`目录下的 `Alipay.png` 与 `WeChat.png` 可替换为自己的二维码；
-  1:1 比例的 `png` 图片；
+- `img/`目录下的 `Alipay.png` 与 `WeChat.png` 可替换为自己的二维码（1:1 比例的 `png` 图片）；
 
 ## 写作
-- 可参考 [Hexo | 写作](https://hexo.io/zh-cn/docs/writing)。
-- 在主题仓库的 Hexo 分支有一些[示例文本](https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts)可以取用
+
+- 参考 [Hexo | 写作](https://hexo.io/zh-cn/docs/writing)。
+- 在主题仓库的 Hexo 分支有一些 [示例文本](https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts)可以取用
 - 添加文章标签与分类，更多特性可参考 [Hexo | Front-matter](https://hexo.io/zh-cn/docs/front-matter) ，示例：
   ```markdown
   ---
@@ -73,7 +84,8 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass
   ```
 - 在 `<!-- more -->` 之前的内容称之为摘要，会显示在首页上，并且可以设置是否也在正文显示。
 
-## 顶部导航栏新建自定义页面
+## 可在顶部导航栏新建自定义页面
+
 - 例如：新建一个 `about` 页面
   在 `Hexo` 目录下执行
   ```shell script
@@ -88,7 +100,9 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass
   ```
 
 ## 评论系统
+
 ### Valine
+
 本主题支持[Valine](https://valine.js.org/) 。
 请参考 [Valine 快速开始](https://valine.js.org/quickstart.html) 修改 Hexo 目录下的 `_config.arknights.yml` 文件：
 
@@ -107,6 +121,7 @@ valine:
 > 该设置可在 LeanCloud 应用中的 `设置->应用凭证->域名白名单->Request 域名` 中找到以 `.api.lncldglobal.com` 结尾的域名，加上 `https://` 前缀即可。
 
 ### Gitalk
+
 本主题支持 [Gitalk](https://gitalk.github.io/) 。
 请参考 [gitalk/readme-cn.md](https://github.com/gitalk/gitalk/blob/master/readme-cn.md) 修改 Hexo 目录下的 `_config.arknights.yml` 文件：
 
@@ -124,6 +139,7 @@ gitalk:
 ```
 
 ## 数学公式
+
 使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器来显示数学公式：
 
 1. 在 Hexo 目录下执行以下指令：
@@ -137,7 +153,7 @@ hexo clean
 
 2. 把以下内容添加到 `<Hexo>/_config.yml` 文件：
 
-```yml
+```yaml
 mathjax:
   tags: none # 或 'ams' 或 'all'
   single_dollars: true # 启用单个美元符号作为内联（行内）数学公式定界符
@@ -148,6 +164,7 @@ mathjax:
 ```
 
 3. 在需要启用 mathjax 的文章的 [Front-matter](https://hexo.io/zh-cn/docs/front-matter) 区内添加 `mathjax: true`：
+
 ```markdown
 ---
 title: On the Electrodynamics of Moving Bodies
@@ -156,9 +173,11 @@ date: 1905-06-30 12:00:00
 mathjax: true
 ---
 ```
+
 然后，就可以在文章中使用 LaTeX 语法。
 
 4. 需要注意，内联数学公式（…… `$<数学公式>$` ……）在开头 `$` 之后和结尾 `$` 之前不能有空格！例如：
+
 ```diff
 -$ \epsilon_0 $
 +$\epsilon_0$
@@ -167,6 +186,7 @@ mathjax: true
 ```
 
 5. 需要注意 LaTeX 与 Markdown 语法之间的冲突。如有必要，请使用 `\` 进行转义：
+
 ```diff
 -$\epsilon_0$
 +$\epsilon\_0$
@@ -215,10 +235,23 @@ mathjax: true
 
 > 如果习惯使用 `代码块` 也完全支持。
 
-<!--## 文档加密
+## 文档加密
 
-可以使用 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件进行文档加密。
 **注意： 前端加密并不可靠！**
+
+**注意！** 此加密插件会加密摘要内容，所以使用此插件时不能在正文中隐藏摘要。在 `_config.arknights.yaml` 文件中：
+
+```yaml
+# post 文章页面配置；true / false
+post:
+  date: true # 是否显示发布日期
+  updated: true # 是否显示修改日期
+  source: false # 是否显示源文件路径
+  excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）   《===== 不能为 false
+  reward: true # 文章末显示打赏二维码
+```
+
+可尝试使用 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件进行文档加密。
 
 > 详细参考 [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md)
 
@@ -256,13 +289,10 @@ wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
 wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
 ---
 ```
--->
 
 ## Front-matter
 
-除了 Hexo 支持的 [Front-matter](https://hexo.io/zh-cn/docs/front-matter)
-
-还支持：
+除了 [Hexo 支持的 Front-matter](https://hexo.io/zh-cn/docs/front-matter) 还支持：
 
 ```yaml
 # 文章页右上角发布/更新日期
@@ -276,6 +306,7 @@ reward: true/false
 ```
 
 ## 参与开发
+
 ### 开发人员
 - [Yue_plus](https://github.com/Yue-plus)
 - [Laurenfrost](https://github.com/Laurenfrost)
@@ -285,14 +316,18 @@ reward: true/false
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 
 ### 分支说明
-| 分支     | 说明                                           |
-| -------- | ---------------------------------------------- |
-| master   | 主题开发目录                                   |
-| gh-pages | gh-page 托管                                   |
+
+| 分支       | 说明                            |
+|----------|-------------------------------|
+| master   | 相对稳定的版本                       |
+| dev      | 开发中的版本                        |
+| gh-pages | gh-page 托管                    |
 | hexo     | Hexo 目录，这里有可以用于测试主题的 `.md` 文件 |
 
 ### 搭建开发环境
+
 先装好 [nodejs](https://nodejs.org/) 和 [yarn](https://classic.yarnpkg.com/zh-Hans/) ，然后执行以下命令：
+
 ```shell script
 yarn global add hexo-cli yo generator-hexo-theme sass
 git clone -b hexo https://github.com/Yue-plus/hexo-theme-arknights.git
@@ -314,10 +349,12 @@ hexo serve --debug
 -->
 
 #### 运行 ‘hexo serve --debug’ 时，长文章渲染不全
+
 这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布
 解决方法：禁用该插件。（反正不影响发布，不管也行）
 
 #### 参与开发可能需要的文档
+
 - [Hexo 官方文档](https://hexo.io/zh-cn/docs/templates)
 - [SASS 中文网](https://www.sass.hk/guide/)
   > 注意，这个中文网标的是 SASS 但写的是 SCSS 的语法。
@@ -332,7 +369,9 @@ hexo serve --debug
   > - 【墙】[Hexo 主题开发指南 | Peak Xin's Blog](https://xinyufeng.net/2019/04/15/hexo-theme-guide/)
 
 ## 支援主题开发
+
 喜欢这个主题的话可以：
+
 - 给颗小星星吧 `(/▽＼)`
   > - √ `ヾ(✿ﾟ▽ﾟ)ノ` 100star 做个新主题哦~
   > - 新主题开发中 [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)

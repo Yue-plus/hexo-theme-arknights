@@ -21,7 +21,7 @@ post:
   date: true # 是否显示发布日期
   updated: true # 是否显示修改日期
   source: false # 是否显示源文件路径
-  excerpt: false # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
+  excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
   reward: true # 文章末显示打赏二维码
 # 文章内目录
 toc:
