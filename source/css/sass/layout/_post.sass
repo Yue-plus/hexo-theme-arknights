@@ -139,6 +139,14 @@
     display: block
   .toc-link
     width: 100%
+    overflow-y: auto
+    &::-webkit-scrollbar
+      display: none
+    &::-moz-scrollbar
+      display: none
+    &::-ms-scrollbar
+      display: none
+    scrollbar-width: none
     display: inline-block
     @media ( min-width: 769px )
       &:hover

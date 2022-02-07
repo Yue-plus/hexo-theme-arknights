@@ -83,7 +83,7 @@ class canvasDust {
     }
   }
 
-  private resize(): void {
+  private resize() {
     const canvas = this.canvas
     const width = window.innerWidth
     const height = window.innerHeight
@@ -116,7 +116,7 @@ class indexs {
   scrollID: number = null
   scrolling: number = 0
 
-  private setItem(item: Element){
+  private setItem(item: Element) {
     item.classList.add('active')
     let $parent = item.parentElement, brother = $parent.children
     for (let i = 0; i < brother.length; i++) {
@@ -133,7 +133,7 @@ class indexs {
     }
   }
 
-  private reset(): void {
+  private reset() {
     let tocs = document.getElementsByClassName('active')
     let tocTree = document.getElementsByClassName('has-active')
     for (; tocs.length;) {
@@ -146,7 +146,7 @@ class indexs {
     }
   }
 
-  private modifyIndex(): void {
+  private modifyIndex() {
     for (let i = 0; i < this.headerLink.length; i++) {
       const link = this.headerLink.item(i) as HTMLElement
       if (link) {
@@ -164,7 +164,7 @@ class indexs {
     this.index = []
   }
 
-  private scrolltop(){
+  private scrolltop() {
     window.scroll({top: 0,left: 0,behavior: 'smooth'});
     document.getElementById('to-top').style.opacity = '0';
   }
@@ -202,7 +202,9 @@ class indexs {
 }
 
 class codes {
-  private reverse(item: Element, s0: string, s1: string): void {
+
+
+  private reverse(item: Element, s0: string, s1: string) {
     const block = item.parentElement
     if (block.classList.contains(s0)){
       block.classList.remove(s0)
@@ -213,9 +215,15 @@ class codes {
     }
   }
 
-  private doAsMermaid(item: Element): void {
+  private doAsMermaid(item: Element) {
     let Amermaid = item.getElementsByClassName('mermaid').item(0) as HTMLElement
     item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>'
+  }
+
+  private resetName(str: string): string {
+    if (str == 'plaintext') return 'TEXT'
+    if (str == 'cs') return 'C#'
+    return str.toUpperCase()
   }
 
   private doAsCode(item: Element): void {
@@ -224,7 +232,7 @@ class codes {
     item.innerHTML=
     '<span class="code-header"><span class="code-title">\
         <div class="code-icon"></div>' +
-        (codeType !== 'plaintext' ? codeType.toUpperCase() : 'TEXT') + ' 共 ' + lineCount + ' 行</span>\
+        this.resetName(codeType) + ' 共 ' + lineCount + ' 行</span>\
         <span class="code-header-tail">\
           <button class="code-copy"></button>\
           <span class="code-space">展开</span>\
