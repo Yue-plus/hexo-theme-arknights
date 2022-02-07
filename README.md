@@ -290,6 +290,30 @@ wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时
 ---
 ```
 
+## 搜索
+
+请安装 hexo-generator-searchdb 用于生成搜索数据：
+
+npm 用户：
+```shell script 
+cnpm install hexo-generator-searchdb --save
+```
+
+yarn 用户：
+```shell script
+yarn add hexo-generator-searchdb
+```
+
+之后在 **Hexo** 的配置中添加：
+
+```yaml
+search:
+  enable: true
+  preload: true //非必要
+  path: search.json //非必要，缩小文件用
+  format: striptags //非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
+```
+
 ## Front-matter
 
 除了 [Hexo 支持的 Front-matter](https://hexo.io/zh-cn/docs/front-matter) 还支持：
