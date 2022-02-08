@@ -489,7 +489,7 @@ body header nav a {
 
 main {
   transition: 0.3s;
-  padding-top: 40px;
+  padding-top: 50px;
   display: flex;
   flex-grow: 1;
   flex-direction: row;
@@ -534,7 +534,7 @@ main {
 article {
   min-height: calc(100% - 10px);
   height: fit-content;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   flex-grow: 1;
   min-width: 1px;
 }
@@ -684,6 +684,8 @@ aside {
   flex-direction: column;
   justify-content: space-between;
   align-content: stretch;
+  /* 对其侧栏，main的padding-top: 50px;导致版权位置偏下 */
+  top:0;
 }
 aside::-webkit-scrollbar {
   display: none;
@@ -761,7 +763,8 @@ aside footer {
 }
 
 #aside-block {
-  margin-top: 10px;
+  /* 与main的margin同步 */
+  margin-top: 50px;
   background-color: rgba(20, 21, 22, 0.8);
 }
 #aside-block, #aside-block h1 {
@@ -1507,4 +1510,8 @@ aside footer {
 }
 .search-pop-overlay .popup #search-result #no-result p {
   text-align: center;
+}
+.aside-box {
+  width: 310px;
+  height: 100%;
 }
