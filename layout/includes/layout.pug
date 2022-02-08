@@ -90,8 +90,6 @@ html(lang=config.language)
             a#to-top(onClick="index.scrolltop();" title="to top") ∧
       div.aside-box
         aside
-          #aside-block(style= asideBlock)
-            block aside-block
           #aside-top
             #about
               a(href=config.root)#logo
@@ -111,6 +109,8 @@ html(lang=config.language)
                   #total-categories
                     span.total-title Categories:
                     span.total-number= site.categories.length
+          #aside-block(style= asideBlock)
+            block aside-block
           footer(style=footerStyle)
             if theme.aside.copyright !== null
               each content, title in theme.aside.copyright
