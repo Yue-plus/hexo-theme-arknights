@@ -64,6 +64,9 @@ html(lang=config.language)
       |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
       |}
   body(style={'background-image': `url(${theme.background_image})`})
+    #cursor-container
+      #cursor-outer
+      #cursor-effect
     header
       nav
         each url, label in theme.menu
@@ -125,9 +128,6 @@ html(lang=config.language)
             wbr
             text="by "
               a(href='https://github.com/Yue-plus') Yue_plus
-      #cursor-container
-        #cursor-outer
-        #cursor-effect
       if theme.canvas_dust
         canvas#canvas-dust
       script(src=config.root + "js/arknights.js")
