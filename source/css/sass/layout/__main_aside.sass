@@ -15,13 +15,15 @@ aside
   flex-direction: column
   justify-content: space-between
   align-content: stretch
-  h1
-    font-family: BenderLight, sans-serif
-    margin-top: 0
-  footer
-    color: #898989
-    padding: 0 3px 30px 3px
-    font-family: BenderLight
+  //对其侧栏，main的padding-top: 50px;导致版权位置偏下
+  top:50px
+h1
+  font-family: BenderLight, sans-serif
+  margin-top: 0
+footer
+  color: #898989
+  padding: 0 3px 30px 3px
+  font-family: BenderLight
 
 #logo
   user-select: none
@@ -70,7 +72,8 @@ aside
   margin: 15px 0 0 15px
 
 #aside-block
-  margin-top: 10px
+  //与main的margin同步
+  margin-top: 50px
   background-color: rgba(20, 21, 22, 0.8)
   &, h1
     transition: 1s
@@ -85,6 +88,10 @@ aside
     margin: 0
     padding: 0 10px
     font-size: medium
+
+.aside-box
+    width: 310px
+    height: 95%
 
 #description p
   margin: unset
