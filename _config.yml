@@ -130,3 +130,9 @@ encrypt: # hexo-blog-encrypt
   message: 请输入与 Rhodes Island™ 取得弱神经连接时的口令：
   wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
   wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
+
+search:
+  enable: true
+  preload: true # 非必要
+  path: search.json # 非必要，缩小文件用
+  format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）

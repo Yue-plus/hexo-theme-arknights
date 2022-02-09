@@ -1117,6 +1117,13 @@ hexo-generator-index@^2.0.0:
     hexo-pagination "1.0.0"
     timsort "^0.3.0"
 
+hexo-generator-searchdb@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/hexo-generator-searchdb/-/hexo-generator-searchdb-1.4.0.tgz#e6774378d841cbaa6ccbc8206ce14a492b3a115e"
+  integrity sha512-TkwxlqxptRIXHwYeI/V32O2TxXkfqWa37Rrmg347Q+YT1eqk7vQ31vR4zLudBAcSr85ST0VUedYd1/gLBSJl9Q==
+  dependencies:
+    nunjucks "^3.2.2"
+
 hexo-generator-tag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/hexo-generator-tag/download/hexo-generator-tag-1.0.0.tgz#54ec23de9409c75584ea81e36057a59031b022f1"
@@ -1697,6 +1704,15 @@ nunjucks@^3.2.1:
     commander "^5.1.0"
   optionalDependencies:
     chokidar "^3.3.0"
+
+nunjucks@^3.2.2:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/nunjucks/-/nunjucks-3.2.3.tgz#1b33615247290e94e28263b5d855ece765648a31"
+  integrity sha512-psb6xjLj47+fE76JdZwskvwG4MYsQKXUtMsPh6U0YMvmyjRtKRFcxnlXGWglNybtNTNVmGdp94K62/+NjF5FDQ==
+  dependencies:
+    a-sync-waterfall "^1.0.0"
+    asap "^2.0.3"
+    commander "^5.1.0"
 
 object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.1"
