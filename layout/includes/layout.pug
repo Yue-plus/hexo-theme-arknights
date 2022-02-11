@@ -101,17 +101,17 @@ html(lang=config.language)
                 a(href= theme.aside.dr)= config.author
               #description
                 p= config.description
-              if page.published === undefined
-               section#total
-                  a#total-archives(href= config.root + "archives")
-                    span.total-title Archives Total:
-                    span.total-number= site.posts.length
-                  #total-tags
-                    span.total-title Tags:
-                    span.total-number= site.tags.length
-                  #total-categories
-                    span.total-title Categories:
-                    span.total-number= site.categories.length
+              //if page.published === undefined
+              section#total
+                 a#total-archives(href= config.root + "archives")
+                   span.total-title Archives Total:
+                   span.total-number= site.posts.length
+                 #total-tags
+                   span.total-title Tags:
+                   span.total-number= site.tags.length
+                 #total-categories
+                   span.total-title Categories:
+                   span.total-number= site.categories.length
             #aside-block(style= asideBlock)
               block aside-block
           footer(style=footerStyle)
