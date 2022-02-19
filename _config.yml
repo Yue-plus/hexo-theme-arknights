@@ -58,7 +58,7 @@ mermaid:
 
 # pjax 支持
 pjax:
-  enable: true
+  enable: false
   version: '0.2.8'
 
 # main menu navigation

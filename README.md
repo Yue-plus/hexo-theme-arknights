@@ -304,14 +304,14 @@ yarn 用户：
 yarn add hexo-generator-searchdb
 ```
 
-之后在 **Hexo** 的配置中添加：
+之后在 `<Hexo>/_config.yml` 文件中添加：
 
 ```yaml
 search:
   enable: true
-  preload: true //非必要
-  path: search.json //非必要，缩小文件用
-  format: striptags //非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
+  preload: true # 非必要
+  path: search.json # 非必要，缩小文件用
+  format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
 ```
 
 ## Front-matter
@@ -328,6 +328,31 @@ post-index: true/false
 # 打赏框
 reward: true/false
 ```
+
+## 引入自定义 CSS/JS 文件
+
+可以在 `<Hexo>/source/css/` 目录下放入自己的 CSS 文件；
+在 `<Hexo>/source/js/` 目录下放入自己的 JavaScript 脚本文件；
+
+然后修改 `<Hexo>/_config.arknights.yml` 文件：
+
+```diff
+ # 在 `<head>` 标签内引入 CSS 样式表
+ stylesheets:
+ - //unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css
++- /css/custom.css
+ 
+ # 在 `<body>` 尾部引入 JavaScript 脚本
+ scripts:
+ - //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
++- /js/custom.js
+```
+
+> 资源文件夹是存放用户资源的地方。
+> 除 `_posts` 文件夹之外，开头命名为 `_` (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。
+> Markdown 和 HTML 文件会被解析并放到 `public` 文件夹，而其他文件会被拷贝过去。
+>
+> ——来自 [Hexo 官方文档](https://hexo.io/zh-cn/docs/setup#source)
 
 ## 参与开发
 
