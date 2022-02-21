@@ -488,6 +488,8 @@ body header nav a {
 }
 
 main {
+  margin: 0 auto;
+  max-width: 1600px;
   transition: 0.3s;
   padding-top: 50px;
   display: flex;
@@ -496,7 +498,7 @@ main {
   flex-wrap: nowrap;
   align-items: stretch;
   z-index: 1;
-  height: calc(100% - 40px);
+  height: calc(100% - 50px);
 }
 
 #paginator {
@@ -532,9 +534,9 @@ main {
 }
 
 article {
+  max-width: 80%;
   min-height: calc(100% - 10px);
   height: fit-content;
-  /* padding-top: 10px; */
   flex-grow: 1;
   min-width: 1px;
 }
@@ -684,8 +686,7 @@ aside {
   flex-direction: column;
   justify-content: space-between;
   align-content: stretch;
-  /* 对其侧栏，main的padding-top: 50px;导致版权位置偏下 */
-  top:0;
+  top: 50px;
 }
 aside::-webkit-scrollbar {
   display: none;
@@ -693,11 +694,13 @@ aside::-webkit-scrollbar {
 aside::-moz-scrollbar {
   display: none;
 }
-aside h1 {
+
+h1 {
   font-family: BenderLight, sans-serif;
   margin-top: 0;
 }
-aside footer {
+
+footer {
   color: #898989;
   padding: 0 3px 30px 3px;
   font-family: BenderLight;
@@ -763,7 +766,6 @@ aside footer {
 }
 
 #aside-block {
-  /* 与main的margin同步 */
   margin-top: 50px;
   background-color: rgba(20, 21, 22, 0.8);
 }
@@ -784,6 +786,12 @@ aside footer {
   margin: 0;
   padding: 0 10px;
   font-size: medium;
+}
+
+.aside-box {
+  flex-shrink: 0;
+  width: 20%;
+  height: calc(100% - 40px);
 }
 
 #description p {
@@ -953,6 +961,7 @@ aside footer {
   list-style: none;
 }
 #toc-div .toc-item {
+  list-style-type: none;
   white-space: nowrap;
   overflow: hidden;
   margin: 2px 0;
@@ -1112,10 +1121,6 @@ aside footer {
 }
 
 @media (max-width: 768px) {
-  header .search-header {
-    display: none;
-  }
-
   body {
     margin: 0 12px;
   }
@@ -1124,12 +1129,18 @@ aside footer {
     flex-direction: column;
     overflow-y: auto;
   }
+  main .aside-box {
+    width: 100%;
+    max-width: 100%;
+    height: 0;
+  }
   main article {
     border: none;
     width: 100%;
     max-height: none;
     padding: 0;
     flex-shrink: 0;
+    max-width: 100%;
   }
 
   .highlight, blockquote {
@@ -1456,7 +1467,6 @@ aside footer {
 .search-pop-overlay .popup {
   scrollbar-width: thin;
   position: relative;
-  width: 32%;
   background: rgba(20, 21, 22, 0.95);
   max-height: calc(100% - 40px);
   padding: 0 0 0 1px;
@@ -1466,6 +1476,7 @@ aside footer {
 @media (min-width: 769px) {
   .search-pop-overlay .popup {
     left: 68%;
+    width: 32%;
   }
 }
 @media (min-width: 1200px) {
@@ -1510,8 +1521,4 @@ aside footer {
 }
 .search-pop-overlay .popup #search-result #no-result p {
   text-align: center;
-}
-.aside-box {
-  width: 310px;
-  height: 100%;
 }
