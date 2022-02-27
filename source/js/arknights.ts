@@ -167,20 +167,22 @@ class indexs {
   private scrolltop() {
     window.scroll({top: 0,left: 0,behavior: 'smooth'});
     document.getElementById('to-top').style.opacity = '0';
+    setTimeout(()=> this.totop.style.display = 'none', 300);
   }
 
   constructor() {
-    this.headerLink = document.getElementsByClassName('headerlink')
     this.tocLink = document.getElementsByClassName('toc-link')
-    this.postContent = document.getElementById('post-content')
-    const totop = document.getElementById('to-top')
-    if (totop != null)
-      totop.style.opacity = '0';
     if (this.tocLink.length > 0) {
       this.setItem(this.tocLink.item(0))
-      document.addEventListener('scroll', ()=>{
+    }
+    document.addEventListener('scroll', ()=>{
+      this.tocLink = document.getElementsByClassName('toc-link')
+      if (this.tocLink.length > 0) {
+        this.headerLink = document.getElementsByClassName('headerlink')
+        this.postContent = document.getElementById('post-content')
+        const totop = document.getElementById('to-top')
         ++this.scrolling
-        if (this.scrollID == null) {
+        if (this.scrollID == null && this.tocLink.length > 0) {
           this.scrollID = setInterval(this.modifyIndex.bind(this), 50)
         }
         setTimeout(()=>{
@@ -190,20 +192,20 @@ class indexs {
             const totop = document.getElementById('to-top')
             if (this.totop !== null
               && document.getElementById('post-title').getBoundingClientRect().top < -200) {
-              totop.style.opacity = '1';
+              totop.style.display = '';
+              setTimeout(()=> totop.style.opacity = '1', 300);
             } else {
               totop.style.opacity = '0';
+              setTimeout(()=> totop.style.display = 'none', 300);
             }
           }
         }, 200);
-      }, {passive: true})
-    }
+      }
+    }, {passive: true})
   }
 }
 
 class codes {
-
-
   private reverse(item: Element, s0: string, s1: string) {
     const block = item.parentElement
     if (block.classList.contains(s0)){
@@ -264,9 +266,7 @@ class codes {
     }
   }
 
-  constructor() {
-    this.findCode()
-  }
+  constructor() {}
 }
 
 class cursors {

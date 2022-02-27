@@ -289,7 +289,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
     document.addEventListener('mouseup',EscapeSearch);
   });
   document.querySelector('.search-pop-overlay').addEventListener('click', EscapeSearch);
-  window.addEventListener('pjax:success', EscapeSearch);
   window.addEventListener('keyup', event =>{
     if (event.which === 27) {
       EscapeSearch();

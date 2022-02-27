@@ -354,6 +354,28 @@ reward: true/false
 >
 > ——来自 [Hexo 官方文档](https://hexo.io/zh-cn/docs/setup#source)
 
+## 字数/阅读时长统计
+
+安装 hexo-wordcount：
+
+npm 用户：
+```shell script 
+cnpm install hexo-wordcount --save
+```
+
+yarn 用户：
+```shell script
+yarn add hexo-wordcount
+```
+
+之后修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件：
+
+```yaml
+post:
+  count: true # 是否显示字数统计
+  time: true # 是否显示阅读时长统计
+```
+
 ## 参与开发
 
 ### 开发人员
