@@ -58,7 +58,7 @@ mermaid:
   enable: false
   version: '8.13.5'
 
-# pjax 支持
+# pjax 支持 —— Bug 巨多！别开！
 pjax:
   enable: false
   version: '0.2.8'
