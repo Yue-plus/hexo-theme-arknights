@@ -1232,6 +1232,11 @@ hexo-util@^2.0.0, hexo-util@^2.1.0, hexo-util@^2.4.0:
     strip-indent "^3.0.0"
     striptags "^3.1.1"
 
+hexo-wordcount@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/hexo-wordcount/-/hexo-wordcount-6.0.1.tgz#5a60efc9d3c8e421956f2fd6683ca94a8a795264"
+  integrity sha512-tbo2P9xRWEKQmRf7+XuPjx9It1MnaE26nA+EEb2DN39gK1x+26W7Nm4Iyp4AugQjBWYYDx7OLn4gp1WFxQpQew==
+
 hexo@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/hexo/-/hexo-6.0.0.tgz#1f2d3971069a32e97ca2e89d96d96a375fba5cea"
