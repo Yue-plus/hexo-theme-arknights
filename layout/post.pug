@@ -13,8 +13,8 @@ block content
     const appKey = theme.valine.app_key
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
-    const countWord = theme.post.count === true ? wordcount(page.content) : null
-    const countTime = theme.post.time === true ? min2read(page.content) : null
+    const countWord = theme.post.word_count === true ? wordcount(page.content) : null
+    const countTime = theme.post.reading_time === true ? min2read(page.content) : null
   #post-bg
     #post-title
       h1= page.title
@@ -27,30 +27,30 @@ block content
           if dateConf
             if !first
               br
-            span First Post: 
-              div.control
+            span First Post:
+              span.control
                 time(datetime=page.date.toJSON())#date
                   = ' ' + date(page.date, date_format)
             - first = false
           if updatedConf
             if !first
               br
-            span Last Update: 
-              div.control
+            span Last Update:
+              span.control
                 time(datetime=page.updated.toJSON())#updated
                   = ' ' + date(page.updated, date_format)
             - first = false
           if countWord
             if !first
               br
-            span Word Count: 
-              div.control #{countWord}
+            span Word Count:
+              span.control &nbsp;#{countWord}
             - first = false
           if countTime
             if !first
               br
-            span Read Time: 
-              div.control #{countTime}min
+            span Read Time:
+              span.control &nbsp;#{countTime}min
     hr
     #post-content
       if excerptConf
@@ -89,7 +89,7 @@ block content
         #comments
 
 block aside-block
-  - 
+  -
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
   if (tocContent.length > 0)
