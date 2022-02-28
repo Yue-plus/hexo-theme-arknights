@@ -9,6 +9,8 @@
   pageTitle += ' | ' + config.title
   const asideLogo = theme.aside.logo
   const asideBlock = theme.aside.block_in_top ? 'order: -1' : ''
+  const appID = theme.valine.app_id
+  const appKey = theme.valine.app_key
   let onload = ''
   if (theme.pjax.enable) onload = "pjax = new Pjax({cacheBust:false,selectors:['title','article','#aside-block','.pjax-js']});"
   let needReset = "code.findCode();"
@@ -40,7 +42,7 @@ html(lang=config.language)
       link(rel="stylesheet" href=config.root + "css/gitalk.css")
       script(src=config.root + "js/gitalk.js")
     if theme.mermaid.enable === true && theme.mermaid.version !== undefined
-      script(src= "https://unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
+      script(src= "//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
       script
         | mermaid.initialize({
         |   startOnLoad: false
@@ -126,37 +128,36 @@ html(lang=config.language)
             wbr
             text="by "
               a(href='https://github.com/Yue-plus') Yue_plus
-    if page.comments
-      script const reset=_=>{
+    if theme.valine.enable === true || theme.gitalk.enable === true
+      script const commentSet=_=>{
         if theme.valine.enable === true
-          |  new Valine({
-          |    el: '#Valine'
-          |    , appId: '#{appID}'
-          |    , appKey: '#{appKey}'
+          | valine = new Valine({
+          |   el: '#Valine'
+          |   , appId: '#{appID}'
+          |   , appKey: '#{appKey}'
           if theme.valine.server_url
             | , serverURLs: '#{theme.valine.server_url}'
-          |    , placeholder: '此条评论委托企鹅物流发送'
-          |  })
+          |   , placeholder: '此条评论委托企鹅物流发送'
+          |   , path: window.location.pathname
+          | })
         if theme.gitalk.enable === true
           - gitAdmin = ''
           for str in theme.gitalk.admin
             - gitAdmin= gitAdmin + "'" + str + "'"
-          |  gitalk = new Gitalk({
-          |    clientID: '#{theme.gitalk.client_id}',
-          |    clientSecret: '#{theme.gitalk.client_secret}',
-          |    repo: '#{theme.gitalk.repo}',
-          |    owner: '#{theme.gitalk.owner}',
-          |    admin: [#{gitAdmin}],
-          |    id: location.pathname
-          |  })
-          |  document.getElementById("comments").innerHTML=""
-          |  gitalk.render("comments")
+          | gitalk = new Gitalk({
+          |   clientID: '#{theme.gitalk.client_id}',
+          |   clientSecret: '#{theme.gitalk.client_secret}',
+          |   repo: '#{theme.gitalk.repo}',
+          |   owner: '#{theme.gitalk.owner}',
+          |   admin: [#{gitAdmin}],
+          |   id: location.pathname
+          | })
+          | document.getElementById("comments").innerHTML=""
+          | gitalk.render("comments")
         |}
       if theme.pjax.enable === true
-        script document.addEventListener("pjax:success", _=>{reset();
-          if searchConfig !== null 
-            | EscapeSearch()});
-      script document.addEventListener("load", reset())
+        script document.addEventListener("pjax:success", _=>{commentSet()});
+      script document.addEventListener("load", commentSet())
     if theme.canvas_dust
       canvas#canvas-dust
     script(src=config.root + "js/arknights.js")
@@ -167,6 +168,6 @@ html(lang=config.language)
     if searchConfig !== null
       script(src="/js/search.js")
     if theme.pjax.enable !== undefined && theme.pjax.enable === true
-      script(src="//cdn.jsdelivr.net/npm/pjax@" + theme.pjax.version + "/pjax.min.js")
+      script(src="//unpkg.com/pjax@" + theme.pjax.version + "/pjax.min.js")
     if theme.pjax.enable
       script(class="pjax-js") !{needReset}
