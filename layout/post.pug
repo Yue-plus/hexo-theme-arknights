@@ -9,8 +9,6 @@ block content
     const sourceConf = theme.post.source
     const excerptConf = theme.post.excerpt
     const reward = theme.post.reward
-    const appID = theme.valine.app_id
-    const appKey = theme.valine.app_key
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
     const countWord = theme.post.word_count === true ? wordcount(page.content) : null
