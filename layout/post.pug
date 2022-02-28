@@ -13,27 +13,44 @@ block content
     const appKey = theme.valine.app_key
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
+    const countWord = theme.post.count === true ? wordcount(page.content) : null
+    const countTime = theme.post.time === true ? min2read(page.content) : null
   #post-bg
     #post-title
       h1= page.title
       if (dateConf || updatedConf) && page.published
         #post-info
+          - var first = true
           if sourceConf
             a(herf=page.source) View Source File
-          if sourceConf && dateConf
-            br
+            - first = false
           if dateConf
-            span First Post:
-              div(style="display:inline-block;width:90px")
+            if !first
+              br
+            span First Post: 
+              div.control
                 time(datetime=page.date.toJSON())#date
                   = ' ' + date(page.date, date_format)
-          if (sourceConf || dateConf) && updatedConf
-            br
+            - first = false
           if updatedConf
-            span Last Update:
-              div(style="display:inline-block;width:90px")
+            if !first
+              br
+            span Last Update: 
+              div.control
                 time(datetime=page.updated.toJSON())#updated
                   = ' ' + date(page.updated, date_format)
+            - first = false
+          if countWord
+            if !first
+              br
+            span Word Count: 
+              div.control #{countWord}
+            - first = false
+          if countTime
+            if !first
+              br
+            span Read Time: 
+              div.control #{countTime}min
     hr
     #post-content
       if excerptConf
@@ -68,30 +85,8 @@ block content
     if page.comments
       if theme.valine.enable === true
         #Valine
-        script
-          |new Valine({
-          |  el: '#Valine'
-          |  , appId: '#{appID}'
-          |  , appKey: '#{appKey}'
-          if theme.valine.server_url
-            |  , serverURLs: '#{theme.valine.server_url}'
-          |  , placeholder: '此条评论委托企鹅物流发送'
-          |})
       if theme.gitalk.enable === true
         #comments
-        - gitAdmin = ''
-        for str in theme.gitalk.admin
-          - gitAdmin= gitAdmin + "'" + str + "'"
-        script
-          |var gitalk = new Gitalk({
-          |  clientID: '#{theme.gitalk.client_id}',
-          |  clientSecret: '#{theme.gitalk.client_secret}',
-          |  repo: '#{theme.gitalk.repo}',
-          |  owner: '#{theme.gitalk.owner}',
-          |  admin: [#{gitAdmin}],
-          |  id: location.pathname,
-          |})
-          |gitalk.render("comments")
 
 block aside-block
   - 
