@@ -12,7 +12,7 @@ aside:
   in_left: false # 侧边栏在左 true / false
   logo: https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png # 图片链接，建议 1:1 比例
   dr: / # 侧边栏 Dr. 链接
-  copyright: # 版权声明、备案号等，设置为 null 不显示
+  copyright: # 版权声明、备案号等，可自定义键值，不想显示则留空
     ©: 1970 to 2020
     ICP: ——备案号——
 
@@ -21,6 +21,8 @@ post:
   date: true # 是否显示发布日期
   updated: true # 是否显示修改日期
   source: false # 是否显示源文件路径
+  word_count: true # 是否显示字数统计
+  reading_time: true # 是否显示预计阅读时长
   excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
   reward: true # 文章末显示打赏二维码
 # 文章内目录
@@ -56,7 +58,7 @@ mermaid:
   enable: false
   version: '8.13.5'
 
-# pjax 支持
+# pjax 支持 —— Bug 巨多！别开！
 pjax:
   enable: false
   version: '0.2.8'

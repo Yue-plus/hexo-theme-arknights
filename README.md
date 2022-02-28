@@ -356,7 +356,7 @@ reward: true/false
 
 ## 字数/阅读时长统计
 
-安装 hexo-wordcount：
+可以使用 [`hexo-wordcount`](https://github.com/willin/hexo-wordcount)：
 
 npm 用户：
 ```shell script 

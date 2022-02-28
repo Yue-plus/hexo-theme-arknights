@@ -258,6 +258,9 @@ class codes {
     let codeBlocks = document.getElementsByClassName('highlight')
     for (let i = 0; i < codeBlocks.length; i++) {
       const item = codeBlocks.item(i) as HTMLElement
+      if (item.classList.contains('mermaid') || item.getElementsByClassName('code-header').length > 0) {
+        continue;
+      }
       if (item.getElementsByClassName('mermaid').length > 0) {
         this.doAsMermaid(item)
       } else {
@@ -266,7 +269,9 @@ class codes {
     }
   }
 
-  constructor() {}
+  constructor() {
+    this.findCode()
+  }
 }
 
 class cursors {

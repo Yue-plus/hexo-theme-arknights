@@ -9,11 +9,10 @@
   pageTitle += ' | ' + config.title
   const asideLogo = theme.aside.logo
   const asideBlock = theme.aside.block_in_top ? 'order: -1' : ''
-  const appID = theme.valine.app_id
-  const appKey = theme.valine.app_key
   let onload = ''
   if (theme.pjax.enable) onload = "pjax = new Pjax({cacheBust:false,selectors:['title','article','#aside-block','.pjax-js']});"
   let needReset = "code.findCode();"
+  if (theme.valine.enable === true || theme.gitalk.enable === true) onload += "commentSet();"
   if (theme.mermaid.enable === true && theme.mermaid.version !== undefined) {
     onload += "mermaid.init(undefined, ('.mermaid'));";
     needReset += "mermaid.init(undefined, ('.mermaid'));";
@@ -131,10 +130,10 @@ html(lang=config.language)
     if theme.valine.enable === true || theme.gitalk.enable === true
       script const commentSet=_=>{
         if theme.valine.enable === true
-          | valine = new Valine({
+          | new Valine({
           |   el: '#Valine'
-          |   , appId: '#{appID}'
-          |   , appKey: '#{appKey}'
+          |   , appId: '#{theme.valine.app_id}'
+          |   , appKey: '#{theme.valine.app_key}'
           if theme.valine.server_url
             | , serverURLs: '#{theme.valine.server_url}'
           |   , placeholder: '此条评论委托企鹅物流发送'
@@ -152,12 +151,13 @@ html(lang=config.language)
           |   admin: [#{gitAdmin}],
           |   id: location.pathname
           | })
-          | document.getElementById("comments").innerHTML=""
-          | gitalk.render("comments")
+          | if (document.getElementById("comments")) {
+          |   document.getElementById("comments").innerHTML=""
+          |   gitalk.render("comments")
+          | }
         |}
       if theme.pjax.enable === true
-        script document.addEventListener("pjax:success", _=>{commentSet()});
-      script document.addEventListener("load", commentSet())
+        script document.addEventListener("pjax:success", commentSet)
     if theme.canvas_dust
       canvas#canvas-dust
     script(src=config.root + "js/arknights.js")
