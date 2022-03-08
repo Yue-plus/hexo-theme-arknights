@@ -11,6 +11,7 @@
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
 - **Dr.XIMU：<http://b.ligzs.cn/>**
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
+- **Dr.tyqtyq <https://tyq0712.github.io/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
