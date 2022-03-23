@@ -1,0 +1,187 @@
+.text-title, .text-content
+  height 18px
+  line-height 18px
+  color #000
+  padding 0 5px
+  font-size small
+  font-family sans-serif
+  display inline-block
+.text-title
+  background-color #2bf
+.text-content
+  margin 0 10px 0 0
+  padding 0 28px 0 5px
+  background-color #fff
+
+.gutter pre
+  margin 6px 0
+  padding-top 5px
+.code pre
+  margin 6px 0
+.hljs span
+  line-height 0
+
+.code-icon
+  display inline-block
+  width 20px
+  height 20px
+  &::before
+    content '>'
+    margin 5px
+
+.highlight.open
+  .code-box
+    transition .5s cubic-bezier(0.5, 0, 1, 0)
+    max-height 10000px
+  .code-header
+    .code-space
+      display none
+    .code-icon
+      transform rotate(90deg)
+      transition transform 0.2s ease
+
+.highlight.fold
+  .code-box
+    transition .5s cubic-bezier(0, 1, 0, 1) -0.1s
+    max-height 0
+  .code-header
+    .code-copy
+      display none
+    .code-icon
+      transition transform 0.2s ease
+
+.highlight
+  margin 1em 10px
+  overflow-x hidden
+.code-box
+  overflow-y hidden
+.code-header
+  user-select none
+  background-color rgba(#fff, 0.2)
+  display flex
+  justify-content space-between
+  .code-title
+    color #fff
+    margin 7px 8px
+  .code-header-tail
+    align-self center
+    .code-space
+      padding 8px 14px
+      font-size 12px
+    .code-copy
+      margin 0px 4px
+      padding 7px 9px
+      display inline-block
+      line-height 1
+      text-decoration none
+      white-space nowrap
+      border 1px solid #fff
+      border-radius 5px
+      background-color rgba(#fff, 0.05)
+      color #fff
+      outline none
+      font-size 0.75em
+      &:before
+        content '复制'
+      &:hover
+        border 1px solid #fe2
+        color  #fe2
+        transition .3s
+    .copied
+      &:before
+        content '完成'
+      border 1px solid #fe2
+      color  #fe2
+      transition .3s, visibility 0
+
+table
+  td
+    border 0
+  code
+    padding 0 8px 5px 8px
+    background-color transparent!important
+  .gutter
+    position sticky
+    color #000
+    text-align right
+    background-color #2bf
+    left 0
+    padding 0 8px 5px 8px
+    &, pre, span
+      user-select none
+      pointer-events none
+  .code
+    width 100%
+    background-color rgba(#fff, .05)
+    transition .3s
+    &:hover
+      background-color rgba(#fff, .1)
+
+.category-list, .tag-list
+  list-style none
+  display block
+  margin 0
+
+.category-list
+  padding 0
+.category-list-item
+  position relative
+  @media ( min-width 769px )
+    &:hover
+      a
+        color #2bf
+        border-left #2bf solid 5px
+        background-color rgba(#fff, .1)
+      span
+        color #fff
+.category-list-link
+  width 100%
+  padding 6px 40% 6px 10px
+  display inline-block
+  box-sizing border-box
+  &:before, &:after
+    color #2bf
+    content '#'
+    padding 0 5px
+.category-list-count
+  padding 3px 10px
+  position absolute
+  right 0
+
+.tag-list
+  padding 10px
+.tag-list-item
+  line-height 23px
+  background-color #313131
+  display inline-block
+  margin 5px
+  border #313131 solid 1px
+  border-radius 3px
+  &, a, span
+    transition .3s
+  @media ( min-width 769px )
+    &:hover
+      border-color #2bf
+      a
+        color #000
+        background-color #2bf
+      span
+        background-color #313131
+    &:active
+      border-color #fe2
+      a
+        background-color #fe2
+.tag-list-link
+  color #fff
+  padding 3px 6px 3px 12px
+  display inline-block
+.tag-list-count
+  display inline-block
+  padding 3px 6px
+  color #fff
+  background-color #494949
+
+.mermaid
+  margin 10px 0
+  padding 10px
+  text-align center

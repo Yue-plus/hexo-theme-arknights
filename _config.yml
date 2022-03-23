@@ -49,8 +49,8 @@ gitalk:
   repo: # GitHub repository
   owner: # GitHub repository owner
   admin: [] # GitHub repository owner and collaborators (Users who having write access to this repository)
-                # Example: [adminA,adminB]
-  id: # The unique id of the page
+            # Example: [adminA,adminB]
+  id: # (optional) The unique id of the page
       # Example: location.pathname
 
 # 图表支持
@@ -58,7 +58,7 @@ mermaid:
   enable: false
   version: '8.13.5'
 
-# pjax 支持 —— Bug 巨多！别开！
+# pjax 支持 —— 实验性测试阶段，请谨慎开启
 pjax:
   enable: false
   version: '0.2.8'

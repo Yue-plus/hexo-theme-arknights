@@ -1,0 +1,57 @@
+@media ( min-width 769px )
+  .navBtn
+    right 1.5rem
+  .navContent
+    transform translateX(200%)
+  header
+    right 0
+  aside
+    left 0
+  @media ( max-width 991px )
+    article
+      margin-left 200px
+      margin-right 20px
+
+@media ( min-width 992px )
+  @media ( max-width 1023px )
+    article
+      margin-right 50px
+      margin-left 210px
+  @media ( max-width 1919px )
+    aside
+      padding 0 15px 0 25px
+
+@media ( min-width 1024px )
+  .navContent
+    padding 1em 0 1em 3em
+    transform unset
+    .navItem
+      right 1em
+      &:hover a
+        margin-left -1em
+      a
+        text-align left
+        .navItemTitle::after
+          right -4px
+          border-right 4px solid
+  article
+    margin-right 176px
+    margin-left 240px
+
+@media ( min-width 1440px )
+  .navContent .navItem
+    padding-left 0.5em
+    right 2.25em
+  article
+    margin-right 220px
+    margin-left 270px
+
+@media ( min-width 1920px )
+  .navContent .navItem
+    padding-left 3.25em
+    right 5.25em
+  article
+    margin-left calc(5% + 310px)
+    margin-right 310px
+  aside
+   left 5%

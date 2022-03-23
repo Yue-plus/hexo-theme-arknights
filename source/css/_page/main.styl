@@ -1,0 +1,36 @@
+main
+  transition .3s
+  display flex
+  flex-grow 1
+  flex-direction row
+  flex-wrap nowrap
+  align-items stretch
+  z-index 1
+
+#paginator
+  user-select none
+  margin 20px 0
+  display flex
+  flex-wrap wrap
+  justify-content center
+  a, span
+    color #fff
+    font-weight bold
+    margin 5px 10px 0 0
+    border 1px solid #2bf
+    padding 5px 10px
+  a
+    @media ( min-width 769px )
+      &:hover
+        color #000
+  .current
+    color #000
+    background-color #2bf
+
+#canvas-dust
+  z-index -65536
+  pointer-events none
+  position fixed
+  top 0
+  left 0
+

@@ -1,0 +1,181 @@
+#post-bg
+  padding 20px 30px
+  background-color rgba(#141516, .8)
+  overflow-x auto
+  img
+    max-width 100%
+
+#post-title
+  flex-wrap wrap
+  display flex
+  flex-direction row
+  justify-content space-between
+  align-items center
+  h1
+    display inline-block
+    font-size 2em
+  hr
+    color #535353
+    position relative
+    &:before
+      content ''
+      width 13%
+      height 3px
+      display block
+      position absolute
+      background-color #fff
+      top -3px
+      left -1px
+#post-info
+  text-align right
+  time
+    color #2bf
+    font-weight 900
+  .control
+    text-align left
+    display inline-block
+    width 90px
+#post-source span
+  color #fe2
+  background-color #555
+
+#post-content
+  table
+    width 100%
+  .footnote-ref:before
+    content ''
+    display inline-block
+    margin-top -60px
+    width 1px
+    height 60px
+    visibility hidden
+  .footnotes ol li:before
+    content ''
+    display block
+    margin-top -60px
+    height 60px
+    visibility hidden
+  h1, h2
+    &:target
+      a
+        margin-right 9px
+        background-color #fe2
+        padding 2px 3px
+    .headerlink
+      padding 2px 2px
+      background-color #2bf
+      margin-right 7px
+  h3, h4 ,h5 ,h6
+    &:target
+      a
+        margin-right 9px
+        background-color #fe2
+        padding 1px 2px
+    .headerlink
+      padding 1px 1px
+      background-color #2bf
+      margin-right 7px
+
+#post-footer hr
+  border-color #fe2
+
+#bottom-btn
+  position sticky
+  bottom 0
+  z-index 1
+  a
+    position absolute
+    right 0
+    transition .3s
+    width 40px
+    height 40px
+    color #fff
+    line-height 40px
+    text-align center
+    font-size 40px
+    font-weight 900
+    padding 0
+    user-select none
+    @media ( min-width 769px )
+      &:hover
+        color #000
+        line-height 30px
+        background-color #fe2
+#to-index
+  bottom 48px
+#to-top
+  bottom 8px
+
+#reward
+  margin 1em 0
+  color #000
+  text-align center
+  background-color rgba(#fff, .1)
+  summary
+    background-color #fe2
+  div
+    width 45%
+    margin 0
+    padding 20px 0
+    display inline-block
+  span
+    color #2bf
+    padding-right 10px
+  img
+    width 80%
+    max-width 280px
+    padding 0 20px
+
+#toc-div
+  .toc
+    margin 0
+    padding 10px
+    list-style none
+  .toc-child
+    display none
+    padding-left 1em
+    list-style none
+  .toc-item
+    white-space nowrap
+    overflow hidden
+    margin 2px 0
+  .has-active
+    display block
+  .toc-link
+    width 100%
+    overflow-y auto
+    &::-webkit-scrollbar
+      display none
+    &::-ms-scrollbar
+      display none
+    scrollbar-width none
+    display inline-block
+    @media ( min-width 769px )
+      &:hover
+        .toc-number
+          display none
+  @media ( min-width 769px )
+    .active
+      color #000
+      background-color #2bf
+      .toc-number
+        display none
+
+#pages
+  padding 5px
+  display flex
+  justify-content center
+  border-top #fe2 solid 2px
+  border-bottom #fe2 solid 2px
+
+#split
+  position sticky
+  color #fe2
+  left 50%
+  @media ( min-width 769px )
+    &:hover
+      background-color unset
+
+#footer-link
+  padding 5px
+  position sticky
