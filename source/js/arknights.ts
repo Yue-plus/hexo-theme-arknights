@@ -236,25 +236,16 @@ class codes {
         </span>\
     </span></span>\
     <div class="code-box">' + item.innerHTML + '</div>'
-    item.querySelector('.code-copy').addEventListener('click', (click : MouseEvent)=>{
+    item.querySelector('.code-copy').addEventListener('click', (click : Event)=>{
       const button = click.target as HTMLElement
       navigator.clipboard.writeText(item.querySelector('code').innerText)
       button.classList.add('copied')
       setTimeout(()=> button.classList.remove('copied'), 1200)
     })
-    item.querySelector('.code-header').addEventListener('click', (click : MouseEvent)=>{
+    item.querySelector('.code-header').addEventListener('click', (click : Event)=>{
       if (!(click.target as HTMLElement).classList.contains('code-copy')){
         this.reverse(click.currentTarget as HTMLElement, 'open', 'fold')
       }
-    })
-  }
-
-  private doAsAdmon(item: Element): void {
-    item.classList.add('AD-fold')
-    const header = item.children[0]
-    header.innerHTML= '<div class="admon-icon"></div>' + header.innerHTML
-    item.querySelector('.admonition-title').addEventListener('click', (click : MouseEvent)=>{
-      this.reverse(click.currentTarget as HTMLElement, 'AD-open', 'AD-fold')
     })
   }
 
@@ -270,10 +261,6 @@ class codes {
           }
         }
       })
-    }
-    codeBlocks = document.querySelectorAll('.admonition')
-    if (codeBlocks !== null) {
-      codeBlocks.forEach((item)=>this.doAsAdmon(item))
     }
   }
 
