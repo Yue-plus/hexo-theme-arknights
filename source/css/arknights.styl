@@ -1,0 +1,42 @@
+$search = hexo-config('search.enable') ? hexo-config('search.enable') : false
+$isleft = hexo-config('aside.in_left') ? hexo-config('aside.in_left') : false
+$gitalk = hexo-config('gitalk.enable') ? hexo-config('gitalk.enable') : false
+$Valine = hexo-config('Valine.enable') ? hexo-config('Valine.enable') : false
+
+// ===== 基础样式
+// == base style
+@import "_core/*"
+
+// ===== 组件相关
+// == modules
+if $search
+  @import "_modules/search"
+  if $isleft
+    @import "_modules/search_left"
+  else
+    @import "_modules/search_right"
+
+if $gitalk
+  @import "_modules/gitalk"
+
+if $Valine
+  @import "_modules/Valine"
+
+// ===== 布局样式
+// == layout style
+if $isleft
+  @import "_layout/left"
+else
+  @import "_layout/right"
+
+// ========= 弹性布局
+// ====== flex layout
+@import "_layout/flex_layout"
+
+// ===== 页面布局
+// == page layout
+@import "_page/*"
+
+// ===== 自定义样式
+// == custom style
+@import "_custom/*"

@@ -87,12 +87,10 @@ block content
         #comments
 
 block aside-block
-  -
+  - 
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
   if (tocContent.length > 0)
-    h1 INDEX
-    if (encrypted !== undefined)
-      #toc-div(style="display:none")!= tocContent
-    else
-      #toc-div!= tocContent
+    #toc-div(style=encrypted !== undefined?"display:none":"")
+      h1 INDEX
+      |!{tocContent}

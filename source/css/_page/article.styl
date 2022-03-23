@@ -1,0 +1,110 @@
+article
+  display flex
+  flex-direction column
+  justify-content space-between
+  min-height calc(100vh - 10px)
+  height fit-content
+  padding-top 10px
+  flex-grow 1
+  min-width 1px
+  #post-content p, .recent-excerpt p
+    line-height 150%
+
+.recent-post
+  color #898989
+  display block
+  margin-bottom -1px
+  border 1px solid #898989
+  padding 13px 15px
+  transition .3s
+  .recent-info::after
+    transition .3s
+  object
+    h1, h2, h3, h4, h5, h6
+      font-size large
+      margin 0
+  .categories, .tags
+    font-family BenderLight, sans-serif
+  .categories
+    color #2bf
+    font-size large
+    font-weight bold
+    padding 0 10px 0 0
+  .tags
+    font-size small
+    span, object
+      display inline-block
+      padding 0 5px 0 0
+  time
+    color #898989
+    display inline-block
+    text-align left
+    float right
+  hr
+    color #898989
+    border-color #898989
+  img
+    width 100%
+  h1
+    font-family sans-serif
+    color #fff
+    margin 0
+    padding 15px 0 0 0
+  @media ( min-width 769px )
+    &:hover
+      color #000
+      background-color #2bf
+      a
+        color #000
+        &:active
+          color #000!important
+        &:hover
+          color #fff
+      time, .categories
+        color #000
+      .recent-info::after
+        background-color #000
+      .recent-excerpt
+        object a
+          color #fff
+      hr
+        color #2bf
+        border-color #2bf
+      figure table
+        .gutter
+          background-color #fe2
+        .code
+          background-color rgba(#141516, .8)
+          &, &:hover
+            color #fff
+      blockquote
+        &, &:hover
+          color #fff
+          border-color #fe2
+          background-color rgba(#141516, .8)
+      .read-more
+        color #fff
+        background-color #000
+
+.recent-info:after
+  content ''
+  width 13%
+  display block
+  height 5px
+  background-color #2bf
+  position relative
+  bottom -6px
+
+.recent-excerpt
+  margin 12px 0 28px 0
+
+.read-more
+  color #141516
+  display block
+  float right
+  font-size smaller
+  font-weight 600
+  background-color #22bbff
+  margin-top -21px
+  padding 3px 10px 3px 40px
+  font-family BenderLight

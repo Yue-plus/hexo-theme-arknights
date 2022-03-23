@@ -15,7 +15,7 @@
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
-![主题预览图片](./demo.png)
+![主题预览图片](./demo.jpg)
 
 ## 系统环境
 
@@ -40,12 +40,12 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 
 npm 用户：
 ```shell script 
-cnpm install hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass --save
+cnpm install hexo-server hexo-browsersync hexo-renderer-pug --save
 ```
 
 yarn 用户：
 ```shell script
-yarn add hexo-server hexo-browsersync hexo-renderer-pug hexo-renderer-dartsass
+yarn add hexo-server hexo-browsersync hexo-renderer-pug
 ```
 
 ### 修改配置文件
