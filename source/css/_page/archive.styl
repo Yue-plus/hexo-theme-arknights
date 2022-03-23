@@ -1,0 +1,82 @@
+#archive-flex
+  height 100%
+  min-height 600px
+  padding-bottom 30px
+  box-sizing border-box
+  display flex
+  justify-content stretch
+
+.article-item
+  display flex
+
+#archive-aside
+  position sticky
+  top 10px
+  height 100%
+  display flex
+  order -1
+  flex-grow 1
+  flex-direction column
+
+#Archives, #Categories, #Tags
+  margin 0 10px
+  background-color rgba(#141516, .8)
+  overflow-y auto
+  &, h1
+    transition .3s
+  h1
+    margin 0
+    padding 0 15px
+    color #000
+    background-color #fff
+    font-size medium
+    font-family BenderLight
+  @media ( min-width 769px )
+    &:hover, &:target
+      background-color rgba(#fff, .05)
+      h1
+        background-color #2bf
+
+#Archives
+  flex-grow 5
+  h2
+    margin 10px 0
+    font-size large
+    &:before
+      content ''
+      display inline-block
+      width 5px
+      height 15px
+      margin-right 5px
+      background-color #fe2
+  time
+    color #fff
+    padding 0 0 0 20px
+  .control
+    width 75px
+    display inline-block
+.categories, .tags
+  display inline-block
+#Archives-bg
+  box-sizing border-box
+  padding 10px
+  padding-bottom 25px
+
+#Categories
+  height 50%
+  flex-grow 1
+  margin-bottom 20px
+
+#Tags
+  height 100%
+  flex-grow 1
+
+#navigation
+  a
+    width 100%
+    display inline-block
+    padding 6px 0
+    font-size x-large
+    font-weight 900
+    font-family BenderLight
+    text-align center
