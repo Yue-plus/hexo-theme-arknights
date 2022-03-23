@@ -35,6 +35,10 @@ archives:
   categories_count: true # 是否显示分类总数
   tags_count: true # 是否显示标签总数
 
+# 搜索框
+search:
+  enable: true
+
 # Valine 无后端评论系统
 valine:
   enable: false
