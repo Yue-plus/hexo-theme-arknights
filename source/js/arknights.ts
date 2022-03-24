@@ -113,7 +113,7 @@ class indexs {
   postContent: HTMLElement | null
   index: Array<number> = []
   totop: HTMLElement = document.querySelector('#to-top')
-  scrollID: number = null
+  scrollID: number = 0
   scrolling: number = 0
 
   private setItem(item: HTMLElement) {
@@ -174,7 +174,6 @@ class indexs {
       if (this.tocLink.length > 0) {
         this.headerLink = document.querySelectorAll('.headerlink')
         this.postContent = document.querySelector('#post-content')
-        const totop = document.querySelector('#to-top')
         ++this.scrolling
         if (this.scrollID == null && this.tocLink.length > 0) {
           this.scrollID = setInterval(this.modifyIndex.bind(this), 50)
@@ -182,7 +181,7 @@ class indexs {
         setTimeout(()=>{
           if (--this.scrolling == 0) {
             clearInterval(this.scrollID)
-            this.scrollID = null
+            this.scrollID = 0
             const totop: HTMLElement = document.querySelector('#to-top')
             if (this.totop !== null
               && document.querySelector('#post-title').getBoundingClientRect().top < -200) {
@@ -249,6 +248,15 @@ class codes {
     })
   }
 
+  private doAsAdmon(item: Element): void {
+    item.classList.add('AD-fold')
+    const header = item.children[0]
+    header.innerHTML= '<div class="admon-icon"></div>' + header.innerHTML
+    item.querySelector('.admonition-title').addEventListener('click', (click : Event)=>{
+      this.reverse(click.currentTarget as HTMLElement, 'AD-open', 'AD-fold')
+    })
+  }
+
   private findCode(): void{
     let codeBlocks = document.querySelectorAll('.highlight')
     if (codeBlocks !== null) {
@@ -261,6 +269,10 @@ class codes {
           }
         }
       })
+    }
+    codeBlocks = document.querySelectorAll('.admonition')
+    if (codeBlocks !== null) {
+      codeBlocks.forEach((item)=>this.doAsAdmon(item))
     }
   }
 
@@ -313,7 +325,6 @@ class cursors {
 
   private Aeffect(mouse: MouseEvent): void {
     if (this.fadeIng == false) {
-      let a = this
       this.fadeIng = true
       this.effecter.left = String(mouse.x) + 'px'
       this.effecter.top = String(mouse.y) + 'px'
@@ -376,7 +387,7 @@ class slides {
     }
     let navs = this.nav.querySelectorAll('.navItem'),
         mayLen : number = 0,
-        may : HTMLElement;
+        may : Element = navs.item(0)
     navs.forEach((item)=>{
       let now = item as HTMLElement,
           link = now.querySelector('a') as HTMLAnchorElement
@@ -384,8 +395,8 @@ class slides {
         let href = link.href
         now.classList.remove('active')
         if (href.length > mayLen && document.URL.match(href) !== null) {
-          mayLen = href.length;
-          may = now;
+          mayLen = href.length
+          may = now
         }
       }
     })
@@ -395,6 +406,8 @@ class slides {
   }
 
   constructor() {
+    this.relabel()
+    document.addEventListener('pjax:success', this.relabel)
     this.button.addEventListener('mousedown',()=>{
       if (document.querySelector('.search')) {
         this.closeSearch = true
@@ -409,8 +422,6 @@ class slides {
         this.nav.classList.add('expanded')
       }
     }
-    document.addEventListener('pjax:success', this.relabel)
-    window.onload = this.relabel.bind(this);
   }
 }
 

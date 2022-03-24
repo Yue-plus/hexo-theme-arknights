@@ -25,30 +25,30 @@ block content
           if dateConf
             if !first
               br
-            span First Post:
-              span.control
+            span First Post: 
+              div.control
                 time(datetime=page.date.toJSON())#date
                   = ' ' + date(page.date, date_format)
             - first = false
           if updatedConf
             if !first
               br
-            span Last Update:
-              span.control
+            span Last Update: 
+              div.control
                 time(datetime=page.updated.toJSON())#updated
                   = ' ' + date(page.updated, date_format)
             - first = false
           if countWord
             if !first
               br
-            span Word Count:
-              span.control &nbsp;#{countWord}
+            span Word Count: 
+              div.control #{countWord}
             - first = false
           if countTime
             if !first
               br
-            span Read Time:
-              span.control &nbsp;#{countTime}min
+            span Read Time: 
+              div.control #{countTime} min
     hr
     #post-content
       if excerptConf
