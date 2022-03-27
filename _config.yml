@@ -42,9 +42,9 @@ search:
 # Valine 无后端评论系统
 valine:
   enable: false
-  app_id: # <APP ID>
-  app_key: # <APP KEY>
-  server_url: # <APP DOMAIN>（LeanCloud 国际版）
+  app_id: # APP ID
+  app_key: # APP KEY
+  server_url: # APP DOMAIN（LeanCloud 国际版）
 
 gitalk:
   enable: false
