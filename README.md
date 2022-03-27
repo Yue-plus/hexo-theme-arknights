@@ -58,7 +58,9 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
         hljs: true
       ```
 - 复制 `Hexo/themes/arknights/_config.yml` 到 Hexo 目录下，并重命名为 `_config.arknights.yml`。
-  > 建议参考：[使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+  > 建议参考：
+  > - [使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+  > - [hexo 分支的 `_config.arknights.yml`](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml)
   
   主题的配置文件可参照中文注释修改。
 
@@ -111,15 +113,15 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 # Valine 无后端评论系统
 valine:
   enable: false
-  app_id: # <APP ID>
-  app_key: # <APP KEY>
-  server_url: # <APP DOMAIN>（LeanCloud 国际版）
+  app_id: # APP ID
+  app_key: # APP KEY
+  server_url: # APP DOMAIN（LeanCloud 国际版需要）
 ```
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
 > **注意！** 当 Valine 使用 *LeanCloud 国际版* 时，才需要配置 `server_url:`。  
-> 该设置可在 LeanCloud 应用中的 `设置->应用凭证->域名白名单->Request 域名` 中找到以 `.api.lncldglobal.com` 结尾的域名，加上 `https://` 前缀即可。
+> 该设置可在 LeanCloud 应用中的 `设置 -> 应用凭证 -> 域名白名单 -> Request 域名` 中找到以 `.api.lncldglobal.com` 结尾的域名，加上 `https://` 前缀即可。
 
 ### Gitalk
 
@@ -152,7 +154,7 @@ cnpm install hexo-filter-mathjax --save
 hexo clean
 ```
 
-2. 把以下内容添加到 `<Hexo>/_config.yml` 文件：
+2. 把以下内容添加到 `Hexo/_config.yml` 文件：
 
 ```yaml
 mathjax:
@@ -260,7 +262,7 @@ post:
 cnpm install hexo-blog-encrypt --save
 ```
 
-在 `<Hexo>/_config.yml` 文件中添加以下内容：
+在 `Hexo/_config.yml` 文件中添加以下内容：
 
 ```yml
 # Security
@@ -305,7 +307,7 @@ yarn 用户：
 yarn add hexo-generator-searchdb
 ```
 
-之后在 `<Hexo>/_config.yml` 文件中添加：
+之后在 `Hexo/_config.yml` 文件中添加：
 
 ```yaml
 search:
@@ -332,10 +334,10 @@ reward: true/false
 
 ## 引入自定义 CSS/JS 文件
 
-可以在 `<Hexo>/source/css/` 目录下放入自己的 CSS 文件；
-在 `<Hexo>/source/js/` 目录下放入自己的 JavaScript 脚本文件；
+可以在 `Hexo/source/css/` 目录下放入自己的 CSS 文件；
+在 `Hexo/source/js/` 目录下放入自己的 JavaScript 脚本文件；
 
-然后修改 `<Hexo>/_config.arknights.yml` 文件：
+然后修改 `Hexo/_config.arknights.yml` 文件：
 
 ```diff
  # 在 `<head>` 标签内引入 CSS 样式表
