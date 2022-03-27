@@ -112,12 +112,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
   };
   const onPopupClose = ()=>{
     document.querySelector('main').classList.remove('overlay');
-    document.getElementById('canvas-dust').classList.remove('overlay');
     document.querySelector('.search-popup').classList.remove('open');
   };
   const proceedSearch = ()=>{
     document.querySelector('main').classList.add('overlay');
-    document.getElementById('canvas-dust').classList.add('overlay');
     document.querySelector('.search-popup').classList.add('open');
     if (isfetched === true) {
       document.querySelector('.search-popup').innerHTML = "<div id='search-result'></div>";

@@ -48,26 +48,25 @@ main .search
 @media ( min-width 1024px )
   .search-popup
     background-color rgba(20,21,22,.95)
-  main
-    .search-header
+  .search-header
+    &::after
+      transition .3s
+      z-index -1
+      content ""
+      display block
+      width 0px
+      height 100%
+      top 0
+      position absolute
+      border-color #fff
+    &:hover
+      input::placeholder
+        transition .3s
+        color #000
       &::after
         transition .3s
-        z-index -1
-        content ""
-        display block
-        width 0px
-        height 100%
-        top 0
-        position absolute
-        border-color #fff
-      &:hover
-        input::placeholder
-          transition .3s
-          color #000
-        &::after
-          transition .3s
-          width calc(100% + 10px)
-          background-color #2bf
+        width calc(100% + 10px)
+        background-color #2bf
 
 .search-popup
   pointer-events: all
