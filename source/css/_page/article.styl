@@ -1,4 +1,6 @@
 article
+  box-sizing border-box
+  position relative
   display flex
   flex-direction column
   justify-content space-between
@@ -9,6 +11,9 @@ article
   min-width 1px
   #post-content p, .recent-excerpt p
     line-height 150%
+
+.posts
+  margin-bottom 72px
 
 .recent-post
   color #898989
@@ -108,3 +113,28 @@ article
   margin-top -21px
   padding 3px 10px 3px 40px
   font-family BenderLight
+
+#paginator
+  width 100%
+  user-select none
+  margin 20px 0
+  display flex
+  flex-wrap wrap
+  justify-content center
+  position absolute
+  bottom 0
+  left 0
+  a, span
+    color #fff
+    font-weight bold
+    margin 0 10px 0 0
+    border 1px solid #2bf
+    padding 5px 10px
+    &:last-child
+      margin 0
+  @media ( min-width 769px )
+    a:hover
+      color #000
+  .current
+    color #000
+    background-color #2bf

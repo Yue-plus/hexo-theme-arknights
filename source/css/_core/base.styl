@@ -9,9 +9,10 @@ a, button
   cursor url(../cursor-inner.png) 3 3, pointer
 
 #cursor-container
+  z-index 65535
   #cursor-outer
     position fixed
-    z-index 65536
+    z-index 1
     transform translate3d(-50%, -50%, 0px)
     height 36px
     width 36px
@@ -21,7 +22,6 @@ a, button
     transition background-color .3s, width .3s, height .3s
   #cursor-effect
     position fixed
-    z-index 65535
     transform translate3d(-50%, -50%, 0px) scale(0)
     height 80px
     width 80px
