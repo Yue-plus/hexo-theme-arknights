@@ -2,7 +2,7 @@ $search = hexo-config('search.enable') ? hexo-config('search.enable') : false
 $isleft = hexo-config('aside.in_left') ? hexo-config('aside.in_left') : false
 $gitalk = hexo-config('gitalk.enable') ? hexo-config('gitalk.enable') : false
 $Valine = hexo-config('Valine.enable') ? hexo-config('Valine.enable') : false
-$canva_dust = hexo-config('canva_dust.enable') ? hexo-config('canva_dust.enable') : false
+$canvas_dust = hexo-config('canvas_dust') ? hexo-config('canvas_dust') : false
 
 // ===== 基础样式
 // == base style
@@ -10,9 +10,8 @@ $canva_dust = hexo-config('canva_dust.enable') ? hexo-config('canva_dust.enable'
 
 // ===== 组件相关
 // == modules
-
-if $canva_dust
-  @import "_modules/canva_dust"
+if $canvas_dust
+  @import "_modules/canvas_dust"
 
 if $search
   @import "_modules/search/base"
