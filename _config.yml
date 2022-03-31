@@ -67,6 +67,11 @@ pjax:
   enable: false
   version: '0.2.8'
 
+# 公式支持
+mathjax:
+  enable: false
+  version: '2.6.1'
+
 # main menu navigation
 menu:
   Home: ''
