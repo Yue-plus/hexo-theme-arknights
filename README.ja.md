@@ -1,6 +1,7 @@
 | [简体中文](README.md)
-| [日本語](README-Ja.md)
-|
+| [English](README.en.md)
+| [日本語](README.ja.md)
+| 
 
 # hexo-theme-arknights
 
