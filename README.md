@@ -1,8 +1,10 @@
+| [简体中文](README.md)
+| [日本語](README-Ja.md)
+|
+
 # hexo-theme-arknights
 
-## 多国语言Readme
 
-[日本語バージョン](README-Ja.md)  
 
 ## 预览
 
@@ -202,8 +204,6 @@ mathjax: true
 +\begin{eqnarray\*}
 ```
 
-> 也可以尝试更换能更好处理数学公式的渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)
-
 ### 方案二：动态渲染
 
 本主题也支持 [MathJax](https://www.mathjax.org/) ，在用户浏览时动态渲染公式：
@@ -247,7 +247,6 @@ hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： h
 1. 动态渲染方案 LaTeX 语法不需要转义，能更好的支持从其他地方导出的 Markdown 文件。但因为需要在浏览器渲染，页面显示会略有延迟。
 2. 静态渲染方案将公式直接编译在静态文件里，显示性能更优，但语法需要转义。
 3. 使用 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) 兼顾显示性能与无需转义两者的特点，但需要在环境中另外安装 pandoc 转换器。
-
 
 ## 图表支持
 
@@ -432,10 +431,13 @@ post:
 ## 参与开发
 
 ### 开发人员
+
 - [Yue_plus](https://github.com/Yue-plus)
 - [Laurenfrost](https://github.com/Laurenfrost)
 - [ToUNVRSe](https://github.com/ToUNVRSe)
 - [飞龙project](https://github.com/feilongproject)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
 
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 

@@ -1,13 +1,19 @@
+| [简体中文](README.md)
+| [日本語](README-Ja.md)
+|
+
 # hexo-theme-arknights
 
 ## デモページ　　
 
 デモページはこちらです。　　
 
-- **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
+- ### **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
-- **Dr.hastin: <http://hastin-blog.cn/>**
+- **Dr.XIMU：<http://b.ligzs.cn/>**
+- **Dr.ToUNVRSe <https://tounvrse.github.io/>**
+- **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
@@ -163,8 +169,6 @@ mathjax: true
 +\begin{eqnarray\*}
 ```
 
-> エスケープせずよりよく数式レンダリングするために、プラグイン [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) の使用も推奨されています。
-
 ### その2：動的レンダリング
 
 このテーマでは、[MathJax](https://www.mathjax.org/)を利用して、数式をブラウザサイドで動的レンダリングすることもできます。
@@ -208,20 +212,23 @@ mathjax: true
 
 ## テーマの開発にあなたの力を
 ### メンバー
-- ### **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
-- **Dr.Ye: <https://laurenfrost.github.io/>**
-- **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
-- **Dr.XIMU：<http://b.ligzs.cn/>**
-- **Dr.ToUNVRSe <https://tounvrse.github.io/>**
+
+- [Yue_plus](https://github.com/Yue-plus)
+- [Laurenfrost](https://github.com/Laurenfrost)
+- [ToUNVRSe](https://github.com/ToUNVRSe)
+- [飞龙project](https://github.com/feilongproject)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
 
 >  [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) と [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)は大歓迎。  
 
 ### ブレンチの説明
 | ブレンチ  | 説明                                           |
 | -------- | ---------------------------------------------- |
-| master   | テーマの開発                                    |
+| main     | 比較的安定したバージョン                         |
+| dev      | 開発中のバージョン                              |
 | gh-pages | github-page                                    |
-| hexo     | Hexoファイルとテスト用 `.md` ファイル            |
+| hexo     | Hexo ファイルとテスト用 `.md` ファイル            |
 
 ### 開発の環境
 まずは [nodejs](https://nodejs.org/) と [yarn](https://classic.yarnpkg.com/zh-Hans/) をインストール。そして以下のコマンド通り：
