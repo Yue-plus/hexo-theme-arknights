@@ -12,6 +12,7 @@
 - **Dr.XIMU：<http://b.ligzs.cn/>**
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
+- **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
@@ -143,7 +144,11 @@ gitalk:
 
 ## 数学公式
 
-使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器来显示数学公式：
+本主题支持两种方案显示数学公式：
+
+### 方案一：静态渲染
+
+可以使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器静态渲染，来显示数学公式：
 
 1. 在 Hexo 目录下执行以下指令：
 
@@ -198,6 +203,51 @@ mathjax: true
 ```
 
 > 也可以尝试更换能更好处理数学公式的渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)
+
+### 方案二：动态渲染
+
+本主题也支持 [MathJax](https://www.mathjax.org/) ，在用户浏览时动态渲染公式：
+
+1. 首先要卸载 Hexo 默认自带的 hexo-renderer-marked 渲染器，更换成对 MathJax 支持更好的 [hexo-renderer-kramed](https://github.com/sun11/hexo-renderer-kramed) 渲染器：
+   ```shell
+   $ npm uninstall hexo-renderer-marked --save
+   $ npm install hexo-renderer-kramed --save
+   ```
+2. 修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件：
+   ```diff
+    # 公式支持
+    mathjax:
+   -  enable: false
+   +  enable: true
+      version: '2.6.1'
+   ```
+3. 然后，就可以在文章中使用 LaTeX 语法：
+   ```latex
+   % 单行内联公式
+   % 注意需要两边带上 "`" ，且 "`" 与 "$" 之间不能有空格
+   `$\sigma$`
+
+   % 多行公式
+   $$
+   \begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
+   &= x\end{aligned}
+   $$
+   ```
+4. 用这种方案，不会造成 LaTeX 与 Markdown 语法之间的冲突。在文中使用 LaTeX 语法不需要转义。
+   以下公式可以直接使用，不会造成任何问题：
+   ```latex
+   \epsilon_0
+   \begin{eqnarray*}
+   ```
+
+hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： https://github.com/sun11/hexo-renderer-kramed
+
+
+几种公式显示方案各有优缺点：
+1. 动态渲染方案 LaTeX 语法不需要转义，能更好的支持从其他地方导出的 Markdown 文件。但因为需要在浏览器渲染，页面显示会略有延迟。
+2. 静态渲染方案将公式直接编译在静态文件里，显示性能更优，但语法需要转义。
+3. 使用 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) 兼顾显示性能与无需转义两者的特点，但需要在环境中另外安装 pandoc 转换器。
+
 
 ## 图表支持
 

@@ -44,6 +44,27 @@ html(lang=config.language)
         |   startOnLoad: false
         |   , theme: 'dark'
         | });
+    if theme.mathjax.enable === true
+      script(src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
+      script
+        | MathJax.Hub.Config({
+        |   menuSettings: {
+        |     zoom: "None"
+        |   },
+        |   showMathMenu: false,
+        |   jax: ["input/TeX","output/CommonHTML"],
+        |   extensions: ["tex2jax.js"],
+        |   TeX: {
+        |     extensions: ["AMSmath.js","AMSsymbols.js"],
+        |     equationNumbers: {
+        |       autoNumber: "AMS"
+        |     }
+        |   },
+        |   tex2jax: {
+        |     inlineMath: [["\\(", "\\)"]],
+        |     displayMath: [["\\[", "\\]"]]
+        |   }
+        | });
     link(rel="stylesheet", href=config.root + "css/arknights.css")
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from _config.yml
