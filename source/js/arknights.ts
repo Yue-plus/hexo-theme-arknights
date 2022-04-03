@@ -1,3 +1,21 @@
+"use strict"
+
+function getElement(string : string, item : Element = document.documentElement): HTMLElement {
+  let tmp : HTMLElement | null = item.querySelector(string)
+  if (tmp === null) {
+    throw new Error("Unknow HTML")
+  }
+  return tmp
+}
+
+function getParent(item : Element): HTMLElement {
+  let tmp : HTMLElement | null = item.parentElement
+  if (tmp === null) {
+    throw new Error("Unknow HTML")
+  }
+  return tmp
+}
+
 class dust {
   public x: number = 50
   public y: number = 50
@@ -13,8 +31,8 @@ class dust {
 }
 
 class canvasDust {
-  private readonly canvas: HTMLCanvasElement | undefined
-  private readonly ctx: CanvasRenderingContext2D | null | undefined
+  private readonly canvas: HTMLCanvasElement
+  private readonly ctx: CanvasRenderingContext2D | null
   public width: number = 300
   public height: number = 300
   private dustQuantity: number = 50
@@ -108,17 +126,16 @@ class canvasDust {
 }
 
 class indexs {
-  headerLink: NodeList
-  tocLink: NodeList = document.querySelectorAll('.toc-link')
-  postContent: HTMLElement | null
-  index: Array<number> = []
-  totop: HTMLElement = document.querySelector('#to-top')
-  scrollID: number = 0
-  scrolling: number = 0
+  private headerLink: NodeList
+  private tocLink: NodeList
+  private index: Array<number> = []
+  private scrollID: number = 0
+  private scrolling: number = 0
+  private readonly totop: HTMLElement = getElement('#to-top')
 
   private setItem(item: HTMLElement) {
     item.classList.add('active')
-    let $parent = item.parentElement, brother = $parent.children
+    let $parent = getParent(item), brother = $parent.children
     for (let i = 0; i < brother.length; i++) {
       const item = brother.item(i) as HTMLElement
       if (item.classList.contains('toc-child')) {
@@ -126,7 +143,7 @@ class indexs {
         break
       }
     }
-    for (let $parent = item.parentElement; $parent.classList[0] != 'toc'; $parent = $parent.parentElement) {
+    for (let $parent = getParent(item); $parent.classList[0] != 'toc'; $parent = getParent($parent)) {
       if ($parent.classList[0] == 'toc-child') {
         $parent.classList.add('has-active')
       }
@@ -159,37 +176,38 @@ class indexs {
     this.index = []
   }
 
-  private scrolltop() {
+  private scrolltop(): void {
     window.scroll({top: 0,left: 0,behavior: 'smooth'});
-    (document.querySelector('#to-top') as HTMLElement).style.opacity = '0'
+    this.totop.style.opacity = '0'
     setTimeout(()=> this.totop.style.display = 'none', 300)
   }
 
   constructor() {
+    this.headerLink = document.querySelectorAll('.headerlink')
+    this.tocLink = document.querySelectorAll('.toc-link')
     if (this.tocLink.length > 0) {
       this.setItem(this.tocLink.item(0) as HTMLElement)
     }
     document.addEventListener('scroll', ()=>{
+      this.headerLink = document.querySelectorAll('.headerlink')
       this.tocLink = document.querySelectorAll('.toc-link')
       if (this.tocLink.length > 0) {
-        this.headerLink = document.querySelectorAll('.headerlink')
-        this.postContent = document.querySelector('#post-content')
         ++this.scrolling
-        if (this.scrollID == null && this.tocLink.length > 0) {
-          this.scrollID = setInterval(this.modifyIndex.bind(this), 50)
+        if (this.scrollID == 0 && this.tocLink.length > 0) {
+          this.scrollID = setInterval(this.modifyIndex.bind(this), 50) as unknown as number
         }
         setTimeout(()=>{
           if (--this.scrolling == 0) {
             clearInterval(this.scrollID)
             this.scrollID = 0
-            const totop: HTMLElement = document.querySelector('#to-top')
-            if (this.totop !== null
-              && document.querySelector('#post-title').getBoundingClientRect().top < -200) {
-              totop.style.display = ''
-              setTimeout(()=> totop.style.opacity = '1', 300)
-            } else {
-              totop.style.opacity = '0'
-              setTimeout(()=> totop.style.display = 'none', 300)
+            if (this.totop !== null) {
+                if(getElement('#post-title').getBoundingClientRect().top < -200) {
+                this.totop.style.display = ''
+                setTimeout(()=> this.totop.style.opacity = '1', 300)
+              } else {
+                this.totop.style.opacity = '0'
+                setTimeout(()=> this.totop.style.display = 'none', 300)
+              }
             }
           }
         }, 200);
@@ -200,7 +218,7 @@ class indexs {
 
 class codes {
   private reverse(item: Element, s0: string, s1: string) {
-    const block = item.parentElement
+    const block = getParent(item)
     if (block.classList.contains(s0)){
       block.classList.remove(s0)
       block.classList.add(s1)
@@ -216,32 +234,36 @@ class codes {
   }
 
   private resetName(str: string): string {
-    if (str == 'plaintext') return 'TEXT'
-    if (str == 'cs') return 'C#'
+    if (str == 'plaintext') {
+      return 'TEXT'
+    }
+    if (str == 'cs') {
+      return 'C#'
+    }
     return str.toUpperCase()
   }
 
   private doAsCode(item: Element): void {
-    const codeType = item.classList[1],
-          lineCount = item.querySelector('.gutter').children[0].childElementCount >> 1
+    const codeType = this.resetName(item.classList[1]),
+          lineCount = getElement('.gutter', item).children[0].childElementCount >> 1
     item.classList.add(lineCount < 16 ? 'open' : 'fold')
     item.innerHTML=
-    '<span class="code-header"><span class="code-title">\
-        <div class="code-icon"></div>' +
-        this.resetName(codeType) + ' 共 ' + lineCount + ' 行</span>\
-        <span class="code-header-tail">\
-          <button class="code-copy"></button>\
-          <span class="code-space">展开</span>\
-        </span>\
-    </span></span>\
-    <div class="code-box">' + item.innerHTML + '</div>'
-    item.querySelector('.code-copy').addEventListener('click', (click : Event)=>{
+      '<span class="code-header">\
+        <span class="code-title">\
+          <div class="code-icon"></div>' +
+          this.resetName(codeType) + ' 共 ' + lineCount + ' 行</span>\
+          <span class="code-header-tail">\
+            <button class="code-copy"></button>\
+            <span class="code-space">展开</span></span></span></span>\
+      <div class="code-box">'
+        + item.innerHTML + '</div>'
+    getElement('.code-copy', item).addEventListener('click', (click : Event)=>{
       const button = click.target as HTMLElement
-      navigator.clipboard.writeText(item.querySelector('code').innerText)
+      navigator.clipboard.writeText(getElement('code', item).innerText)
       button.classList.add('copied')
       setTimeout(()=> button.classList.remove('copied'), 1200)
     })
-    item.querySelector('.code-header').addEventListener('click', (click : Event)=>{
+    getElement('.code-header', item).addEventListener('click', (click : Event)=>{
       if (!(click.target as HTMLElement).classList.contains('code-copy')){
         this.reverse(click.currentTarget as HTMLElement, 'open', 'fold')
       }
@@ -252,7 +274,7 @@ class codes {
     item.classList.add('AD-fold')
     const header = item.children[0]
     header.innerHTML= '<div class="admon-icon"></div>' + header.innerHTML
-    item.querySelector('.admonition-title').addEventListener('click', (click : Event)=>{
+    getElement('.admonition-title', item).addEventListener('click', (click : Event)=>{
       this.reverse(click.currentTarget as HTMLElement, 'AD-open', 'AD-fold')
     })
   }
@@ -280,29 +302,30 @@ class codes {
 }
 
 class cursors {
-  now: MouseEvent
-  first: boolean = true
-  outer = document.getElementById('cursor-outer').style
-  effecter = document.getElementById('cursor-effect').style
-  scale: number = 0
-  opacity: number = 0
-  last: number = 0
-  moveIng: boolean = false
-  fadeIng: boolean = false
-  attention: string = "a,input,button,.admonition,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon"
+  private now: MouseEvent = new MouseEvent('')
+  private first: boolean = true
+  private last: number = 0
+  private moveIng: boolean = false
+  private fadeIng: boolean = false
+  private readonly outer : CSSStyleDeclaration = getElement('#cursor-outer').style
+  private readonly effecter : CSSStyleDeclaration = getElement('#cursor-effect').style
+  private readonly attention: string =
+    "a,input,button,.admonition,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon"
 
   private move(timestamp: number): void {
     if (this.now !== undefined) {
       let SX = this.outer.left, SY = this.outer.top
-      let preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2))
+      let preX = Number(SX.substring(0, SX.length - 2)),
+          preY = Number(SY.substring(0, SY.length - 2))
       let delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3
-      preX += delX
-      preY += delY
-      this.outer.left = preX.toFixed(2) + 'px'
-      this.outer.top = preY.toFixed(2) + 'px'
-      if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
-        while(timestamp - this.last < 10)
+      if(timestamp - this.last > 15) {
+        preX += delX
+        preY += delY
+        this.outer.left = preX.toFixed(2) + 'px'
+        this.outer.top = preY.toFixed(2) + 'px'
         this.last = timestamp
+      }
+      if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
         window.requestAnimationFrame(this.move.bind(this))
       } else {
         this.moveIng = false
@@ -328,7 +351,9 @@ class cursors {
       this.fadeIng = true
       this.effecter.left = String(mouse.x) + 'px'
       this.effecter.top = String(mouse.y) + 'px'
-      this.effecter.transition = 'transform .5s cubic-bezier(0.22, 0.61, 0.21, 1), opacity .5s cubic-bezier(0.22, 0.61, 0.21, 1)'
+      this.effecter.transition =
+        'transform .5s cubic-bezier(0.22, 0.61, 0.21, 1)\
+        ,opacity .5s cubic-bezier(0.22, 0.61, 0.21, 1)'
       this.effecter.transform = 'translate(-50%, -50%) scale(1)'
       this.effecter.opacity = '0'
       setTimeout(()=>{
@@ -346,7 +371,7 @@ class cursors {
     this.outer.background = "rgba(255, 255, 255, 0.5)"
   }
 
-  private relax(): void {
+  public relax(): void {
     this.outer.height = '36px'
     this.outer.width = '36px'
     this.outer.background = "unset"
@@ -377,14 +402,11 @@ class cursors {
 }
 
 class slides {
-  nav: HTMLElement = document.querySelector('nav')
-  button: HTMLElement = this.nav.querySelector('.navBtnIcon')
+  private readonly nav: HTMLElement = getElement('nav')
+  private readonly button: HTMLElement = getElement('.navBtnIcon')
   closeSearch: boolean = false
 
   private relabel(): void {
-    if (this.nav === undefined) {
-      this.nav = document.querySelector('nav')
-    }
     let navs = this.nav.querySelectorAll('.navItem'),
         mayLen : number = 0,
         may : Element = navs.item(0)
@@ -398,6 +420,12 @@ class slides {
           mayLen = href.length
           may = now
         }
+        if (href.match('archives') !== null
+          &&(document.URL.match('tag') !== null
+            || document.URL.match('categories') !== null)){
+          may = now
+          mayLen = Infinity
+        }
       }
     })
     if (may !== null) {
@@ -407,13 +435,16 @@ class slides {
 
   constructor() {
     this.relabel()
-    document.addEventListener('pjax:success', this.relabel)
+    document.addEventListener('pjax:success', this.relabel.bind(this))
     this.button.addEventListener('mousedown',()=>{
       if (document.querySelector('.search')) {
         this.closeSearch = true
       }
     })
     this.button.onclick = ()=>{
+      if (this.nav === null) {
+        throw new Error("Unknow HTML")
+      }
       if (this.closeSearch) {
         this.closeSearch = false
       } else if (this.nav.classList[0] === 'expanded') {
@@ -425,8 +456,79 @@ class slides {
   }
 }
 
-let index = new indexs()
-let code = new codes()
 let cursor = new cursors()
-new slides()
-new canvasDust('canvas-dust')
+try {
+  var index = new indexs()
+} catch(e) {}
+try {
+  new slides()
+} catch(e) {}
+let code = new codes()
+try {
+  new canvasDust('canvas-dust')
+} catch(e) {}
+
+class pjaxSupport {
+  private readonly canvas : HTMLCanvasElement = document.createElement('canvas')
+  private readonly line : CanvasRenderingContext2D
+  private width : number = 0
+  private finalWidth : number = 0
+  private last : number = 0
+  private playing : number = 0
+
+  private setwidth(timestamp : number) {
+    if (timestamp - this.last > 10) {
+      this.last = timestamp
+      let all = window.innerWidth
+      this.width += Math.min(all * 0.02, this.finalWidth)
+      this.line.fillStyle = "#fe2"
+      this.line.fillRect(0, 0, this.width, 1)
+      this.line.fillRect(all - this.width, 0, all, 1)
+    }
+    if (this.width < this.finalWidth) {
+      window.requestAnimationFrame(this.setwidth.bind(this))
+    } else {
+      if (!--this.playing && this.finalWidth == window.innerWidth * 0.5) {
+        this.width = 0
+        this.finalWidth = 0
+        setTimeout(()=>{
+          document.body.removeChild(document.body.firstChild as HTMLElement)
+          this.line.clearRect(0, 0, window.innerWidth, 2)
+        }, 200)
+      }
+    }
+  }
+
+  private start(need : number) {
+    ++this.playing
+    this.finalWidth = need
+    window.requestAnimationFrame(this.setwidth.bind(this))
+  }
+
+  constructor() {
+    let tmp = this.canvas.getContext('2d')
+    if (tmp === null) {
+      throw new Error('Unknown HTML')
+    }
+    this.line = tmp
+    this.canvas.height = 1
+    this.canvas.style.top = '0'
+    this.canvas.style.position = "fixed"
+    document.addEventListener('pjax:send',()=>{
+      this.canvas.width = window.innerWidth
+      document.body.insertBefore(this.canvas,document.body.firstChild)
+      this.start(window.innerWidth * 0.05)
+      setTimeout(()=>{
+        if (this.finalWidth < window.innerWidth * 0.3) {
+          this.start(window.innerWidth * 0.3)
+        }
+      }, 500)
+    })
+    document.addEventListener('pjax:complete',()=>{
+      cursor.relax()
+      this.start(window.innerWidth * 0.5)
+    })
+  }
+}
+
+new pjaxSupport()

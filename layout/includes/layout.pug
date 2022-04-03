@@ -72,7 +72,10 @@ html(lang=config.language)
                    placeholder="数据检索" spellcheck="false" maxlength="50"
                    type="text" id="search-input")
           each url, label in theme.menu
-            li.navItem
+            - var match = ""
+            if url.match(config.archive_dir)
+              - match = [config.category_dir, config.tag_dir]
+            li.navItem(mathdata=match)
               a(href= config.root + url)
                 span.navItemTitle= label
       if configs !== null
