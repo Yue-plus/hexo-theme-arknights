@@ -3,7 +3,6 @@ header
   left 0
   z-index 5
   height 100%
-  transition .3s
   font-family BenderLight
   display inline
   position fixed
@@ -19,6 +18,7 @@ nav
   &::-ms-scrollbar
     display none
   a
+    transition unset
     position relative
     height 40px
     line-height 40px
@@ -88,6 +88,8 @@ nav
       position relative
       margin unset
       .navItemTitle
+        transition .3s
+        width 100%
         overflow-wrap break-word
         white-space normal
         position relative
