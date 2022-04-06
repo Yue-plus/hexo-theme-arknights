@@ -34,72 +34,73 @@ nav
     color #fff
     &:active
       background unset
-  .navBtn
-    pointer-events all
-    display block
-    position absolute
-    top 1.5rem
-    padding 0.5rem
-    font-size 2rem
+.navBtn
+  pointer-events all
+  display block
+  position absolute
+  top 1.5rem
+  padding 0.5rem
+  font-size 2rem
+  z-index 10
+  .navBtnIcon 
     z-index 10
-    .navBtnIcon 
-      z-index 10
-      width 1em
-      height 1em
-      display block
-      position relative
-    .navBtnIconBar
-      position absolute
-      top 50%
-      width 1em
-      height 0.1em
-      background-color #d4d8dd
-      text-indent 101%
-      white-space nowrap
-      overflow hidden
-      transition transform ease-in-out 0.3s
-    .navBtnIconBar
-      &:nth-child(1)
-        left 0
-        transform translate(0, -350%)
-      &:nth-child(2)
-        left 0
-        transform translate(0, -50%)
-      &:nth-child(3)
-        right 0
-        transform translate(0, 250%)
-  &.expanded .navBtnIconBar
+    width 1em
+    height 1em
+    display block
+    position relative
+  .navBtnIconBar
+    position absolute
+    top 50%
+    width 1em
+    height 0.1em
+    background-color #d4d8dd
+    text-indent 101%
+    white-space nowrap
+    overflow hidden
+    transition transform ease-in-out 0.3s
+  .navBtnIconBar
     &:nth-child(1)
-      transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(-50%)
-    &:nth-child(3)
-      transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(50%)
+      left 0
+      transform translate(0, -350%)
     &:nth-child(2)
-      transform translate(0, -50%) rotateZ(-45deg)
-  .navContent
-    pointer-events all
-    box-sizing border-box
+      left 0
+      transform translate(0, -50%)
+    &:nth-child(3)
+      right 0
+      transform translate(0, 250%)
+.expanded .navBtnIconBar
+  &:nth-child(1)
+    transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(-50%)
+  &:nth-child(3)
+    transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(50%)
+  &:nth-child(2)
+    transform translate(0, -50%) rotateZ(-45deg)
+.navContent
+  pointer-events all
+  box-sizing border-box
+  margin unset
+  height 100%
+  display flex
+  flex-direction column
+  justify-content center
+  list-style none
+  .navItem
+    overflow visible
+    position relative
     margin unset
-    height 100%
-    display flex
-    flex-direction column
-    justify-content center
-    list-style none
-    .navItem
+    .navItemTitle
+      transition .3s
+      width 100%
+      overflow-wrap break-word
+      white-space normal
       position relative
-      margin unset
-      .navItemTitle
-        transition .3s
-        width 100%
-        overflow-wrap break-word
-        white-space normal
-        position relative
-        display block
-      @media ( min-width 1024px )
-        &.active a
-          color #2bf
-        &:hover a
-          color #2bf
-          background-color unset
+      display block
+    @media ( min-width 1024px )
+      &.active a
+        color #2bf
+      &:hover a
+        color #2bf
+        background-color unset
 
 @media ( max-width 1023px )
   header
@@ -108,8 +109,9 @@ nav
   .navBtn
     left 1.5rem
   .navContent
+    transform translateX(-100%)
     width 100%
-    padding-right 2.5rem
+    padding: 4.5rem 2.5rem 2rem;
     transition transform 0.6s
     background-color rgba(0, 0, 0, 0.88)
     .navItem a
@@ -118,7 +120,7 @@ nav
         color #fff
       box-sizing border-box
       align-items flex-end
-      padding 0 0 6px 2rem
+      padding 6px 2rem
       border-bottom 1px solid rgba(57, 57, 57, 0.5)
       height 100%
       .navItemTitle::after
@@ -135,27 +137,30 @@ nav
         color #2bf
       .navItemTitle::after
         border-color #2bf
-  nav.expanded .navContent
+  .expanded .navContent
     transform translateX(0%)
 
 @media ( min-width 1024px )
-  nav
-    .navBtn
-      display none
-    .navItemTitle::after
-      content ""
-      display block
-      width 0px
-      height 100%
-      top 0
-      position absolute
   header
-    width 180px
+    width 176px
+  .navBtn
+    display none
+  .navItemTitle::after
+    content ""
+    display block
+    width 0px
+    height 100%
+    top 0
+    position absolute
+  .navItem
+    width 120px
 
 @media ( min-width 1440px )
   header
-    width 210px
+    width 240px
+  .navItem
+    width 150px
 
-@media ( min-width 1920px )
+@media ( min-width 1440px )
   header
-    width 250px
+    width 310px

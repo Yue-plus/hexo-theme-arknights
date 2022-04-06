@@ -1,22 +1,20 @@
 .search
   [class$="navItem"],[class$="active"]
-    transform translateX(150%)
+    transform translateX(100%)
 .search-popup
   right 0
   transform translateX(100%)
   &.open
     transform translateX(0%)
-.search-header
-  &:hover::after
-    border-color #2bf
-  &::after
-    border-right 4px solid #fff
 
 @media ( min-width 1024px )
   .search-header
     input
       right 10px
+    &:hover::after
+      border-color #2bf
     &::after
+      border-right 4px solid #fff
       right 0
 
 @keyframes get-in

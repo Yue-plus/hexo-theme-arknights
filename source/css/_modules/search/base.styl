@@ -35,15 +35,19 @@
 @media ( max-width 1023px )
   .search .navItem.search-header
     top 38px
-    width calc(100% - 4em)
+    width 231px
+    box-sizing content-box
   .search-header
-    padding 0 0 6px 2rem
+    padding 6px 2rem
+    input
+      padding unset
     &::after
       content ""
       display block
       width 100%
       height 0
       border-bottom 2px solid #ffffff
+      border-left 0
 
 @media ( min-width 1024px )
   .search-popup
@@ -58,7 +62,6 @@
       height 100%
       top 0
       position absolute
-      border-color #fff
     &:hover
       input::placeholder
         transition .3s
