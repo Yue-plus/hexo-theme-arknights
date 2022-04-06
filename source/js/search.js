@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
       .replace(/&quot;/g, '"')
       .replace(/&#39;/g, '\'')
       .replace(/&#x3A;/g, ':')
-      .replace(/&#(\d+);/g, (m, p)=>{
+      .replace(/&#(\d+);/g, (p)=>{
         return String.fromCharCode(p)
       })
       .replace(/&lt;/g, '<')
@@ -165,7 +165,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
           }
         })
         if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-          let hitCount = indexOfTitle.length + indexOfContent.length;
           [indexOfTitle, indexOfContent].forEach(index =>{
             index.sort((itemLeft, itemRight)=>{
               if (itemRight.position !== itemLeft.position) {
@@ -245,6 +244,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
       })
       resultContent.innerHTML = searchResultList
     }
+    if (pjax) {
+      pjax.refresh(resultContent)
+    }
   }
 
   if (config.preload) {
@@ -254,7 +256,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     input.addEventListener('input', inputEventFunction)
   } else {
     input.addEventListener('keypress', event =>{
-      if (event.keyCode === 13) {
+      if (event.key === 13) {
         inputEventFunction()
       }
     })
@@ -273,7 +275,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     onPopupClose()
     document.querySelector('#search-input').value = ''
   }
-  document.querySelector("#search-input").addEventListener('keyup', ()=>{
+  document.querySelector('#search-input').addEventListener('keyup', ()=>{
     document.querySelector('.navContent').classList.add('search')
     document.querySelector('.navContent').classList.remove('moved')
     inputEventFunction()
@@ -288,7 +290,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     document.addEventListener('mouseup', EscapeSearch)
   })
   window.addEventListener('keyup', event =>{
-    if (event.which === 27) {
+    if (event.key === 27) {
       EscapeSearch()
     }
   })
