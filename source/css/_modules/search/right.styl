@@ -9,17 +9,21 @@
 
 @media ( min-width 1024px )
   .search-header
-    input::placeholder
-      text-align right
-    &:hover::after
-      border-color #2bf
-    &::after
-      border-left 4px solid #fff
-      left 0
+    input
+      padding 0 0 0 10px
+      &::placeholder
+        text-align right
+    .navItemTitle
+      padding-right 10px
+      &:hover::after
+        border-color #2bf
+      &::after
+        border-left 4px solid #fff
+        left 0
 
 @keyframes get-in
   0%
-    left -180%
+    left -100%
   100%
     left 0
 
@@ -27,4 +31,4 @@
   0%
     width 180%
   100%
-    width calc(100% + 10px)
+    width 100%

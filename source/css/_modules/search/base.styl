@@ -1,6 +1,4 @@
 .search-header
-  overflow hidden
-  box-sizing border-box
   position relative
   transition .3s
   input
@@ -11,20 +9,24 @@
       transition .3s
     font-size 15px
     height 40px
-    padding 0 10px
     background-color unset
     border unset
     outline none
-    width calc(100% + 10px)
+    width 100%
 .moved input
   animation get-in .6s
 .navItem
   transition .6s
 
+.navContent .navItem.search-header
+  .navItemTitle
+    overflow hidden
+  &:hover .navItemTitle
+    margin unset
+
 .search
   transition .6s
   .navItem.search-header
-    width calc(100% - 3em)
     transition .6s
     position absolute
     top 40px
@@ -36,39 +38,26 @@
   .search .navItem.search-header
     top 38px
     width 231px
-    box-sizing content-box
   .search-header
     padding 6px 2rem
     input
       padding unset
-    &::after
-      content ""
-      display block
-      width 100%
-      height 0
-      border-bottom 2px solid #ffffff
-      border-left 0
 
 @media ( min-width 1024px )
   .search-popup
     background-color rgba(20,21,22,.95)
   .search-header
-    &::after
+    .navItemTitle::after
+      width 0
       transition .3s
       z-index -1
-      content ""
-      display block
-      width 0px
-      height 100%
-      top 0
-      position absolute
     &:hover
       input::placeholder
         transition .3s
         color #000
-      &::after
+      .navItemTitle::after
         transition .3s
-        width calc(100% + 10px)
+        width 100%
         background-color #2bf
 
 .search-popup

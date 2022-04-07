@@ -1,6 +1,5 @@
 header
   top 0
-  left 0
   z-index 5
   height 100%
   font-family BenderLight
@@ -148,9 +147,10 @@ nav
   .navItemTitle::after
     content ""
     display block
-    width 0px
+    width 100%
     height 100%
     top 0
+    box-sizing border-box
     position absolute
   .navItem
     width 120px

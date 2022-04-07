@@ -72,9 +72,10 @@ html(lang=config.language)
         ol.navContent
           if searchConfig !== null
             li.navItem.search-header
-              input(autocomplete="off" autocorrect="off" autocapitalize="none"
-                   placeholder="数据检索" spellcheck="false" maxlength="50"
-                   type="text" id="search-input")
+              span.navItemTitle
+                input(autocomplete="off" autocorrect="off" autocapitalize="none"
+                  placeholder="数据检索" spellcheck="false" maxlength="50"
+                  type="text" id="search-input")
           each url, label in theme.menu
             - var match = null
             if url.match(config.archive_dir)
