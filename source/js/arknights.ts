@@ -129,7 +129,7 @@ class indexs {
   private tocLink: NodeList
   private scrollID: number = 0
   private scrolling: number = 0
-  private readonly totop: HTMLElement = getElement('#to-top')
+  private totop: HTMLElement
 
   private setItem(item: HTMLElement) {
     item.classList.add('active')
@@ -184,30 +184,35 @@ class indexs {
     this.headerLink = document.querySelectorAll('.headerlink')
     this.tocLink = document.querySelectorAll('.toc-link')
     this.setItem(this.tocLink.item(0) as HTMLElement)
+    this.totop = getElement('#to-top')
     document.addEventListener('scroll', () => {
       this.headerLink = document.querySelectorAll('.headerlink')
       this.tocLink = document.querySelectorAll('.toc-link')
-      if (this.tocLink.length > 0) {
-        ++this.scrolling
-        if (this.scrollID == 0 && this.tocLink.length > 0) {
-          this.scrollID = setInterval(this.modifyIndex.bind(this), 50) as unknown as number
-        }
-        setTimeout(() => {
-          if (--this.scrolling == 0) {
-            clearInterval(this.scrollID)
-            this.scrollID = 0
-            if (this.totop !== null) {
-              if (getElement('#post-title').getBoundingClientRect().top < -200) {
-                this.totop.style.display = ''
-                setTimeout(() => this.totop.style.opacity = '1', 300)
-              } else {
-                this.totop.style.opacity = '0'
-                setTimeout(() => this.totop.style.display = 'none', 300)
-              }
-            }
-          }
-        }, 200);
+      if (this.tocLink.length === 0) {
+        return
       }
+      this.totop = getElement('#to-top')
+      ++this.scrolling
+      if (this.scrollID == 0 && this.tocLink.length > 0) {
+        this.scrollID = setInterval(this.modifyIndex.bind(this), 50) as unknown as number
+      }
+      setTimeout(() => {
+        if (--this.scrolling) {
+          return
+        }
+        clearInterval(this.scrollID)
+        this.scrollID = 0
+        if (this.totop === null) {
+          return
+        }
+        if (getElement('#post-title').getBoundingClientRect().top < -200) {
+          this.totop.style.display = ''
+          setTimeout(() => this.totop.style.opacity = '1', 300)
+        } else {
+          this.totop.style.opacity = '0'
+          setTimeout(() => this.totop.style.display = 'none', 300)
+        }
+      }, 200);
     }, { passive: true })
   }
 }
@@ -503,7 +508,8 @@ class pjaxSupport {
         }
       }, 10, this.timestamp)
     })
-    document.addEventListener('pjax:complete', () => {
+    document.addEventListener('pjax:start', () => {
+      document.documentElement.scrollTop = 0
       slide.close()
       if (this.left.style.width !== "50%") {
         this.start(50)

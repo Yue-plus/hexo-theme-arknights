@@ -39,3 +39,28 @@
   top 0
   height 1px
   transition box-shadow .3s .1s
+
+.pjax-out
+  position absolute!important
+  animation .6s pjax-animate-out
+.pjax-in
+  position absolute!important
+  animation .6s pjax-animate-in
+
+#paginator.pjax-out
+  visibility hidden
+#paginator.pjax-in
+  visibility hidden
+
+
+@keyframes pjax-animate-in
+  0%
+    opacity 0
+  100%
+    opacity 1
+
+@keyframes pjax-animate-out
+  0%
+    opacity 1
+  100%
+    opacity 0
