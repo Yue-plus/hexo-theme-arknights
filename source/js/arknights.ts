@@ -455,24 +455,9 @@ class pjaxSupport {
     ++this.timestamp
   }
 
-  constructor() {
-    document.addEventListener('pjax:send', () => {
-      this.loading.classList.add('reset')
-      this.start(0)
-      setTimeout((time: number) => {
-        this.loading.style.opacity = '1'
-        this.loading.classList.remove('reset')
-        if (this.timestamp == time) {
-          this.start(15)
-          setTimeout((time: number) => {
-            if (this.timestamp == time) {
-              this.start(30)
-            }
-          }, 800, this.timestamp)
-        }
-      }, 10, this.timestamp)
-    })
-    document.addEventListener('pjax:start', () => {
+  private loaded(): void {
+    ++this.timestamp
+    if (this.loading.style.opacity === '1') {
       document.documentElement.scrollTop = 0
       slide.close()
       if (this.left.style.width !== "50%") {
@@ -483,6 +468,27 @@ class pjaxSupport {
           }
         }, 600, this.timestamp)
       }
+    }
+  }
+
+  constructor() {
+    document.addEventListener('pjax:send', () => {
+      this.loading.classList.add('reset')
+      this.start(0)
+      setTimeout((time: number) => {
+        if (this.timestamp == time) {
+          this.loading.style.opacity = '1'
+          this.loading.classList.remove('reset')
+          this.start(15)
+          setTimeout((time: number) => {
+            if (this.timestamp == time) {
+              this.start(30)
+            }
+          }, 800, this.timestamp)
+        }
+      }, 10, this.timestamp)
     })
+    document.addEventListener('pjax:start', this.loaded.bind(this))
+    document.addEventListener('pjax:complete', this.loaded.bind(this))
   }
 }
