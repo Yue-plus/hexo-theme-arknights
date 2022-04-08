@@ -229,35 +229,7 @@ class codes {
     }
   }
 
-  private doAsMermaid(item: Element) {
-    let Amermaid = item.querySelector('.mermaid') as HTMLElement
-    item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>'
-  }
-
-  private resetName(str: string): string {
-    if (str == 'plaintext') {
-      return 'TEXT'
-    }
-    if (str == 'cs') {
-      return 'C#'
-    }
-    return str.toUpperCase()
-  }
-
   private doAsCode(item: Element): void {
-    const codeType = this.resetName(item.classList[1]),
-      lineCount = getElement('.gutter', item).children[0].childElementCount >> 1
-    item.classList.add(lineCount < 16 ? 'open' : 'fold')
-    item.innerHTML =
-      '<span class="code-header">\
-        <span class="code-title">\
-          <div class="code-icon"></div>' +
-      this.resetName(codeType) + ' 共 ' + lineCount + ' 行</span>\
-          <span class="code-header-tail">\
-            <button class="code-copy"></button>\
-            <span class="code-space">展开</span></span></span></span>\
-      <div class="code-box">'
-      + item.innerHTML + '</div>'
     getElement('.code-copy', item).addEventListener('click', (click: Event) => {
       const button = click.target as HTMLElement
       navigator.clipboard.writeText(getElement('code', item).innerText)
@@ -274,7 +246,7 @@ class codes {
   private doAsAdmon(item: Element): void {
     item.classList.add('AD-fold')
     const header = item.children[0]
-    header.innerHTML = '<div class="admon-icon"></div>' + header.innerHTML
+    header.innerHTML = `<div class="admon-icon"></div>${header.innerHTML}`
     getElement('.admonition-title', item).addEventListener('click', (click: Event) => {
       this.reverse(click.currentTarget as HTMLElement, 'AD-open', 'AD-fold')
     })
@@ -283,15 +255,7 @@ class codes {
   public findCode(): void {
     let codeBlocks = document.querySelectorAll('.highlight')
     if (codeBlocks !== null) {
-      codeBlocks.forEach((item) => {
-        if (!item.classList.contains('mermaid') && item.querySelector('.code-header') === null) {
-          if (item.querySelector('.mermaid') !== null) {
-            this.doAsMermaid(item)
-          } else {
-            this.doAsCode(item)
-          }
-        }
-      })
+      codeBlocks.forEach((item) => this.doAsCode(item))
     }
     codeBlocks = document.querySelectorAll('.admonition')
     if (codeBlocks !== null) {
@@ -413,7 +377,7 @@ class slides {
       may: Element = navs.item(0)
     navs.forEach((item) => {
       let now = item as HTMLElement,
-          link = now.querySelector('a') as HTMLAnchorElement
+        link = now.querySelector('a') as HTMLAnchorElement
       if (link !== null) {
         let href = link.href
         now.classList.remove('active')
@@ -423,7 +387,7 @@ class slides {
         }
         if (now.hasAttribute('matchdata')) {
           const s = now.getAttribute('matchdata').split(',')
-          s.forEach((item: string)=>{
+          s.forEach((item: string) => {
             if (document.URL.match(item) !== null) {
               may = now
               mayLen = Infinity
@@ -495,7 +459,7 @@ class pjaxSupport {
     document.addEventListener('pjax:send', () => {
       this.loading.classList.add('reset')
       this.start(0)
-      setTimeout((time: number)=>{
+      setTimeout((time: number) => {
         this.loading.style.opacity = '1'
         this.loading.classList.remove('reset')
         if (this.timestamp == time) {
