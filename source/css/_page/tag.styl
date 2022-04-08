@@ -1,0 +1,32 @@
+.tag-list
+  padding 10px
+.tag-list-item
+  line-height 23px
+  background-color #313131
+  display inline-block
+  margin 5px
+  border #313131 solid 1px
+  border-radius 3px
+  &, a, span
+    transition .3s
+  @media ( min-width 769px )
+    &:hover
+      border-color #2bf
+      a
+        color #000
+        background-color #2bf
+      span
+        background-color #313131
+    &:active
+      border-color #fe2
+      a
+        background-color #fe2
+.tag-list-link
+  color #fff
+  padding 3px 6px 3px 12px
+  display inline-block
+.tag-list-count
+  display inline-block
+  padding 3px 6px
+  color #fff
+  background-color #494949

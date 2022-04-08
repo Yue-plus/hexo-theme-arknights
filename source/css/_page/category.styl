@@ -1,0 +1,30 @@
+.category-list, .tag-list
+  list-style none
+  display block
+  margin 0
+
+.category-list
+  padding 0
+.category-list-item
+  position relative
+  @media ( min-width 769px )
+    &:hover
+      a
+        color #2bf
+        border-left #2bf solid 5px
+        background-color rgba(#fff, .1)
+      span
+        color #fff
+.category-list-link
+  width 100%
+  padding 6px 40% 6px 10px
+  display inline-block
+  box-sizing border-box
+  &:before, &:after
+    color #2bf
+    content '#'
+    padding 0 5px
+.category-list-count
+  padding 6px 10px
+  position absolute
+  right 0
