@@ -26,16 +26,19 @@
   .navContent
     padding 1em 1em 1em 0
     transform unset
-    .navItem
+  .navItem
+    padding-left .8em
+    .navItemTitle:hover
+      margin-left 1em
+    a
+      text-align right
+      .navItemTitle::after
+        border-left 4px solid
       &:hover .navItemTitle
         margin-left 1em
-      a
-        text-align right
-        .navItemTitle::after
-          border-left 4px solid
   article
     margin-right 240px
-    margin-left 176px
+    margin-left 156px
 
 @media ( min-width 1440px )
   .navItem
@@ -48,7 +51,7 @@
   .navItem
     padding-left 5.25em
   article
-    margin-right calc(5% + 310px)
+    margin-right calc(5% + 320px)
     margin-left 310px
   aside
     right 5%

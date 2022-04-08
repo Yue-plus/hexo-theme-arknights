@@ -29,15 +29,18 @@
     align-items: flex-end
     padding 1em 0 1em 1em
     transform unset
-    .navItem
+  .navItem
+    padding-right .8em
+    .navItemTitle:hover
+      margin-left -1em
+    a
+      text-align left
+      .navItemTitle::after
+        border-right 4px solid
       &:hover .navItemTitle
         margin-left -1em
-      a
-        text-align left
-        .navItemTitle::after
-          border-right 4px solid
   article
-    margin-right 176px
+    margin-right 156px
     margin-left 240px
 
 @media ( min-width 1440px )
@@ -51,7 +54,7 @@
   .navItem
     padding-right 5.25em
   article
-    margin-left calc(5% + 310px)
+    margin-left calc(5% + 320px)
     margin-right 310px
   aside
    left 5%

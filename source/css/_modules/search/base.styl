@@ -21,7 +21,7 @@
 .navContent .navItem.search-header
   .navItemTitle
     overflow hidden
-  &:hover .navItemTitle
+  .navItemTitle:hover
     margin unset
 
 .search
@@ -47,18 +47,19 @@
   .search-popup
     background-color rgba(20,21,22,.95)
   .search-header
-    .navItemTitle::after
-      width 0
-      transition .3s
-      z-index -1
-    &:hover
-      input::placeholder
+    .navItemTitle
+      &::after
+        width 0
         transition .3s
-        color #000
-      .navItemTitle::after
-        transition .3s
-        width 100%
-        background-color #2bf
+        z-index -1
+      &:hover
+        input::placeholder
+          transition .3s
+          color #000
+        &::after
+          transition .3s
+          width 100%
+          background-color #2bf
 
 .search-popup
   pointer-events: all
