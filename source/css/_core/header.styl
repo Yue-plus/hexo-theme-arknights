@@ -95,7 +95,7 @@ nav
       position relative
       display block
     @media ( min-width 1024px )
-      a:active
+      &.active a
         color #2bf
       a:hover
         color #2bf
@@ -132,8 +132,6 @@ nav
         right 0
         position absolute
     .navItem.active
-      a
-        color #2bf
       .navItemTitle::after
         border-color #2bf
   .expanded .navContent
