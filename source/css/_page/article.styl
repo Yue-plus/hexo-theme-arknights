@@ -13,6 +13,7 @@ article
     line-height 150%
 
 .posts
+  width 100%
   margin-bottom 72px
 
 .recent-post
@@ -91,14 +92,16 @@ article
         color #fff
         background-color #000
 
-.recent-info:after
-  content ''
-  width 13%
-  display block
-  height 5px
-  background-color #2bf
-  position relative
-  bottom -6px
+.recent-info
+  min-height 25px
+  &:after
+    content ''
+    width 13%
+    display block
+    height 5px
+    background-color #2bf
+    position relative
+    bottom -6px
 
 .recent-excerpt
   margin 12px 0 28px 0
