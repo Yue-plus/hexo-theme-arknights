@@ -1,6 +1,6 @@
 header
   top 0
-  z-index 5
+  z-index 15
   height 100%
   font-family BenderLight
   display inline
@@ -34,12 +34,12 @@ nav
     &:active
       background unset
 .navBtn
+  transition top .3s
   pointer-events all
   display block
   position absolute
-  top 1.5rem
-  padding 0.5rem
-  font-size 2rem
+  top 1em
+  font-size 2em
   z-index 10
   .navBtnIcon 
     z-index 10
@@ -83,57 +83,69 @@ nav
   flex-direction column
   justify-content center
   list-style none
-  .navItem
-    overflow visible
-    position relative
-    margin unset
-    .navItemTitle
-      transition .3s
-      width 100%
-      overflow-wrap break-word
-      white-space normal
-      position relative
+.navItem
+  overflow visible
+  position relative
+  margin unset
+  &.active a
+    color #2bf
+  &.active:hover a
+    color #2bf
+  .navItemTitle
+    &::after
+      content ""
       display block
-    @media ( min-width 1024px )
-      &.active a
-        color #2bf
-      a:hover
-        color #2bf
-        background-color unset
+      width 100%
+      position absolute
+    transition .3s
+    width 100%
+    overflow-wrap break-word
+    white-space normal
+    position relative
+    display block
+  @media ( min-width 1024px )
+    a:hover
+      color #2bf
+      background-color unset
+
+@media ( max-width 768px )
+  header
+    left 0
+    .navContent
+      padding-left 0
+  .navItem
+    padding-left 2.5em
 
 @media ( max-width 1023px )
   header
     width 428px
     max-width 100%
   .navBtn
-    left 1.5rem
+    left 1em
   .navContent
     transform translateX(-100%)
     width 100%
-    padding: 4.5rem 2.5rem 2rem;
+    padding: 4.5em 2.5em 2em;
     transition transform 0.6s
     background-color rgba(0, 0, 0, 0.88)
-    .navItem a
-      &:hover
-        background-color unset
-        color #fff
-      box-sizing border-box
-      align-items flex-end
-      padding 6px 2rem
-      border-bottom 1px solid rgba(57, 57, 57, 0.5)
-      height 100%
-      .navItemTitle::after
-        content ""
-        display block
-        width 100%
-        height 0
-        border-bottom 2px solid #fff
-        bottom -7px
-        right 0
-        position absolute
-    .navItem.active
-      .navItemTitle::after
-        border-color #2bf
+  .navItem a
+    &:hover
+      background-color unset
+      color #fff
+    box-sizing border-box
+    align-items flex-end
+    padding 2px 2em
+    border-bottom 1px solid rgba(57, 57, 57, 0.5)
+    height 100%
+  .navItemTitle
+    padding-bottom 7px
+    &::after
+      height 0
+      border-bottom 2px solid #fff
+      bottom 0
+      right 0
+  .navItem.active .navItemTitle::after
+    border-color #2bf
   .expanded .navContent
     transform translateX(0%)
 
@@ -143,13 +155,9 @@ nav
   .navBtn
     display none
   .navItemTitle::after
-    content ""
-    display block
-    width 100%
     height 100%
     top 0
     box-sizing border-box
-    position absolute
   .navItem
     width 120px
 

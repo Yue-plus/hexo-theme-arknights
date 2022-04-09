@@ -1,7 +1,6 @@
 // ========= 基础样式
 // ====== base style
 html, body
-  height 100%
   cursor url(../cursor-inner.png) 3 3, default
   position static
 
@@ -34,20 +33,22 @@ html
   -ms-scrollbar-track-color #fe22
   scrollbar-width thin
   scrollbar-color #fe2 #69620a
-::-webkit-scrollbar
-  width 6px
-  height 6px
-::-webkit-scrollbar-thumb
-  background-color #fe24
-  border-radius .25em
-::-webkit-scrollbar-track
-  background-color #fe22
-::-webkit-scrollbar-thumb:hover
-  background-color #fe2a
-::-webkit-scrollbar-thumb:window-inactive
-  background-color #fe22
+@media ( min-width 769px)
+  ::-webkit-scrollbar
+    width 6px
+    height 6px
+  ::-webkit-scrollbar-thumb
+    background-color #fe24
+    border-radius .25em
+  ::-webkit-scrollbar-track
+    background-color #fe22
+  ::-webkit-scrollbar-thumb:hover
+    background-color #fe2a
+  ::-webkit-scrollbar-thumb:window-inactive
+    background-color #fe22
+
 body
-  margin 0 auto
+  margin 0
   color #c4c4c4
   background-color #141516
   background-attachment fixed
@@ -55,8 +56,6 @@ body
   background-repeat no-repeat
   background-size cover
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
-  overflow-y overlay
-  overflow-x hidden
 
 h1, h2, h3, h4, h5, h6
   color #fff
@@ -80,6 +79,9 @@ h1, h2, h3, h4, h5, h6
     font-size 1.15em
   h6
     font-size 1em
+
+p
+  overflow-x auto
 
 a
   color #22bbff
@@ -163,6 +165,4 @@ table
 input
   cursor url(../cursor-inner.png) 3 3, text
   user-select none
-
-mjx-container
-  padding 5px 0
+  font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
