@@ -123,6 +123,9 @@ class canvasDust {
 }
 
 class indexs {
+  private scrolling: number = 0
+  private getingtop: boolean = false
+
   private setItem(item: HTMLElement) {
     item.classList.add('active')
     let parent = getParent(item), brother = parent.children
@@ -141,8 +144,8 @@ class indexs {
   }
 
   private reset() {
-    let tocs : NodeList = document.querySelectorAll('#toc-div .active')
-    let tocTree : NodeList = document.querySelectorAll('#toc-div .has-active')
+    let tocs: NodeList = document.querySelectorAll('#toc-div .active')
+    let tocTree: NodeList = document.querySelectorAll('#toc-div .has-active')
     tocs.forEach((item) => {
       (item as HTMLElement).classList.remove('active')
     })
@@ -151,7 +154,7 @@ class indexs {
     })
   }
 
-  private modifyIndex(headerLink : NodeList, tocLink : NodeList) {
+  private modifyIndex(headerLink: NodeList, tocLink: NodeList) {
     let index: Array<number> = []
     headerLink.forEach((item) => {
       index.push((item as HTMLElement).getBoundingClientRect().top)
@@ -166,22 +169,24 @@ class indexs {
     }
   }
 
-  public scrolltop(totop : HTMLElement): void {
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  public scrolltop(): void {
+    let totop: HTMLElement = getElement('#to-top')
+    getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
     totop.style.opacity = '0'
+    this.getingtop = true
     setTimeout(() => totop.style.display = 'none', 300)
   }
 
   private setHtml(): void {
-    let headerLink : NodeList = document.querySelectorAll('.headerlink'),
-      tocLink : NodeList = document.querySelectorAll('.toc-link'),
-      totop : HTMLElement = getElement('#to-top'),
-      navBtn : HTMLElement = getElement('.navBtn'),
-      height : number= 0,
-      visible : boolean = false
+    let headerLink: NodeList = document.querySelectorAll('.headerlink'),
+      tocLink: NodeList = document.querySelectorAll('.toc-link'),
+      totop: HTMLElement = getElement('#to-top'),
+      navBtn: HTMLElement = getElement('.navBtn'),
+      height: number = 0,
+      visible: boolean = false
     this.setItem(tocLink.item(0) as HTMLElement)
     getElement('main').addEventListener('scroll', () => {
-      const nowheight : number = getElement('article').getBoundingClientRect().top
+      const nowheight: number = getElement('article').getBoundingClientRect().top
       if (height - nowheight > 100) { 
         navBtn.style.top = '-1em'
         height = nowheight
@@ -195,6 +200,15 @@ class indexs {
         return
       }
       this.modifyIndex(headerLink, tocLink)
+      ++this.scrolling
+      setTimeout(() => {
+        if (!--this.scrolling) {
+          this.getingtop = false
+        }
+      }, 100)
+      if (this.getingtop) {
+        return
+      }
       if (getElement('#post-title').getBoundingClientRect().top < -200) {
         totop.style.display = ''
         visible = true
@@ -216,7 +230,7 @@ class indexs {
   }
 
   constructor() {
-    document.addEventListener('pjax:success',this.setHtml.bind(this))
+    document.addEventListener('pjax:success', this.setHtml.bind(this))
     this.setHtml()
   }
 }
@@ -437,7 +451,7 @@ class slides {
 
 let cursor = new cursors()
 try {
-  new indexs()
+  var index = new indexs()
 } catch (e) {}
 try {
   var slide = new slides()
