@@ -1,8 +1,11 @@
+| [简体中文](README.md)
+| [English](README.en.md)
+| [日本語](README.ja.md)
+| 
+
 # hexo-theme-arknights
 
-## 多国语言Readme
 
-[日本語バージョン](README-Ja.md)  
 
 ## 预览
 
@@ -12,10 +15,11 @@
 - **Dr.XIMU：<http://b.ligzs.cn/>**
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
+- **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
-![主题预览图片](./demo.png)
+![主题预览图片](./demo.jpg)
 
 ## 系统环境
 
@@ -58,7 +62,9 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
         hljs: true
       ```
 - 复制 `Hexo/themes/arknights/_config.yml` 到 Hexo 目录下，并重命名为 `_config.arknights.yml`。
-  > 建议参考：[使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+  > 建议参考：
+  > - [使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+  > - [hexo 分支的 `_config.arknights.yml`](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml)
   
   主题的配置文件可参照中文注释修改。
 
@@ -111,15 +117,15 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 # Valine 无后端评论系统
 valine:
   enable: false
-  app_id: # <APP ID>
-  app_key: # <APP KEY>
-  server_url: # <APP DOMAIN>（LeanCloud 国际版）
+  app_id: # APP ID
+  app_key: # APP KEY
+  server_url: # APP DOMAIN（LeanCloud 国际版需要）
 ```
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
 > **注意！** 当 Valine 使用 *LeanCloud 国际版* 时，才需要配置 `server_url:`。  
-> 该设置可在 LeanCloud 应用中的 `设置->应用凭证->域名白名单->Request 域名` 中找到以 `.api.lncldglobal.com` 结尾的域名，加上 `https://` 前缀即可。
+> 该设置可在 LeanCloud 应用中的 `设置 -> 应用凭证 -> 域名白名单 -> Request 域名` 中找到以 `.api.lncldglobal.com` 结尾的域名，加上 `https://` 前缀即可。
 
 ### Gitalk
 
@@ -141,7 +147,11 @@ gitalk:
 
 ## 数学公式
 
-使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器来显示数学公式：
+本主题支持两种方案显示数学公式：
+
+### 方案一：静态渲染
+
+可以使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器静态渲染，来显示数学公式：
 
 1. 在 Hexo 目录下执行以下指令：
 
@@ -152,7 +162,7 @@ cnpm install hexo-filter-mathjax --save
 hexo clean
 ```
 
-2. 把以下内容添加到 `<Hexo>/_config.yml` 文件：
+2. 把以下内容添加到 `Hexo/_config.yml` 文件：
 
 ```yaml
 mathjax:
@@ -195,7 +205,49 @@ mathjax: true
 +\begin{eqnarray\*}
 ```
 
-> 也可以尝试更换能更好处理数学公式的渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)
+### 方案二：动态渲染
+
+本主题也支持 [MathJax](https://www.mathjax.org/) ，在用户浏览时动态渲染公式：
+
+1. 首先要卸载 Hexo 默认自带的 hexo-renderer-marked 渲染器，更换成对 MathJax 支持更好的 [hexo-renderer-kramed](https://github.com/sun11/hexo-renderer-kramed) 渲染器：
+   ```shell
+   $ npm uninstall hexo-renderer-marked --save
+   $ npm install hexo-renderer-kramed --save
+   ```
+2. 修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件：
+   ```diff
+    # 公式支持
+    mathjax:
+   -  enable: false
+   +  enable: true
+      version: '2.6.1'
+   ```
+3. 然后，就可以在文章中使用 LaTeX 语法：
+   ```latex
+   % 单行内联公式
+   % 注意需要两边带上 "`" ，且 "`" 与 "$" 之间不能有空格
+   `$\sigma$`
+
+   % 多行公式
+   $$
+   \begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
+   &= x\end{aligned}
+   $$
+   ```
+4. 用这种方案，不会造成 LaTeX 与 Markdown 语法之间的冲突。在文中使用 LaTeX 语法不需要转义。
+   以下公式可以直接使用，不会造成任何问题：
+   ```latex
+   \epsilon_0
+   \begin{eqnarray*}
+   ```
+
+hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： https://github.com/sun11/hexo-renderer-kramed
+
+
+几种公式显示方案各有优缺点：
+1. 动态渲染方案 LaTeX 语法不需要转义，能更好的支持从其他地方导出的 Markdown 文件。但因为需要在浏览器渲染，页面显示会略有延迟。
+2. 静态渲染方案将公式直接编译在静态文件里，显示性能更优，但语法需要转义。
+3. 使用 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) 兼顾显示性能与无需转义两者的特点，但需要在环境中另外安装 pandoc 转换器。
 
 ## 图表支持
 
@@ -260,7 +312,7 @@ post:
 cnpm install hexo-blog-encrypt --save
 ```
 
-在 `<Hexo>/_config.yml` 文件中添加以下内容：
+在 `Hexo/_config.yml` 文件中添加以下内容：
 
 ```yml
 # Security
@@ -305,7 +357,7 @@ yarn 用户：
 yarn add hexo-generator-searchdb
 ```
 
-之后在 `<Hexo>/_config.yml` 文件中添加：
+之后在 `Hexo/_config.yml` 文件中添加：
 
 ```yaml
 search:
@@ -332,10 +384,10 @@ reward: true/false
 
 ## 引入自定义 CSS/JS 文件
 
-可以在 `<Hexo>/source/css/` 目录下放入自己的 CSS 文件；
-在 `<Hexo>/source/js/` 目录下放入自己的 JavaScript 脚本文件；
+可以在 `Hexo/source/css/` 目录下放入自己的 CSS 文件；
+在 `Hexo/source/js/` 目录下放入自己的 JavaScript 脚本文件；
 
-然后修改 `<Hexo>/_config.arknights.yml` 文件：
+然后修改 `Hexo/_config.arknights.yml` 文件：
 
 ```diff
  # 在 `<head>` 标签内引入 CSS 样式表
@@ -380,10 +432,13 @@ post:
 ## 参与开发
 
 ### 开发人员
+
 - [Yue_plus](https://github.com/Yue-plus)
 - [Laurenfrost](https://github.com/Laurenfrost)
 - [ToUNVRSe](https://github.com/ToUNVRSe)
 - [飞龙project](https://github.com/feilongproject)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
 
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 

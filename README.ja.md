@@ -1,13 +1,21 @@
+| [简体中文](README.md)
+| [English](README.en.md)
+| [日本語](README.ja.md)
+| 
+
 # hexo-theme-arknights
 
 ## デモページ　　
 
 デモページはこちらです。　　
 
-- **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
+- ### **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
-- **Dr.hastin: <http://hastin-blog.cn/>**
+- **Dr.XIMU：<http://b.ligzs.cn/>**
+- **Dr.ToUNVRSe <https://tounvrse.github.io/>**
+- **Dr.tyqtyq <https://tyq0712.github.io/>**
+- **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 
@@ -106,9 +114,13 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
 メールサブスクライブ：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)。  
 
-## 数式および方程式の作成
-このテーマは数式および方程式を書類に含めることができます。  
-数式を作成するために、[hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) というフィルターが使用されています。  
+## 数式および方程式の表示
+
+このテーマでは、数式表示には二つの方法があります。
+
+### その1：静的生成
+
+数式を表示するために、[hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) というフィルターが使用されています。  
 
 1. まずは `<Hexo>` で以下のコマンドを実行します： 
 
@@ -131,7 +143,7 @@ mathjax:
   every_page: false #  true に設定されると、記事の頭の `mathjax` の値を問わずに、 mathjax が使用される
 ```
 
-3. mathjax を使用したい記事の [Front-matter](https://hexo.io/zh-cn/docs/front-matter) に `mathjax: true` を追加すると：
+3. mathjax を利用したい記事の [Front-matter](https://hexo.io/zh-cn/docs/front-matter) に `mathjax: true` を追加すると：
 ```markdown
 ---
 title: On the Electrodynamics of Moving Bodies
@@ -150,7 +162,7 @@ mathjax: true
 +$\frac{\partial}{\partial t}$
 ```
 
-5. LaTeX と Markdown の文法の差異にご注意ください。必要とされる時は半角のバックスラッシュ `\` （日本語環境では半角円記号 '¥'）を文字の前に付けましょう：
+5. LaTeX と Markdown の文法の差異にご注意ください。必要とされる時は半角のバックスラッシュ `\` （日本語環境では半角円記号 '¥'）でエスケープしてください：
 ```diff
 -$\epsilon_0$
 +$\epsilon\_0$
@@ -158,24 +170,66 @@ mathjax: true
 +\begin{eqnarray\*}
 ```
 
-> さらに効果の高い数式プラグイン [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) の使用はまだ検討中です。
+### その2：動的レンダリング
+
+このテーマでは、[MathJax](https://www.mathjax.org/)を利用して、数式をブラウザサイドで動的レンダリングすることもできます。
+
+1. まずは、デフォルトのレンダラー hexo-renderer-marked をアンインストールし、その代わりとして [hexo-renderer-kramed](https://github.com/sun11/hexo-renderer-kramed) をインストールします。
+   ```shell
+   $ npm uninstall hexo-renderer-marked --save
+   $ npm install hexo-renderer-kramed --save
+   ```
+2. また、 `<Hexo>/_config.yml` を、以下のように変更します。
+   ```diff
+    mathjax:
+   -  enable: false
+   +  enable: true
+      version: '2.6.1'
+   ```
+3. そして、記事の中で以下のように LaTeX 文法を利用して、数式を表示出来ます。
+   ```latex
+   % インライン数式
+   % 両側に「`」を付けてください。「`」と「$」の間に隙間あってはいけません。
+   `$\sigma$`
+
+   % ディスプレイ数式
+   $$
+   \begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
+   &= x\end{aligned}
+   $$
+   ```
+4. この方法を使うと、 LaTeX と Markdown の文法の差を気にせずに数式を書くことができます。
+   以下のように数式を書いても、何の問題もなくレンダリングされます。
+   ```latex
+   \epsilon_0
+   \begin{eqnarray*}
+   ```
+レンダラー hexo-renderer-marked は他の設定もできますので、公式ドキュメントを参考にしてみてください：https://github.com/sun11/hexo-renderer-kramed
+
+以上の方法は、それぞれに長所と短所があります：
+1. 動的レンダリングは、 LaTeX 文法のエスケープせずに書くことができる為、他のフレームワークやブログサイトからの記事導入は簡単にできます。ですが、クライアントサイドレンダリングですので、ページ上の数式表示は若干遅れます。
+2. 静的生成は、数式を素早く表示することができますが、 LaTeX 文法のエスケープをしなくてはいけません。
+3. [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) を利用して、文法をエスケープする手間がかからなくても、数式を素早く表示できますが、 Pandoc をインストールしなくてはいけません。
 
 ## テーマの開発にあなたの力を
 ### メンバー
-- ### **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
-- **Dr.Ye: <https://laurenfrost.github.io/>**
-- **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
-- **Dr.XIMU：<http://b.ligzs.cn/>**
-- **Dr.ToUNVRSe <https://tounvrse.github.io/>**
+
+- [Yue_plus](https://github.com/Yue-plus)
+- [Laurenfrost](https://github.com/Laurenfrost)
+- [ToUNVRSe](https://github.com/ToUNVRSe)
+- [飞龙project](https://github.com/feilongproject)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
 
 >  [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) と [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)は大歓迎。  
 
 ### ブレンチの説明
 | ブレンチ  | 説明                                           |
 | -------- | ---------------------------------------------- |
-| master   | テーマの開発                                    |
+| main     | 比較的安定したバージョン                         |
+| dev      | 開発中のバージョン                              |
 | gh-pages | github-page                                    |
-| hexo     | Hexoファイルとテスト用 `.md` ファイル            |
+| hexo     | Hexo ファイルとテスト用 `.md` ファイル            |
 
 ### 開発の環境
 まずは [nodejs](https://nodejs.org/) と [yarn](https://classic.yarnpkg.com/zh-Hans/) をインストール。そして以下のコマンド通り：
