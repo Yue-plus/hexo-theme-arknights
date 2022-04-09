@@ -86,54 +86,55 @@ html(lang=config.language)
       if searchConfig !== null
         .search-popup
           #search-result
-    article
-      if body
-        div!= body
-      else
-        block content
-      if page.published !== undefined
-        #bottom-btn
-          if tocLength !== null
-            a#to-index(href="#toc-div" title="index") ≡
-          a#to-top(onClick="index.scrolltop();" title="to top" style="opacity: 0; display: none;") ∧
-    aside
-      #aside-top
-        #about
-          a(href=config.root)#logo
-            img(src=asideLogo, alt="Logo")
-          h1#Dr
-            a(href= theme.aside.dr)= config.author
-          #description
-            for str in config.description
-              p= str
-        #aside-block
-          block aside-block
-          if page.published === undefined
-            section#total
-              a#total-archives(href= config.root + "archives")
-                span.total-title Archives Total:
-                span.total-number= site.posts.length
-              #total-tags
-                span.total-title Tags:
-                span.total-number= site.tags.length
-              #total-categories
-                span.total-title Categories:
-                span.total-number= site.categories.length
-      footer
-        if theme.aside.copyright !== null
-          each content, title in theme.aside.copyright
-            nobr
-              span.text-title= title
-              span.text-content= content
-            br
-        nobr="published with "
-          a(href='http://hexo.io') Hexo
-        wbr
-        nobr=" Theme "
-          a(href='https://github.com/Yue-plus/hexo-theme-arknights') Arknight
-        wbr
-        nobr="by "
-          a(href='https://github.com/Yue-plus') Yue_plus
+    main
+      article
+        if body
+          div!= body
+        else
+          block content
+        if page.published !== undefined
+          #bottom-btn
+            if tocLength !== null
+              a#to-index(href="#toc-div" title="index") ≡
+            a#to-top(onClick="index.scrolltop();" title="to top" style="opacity: 0; display: none;") ∧
+      aside
+        #aside-top
+          #about
+            a(href=config.root)#logo
+              img(src=asideLogo, alt="Logo")
+            h1#Dr
+              a(href= theme.aside.dr)= config.author
+            #description
+              for str in config.description
+                p= str
+          #aside-block
+            block aside-block
+            if page.published === undefined
+              section#total
+                a#total-archives(href= config.root + "archives")
+                  span.total-title Archives Total:
+                  span.total-number= site.posts.length
+                #total-tags
+                  span.total-title Tags:
+                  span.total-number= site.tags.length
+                #total-categories
+                  span.total-title Categories:
+                  span.total-number= site.categories.length
+        footer
+          if theme.aside.copyright !== null
+            each content, title in theme.aside.copyright
+              nobr
+                span.text-title= title
+                span.text-content= content
+              br
+          nobr="published with "
+            a(href='http://hexo.io') Hexo
+          wbr
+          nobr=" Theme "
+            a(href='https://github.com/Yue-plus/hexo-theme-arknights') Arknight
+          wbr
+          nobr="by "
+            a(href='https://github.com/Yue-plus') Yue_plus
     #cursor-container
       #cursor-outer
       #cursor-effect
