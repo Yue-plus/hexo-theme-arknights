@@ -59,9 +59,7 @@ class canvasDust {
         this.buildDust(i[0], i[1], dustObj)
         this.dustArr.push(dustObj)
       }
-      setInterval(() => {
-        this.play()
-      }, 40)
+      setInterval(this.play.bind(this), 40)
     }
   }
 
@@ -125,15 +123,9 @@ class canvasDust {
 }
 
 class indexs {
-  private headerLink: NodeList
-  private tocLink: NodeList
-  private scrollID: number = 0
-  private scrolling: number = 0
-  private totop: HTMLElement
-
   private setItem(item: HTMLElement) {
     item.classList.add('active')
-    let $parent = getParent(item), brother = $parent.children
+    let parent = getParent(item), brother = parent.children
     for (let i = 0; i < brother.length; i++) {
       const item = brother.item(i) as HTMLElement
       if (item.classList.contains('toc-child')) {
@@ -141,7 +133,7 @@ class indexs {
         break
       }
     }
-    for (let parent = getParent(item); parent.classList[0] != 'toc'; parent = getParent(parent)) {
+    for (; parent.classList[0] != 'toc'; parent = getParent(parent)) {
       if (parent.classList[0] == 'toc-child') {
         parent.classList.add('has-active')
       }
@@ -149,24 +141,24 @@ class indexs {
   }
 
   private reset() {
-    let tocs = document.querySelectorAll('#toc-div .active')
-    let tocTree = document.querySelectorAll('#toc-div .has-active')
+    let tocs : NodeList = document.querySelectorAll('#toc-div .active')
+    let tocTree : NodeList = document.querySelectorAll('#toc-div .has-active')
     tocs.forEach((item) => {
-      item.classList.remove('active')
+      (item as HTMLElement).classList.remove('active')
     })
     tocTree.forEach((item) => {
-      item.classList.remove('has-active')
+      (item as HTMLElement).classList.remove('has-active')
     })
   }
 
-  private modifyIndex() {
+  private modifyIndex(headerLink : NodeList, tocLink : NodeList) {
     let index: Array<number> = []
-    this.headerLink.forEach((item) => {
+    headerLink.forEach((item) => {
       index.push((item as HTMLElement).getBoundingClientRect().top)
     })
     this.reset()
-    for (let i = 0; i < this.tocLink.length; ++i) {
-      const item = this.tocLink.item(i) as HTMLElement
+    for (let i = 0; i < tocLink.length; ++i) {
+      const item = tocLink.item(i) as HTMLElement
       if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
         this.setItem(item)
         break
@@ -174,46 +166,58 @@ class indexs {
     }
   }
 
-  public scrolltop(): void {
+  public scrolltop(totop : HTMLElement): void {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-    this.totop.style.opacity = '0'
-    setTimeout(() => this.totop.style.display = 'none', 300)
+    totop.style.opacity = '0'
+    setTimeout(() => totop.style.display = 'none', 300)
+  }
+
+  private setHtml(): void {
+    let headerLink : NodeList = document.querySelectorAll('.headerlink'),
+      tocLink : NodeList = document.querySelectorAll('.toc-link'),
+      totop : HTMLElement = getElement('#to-top'),
+      navBtn : HTMLElement = getElement('.navBtn'),
+      height : number= 0,
+      visible : boolean = false
+    this.setItem(tocLink.item(0) as HTMLElement)
+    getElement('main').addEventListener('scroll', () => {
+      const nowheight : number = getElement('article').getBoundingClientRect().top
+      if (height - nowheight > 100) { 
+        navBtn.style.top = '-1em'
+        height = nowheight
+      } else if (nowheight > height) {
+        if (nowheight - height > 20) {
+          navBtn.style.top = '1em'
+        }
+        height = nowheight
+      }
+      if (tocLink.length === 0) {
+        return
+      }
+      this.modifyIndex(headerLink, tocLink)
+      if (getElement('#post-title').getBoundingClientRect().top < -200) {
+        totop.style.display = ''
+        visible = true
+        setTimeout(() => {
+          if (visible) {
+            totop.style.opacity = '1'
+          }
+        }, 300)
+      } else {
+        totop.style.opacity = '0'
+        visible = false
+        setTimeout(() => {
+          if (!visible) {
+            totop.style.display = 'none'
+          }
+        }, 300)
+      }
+    }, { passive: true })
   }
 
   constructor() {
-    this.headerLink = document.querySelectorAll('.headerlink')
-    this.tocLink = document.querySelectorAll('.toc-link')
-    this.setItem(this.tocLink.item(0) as HTMLElement)
-    this.totop = getElement('#to-top')
-    document.addEventListener('scroll', () => {
-      this.headerLink = document.querySelectorAll('.headerlink')
-      this.tocLink = document.querySelectorAll('.toc-link')
-      if (this.tocLink.length === 0) {
-        return
-      }
-      this.totop = getElement('#to-top')
-      ++this.scrolling
-      if (this.scrollID == 0 && this.tocLink.length > 0) {
-        this.scrollID = setInterval(this.modifyIndex.bind(this), 50) as unknown as number
-      }
-      setTimeout(() => {
-        if (--this.scrolling) {
-          return
-        }
-        clearInterval(this.scrollID)
-        this.scrollID = 0
-        if (this.totop === null) {
-          return
-        }
-        if (getElement('#post-title').getBoundingClientRect().top < -200) {
-          this.totop.style.display = ''
-          setTimeout(() => this.totop.style.opacity = '1', 300)
-        } else {
-          this.totop.style.opacity = '0'
-          setTimeout(() => this.totop.style.display = 'none', 300)
-        }
-      }, 200);
-    }, { passive: true })
+    document.addEventListener('pjax:success',this.setHtml.bind(this))
+    this.setHtml()
   }
 }
 
@@ -279,10 +283,10 @@ class cursors {
 
   private move(timestamp: number): void {
     if (this.now !== undefined) {
-      let SX = this.outer.left, SY = this.outer.top
-      let preX = Number(SX.substring(0, SX.length - 2)),
-        preY = Number(SY.substring(0, SY.length - 2))
-      let delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3
+      let SX = this.outer.left, SY = this.outer.top,
+        preX = Number(SX.substring(0, SX.length - 2)),
+        preY = Number(SY.substring(0, SY.length - 2)),
+        delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3
       if (timestamp - this.last > 15) {
         preX += delX
         preY += delY
@@ -379,14 +383,14 @@ class slides {
       let now = item as HTMLElement,
         link = now.querySelector('a') as HTMLAnchorElement
       if (link !== null) {
-        let href = link.href
+        let href = link.href, match = now.getAttribute('matchdata')
         now.classList.remove('active')
         if (href.length > mayLen && document.URL.match(href) !== null) {
           mayLen = href.length
           may = now
         }
-        if (now.hasAttribute('matchdata')) {
-          const s = now.getAttribute('matchdata').split(',')
+        if (match) {
+          const s = match.split(',')
           s.forEach((item: string) => {
             if (document.URL.match(item) !== null) {
               may = now
@@ -458,7 +462,7 @@ class pjaxSupport {
   private loaded(): void {
     ++this.timestamp
     if (this.loading.style.opacity === '1') {
-      document.documentElement.scrollTop = 0
+      getElement('main').scrollTop = 0
       slide.close()
       if (this.left.style.width !== "50%") {
         this.start(50)
