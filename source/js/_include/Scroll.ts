@@ -40,7 +40,10 @@ class Scroll {
 
   private slideDown = () => {
     getElement('.navBtn').classList.add('hide')
-    getElement('main').classList.remove('up')
+    const main = getElement('main').classList
+    main.remove('up')
+    main.add('down')
+    setTimeout(()=> main.remove('down'), 300)
   }
 
   private onScroll = (totop: HTMLElement, navBtn: HTMLElement) => {

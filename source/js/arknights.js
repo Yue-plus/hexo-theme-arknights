@@ -415,7 +415,10 @@ class Scroll {
         };
         this.slideDown = () => {
             getElement('.navBtn').classList.add('hide');
-            getElement('main').classList.remove('up');
+            const main = getElement('main').classList;
+            main.remove('up');
+            main.add('down');
+            setTimeout(() => main.remove('down'), 300);
         };
         this.onScroll = (totop, navBtn) => {
             const nowheight = getElement('article').getBoundingClientRect().top;

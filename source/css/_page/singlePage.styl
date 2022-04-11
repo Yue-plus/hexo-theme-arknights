@@ -12,7 +12,7 @@
   .navContent
     overflow visible
   &,
-  &.search
+  & .search
     .navItem.search-header
       animation get-in-right .6s
       transform translateX(100vw)
@@ -21,6 +21,10 @@
       right 0
       input
         animation: none
+
+.down .closed .search-header
+  animation get-out-top .3s
+  padding-left 6em
 
 main.up
   overflow hidden
