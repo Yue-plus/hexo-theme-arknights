@@ -1,9 +1,12 @@
 {
+  "include": [
+    "arknights.ts",
+  ],
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "es6",
     "esModuleInterop": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "outFile": "arknights.js"
   }
 }
