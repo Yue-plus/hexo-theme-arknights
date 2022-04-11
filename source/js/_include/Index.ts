@@ -23,17 +23,17 @@ class Index {
   private reset = () => {
     let tocs: NodeList = document.querySelectorAll('#toc-div .active')
     let tocTree: NodeList = document.querySelectorAll('#toc-div .has-active')
-    tocs.forEach((item) => {
+    tocs.forEach(item => {
       (item as HTMLElement).classList.remove('active')
     })
-    tocTree.forEach((item) => {
+    tocTree.forEach(item => {
       (item as HTMLElement).classList.remove('has-active')
     })
   }
 
   private modifyIndex = (headerLink: NodeList, tocLink: NodeList) => {
     let index: Array<number> = []
-    headerLink.forEach((item) => {
+    headerLink.forEach(item => {
       index.push((item as HTMLElement).getBoundingClientRect().top)
     })
     this.reset()

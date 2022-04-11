@@ -79,7 +79,7 @@ class Cursor {
   }
 
   private pushHolder = (items: NodeList) => {
-    items.forEach((item) => {
+    items.forEach(item => {
       if (!(item as HTMLElement).classList.contains('is--active')) {
         item.addEventListener('mouseover', () => this.hold(), { passive: true })
         item.addEventListener('mouseout', () => this.relax(), { passive: true })

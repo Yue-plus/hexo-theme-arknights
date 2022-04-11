@@ -40,11 +40,11 @@ class Code {
   public findCode = () => {
     let codeBlocks = document.querySelectorAll('.highlight')
     if (codeBlocks !== null) {
-      codeBlocks.forEach((item) => this.doAsCode(item))
+      codeBlocks.forEach(item => this.doAsCode(item))
     }
     codeBlocks = document.querySelectorAll('.admonition')
     if (codeBlocks !== null) {
-      codeBlocks.forEach((item) => this.doAsAdmon(item))
+      codeBlocks.forEach(item => this.doAsAdmon(item))
     }
   }
 

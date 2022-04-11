@@ -11,7 +11,7 @@ class Slide {
     let navs = this.header.querySelectorAll('.navItem'),
       mayLen: number = 0,
       may: Element = navs.item(0)
-    navs.forEach((item) => {
+    navs.forEach(item => {
       if (item.classList.contains('search-header')) {
         return
       }
@@ -26,7 +26,7 @@ class Slide {
         }
         if (match) {
           const s = match.split(',');
-          s.forEach((item: string) => {
+          s.forEach(item => {
             if (document.URL.match(item) !== null) {
               may = now;
               mayLen = Infinity;
