@@ -154,11 +154,11 @@ class Code {
         this.findCode = () => {
             let codeBlocks = document.querySelectorAll('.highlight');
             if (codeBlocks !== null) {
-                codeBlocks.forEach((item) => this.doAsCode(item));
+                codeBlocks.forEach(item => this.doAsCode(item));
             }
             codeBlocks = document.querySelectorAll('.admonition');
             if (codeBlocks !== null) {
-                codeBlocks.forEach((item) => this.doAsAdmon(item));
+                codeBlocks.forEach(item => this.doAsAdmon(item));
             }
         };
     }
@@ -233,7 +233,7 @@ class Cursor {
             this.outer.background = "unset";
         };
         this.pushHolder = (items) => {
-            items.forEach((item) => {
+            items.forEach(item => {
                 if (!item.classList.contains('is--active')) {
                     item.addEventListener('mouseover', () => this.hold(), { passive: true });
                     item.addEventListener('mouseout', () => this.relax(), { passive: true });
@@ -274,16 +274,16 @@ class Index {
         this.reset = () => {
             let tocs = document.querySelectorAll('#toc-div .active');
             let tocTree = document.querySelectorAll('#toc-div .has-active');
-            tocs.forEach((item) => {
+            tocs.forEach(item => {
                 item.classList.remove('active');
             });
-            tocTree.forEach((item) => {
+            tocTree.forEach(item => {
                 item.classList.remove('has-active');
             });
         };
         this.modifyIndex = (headerLink, tocLink) => {
             let index = [];
-            headerLink.forEach((item) => {
+            headerLink.forEach(item => {
                 index.push(item.getBoundingClientRect().top);
             });
             this.reset();
@@ -318,7 +318,7 @@ class Slide {
         this.closeSearch = false;
         this.relabel = () => {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
-            navs.forEach((item) => {
+            navs.forEach(item => {
                 if (item.classList.contains('search-header')) {
                     return;
                 }
@@ -332,7 +332,7 @@ class Slide {
                     }
                     if (match) {
                         const s = match.split(',');
-                        s.forEach((item) => {
+                        s.forEach(item => {
                             if (document.URL.match(item) !== null) {
                                 may = now;
                                 mayLen = Infinity;
@@ -386,29 +386,29 @@ class Scroll {
         this.visible = false;
         this.touchY = 0;
         this.moved = false;
+        this.intop = false;
         this.scrolltop = () => {
-            let totop = getElement('#to-top');
             getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
-            totop.style.opacity = '0';
+            this.totop.style.opacity = '0';
             this.getingtop = true;
-            setTimeout(() => totop.style.display = 'none', 300);
+            setTimeout(() => this.totop.style.display = 'none', 300);
         };
-        this.totopChange = (totop) => {
+        this.totopChange = () => {
             if (getElement('#post-title').getBoundingClientRect().top < -200) {
-                totop.style.display = '';
+                this.totop.style.display = '';
                 this.visible = true;
                 setTimeout(() => {
                     if (this.visible) {
-                        totop.style.opacity = '1';
+                        this.totop.style.opacity = '1';
                     }
                 }, 300);
             }
             else {
-                totop.style.opacity = '0';
+                this.totop.style.opacity = '0';
                 this.visible = false;
                 setTimeout(() => {
                     if (!this.visible) {
-                        totop.style.display = 'none';
+                        this.totop.style.display = 'none';
                     }
                 }, 300);
             }
@@ -419,11 +419,12 @@ class Scroll {
             main.remove('up');
             main.add('down');
             setTimeout(() => main.remove('down'), 300);
+            this.intop = false;
         };
-        this.onScroll = (totop, navBtn) => {
+        this.onScroll = (navBtn) => {
             const nowheight = getElement('article').getBoundingClientRect().top;
-            if (this.height > nowheight) {
-                navBtn.classList.add('hide');
+            if (this.height >= nowheight && this.intop) {
+                this.slideDown();
             }
             if (this.height - nowheight > 100) {
                 navBtn.classList.add('hide');
@@ -442,19 +443,21 @@ class Scroll {
                 }
             }, 100);
             if (!this.getingtop) {
-                this.totopChange(totop);
+                this.totopChange();
             }
         };
         this.slideUp = () => {
             getElement('.navBtn').classList.remove('hide');
             getElement('main').classList.add('up');
+            this.intop = true;
         };
         this.setHtml = () => {
             try {
-                let totop = getElement('#to-top'), navBtn = getElement('.navBtn');
+                let navBtn = getElement('.navBtn');
+                this.totop = getElement('#to-top');
                 this.height = 0;
                 this.visible = false;
-                getElement('main').addEventListener('scroll', () => this.onScroll(totop, navBtn), { passive: true });
+                getElement('main').addEventListener('scroll', () => this.onScroll(navBtn), { passive: true });
             }
             catch (e) { }
         };
@@ -467,7 +470,7 @@ class Scroll {
                 this.moved = true;
             });
             document.addEventListener('touchend', (event) => {
-                if (!this.moved) {
+                if (!this.moved || document.querySelector('.expanded')) {
                     return;
                 }
                 this.moved = false;
@@ -481,6 +484,9 @@ class Scroll {
                 }
             });
             document.addEventListener('wheel', (event) => {
+                if (document.querySelector('.expanded')) {
+                    return;
+                }
                 if (getElement('article').getBoundingClientRect().top >= 0) {
                     if (event.deltaY < 0) {
                         this.slideUp();
@@ -492,9 +498,13 @@ class Scroll {
             });
         }
         this.setHtml();
+        this.totop = getElement('#to-top');
     }
 }
-var scrolls = new Scroll();
+try {
+    var scrolls = new Scroll();
+}
+catch (e) { }
 class pjaxSupport {
     constructor() {
         this.loading = getElement('.loading');

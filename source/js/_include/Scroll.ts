@@ -9,30 +9,31 @@ class Scroll {
   private visible: boolean = false
   private touchY: number = 0
   private moved: boolean = false
+  private intop: boolean = false
+  private totop: HTMLElement
 
   public scrolltop = () => {
-    let totop: HTMLElement = getElement('#to-top')
     getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
-    totop.style.opacity = '0'
+    this.totop.style.opacity = '0'
     this.getingtop = true
-    setTimeout(() => totop.style.display = 'none', 300)
+    setTimeout(() => this.totop.style.display = 'none', 300)
   }
 
-  private totopChange = (totop: HTMLElement) => {
+  private totopChange = () => {
     if (getElement('#post-title').getBoundingClientRect().top < -200) {
-      totop.style.display = ''
+      this.totop.style.display = ''
       this.visible = true
       setTimeout(() => {
         if (this.visible) {
-          totop.style.opacity = '1'
+          this.totop.style.opacity = '1'
         }
       }, 300)
     } else {
-      totop.style.opacity = '0'
+      this.totop.style.opacity = '0'
       this.visible = false
       setTimeout(() => {
         if (!this.visible) {
-          totop.style.display = 'none'
+          this.totop.style.display = 'none'
         }
       }, 300)
     }
@@ -43,13 +44,14 @@ class Scroll {
     const main = getElement('main').classList
     main.remove('up')
     main.add('down')
-    setTimeout(()=> main.remove('down'), 300)
+    setTimeout(() => main.remove('down'), 300)
+    this.intop = false
   }
 
-  private onScroll = (totop: HTMLElement, navBtn: HTMLElement) => {
+  private onScroll = (navBtn: HTMLElement) => {
     const nowheight: number = getElement('article').getBoundingClientRect().top
-    if (this.height > nowheight) {
-      navBtn.classList.add('hide')
+    if (this.height >= nowheight && this.intop) {
+      this.slideDown()
     }
     if (this.height - nowheight > 100) {
       navBtn.classList.add('hide')
@@ -67,22 +69,23 @@ class Scroll {
       }
     }, 100)
     if (!this.getingtop) {
-      this.totopChange(totop)
+      this.totopChange()
     }
   }
 
   private slideUp = () => {
     getElement('.navBtn').classList.remove('hide')
     getElement('main').classList.add('up')
+    this.intop = true
   }
 
   private setHtml = () => {
     try {
-      let totop: HTMLElement = getElement('#to-top'),
-        navBtn: HTMLElement = getElement('.navBtn')
+      let navBtn: HTMLElement = getElement('.navBtn')
+      this.totop = getElement('#to-top')
       this.height = 0
       this.visible = false
-      getElement('main').addEventListener('scroll', () => this.onScroll(totop, navBtn)
+      getElement('main').addEventListener('scroll', () => this.onScroll(navBtn)
         , { passive: true })
     } catch (e) {}
   }
@@ -97,7 +100,7 @@ class Scroll {
         this.moved = true
       })
       document.addEventListener('touchend', (event: TouchEvent) => {
-        if (!this.moved) {
+        if (!this.moved || document.querySelector('.expanded')) {
           return
         }
         this.moved = false
@@ -110,6 +113,9 @@ class Scroll {
         }
       })
       document.addEventListener('wheel', (event: WheelEvent) => {
+        if (document.querySelector('.expanded')) {
+          return
+        }
         if (getElement('article').getBoundingClientRect().top >= 0) {
           if (event.deltaY < 0) {
             this.slideUp()
@@ -120,7 +126,10 @@ class Scroll {
       })
     }
     this.setHtml()
+    this.totop = getElement('#to-top')
   }
 }
 
-var scrolls = new Scroll()
+try {
+  var scrolls = new Scroll()
+} catch (e) {}
