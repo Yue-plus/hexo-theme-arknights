@@ -15,8 +15,6 @@
     width 100%
 .moved input
   animation get-in .6s
-.navItem
-  transition .6s
 
 .navContent .navItem.search-header
   .navItemTitle
@@ -35,7 +33,9 @@
       animation get-out .6s
 
 @media ( max-width 768px )
-  padding-left 6em
+  .closed .search-header
+    animation get-out-top .3s
+    padding-left 6em
 
 @media ( max-width 1023px )
   .search .navItem.search-header
@@ -65,14 +65,14 @@
 
 .search-popup
   pointer-events: all
-  height calc(100% - 80px)
+  height calc(100% - 92px)
   z-index 20
   &.open
    transform translateX(0%)
   transition .6s
   scrollbar-width thin
   position fixed
-  top 80px
+  top 92px
   @media ( max-width 1023px )
     width 428px
     max-width 100%

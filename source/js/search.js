@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', ()=>{
+window.addEventListener('DOMContentLoaded', () => {
   let isfetched = false, fetchIng = false, wait = false, isXml = true
   let datas
   let searchPath = config.path
@@ -9,19 +9,19 @@ window.addEventListener('DOMContentLoaded', ()=>{
   }
   const path = config.root + searchPath
   const input = document.getElementById('search-input')
-  const unescapeHtml = html =>{
+  const unescapeHtml = html => {
     return String(html)
       .replace(/&quot;/g, '"')
       .replace(/&#39;/g, '\'')
       .replace(/&#x3A;/g, ':')
-      .replace(/&#(\d+);/g, (p)=>{
+      .replace(/&#(\d+);/g, (p) => {
         return String.fromCharCode(p)
       })
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
       .replace(/&amp;/g, '&')
   }
-  const getIndexByWord = (word, text, caseSensitive)=>{
+  function getIndexByWord(word, text, caseSensitive) {
     let wordLen = word.length
     if (wordLen === 0) return []
     let startPosition = 0
@@ -34,13 +34,13 @@ window.addEventListener('DOMContentLoaded', ()=>{
     while ((position = text.indexOf(word, startPosition)) > -1) {
       index.push({
         position: position,
-        word    : word
+        word: word
       })
       startPosition = position + wordLen
     }
     return index
   }
-  const mergeIntoSlice = (start, end, index, searchText)=>{
+  function mergeIntoSlice(start, end, index, searchText) {
     let item = index[index.length - 1]
     let position = item.position
     let word = item.word
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
       }
       hits.push({
         position: position,
-        length  : word.length
+        length: word.length
       })
       let wordEnd = position + word.length
       index.pop()
@@ -68,16 +68,16 @@ window.addEventListener('DOMContentLoaded', ()=>{
       }
     }
     return {
-      hits     : hits,
-      start    : start,
-      end      : end,
+      hits: hits,
+      start: start,
+      end: end,
       TextCount: searchTextCountInSlice
     }
   }
-  const highlightKeyword = (text, slice)=>{
+  function highlightKeyword(text, slice) {
     let result = ''
     let prevEnd = slice.start
-    slice.hits.forEach(hit =>{
+    slice.hits.forEach(hit => {
       result += text.substring(prevEnd, hit.position)
       let end = hit.position + hit.length
       result += `<nobr class="search-keyword">${text.substring(hit.position, end)}</nobr>`
@@ -86,18 +86,18 @@ window.addEventListener('DOMContentLoaded', ()=>{
     result += text.substring(prevEnd, slice.end)
     return result
   }
-  const fetchData = () =>{
+  function fetchData() {
     if (fetchIng === false && isfetched === false) {
       fetchIng = true
       fetch(path)
         .then(response => response.text())
-        .then(res =>{
+        .then(res => {
           isfetched = true
-          datas = isXml ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element =>{
+          datas = isXml ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element => {
             return {
-              title  : element.querySelector('title').innerHTML,
+              title: element.querySelector('title').innerHTML,
               content: element.querySelector('content').innerHTML,
-              url    : element.querySelector('url').innerHTML
+              url: element.querySelector('url').innerHTML
             }
           }) : JSON.parse(res)
           if (wait === true) {
@@ -106,23 +106,29 @@ window.addEventListener('DOMContentLoaded', ()=>{
         })
     }
   }
-  const searchFunc = ()=>{
+  function searchFunc() {
     document.querySelector('.search-popup').innerHTML = '<div id="loading"><p>Loading...</p></div>'
     fetchData()
   }
-  const onPopupClose = ()=>{
+  function onPopupClose() {
+    if (document.querySelector('.up') && document.querySelector('.closed')) {
+      document.querySelector('.navBtn').classList.remove('expanded')
+    }
     document.querySelector('.search-popup').classList.remove('open')
   }
-  const proceedSearch = ()=>{
+  function proceedSearch() {
+    if (document.querySelector('.up') && document.querySelector('.closed')) {
+      document.querySelector('.navBtn').classList.add('expanded')
+    }
     document.querySelector('.search-popup').classList.add('open')
     if (isfetched === true) {
       document.querySelector('.search-popup').innerHTML = "<div id='search-result'></div>"
-      document.getElementById('search-result').innerHTML=''
+      document.getElementById('search-result').innerHTML = ''
     } else {
       searchFunc()
     }
   }
-  const inputEventFunction = ()=>{
+  function inputEventFunction() {
     proceedSearch()
     if (isfetched === false) {
       wait = true
@@ -136,8 +142,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
     let resultItems = []
     if (searchText.length > 0) {
-      datas.forEach(data =>{
-        if (!data.title) return
+      datas.forEach(data => {
+        if (!data.title)
+          return
         let TextCount = 0, TitleCount = 0, ContentCount = 0
         let title = data.title.trim()
         let titleInLowerCase = title.toLowerCase()
@@ -149,7 +156,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         let articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/')
         let indexOfTitle = []
         let indexOfContent = []
-        keywords.forEach(keyword =>{
+        keywords.forEach(keyword => {
           let hitInTitle = getIndexByWord(keyword, titleInLowerCase, false)
           let hitInContent = getIndexByWord(keyword, contentInLowerCase, false)
           indexOfTitle = indexOfTitle.concat(hitInTitle)
@@ -165,8 +172,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
           }
         })
         if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-          [indexOfTitle, indexOfContent].forEach(index =>{
-            index.sort((itemLeft, itemRight)=>{
+          [indexOfTitle, indexOfContent].forEach(index => {
+            index.sort((itemLeft, itemRight) => {
               if (itemRight.position !== itemLeft.position) {
                 return itemRight.position - itemLeft.position
               }
@@ -212,11 +219,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
           }
           resultItem += '</a>'
           resultItems.push({
-            item        : resultItem,
-            TextCount   : TextCount,
-            TitleCount  : TitleCount,
+            item: resultItem,
+            TextCount: TextCount,
+            TitleCount: TitleCount,
             ContentCount: ContentCount,
-            id          : resultItems.length
+            id: resultItems.length
           })
         }
       })
@@ -228,7 +235,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     } else if (resultItems.length === 0) {
       resultContent.innerHTML = `<div id="no-result"><p>无“<b>${input.value}</b>”相关数据</p></div>`
     } else {
-      resultItems.sort((Left, Right)=>{
+      resultItems.sort((Left, Right) => {
         if (Left.TextCount !== Right.TextCount) {
           return Right.TextCount - Left.TextCount
         } else if (Left.TitleCount !== Right.TitleCount) {
@@ -239,7 +246,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         return Right.id - Left.id
       })
       let searchResultList = ""
-      resultItems.forEach(result =>{
+      resultItems.forEach(result => {
         searchResultList += result.item
       })
       resultContent.innerHTML = searchResultList
@@ -255,41 +262,41 @@ window.addEventListener('DOMContentLoaded', ()=>{
   if (config.trigger === 'auto') {
     input.addEventListener('input', inputEventFunction)
   } else {
-    input.addEventListener('keypress', event =>{
+    input.addEventListener('keypress', event => {
       if (event.key === 13) {
         inputEventFunction()
       }
     })
   }
-  const StartSearch = ()=>{
+  function StartSearch() {
     document.querySelector('.navContent').classList.add('search')
     document.querySelector('#search-input').placeholder = '键入以进行'
     if (isfetched === false) {
       searchFunc()
     }
   }
-  const EscapeSearch = ()=>{
+  function EscapeSearch() {
     document.querySelector('.navContent').classList.remove('search')
-    document.removeEventListener('mouseup',EscapeSearch)
+    document.removeEventListener('mouseup', EscapeSearch)
     wait = false
     onPopupClose()
     document.querySelector('#search-input').value = ''
   }
-  document.querySelector('#search-input').addEventListener('keyup', ()=>{
+  document.querySelector('#search-input').addEventListener('keyup', () => {
     document.querySelector('.navContent').classList.add('search')
     document.querySelector('.navContent').classList.remove('moved')
     inputEventFunction()
   })
-  document.querySelector('#search-input').addEventListener('focus', ()=>{
+  document.querySelector('#search-input').addEventListener('focus', () => {
     StartSearch()
   })
-  document.querySelector('#search-input').addEventListener('blur', ()=>{
+  document.querySelector('#search-input').addEventListener('blur', () => {
     document.querySelector('#search-input').placeholder = '数据检索'
     document.querySelector('.navContent').classList.remove('search')
     document.querySelector('.navContent').classList.add('moved')
     document.addEventListener('mouseup', EscapeSearch)
   })
-  window.addEventListener('keyup', event =>{
+  window.addEventListener('keyup', event => {
     if (event.key === 27) {
       EscapeSearch()
     }

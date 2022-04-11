@@ -5,19 +5,23 @@ main
   overflow overlay
 
 article
+  transition margin .3s
   transform translateZ(0)
   box-sizing border-box
   position relative
   min-height calc(100vh - 10px)
   height fit-content
   padding-top 10px
-  padding-bottom 72px
   min-width 1px
   #post-content p, .recent-excerpt p
     line-height 150%
+    
+.up article
+  margin-top 50px
 
 .posts
   width 100%
+  padding-bottom 72px
 
 .recent-post
   color #898989
