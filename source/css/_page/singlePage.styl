@@ -1,10 +1,12 @@
 .up .closed .navBtn
-  top .5em
+  transform unset
 
 .hide.navBtn
-  top -1em
+  transform translateY(-2em)
 
 .up .closed
+  .navBtn
+    transform translateY(-.5em)
   .search-popup
     top 53px
     height calc(100vh - 53px)
