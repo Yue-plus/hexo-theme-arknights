@@ -33,6 +33,9 @@ nav
     color #fff
     &:active
       background unset
+  ol li
+    display block
+
 .navBtn
   transition top .3s
   pointer-events all
@@ -74,7 +77,9 @@ nav
     transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(50%)
   &:nth-child(2)
     transform translate(0, -50%) rotateZ(-45deg)
+
 .navContent
+  overflow visible
   pointer-events all
   box-sizing border-box
   margin unset
@@ -82,7 +87,7 @@ nav
   display flex
   flex-direction column
   justify-content center
-  list-style none
+
 .navItem
   overflow visible
   position relative
