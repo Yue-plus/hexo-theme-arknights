@@ -100,7 +100,7 @@ class Scroll {
         this.moved = true
       })
       document.addEventListener('touchend', (event: TouchEvent) => {
-        if (!this.moved || document.querySelector('.expanded')) {
+        if (!this.moved || document.querySelector('.expanded') || window.innerWidth > 1024) {
           return
         }
         this.moved = false
@@ -113,7 +113,7 @@ class Scroll {
         }
       })
       document.addEventListener('wheel', (event: WheelEvent) => {
-        if (document.querySelector('.expanded')) {
+        if (document.querySelector('.expanded') || window.innerWidth > 1024) {
           return
         }
         if (getElement('article').getBoundingClientRect().top >= 0) {

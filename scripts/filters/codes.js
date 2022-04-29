@@ -25,7 +25,7 @@ function doAsCode(item) {
   let codeType = item.match(/(?<=highlight )[\S\s]*?(?=")/)[0],
     lineCount = item.match(/line/g).length,
     inner = item.match(/<table[\S\s]*?\/table>/)[0];
-  item = item.replace('highlight', lineCount < 16 ? 'highlight open' : 'highlight fold');
+  item = item.replace('highlight', lineCount < 21 ? 'highlight open' : 'highlight fold');
   return item.replace(inner,
     `<span class="code-header">\
     <span class="code-title">\
