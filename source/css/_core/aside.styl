@@ -5,7 +5,7 @@ aside
     display none
   scrollbar-width none
   height 100vh
-  position fixed
+  position sticky
   display flex
   flex-direction column
   justify-content space-between
@@ -70,16 +70,16 @@ aside
   margin 15px 0 0 15px
 
 #aside-block
+  transition .3s
   margin-top 10px
-  background-color rgba(20, 21, 22, 0.8)
-  &, h1
-    transition 1s
+  background linear-gradient(rgba(20, 21, 22, 0.8), #0000)
+  #total-archives .total-number
+    letter-spacing 2px
   @media ( min-width 769px )
-    &:hover
-      background-color rgba(20, 21, 22, 0.96)
-      h1
-        background-color #2bf
+    &:hover h1
+      background-color #2bf
   h1
+    transition 1s
     color #000
     background-color #fff
     margin 0

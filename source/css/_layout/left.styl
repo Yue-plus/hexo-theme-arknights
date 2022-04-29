@@ -1,33 +1,27 @@
 @media ( min-width 769px )
   header
-    right 0
+    left 200px
   .navBtn
-    right 1em
+    left 1em
   aside
     left 0
     border-right #fe2 solid 2px
-  @media ( max-width 991px )
-    article
-      margin-left 200px
-      margin-right 20px
-
-@media ( max-width 1023px )
-  .navContent
-    transform translateX(200%)
-    padding-right 0
-  .navItem
-    padding-right 2.5em
+  @media ( max-width 1023px )
+    .navContent
+      transform translateX(200%)
+      padding-right 0
+    .navItem
+      padding-right 2.5em
 
 @media ( min-width 992px )
-  @media ( max-width 1023px )
-    article
-      margin-right 50px
-      margin-left 210px
   @media ( max-width 1919px )
     aside
       padding 0 15px 0 25px
 
 @media ( min-width 1024px )
+  header
+    left unset
+    right 0
   .navContent
     align-items: flex-end
     padding 1em 0 1em 1em
@@ -42,22 +36,13 @@
         border-right 4px solid
       &:hover .navItemTitle
         margin-left -1em
-  article
-    margin-right 156px
-    margin-left 240px
 
 @media ( min-width 1440px )
   .navItem
     padding-right 2.25em
-  article
-    margin-right 240px
-    margin-left 270px
 
 @media ( min-width 1920px )
   .navItem
     padding-right 5.25em
-  article
-    margin-left calc(5% + 320px)
-    margin-right 310px
   aside
    left 5%

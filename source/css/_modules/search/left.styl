@@ -1,15 +1,31 @@
-.search
-  [class$="navItem"],[class$="active"]
-    transform translateX(100%)
-.search-popup
-  right 0
-  transform translateX(100%)
-  &.open
-    transform translateX(0%)
+@media ( max-width 768px )
+  @import "right.styl"
 
-@media ( max-width 1023px )
-  .navItem.search-header
-    padding-right 4.5em
+@media ( min-width 769px )
+  .search
+    [class$="navItem"],[class$="active"]
+      transform translateX(100%)
+  .search-popup
+    right 0
+    transform translateX(100%)
+    &.open
+      transform translateX(0%)
+  @keyframes get-in
+    0%
+      left 100%
+    100%
+      left 0
+
+  @keyframes get-out
+    0%
+      width 180%
+      right 80%
+    100%
+      width 100%
+      right 0
+  @media ( max-width 1023px )
+    .navItem.search-header
+      padding-right 4.5em
 
 @media ( min-width 1024px )
   .search-header
@@ -24,16 +40,3 @@
         border-right 4px solid #fff
         right 0
 
-@keyframes get-in
-  0%
-    left 100%
-  100%
-    left 0
-
-@keyframes get-out
-  0%
-    width 180%
-    right 80%
-  100%
-    width 100%
-    right 0
