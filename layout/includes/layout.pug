@@ -128,18 +128,19 @@ html(lang=config.language)
             #description
               for str in config.description
                 p= str
-            section#total
-               a#total-archives(href= config.root + "archives")
-                 span.total-title Archives Total:
-                 span.total-number= site.posts.length
-               #total-tags
-                 span.total-title Tags:
-                 span.total-number= site.tags.length
-               #total-categories
-                 span.total-title Categories:
-                 span.total-number= site.categories.length
-          #aside-block(style= asideBlock)
+          #aside-block
             block aside-block
+            if page.published === undefined
+              section#total
+                 a#total-archives(href= config.root + "archives")
+                   span.total-title Archives Total:
+                   span.total-number= site.posts.length
+                 #total-tags
+                   span.total-title Tags:
+                   span.total-number= site.tags.length
+                 #total-categories
+                   span.total-title Categories:
+                   span.total-number= site.categories.length
         footer(style=footerStyle)
           if theme.aside.copyright !== null
             each content, title in theme.aside.copyright
