@@ -161,7 +161,7 @@
         loadContent: function (html, options) {
           if (typeof html !== "string") {
             trigger(document, "pjax:complete pjax:error", options);
-
+            this.loadUrl('/404')
             return;
           }
 
