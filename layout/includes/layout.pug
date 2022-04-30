@@ -84,10 +84,7 @@ html(lang=config.language)
         .loadingBar.left
         .loadingBar.right
     main
-      if theme.aside.in_left
-        include ./aside.pug
-      else
-        include ./header.pug
+      include ./header.pug
       article
         if body
           div!= body
@@ -98,10 +95,7 @@ html(lang=config.language)
             if tocLength !== null
               a#to-index(href="#toc-div" title="index") ≡
             a#to-top(onClick="scrolls.scrolltop();" title="to top" style="opacity: 0; display: none;") ∧
-      if theme.aside.in_left
-        include ./header.pug
-      else
-        include ./aside.pug
+      include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust
     #cursor-container
