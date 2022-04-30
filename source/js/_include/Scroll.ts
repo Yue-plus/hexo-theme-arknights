@@ -8,9 +8,9 @@ class Scroll {
   private height: number = 0
   private visible: boolean = false
   private touchY: number = 0
-  private moved: boolean = false
   private intop: boolean = false
   private totop: HTMLElement
+  private startTop: boolean = false
 
   public scrolltop = () => {
     getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
@@ -19,8 +19,8 @@ class Scroll {
     setTimeout(() => this.totop.style.display = 'none', 300)
   }
 
-  private totopChange = () => {
-    if (getElement('#post-title').getBoundingClientRect().top < -200) {
+  private totopChange = (post: HTMLElement) => {
+    if (post.getBoundingClientRect().top < -200) {
       this.totop.style.display = ''
       this.visible = true
       setTimeout(() => {
@@ -39,54 +39,61 @@ class Scroll {
     }
   }
 
-  private slideDown = () => {
+  public slideDown = () => {
     getElement('.navBtn').classList.add('hide')
     const main = getElement('main').classList
     main.remove('up')
     main.add('down')
-    setTimeout(() => main.remove('down'), 300)
+    getElement('main').classList.add('moving')
+    setTimeout(() => {
+      main.remove('down')
+      getElement('main').classList.remove('moving')
+    }, 300)
     this.intop = false
   }
 
-  private onScroll = (navBtn: HTMLElement) => {
-    const nowheight: number = getElement('article').getBoundingClientRect().top
-    if (this.height >= nowheight && this.intop) {
-      this.slideDown()
-    }
-    if (this.height - nowheight > 100) {
-      navBtn.classList.add('hide')
-      this.height = nowheight
-    } else if (nowheight > this.height) {
-      if (nowheight - this.height > 20) {
-        navBtn.classList.remove('hide')
-      }
-      this.height = nowheight
-    }
-    ++this.scrolling
-    setTimeout(() => {
-      if (!--this.scrolling) {
-        this.getingtop = false
-      }
-    }, 100)
-    if (!this.getingtop) {
-      this.totopChange()
-    }
-  }
-
-  private slideUp = () => {
+  public slideUp = () => {
     getElement('.navBtn').classList.remove('hide')
     getElement('main').classList.add('up')
+    getElement('main').classList.add('moving')
     this.intop = true
+    setTimeout(() => getElement('main').classList.remove('moving'), 300)
   }
 
   private setHtml = () => {
     try {
       let navBtn: HTMLElement = getElement('.navBtn')
+      let onScroll = () => {
+        try {
+          let nowheight: number = getElement('article').getBoundingClientRect().top,
+            post: HTMLElement = getElement('#post-title')
+          if (this.height >= nowheight && this.intop) {
+            this.slideDown()
+          }
+          if (this.height - nowheight > 100) {
+            navBtn.classList.add('hide')
+            this.height = nowheight
+          } else if (nowheight > this.height) {
+            if (nowheight - this.height > 20) {
+              navBtn.classList.remove('hide')
+            }
+            this.height = nowheight
+          }
+          ++this.scrolling
+          setTimeout(() => {
+            if (!--this.scrolling) {
+              this.getingtop = false
+            }
+          }, 100)
+          if (!this.getingtop) {
+            this.totopChange(post)
+          }
+        } catch (e) {}
+      }
       this.totop = getElement('#to-top')
       this.height = 0
       this.visible = false
-      getElement('main').addEventListener('scroll', () => this.onScroll(navBtn)
-        , { passive: true })
+      getElement('main').addEventListener('scroll', onScroll)
     } catch (e) {}
   }
 
@@ -95,21 +102,19 @@ class Scroll {
     if (document.querySelector('.search-header')) {
       document.addEventListener('touchstart', (event: TouchEvent) => {
         this.touchY = event.changedTouches[0].screenY
+        this.startTop = getElement('article').getBoundingClientRect().top >= 0
       })
-      document.addEventListener('touchmove', () => {
-        this.moved = true
-      })
-      document.addEventListener('touchend', (event: TouchEvent) => {
-        if (!this.moved || document.querySelector('.expanded') || window.innerWidth > 1024) {
+      document.addEventListener('touchmove', (event: TouchEvent) => {
+        if (document.querySelector('.expanded') || window.innerWidth > 1024) {
           return
         }
-        this.moved = false
-        if (getElement('article').getBoundingClientRect().top >= 0) {
+        if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
           if (event.changedTouches[0].screenY > this.touchY) {
             this.slideUp()
           } else {
             this.slideDown()
           }
+          this.touchY = event.changedTouches[0].screenY
         }
       })
       document.addEventListener('wheel', (event: WheelEvent) => {
@@ -126,10 +131,8 @@ class Scroll {
       })
     }
     this.setHtml()
-    this.totop = getElement('#to-top')
+    this.totop = document.querySelector('#to-top') as HTMLElement
   }
 }
 
-try {
-  var scrolls = new Scroll()
-} catch (e) {}
+var scrolls = new Scroll()
