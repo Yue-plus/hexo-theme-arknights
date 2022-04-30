@@ -116,7 +116,10 @@ canvasDust.getPoint = (number = 1) => {
     }
     return point;
 };
-new canvasDust('#canvas-dust');
+try {
+    new canvasDust('#canvas-dust');
+}
+catch (e) { }
 class Code {
     constructor() {
         this.reverse = (item, s0, s1) => {
@@ -311,13 +314,14 @@ class Index {
     }
 }
 new Index();
-class Slide {
+class Header {
     constructor() {
         this.header = getElement('header');
         this.button = getElement('.navBtnIcon');
         this.closeSearch = false;
         this.relabel = () => {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
+            getElement('.navBtn').classList.remove('hide');
             navs.forEach(item => {
                 if (item.classList.contains('search-header')) {
                     return;
@@ -347,11 +351,15 @@ class Slide {
         };
         this.open = () => {
             this.header.classList.add('expanded');
+            this.header.classList.add('moving');
             this.header.classList.remove('closed');
+            setTimeout(() => this.header.classList.remove('moving'), 300);
         };
         this.close = () => {
             this.header.classList.add('closed');
+            this.header.classList.add('moving');
             this.header.classList.remove('expanded');
+            setTimeout(() => this.header.classList.remove('moving'), 300);
         };
         this.reverse = () => {
             if (this.closeSearch) {
@@ -374,10 +382,7 @@ class Slide {
         this.button.onclick = this.reverse;
     }
 }
-try {
-    var slide = new Slide();
-}
-catch (e) { }
+var header = new Header();
 class Scroll {
     constructor() {
         this.scrolling = 0;
@@ -385,16 +390,16 @@ class Scroll {
         this.height = 0;
         this.visible = false;
         this.touchY = 0;
-        this.moved = false;
         this.intop = false;
+        this.startTop = false;
         this.scrolltop = () => {
             getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
             this.totop.style.opacity = '0';
             this.getingtop = true;
             setTimeout(() => this.totop.style.display = 'none', 300);
         };
-        this.totopChange = () => {
-            if (getElement('#post-title').getBoundingClientRect().top < -200) {
+        this.totopChange = (post) => {
+            if (post.getBoundingClientRect().top < -200) {
                 this.totop.style.display = '';
                 this.visible = true;
                 setTimeout(() => {
@@ -414,50 +419,60 @@ class Scroll {
             }
         };
         this.slideDown = () => {
-            getElement('.navBtn').classList.add('hide');
             const main = getElement('main').classList;
             main.remove('up');
             main.add('down');
-            setTimeout(() => main.remove('down'), 300);
-            this.intop = false;
-        };
-        this.onScroll = (navBtn) => {
-            const nowheight = getElement('article').getBoundingClientRect().top;
-            if (this.height >= nowheight && this.intop) {
-                this.slideDown();
-            }
-            if (this.height - nowheight > 100) {
-                navBtn.classList.add('hide');
-                this.height = nowheight;
-            }
-            else if (nowheight > this.height) {
-                if (nowheight - this.height > 20) {
-                    navBtn.classList.remove('hide');
-                }
-                this.height = nowheight;
-            }
-            ++this.scrolling;
+            getElement('main').classList.add('moving');
             setTimeout(() => {
-                if (!--this.scrolling) {
-                    this.getingtop = false;
-                }
-            }, 100);
-            if (!this.getingtop) {
-                this.totopChange();
-            }
+                main.remove('down');
+                getElement('main').classList.remove('moving');
+            }, 300);
+            this.intop = false;
         };
         this.slideUp = () => {
             getElement('.navBtn').classList.remove('hide');
             getElement('main').classList.add('up');
+            getElement('main').classList.add('moving');
             this.intop = true;
+            setTimeout(() => getElement('main').classList.remove('moving'), 300);
         };
         this.setHtml = () => {
             try {
                 let navBtn = getElement('.navBtn');
+                let onScroll = () => {
+                    try {
+                        let nowheight = getElement('article').getBoundingClientRect().top, post = getElement('#post-title');
+                        if (this.height >= nowheight && this.intop) {
+                            this.slideDown();
+                        }
+                        if (!document.querySelector('.expanded')) {
+                            if (this.height - nowheight > 100) {
+                                navBtn.classList.add('hide');
+                                this.height = nowheight;
+                            }
+                            else if (nowheight > this.height) {
+                                if (nowheight - this.height > 20) {
+                                    navBtn.classList.remove('hide');
+                                }
+                                this.height = nowheight;
+                            }
+                        }
+                        ++this.scrolling;
+                        setTimeout(() => {
+                            if (!--this.scrolling) {
+                                this.getingtop = false;
+                            }
+                        }, 100);
+                        if (!this.getingtop) {
+                            this.totopChange(post);
+                        }
+                    }
+                    catch (e) { }
+                };
                 this.totop = getElement('#to-top');
                 this.height = 0;
                 this.visible = false;
-                getElement('main').addEventListener('scroll', () => this.onScroll(navBtn), { passive: true });
+                getElement('main').addEventListener('scroll', onScroll);
             }
             catch (e) { }
         };
@@ -465,22 +480,20 @@ class Scroll {
         if (document.querySelector('.search-header')) {
             document.addEventListener('touchstart', (event) => {
                 this.touchY = event.changedTouches[0].screenY;
+                this.startTop = getElement('article').getBoundingClientRect().top >= 0;
             });
-            document.addEventListener('touchmove', () => {
-                this.moved = true;
-            });
-            document.addEventListener('touchend', (event) => {
-                if (!this.moved || document.querySelector('.expanded') || window.innerWidth > 1024) {
+            document.addEventListener('touchmove', (event) => {
+                if (document.querySelector('.expanded') || window.innerWidth > 1024) {
                     return;
                 }
-                this.moved = false;
-                if (getElement('article').getBoundingClientRect().top >= 0) {
+                if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
                     if (event.changedTouches[0].screenY > this.touchY) {
                         this.slideUp();
                     }
                     else {
                         this.slideDown();
                     }
+                    this.touchY = event.changedTouches[0].screenY;
                 }
             });
             document.addEventListener('wheel', (event) => {
@@ -498,13 +511,10 @@ class Scroll {
             });
         }
         this.setHtml();
-        this.totop = getElement('#to-top');
+        this.totop = document.querySelector('#to-top');
     }
 }
-try {
-    var scrolls = new Scroll();
-}
-catch (e) { }
+var scrolls = new Scroll();
 class pjaxSupport {
     constructor() {
         this.loading = getElement('.loading');
@@ -520,7 +530,7 @@ class pjaxSupport {
             ++this.timestamp;
             if (this.loading.style.opacity === '1') {
                 getElement('main').scrollTop = 0;
-                slide.close();
+                header.close();
                 if (this.left.style.width !== "50%") {
                     this.start(50);
                     setTimeout((time) => {
@@ -532,6 +542,9 @@ class pjaxSupport {
             }
         };
         document.addEventListener('pjax:send', () => {
+            if (getElement('main').classList.contains('up')) {
+                scrolls.slideDown();
+            }
             this.loading.classList.add('reset');
             this.start(0);
             setTimeout((time) => {
@@ -551,10 +564,11 @@ class pjaxSupport {
         document.addEventListener('pjax:complete', this.loaded);
     }
 }
+new pjaxSupport();
 /// <reference path="_include/canvaDust.ts" />
 /// <reference path="_include/Code.ts" />
 /// <reference path="_include/cursors.ts" />
 /// <reference path="_include/Index.ts" />
-/// <reference path="_include/Slide.ts" />
+/// <reference path="_include/Header.ts" />
 /// <reference path="_include/scroll.ts" />
 /// <reference path="_include/pjaxSupport.ts" />
