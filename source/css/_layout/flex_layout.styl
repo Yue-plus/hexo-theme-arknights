@@ -1,3 +1,5 @@
+@import "single_page"
+
 @media ( max-width 768px )
   main
     padding 0 12px
@@ -71,11 +73,15 @@
     .control
       width 55px
 @media ( min-width 769px )
+  main
+    display flex
+  article
+    width calc(95% - 212px)
   #to-index
     display none
   aside
     top 0
-    width 160px
+    width 170px
     transition 0s
     #description p
       font-size small
@@ -89,7 +95,18 @@
     position sticky
     max-width 36%
 
+@media ( max-width 1024px )
+  header
+    position fixed
+  @media ( min-width 769px )
+    header
+      width calc(100% - 212px)
+    article
+      margin-left 5%
+
 @media ( min-width 1024px )
+  article
+    width calc(100% - 412px)
   aside
     width 190px
     transition .3s
@@ -100,8 +117,7 @@
 
 @media ( min-width 1440px )
   article
-    width 100%
-    max-width calc(100vw - 520px)
+    width calc(100% - 520px)
   aside
     width 230px
     h1
@@ -119,6 +135,8 @@
     display block
     position relative
 @media ( min-width 1920px )
+  article
+    width calc(95% - 630px)
   aside
     width 270px
     h1

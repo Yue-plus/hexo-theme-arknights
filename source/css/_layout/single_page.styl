@@ -1,12 +1,16 @@
 .hide.navBtn
   transform translateY(-2em)
 
+.moving
+  .search-header,
+  .search-popup
+    transition unset
+
 .up .closed
   .navBtn
     transform translateY(-.5em)
   .search-popup
     left unset
-    right 0
     transform translateX(100%)
     top 53px
     height calc(100vh - 53px)
@@ -17,35 +21,16 @@
     overflow visible
   &,
   & .search
-    .navItem.search-header
+    .search-header
+      width 200px
       animation get-in-right .6s
       transform translateX(100vw)
       position fixed
       top 0
-      right 0
       input
-        animation: none
+        animation none
   .search-popup.open
     transform translateX(0)
-
-.down .closed .search-header
-  animation get-out-top .3s
-  padding-left 6em
-
-main.up
-  overflow hidden
-
-@keyframes get-out-top
-  0%
-    position fixed
-    top 0
-    right 0
-    transform translate(100vw, 0)
-  100%
-    position fixed
-    top 0
-    right 0
-    transform translate(100vw, -100%)
 
 @keyframes get-in-right
   0%
