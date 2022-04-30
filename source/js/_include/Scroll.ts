@@ -40,7 +40,6 @@ class Scroll {
   }
 
   public slideDown = () => {
-    getElement('.navBtn').classList.add('hide')
     const main = getElement('main').classList
     main.remove('up')
     main.add('down')
@@ -70,14 +69,16 @@ class Scroll {
           if (this.height >= nowheight && this.intop) {
             this.slideDown()
           }
-          if (this.height - nowheight > 100) {
-            navBtn.classList.add('hide')
-            this.height = nowheight
-          } else if (nowheight > this.height) {
-            if (nowheight - this.height > 20) {
-              navBtn.classList.remove('hide')
+          if (!document.querySelector('.expanded')) {
+            if (this.height - nowheight > 100) {
+              navBtn.classList.add('hide')
+              this.height = nowheight
+            } else if (nowheight > this.height) {
+              if (nowheight - this.height > 20) {
+                navBtn.classList.remove('hide')
+              }
+              this.height = nowheight
             }
-            this.height = nowheight
           }
           ++this.scrolling
           setTimeout(() => {

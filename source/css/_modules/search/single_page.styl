@@ -1,0 +1,33 @@
+@media ( max-width 1023px )
+  .search-header
+    width 284px
+  .search
+    [class$="navItem"],[class$="active"]
+      transform translateX(-100%)
+  .up .closed .search-header
+    right 200px
+  .search-popup
+    left 0
+    right 0
+    transform translateX(-100%)
+    &.open
+      transform translateX(0%)
+
+@media ( max-width 768px )
+  nav .navItem.search-header
+    padding-left 4.5em
+    padding-right 2em
+  .up .closed .search-header
+    right 0
+
+@keyframes get-in
+  0%
+    left -100%
+  100%
+    left 0
+
+@keyframes get-out
+  0%
+    width 180%
+  100%
+    width 100%
