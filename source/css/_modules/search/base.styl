@@ -59,15 +59,14 @@
           background-color #2bf
 
 .search-popup
-  pointer-events: all
+  scrollbar-width thin
+  pointer-events all
   height calc(100% - 92px)
   z-index 20
-  &.open
-   transform translateX(0%)
   transition transform .6s
-  scrollbar-width thin
   position fixed
   top 92px
+  overflow-wrap anywhere
   @media ( max-width 1023px )
     width 428px
     max-width 100%

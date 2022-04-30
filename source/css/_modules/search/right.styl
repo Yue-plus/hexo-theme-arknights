@@ -7,6 +7,15 @@
   &.open
     transform translateX(0%)
 
+
+.up .closed
+  .search-header,
+  .search-popup
+    @media ( max-width 768px )
+      right 0
+    @media ( min-width 769px )
+      right 200px
+
 @media ( max-width 1023px )
   .navItem.search-header
     padding-left 4.5em

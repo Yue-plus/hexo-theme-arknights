@@ -6,6 +6,8 @@ header
   display inline
   position sticky
   pointer-events none
+  @media (max-width 1023px)
+    clip-path polygon(0 0, 0 100%, 100% 100%, 100% 0)
 
 nav
   position relative
@@ -93,6 +95,7 @@ nav
   overflow visible
   position relative
   margin unset
+  transition .6s
   &.active a
     color #2bf
   &.active:hover a
@@ -124,8 +127,11 @@ nav
 
 @media ( max-width 1023px )
   header
-    width 428px
+    width 100%
     max-width 100%
+    position fixed
+  nav
+    max-width 428px
   .navBtn
     left 1em
   .navContent
@@ -157,7 +163,7 @@ nav
 
 @media ( min-width 1024px )
   header
-    width 156px
+    width 180px
   .navBtn
     display none
   .navItemTitle::after
