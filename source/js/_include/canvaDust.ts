@@ -108,4 +108,6 @@ class canvasDust {
   }
 }
 
-new canvasDust('#canvas-dust')
+try {
+  new canvasDust('#canvas-dust')
+} catch (e) {}
