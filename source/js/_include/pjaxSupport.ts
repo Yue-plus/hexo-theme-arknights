@@ -18,7 +18,7 @@ class pjaxSupport {
     ++this.timestamp
     if (this.loading.style.opacity === '1') {
       getElement('main').scrollTop = 0
-      slide.close()
+      header.close()
       if (this.left.style.width !== "50%") {
         this.start(50)
         setTimeout((time: number) => {
@@ -32,6 +32,9 @@ class pjaxSupport {
 
   constructor() {
     document.addEventListener('pjax:send', () => {
+      if (getElement('main').classList.contains('up')) {
+        scrolls.slideDown()
+      }
       this.loading.classList.add('reset')
       this.start(0)
       setTimeout((time: number) => {
@@ -51,3 +54,5 @@ class pjaxSupport {
     document.addEventListener('pjax:complete', this.loaded)
   }
 }
+
+new pjaxSupport()

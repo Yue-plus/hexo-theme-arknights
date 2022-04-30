@@ -2,7 +2,7 @@
 
 'use strict'
 
-class Slide {
+class Header {
   private readonly header: HTMLElement = getElement('header');
   private readonly button: HTMLElement = getElement('.navBtnIcon');
   private closeSearch: boolean = false;
@@ -11,6 +11,7 @@ class Slide {
     let navs = this.header.querySelectorAll('.navItem'),
       mayLen: number = 0,
       may: Element = navs.item(0)
+    getElement('.navBtn').classList.remove('hide')
     navs.forEach(item => {
       if (item.classList.contains('search-header')) {
         return
@@ -42,12 +43,16 @@ class Slide {
 
   public open = () => {
     this.header.classList.add('expanded')
+    this.header.classList.add('moving')
     this.header.classList.remove('closed')
+    setTimeout(() => this.header.classList.remove('moving'), 300)
   }
 
   public close = () => {
     this.header.classList.add('closed')
+    this.header.classList.add('moving')
     this.header.classList.remove('expanded')
+    setTimeout(() => this.header.classList.remove('moving'), 300)
   }
 
   public reverse = () => {
@@ -72,6 +77,4 @@ class Slide {
   }
 }
 
-try {
-  var slide = new Slide()
-} catch (e) {}
+var header = new Header()
