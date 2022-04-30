@@ -1,6 +1,7 @@
-@media ( min-width 769 max-width 1023px )
-  .search-popup
-    left 212px
+@media ( min-width 769 )
+  @media ( max-width 1023px )
+    .search-popup
+      left 212px
 
 @media ( min-width 1024px )
   .search
@@ -8,7 +9,7 @@
       transform translateX(100%)
   .search-popup
     right 0
-    transform translateX(-100%)
+    transform translateX(100%)
     &.open
       transform translateX(0%)
   @keyframes get-in
