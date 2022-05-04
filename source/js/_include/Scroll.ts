@@ -49,10 +49,10 @@ class Scroll {
     const main = getElement('main').classList
     main.remove('up')
     main.add('down')
-    getElement('main').classList.add('moving')
+    main.add('moving')
     setTimeout(() => {
       main.remove('down')
-      getElement('main').classList.remove('moving')
+      main.remove('moving')
     }, 300)
     this.intop = false
   }
