@@ -5,8 +5,25 @@
   .search
     [class$="navItem"],[class$="active"]
       transform translateX(-100%)
-  .up .closed .search-header
-    right 200px
+  .up .closed,
+  .up .closed .search
+    .search-header
+      right 200px
+      width 200px
+      animation get-in-right .6s
+      transform translateX(100vw)
+      position fixed
+      top 0
+      input
+        animation none
+    .search-popup
+      left unset
+      transform translateX(100%)
+      top 53px
+      height calc(100vh - 53px)
+      background-color rgba(20,21,22,.95)
+      &.open
+        transform translateX(0)
   .search-popup
     left 0
     right 0

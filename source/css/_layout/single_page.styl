@@ -1,36 +1,19 @@
-.hide.navBtn
-  transform translateY(-2em)
+@media ( max-width 1023px )
+  .hide.navBtn
+    transform translateY(-2em)
 
-.moving
-  .search-header,
-  .search-popup
-    transition unset
+  .moving
+    .search-header,
+    .search-popup
+      transition unset
 
-.up .closed
-  .navBtn
-    transform translateY(-.5em)
-  .search-popup
-    left unset
-    transform translateX(100%)
-    top 53px
-    height calc(100vh - 53px)
-    background-color rgba(20,21,22,.95)
-  &.header,
-  nav,
-  .navContent
-    overflow visible
-  &,
-  & .search
-    .search-header
-      width 200px
-      animation get-in-right .6s
-      transform translateX(100vw)
-      position fixed
-      top 0
-      input
-        animation none
-  .search-popup.open
-    transform translateX(0)
+  .up .closed
+    .navBtn
+      transform translateY(-.5em)
+    &.header,
+    nav,
+    .navContent
+      overflow visible
 
 @keyframes get-in-right
   0%
