@@ -42,6 +42,7 @@ class Header {
   }
 
   public open = () => {
+    getElement('main').classList.remove('up')
     this.header.classList.add('expanded')
     this.header.classList.add('moving')
     this.header.classList.remove('closed')

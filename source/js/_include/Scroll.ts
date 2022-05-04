@@ -7,7 +7,10 @@ class Scroll {
   private getingtop: boolean = false
   private height: number = 0
   private visible: boolean = false
+  private touchX: number = 0
   private touchY: number = 0
+  private mayNotUp: boolean = false
+  private reallyUp: boolean = false
   private intop: boolean = false
   private totop: HTMLElement
   private startTop: boolean = false
@@ -40,6 +43,9 @@ class Scroll {
   }
 
   public slideDown = () => {
+    if (!this.intop) {
+      return
+    }
     const main = getElement('main').classList
     main.remove('up')
     main.add('down')
@@ -52,6 +58,9 @@ class Scroll {
   }
 
   public slideUp = () => {
+    if (this.intop) {
+      return
+    }
     getElement('.navBtn').classList.remove('hide')
     getElement('main').classList.add('up')
     getElement('main').classList.add('moving')
@@ -98,26 +107,39 @@ class Scroll {
     } catch (e) {}
   }
 
+  private checkTouchMove = (event: TouchEvent) => {
+    if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 && !this.reallyUp) {
+      this.mayNotUp =true
+    }
+    if (document.querySelector('.expanded') ||
+      window.innerWidth > 1024 ||
+      this.mayNotUp ||
+      event.changedTouches[0].screenY == this.touchY) {
+      return
+    }
+    if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
+      this.reallyUp = true
+      if (event.changedTouches[0].screenY > this.touchY) {
+        this.slideUp()
+      } else {
+        this.slideDown()
+      }
+      this.touchY = event.changedTouches[0].screenY
+    }
+  }
+
+  private startTouch = (event: TouchEvent) => {
+    this.touchX = event.changedTouches[0].screenX
+    this.touchY = event.changedTouches[0].screenY
+    this.mayNotUp = false
+    this.startTop = getElement('article').getBoundingClientRect().top >= 0
+  }
+
   constructor() {
     document.addEventListener('pjax:success', this.setHtml)
     if (document.querySelector('.search-header')) {
-      document.addEventListener('touchstart', (event: TouchEvent) => {
-        this.touchY = event.changedTouches[0].screenY
-        this.startTop = getElement('article').getBoundingClientRect().top >= 0
-      })
-      document.addEventListener('touchmove', (event: TouchEvent) => {
-        if (document.querySelector('.expanded') || window.innerWidth > 1024) {
-          return
-        }
-        if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
-          if (event.changedTouches[0].screenY > this.touchY) {
-            this.slideUp()
-          } else {
-            this.slideDown()
-          }
-          this.touchY = event.changedTouches[0].screenY
-        }
-      })
+      document.addEventListener('touchstart', this.startTouch)
+      document.addEventListener('touchmove', this.checkTouchMove)
       document.addEventListener('wheel', (event: WheelEvent) => {
         if (document.querySelector('.expanded') || window.innerWidth > 1024) {
           return
