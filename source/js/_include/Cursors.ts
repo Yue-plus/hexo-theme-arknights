@@ -81,8 +81,8 @@ class Cursor {
   private pushHolder = (items: NodeList) => {
     items.forEach(item => {
       if (!(item as HTMLElement).classList.contains('is--active')) {
-        item.addEventListener('mouseover', () => this.hold(), { passive: true })
-        item.addEventListener('mouseout', () => this.relax(), { passive: true })
+        item.addEventListener('mouseover', this.hold, { passive: true })
+        item.addEventListener('mouseout', this.relax, { passive: true })
       }
     })
   }
@@ -94,8 +94,8 @@ class Cursor {
   constructor() {
     this.effecter.transform = 'translate(-50%, -50%) scale(0)'
     this.effecter.opacity = '1'
-    window.addEventListener('mousemove', mouse => this.reset(mouse), { passive: true })
-    window.addEventListener('click', mouse => this.Aeffect(mouse), { passive: true })
+    window.addEventListener('mousemove', this.reset, { passive: true })
+    window.addEventListener('click', this.Aeffect, { passive: true })
     this.pushHolders()
     const observer = new MutationObserver(this.pushHolders)
     observer.observe(document, { childList: true, subtree: true })
