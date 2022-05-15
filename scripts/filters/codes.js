@@ -3,9 +3,9 @@
 'use strict';
 
 function doAsMermaid(item) {
-  let Amermaid = item.match(/<code[\S\s]*?mermaid[\S\s]*?\/code>/)[0];
-  return Amermaid.replaceAll('<br>', '&#10;')
-    .replaceAll('hljs', '')
+  return item.match(/<code[\S\s]*?mermaid[\S\s]*?\/code>/)[0]
+    .replace(/<br>/g, '&#10;')
+    .replace(/hljs/g, '')
     .replace('<code', '<div')
     .replace('/code>', '/div>');
 }

@@ -40,7 +40,12 @@ class Code {
   public findCode = () => {
     let codeBlocks = document.querySelectorAll('.highlight')
     if (codeBlocks !== null) {
-      codeBlocks.forEach(item => this.doAsCode(item))
+      codeBlocks.forEach(item => {
+        if (!item.getAttribute('code-find')) {
+          this.doAsCode(item)
+          item.setAttribute('code-find','')
+        }
+      })
     }
     codeBlocks = document.querySelectorAll('.admonition')
     if (codeBlocks !== null) {
@@ -48,7 +53,9 @@ class Code {
     }
   }
 
-  constructor() {}
+  constructor() {
+    this.findCode()
+  }
 }
 
 let code = new Code()

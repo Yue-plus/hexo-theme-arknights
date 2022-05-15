@@ -55,4 +55,6 @@ class pjaxSupport {
   }
 }
 
-new pjaxSupport()
+try {
+  new pjaxSupport()
+} catch (e) {}
