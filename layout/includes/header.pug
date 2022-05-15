@@ -1,0 +1,24 @@
+header.closed
+  nav
+    .navBtn
+      i.navBtnIcon
+        span.navBtnIconBar
+        span.navBtnIconBar
+        span.navBtnIconBar
+    ol.navContent
+      if searchConfig !== null
+        li.navItem.search-header
+          span.navItemTitle
+            input(autocomplete="off" autocorrect="off" autocapitalize="none"
+              placeholder="数据检索" spellcheck="false" maxlength="50"
+              type="text" id="search-input")
+      each url, label in theme.menu
+        - var match = null
+        if url.match(config.archive_dir)
+          - match = config.category_dir + ',' + config.tag_dir
+        li.navItem(matchdata=match)
+          a(href= config.root + url)
+            span.navItemTitle= label
+  if searchConfig !== null
+    .search-popup
+      #search-result

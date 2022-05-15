@@ -1,0 +1,68 @@
+.loading
+  transition opacity .3s
+  &.loading.reset .loadingBar
+    transition unset
+    width 0
+  .loadingBar
+    z-index 100
+    position fixed
+    top 0
+    border-bottom 1px solid #fff
+    width 0%
+    transition width .6s
+    &::before 
+      width 20px
+    &::after 
+      width 1px
+    &.left 
+      left 0
+      &::before 
+        box-shadow 10px 0 15px 1px #fff
+        right 0
+      &::after 
+        box-shadow .5px 0 8px 2px #fff, .5px 0 2px 1px #fff
+        right 0
+    &.right 
+      right 0
+      &::before 
+        box-shadow -10px 0 15px 1px #fff
+        left 0
+      &::after 
+        box-shadow -.5px 0 8px 2px #fff, -.5px 0 2px 1px #fff
+        left 0
+
+.loadingBar::before,
+.loadingBar::after 
+  content ""
+  display block
+  position absolute
+  top 0
+  height 1px
+  transition box-shadow .3s .1s
+
+.pjax-out
+  position absolute!important
+  animation .6s pjax-animate-out
+.pjax-in
+  position absolute!important
+  animation .6s pjax-animate-in
+
+#paginator.pjax-in,
+#paginator.pjax-out
+#bottom-btn.pjax-in,
+#bottom-btn.pjax-out
+  visibility hidden
+  
+
+
+@keyframes pjax-animate-in
+  0%
+    opacity 0
+  100%
+    opacity 1
+
+@keyframes pjax-animate-out
+  0%
+    opacity 1
+  100%
+    opacity 0

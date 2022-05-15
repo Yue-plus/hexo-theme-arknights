@@ -1,1 +1,592 @@
-var dust=function(){this.x=50,this.y=50,this.vx=2*Math.random()+2,this.vy=2*Math.random(),this.color="#fff",this.shadowBlur=3*Math.random(),this.shadowX=2*Math.random()-1,this.shadowY=2*Math.random()-1,this.radiusX=3*Math.random(),this.radiusY=3*Math.random(),this.rotation=Math.PI*Math.floor(2*Math.random())},canvasDust=function(){function t(t){var e=this;this.width=300,this.height=300,this.dustQuantity=50,this.dustArr=[];var i=document.getElementById(t);if(!i)throw new Error("canvasID 无效");this.canvas=i,this.ctx=i.getContext("2d"),this.build(),window.addEventListener("resize",(function(){return e.resize()}))}return t.prototype.build=function(){var e=this;if(this.resize(),this.ctx){for(var i=0,o=t.getPoint(this.dustQuantity);i<o.length;i++){var s=o[i],n=new dust;this.buildDust(s[0],s[1],n),this.dustArr.push(n)}setInterval((function(){e.play()}),40)}},t.prototype.play=function(){var t,e=this.dustArr;null===(t=this.ctx)||void 0===t||t.clearRect(0,0,this.width,this.height);for(var i=0,o=e;i<o.length;i++){var s=o[i];if(s.x<0||s.y<0){var n=this.width,r=Math.floor(Math.random()*window.innerHeight);s.x=n,s.y=r,this.buildDust(n,r,s)}else{n=s.x-s.vx,r=s.y-s.vy;this.buildDust(n,r,s)}}},t.prototype.buildDust=function(t,e,i){var o=this.ctx;t&&(i.x=t),e&&(i.y=e),o&&(o.beginPath(),o.shadowBlur=i.shadowBlur,o.shadowColor=i.color,o.shadowOffsetX=i.shadowX,o.shadowOffsetY=i.shadowY,o.ellipse(i.x,i.y,i.radiusX,i.radiusY,i.rotation,0,2*Math.PI),o.closePath(),o.fillStyle=i.color,o.fill())},t.prototype.resize=function(){var t=this.canvas,e=window.innerWidth,i=window.innerHeight;this.width=e,this.height=i,this.dustQuantity=Math.floor((e+i)/38),void 0!==t&&(t.width=e,t.height=i)},t.getPoint=function(t){void 0===t&&(t=1);for(var e=[],i=0;i<t;i++){var o=Math.floor(Math.random()*window.innerWidth),s=Math.floor(Math.random()*window.innerHeight);e.push([o,s])}return e},t}(),indexs=function(){function t(){var t=this;this.tocLink=document.querySelectorAll(".toc-link"),this.index=[],this.totop=document.querySelector("#to-top"),this.scrollID=null,this.scrolling=0,this.tocLink.length>0&&this.setItem(this.tocLink.item(0)),document.addEventListener("scroll",(function(){if(t.tocLink=document.querySelectorAll(".toc-link"),t.tocLink.length>0){t.headerLink=document.querySelectorAll(".headerlink"),t.postContent=document.querySelector("#post-content");document.querySelector("#to-top");++t.scrolling,null==t.scrollID&&t.tocLink.length>0&&(t.scrollID=setInterval(t.modifyIndex.bind(t),50)),setTimeout((function(){if(0==--t.scrolling){clearInterval(t.scrollID),t.scrollID=null;var e=document.querySelector("#to-top");null!==t.totop&&document.querySelector("#post-title").getBoundingClientRect().top<-200?(e.style.display="",setTimeout((function(){return e.style.opacity="1"}),300)):(e.style.opacity="0",setTimeout((function(){return e.style.display="none"}),300))}}),200)}}),{passive:!0})}return t.prototype.setItem=function(t){t.classList.add("active");for(var e=t.parentElement.children,i=0;i<e.length;i++){var o=e.item(i);if(o.classList.contains("toc-child")){o.classList.add("has-active");break}}for(var s=t.parentElement;"toc"!=s.classList[0];s=s.parentElement)"toc-child"==s.classList[0]&&s.classList.add("has-active")},t.prototype.reset=function(){var t=document.querySelectorAll("#toc-div .active"),e=document.querySelectorAll("#toc-div .has-active");t.forEach((function(t){t.classList.remove("active")})),e.forEach((function(t){t.classList.remove("has-active")}))},t.prototype.modifyIndex=function(){var t=this;this.headerLink.forEach((function(e){t.index.push(e.getBoundingClientRect().top)})),this.reset();for(var e=0;e<this.tocLink.length;++e){var i=this.tocLink.item(e);if(e+1==this.index.length||this.index[e+1]>150&&(this.index[e]<=150||0==e)){this.setItem(i);break}}this.index=[]},t.prototype.scrolltop=function(){var t=this;window.scroll({top:0,left:0,behavior:"smooth"}),document.querySelector("#to-top").style.opacity="0",setTimeout((function(){return t.totop.style.display="none"}),300)},t}(),codes=function(){function t(){}return t.prototype.reverse=function(t,e,i){var o=t.parentElement;o.classList.contains(e)?(o.classList.remove(e),o.classList.add(i)):(o.classList.remove(i),o.classList.add(e))},t.prototype.doAsMermaid=function(t){var e=t.querySelector(".mermaid");t.outerHTML='<div class="highlight mermaid">'+e.innerText+"</div>"},t.prototype.resetName=function(t){return"plaintext"==t?"TEXT":"cs"==t?"C#":t.toUpperCase()},t.prototype.doAsCode=function(t){var e=this,i=t.classList[1],o=t.querySelector(".gutter").children[0].childElementCount>>1;t.classList.add(o<16?"open":"fold"),t.innerHTML='<span class="code-header"><span class="code-title">        <div class="code-icon"></div>'+this.resetName(i)+" 共 "+o+' 行</span>        <span class="code-header-tail">          <button class="code-copy"></button>          <span class="code-space">展开</span>        </span>    </span></span>    <div class="code-box">'+t.innerHTML+"</div>",t.querySelector(".code-copy").addEventListener("click",(function(e){var i=e.target;navigator.clipboard.writeText(t.querySelector("code").innerText),i.classList.add("copied"),setTimeout((function(){return i.classList.remove("copied")}),1200)})),t.querySelector(".code-header").addEventListener("click",(function(t){t.target.classList.contains("code-copy")||e.reverse(t.currentTarget,"open","fold")}))},t.prototype.findCode=function(){var t=this,e=document.querySelectorAll(".highlight");null!==e&&e.forEach((function(e){e.classList.contains("mermaid")||null!==e.querySelector(".code-header")||(null!==e.querySelector(".mermaid")?t.doAsMermaid(e):t.doAsCode(e))}))},t}(),cursors=function(){function t(){var t=this;this.first=!0,this.outer=document.getElementById("cursor-outer").style,this.effecter=document.getElementById("cursor-effect").style,this.scale=0,this.opacity=0,this.last=0,this.moveIng=!1,this.fadeIng=!1,this.attention="a,input,button,.admonition,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon",this.effecter.transform="translate(-50%, -50%) scale(0)",this.effecter.opacity="1",window.addEventListener("mousemove",(function(e){return t.reset(e)}),{passive:!0}),window.addEventListener("click",(function(e){return t.Aeffect(e)}),{passive:!0}),this.pushHolders(),new MutationObserver(this.pushHolders.bind(this)).observe(document,{childList:!0,subtree:!0})}return t.prototype.move=function(t){if(void 0!==this.now){var e=this.outer.left,i=this.outer.top,o=Number(e.substring(0,e.length-2)),s=Number(i.substring(0,i.length-2)),n=.3*(this.now.x-o),r=.3*(this.now.y-s);if(o+=n,s+=r,this.outer.left=o.toFixed(2)+"px",this.outer.top=s.toFixed(2)+"px",Math.abs(n)>.2||Math.abs(r)>.2){for(;t-this.last<10;)this.last=t;window.requestAnimationFrame(this.move.bind(this))}else this.moveIng=!1}},t.prototype.reset=function(t){this.moveIng||(this.moveIng=!0,window.requestAnimationFrame(this.move.bind(this))),this.now=t,this.first&&(this.first=!1,this.outer.left=String(this.now.x)+"px",this.outer.top=String(this.now.y)+"px")},t.prototype.Aeffect=function(t){var e=this;if(0==this.fadeIng){this.fadeIng=!0,this.effecter.left=String(t.x)+"px",this.effecter.top=String(t.y)+"px",this.effecter.transition="transform .5s cubic-bezier(0.22, 0.61, 0.21, 1), opacity .5s cubic-bezier(0.22, 0.61, 0.21, 1)",this.effecter.transform="translate(-50%, -50%) scale(1)",this.effecter.opacity="0",setTimeout((function(){e.fadeIng=!1,e.effecter.transition="",e.effecter.transform="translate(-50%, -50%) scale(0)",e.effecter.opacity="1"}),500)}},t.prototype.hold=function(){this.outer.height="24px",this.outer.width="24px",this.outer.background="rgba(255, 255, 255, 0.5)"},t.prototype.relax=function(){this.outer.height="36px",this.outer.width="36px",this.outer.background="unset"},t.prototype.pushHolder=function(t){var e=this;t.forEach((function(t){t.classList.contains("is--active")||(t.addEventListener("mouseover",(function(){return e.hold()}),{passive:!0}),t.addEventListener("mouseout",(function(){return e.relax()}),{passive:!0}))}))},t.prototype.pushHolders=function(){this.pushHolder(document.querySelectorAll(this.attention))},t}(),slides=function(){function t(){var t=this;this.nav=document.querySelector("nav"),this.button=this.nav.querySelector(".navBtnIcon"),this.closeSearch=!1,this.button.addEventListener("mousedown",(function(){document.querySelector(".search")&&(t.closeSearch=!0)})),this.button.onclick=function(){t.closeSearch?t.closeSearch=!1:"expanded"===t.nav.classList[0]?t.nav.classList.remove("expanded"):t.nav.classList.add("expanded")},document.addEventListener("pjax:success",this.relabel),window.onload=this.relabel.bind(this)}return t.prototype.relabel=function(){void 0===this.nav&&(this.nav=document.querySelector("nav"));var t,e=this.nav.querySelectorAll(".navItem"),i=0;e.forEach((function(e){var o=e,s=o.querySelector("a");if(null!==s){var n=s.href;o.classList.remove("active"),n.length>i&&null!==document.URL.match(n)&&(i=n.length,t=o)}})),null!==t&&t.classList.add("active")},t}(),index=new indexs,code=new codes,cursor=new cursors;new slides,new canvasDust("canvas-dust");
+'use strict';
+function getElement(string, item = document.documentElement) {
+    let tmp = item.querySelector(string);
+    if (tmp === null) {
+        throw new Error("Unknow HTML");
+    }
+    return tmp;
+}
+function getParent(item) {
+    let tmp = item.parentElement;
+    if (tmp === null) {
+        throw new Error("Unknow HTML");
+    }
+    return tmp;
+}
+class dust {
+    constructor() {
+        this.x = 50;
+        this.y = 50;
+        this.vx = Math.random() * 2 + 2;
+        this.vy = Math.random() * 2;
+        this.color = '#fff';
+        this.shadowBlur = Math.random() * 3;
+        this.shadowX = (Math.random() * 2) - 1;
+        this.shadowY = (Math.random() * 2) - 1;
+        this.radiusX = Math.random() * 3;
+        this.radiusY = Math.random() * 3;
+        this.rotation = Math.PI * Math.floor(Math.random() * 2);
+    }
+}
+class canvasDust {
+    constructor(canvasID) {
+        this.width = 300;
+        this.height = 300;
+        this.dustQuantity = 50;
+        this.dustArr = [];
+        this.build = () => {
+            this.resize();
+            if (this.ctx) {
+                const point = canvasDust.getPoint(this.dustQuantity);
+                for (let i of point) {
+                    const dustObj = new dust();
+                    this.buildDust(i[0], i[1], dustObj);
+                    this.dustArr.push(dustObj);
+                }
+                setInterval(this.play, 40);
+            }
+        };
+        this.play = () => {
+            var _a;
+            const dustArr = this.dustArr;
+            (_a = this.ctx) === null || _a === void 0 ? void 0 : _a.clearRect(0, 0, this.width, this.height);
+            for (let i of dustArr) {
+                if (i.x < 0 || i.y < 0) {
+                    const x = this.width;
+                    const y = Math.floor(Math.random() * window.innerHeight);
+                    i.x = x;
+                    i.y = y;
+                    this.buildDust(x, y, i);
+                }
+                else {
+                    const x = i.x - i.vx;
+                    const y = i.y - i.vy;
+                    this.buildDust(x, y, i);
+                }
+            }
+        };
+        this.buildDust = (x, y, dust) => {
+            const ctx = this.ctx;
+            if (x)
+                dust.x = x;
+            if (y)
+                dust.y = y;
+            if (ctx) {
+                ctx.beginPath();
+                ctx.shadowBlur = dust.shadowBlur;
+                ctx.shadowColor = dust.color;
+                ctx.shadowOffsetX = dust.shadowX;
+                ctx.shadowOffsetY = dust.shadowY;
+                ctx.ellipse(dust.x, dust.y, dust.radiusX, dust.radiusY, dust.rotation, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fillStyle = dust.color;
+                ctx.fill();
+            }
+        };
+        this.resize = () => {
+            const canvas = this.canvas;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            this.width = width;
+            this.height = height;
+            this.dustQuantity = Math.floor((width + height) / 38);
+            if (canvas !== undefined) {
+                canvas.width = width;
+                canvas.height = height;
+            }
+        };
+        const canvas = getElement(canvasID);
+        if (canvas) {
+            this.canvas = canvas;
+            this.ctx = canvas.getContext('2d');
+            this.build();
+            window.addEventListener('resize', () => this.resize());
+        }
+        else {
+            throw new Error('canvasID 无效');
+        }
+    }
+}
+canvasDust.getPoint = (number = 1) => {
+    let point = [];
+    for (let i = 0; i < number; i++) {
+        const x = Math.floor(Math.random() * window.innerWidth);
+        const y = Math.floor(Math.random() * window.innerHeight);
+        point.push([x, y]);
+    }
+    return point;
+};
+try {
+    new canvasDust('#canvas-dust');
+}
+catch (e) { }
+class Code {
+    constructor() {
+        this.reverse = (item, s0, s1) => {
+            const block = getParent(item);
+            if (block.classList.contains(s0)) {
+                block.classList.remove(s0);
+                block.classList.add(s1);
+            }
+            else {
+                block.classList.remove(s1);
+                block.classList.add(s0);
+            }
+        };
+        this.doAsCode = (item) => {
+            getElement('.code-copy', item).addEventListener('click', (click) => {
+                const button = click.target;
+                navigator.clipboard.writeText(getElement('code', item).innerText);
+                button.classList.add('copied');
+                setTimeout(() => button.classList.remove('copied'), 1200);
+            });
+            getElement('.code-header', item).addEventListener('click', (click) => {
+                if (!click.target.classList.contains('code-copy')) {
+                    this.reverse(click.currentTarget, 'open', 'fold');
+                }
+            });
+        };
+        this.findCode = () => {
+            let codeBlocks = document.querySelectorAll('.highlight');
+            if (codeBlocks !== null) {
+                codeBlocks.forEach(item => {
+                    if (!item.getAttribute('code-find')) {
+                        this.doAsCode(item);
+                        item.setAttribute('code-find', '');
+                    }
+                });
+            }
+        };
+        this.findCode();
+    }
+}
+let code = new Code();
+class Cursor {
+    constructor() {
+        this.now = new MouseEvent('');
+        this.first = true;
+        this.last = 0;
+        this.moveIng = false;
+        this.fadeIng = false;
+        this.outer = getElement('#cursor-outer').style;
+        this.effecter = getElement('#cursor-effect').style;
+        this.attention = "a,input,button,.admonition,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon";
+        this.move = (timestamp) => {
+            if (this.now !== undefined) {
+                let SX = this.outer.left, SY = this.outer.top, preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2)), delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3;
+                if (timestamp - this.last > 15) {
+                    preX += delX;
+                    preY += delY;
+                    this.outer.left = preX.toFixed(2) + 'px';
+                    this.outer.top = preY.toFixed(2) + 'px';
+                    this.last = timestamp;
+                }
+                if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
+                    window.requestAnimationFrame(this.move);
+                }
+                else {
+                    this.moveIng = false;
+                }
+            }
+        };
+        this.reset = (mouse) => {
+            if (!this.moveIng) {
+                this.moveIng = true;
+                window.requestAnimationFrame(this.move);
+            }
+            this.now = mouse;
+            if (this.first) {
+                this.first = false;
+                this.outer.left = String(this.now.x) + 'px';
+                this.outer.top = String(this.now.y) + 'px';
+            }
+        };
+        this.Aeffect = (mouse) => {
+            if (this.fadeIng == false) {
+                this.fadeIng = true;
+                this.effecter.left = String(mouse.x) + 'px';
+                this.effecter.top = String(mouse.y) + 'px';
+                this.effecter.transition =
+                    'transform .5s cubic-bezier(0.22, 0.61, 0.21, 1)\
+        ,opacity .5s cubic-bezier(0.22, 0.61, 0.21, 1)';
+                this.effecter.transform = 'translate(-50%, -50%) scale(1)';
+                this.effecter.opacity = '0';
+                setTimeout(() => {
+                    this.fadeIng = false;
+                    this.effecter.transition = '';
+                    this.effecter.transform = 'translate(-50%, -50%) scale(0)';
+                    this.effecter.opacity = '1';
+                }, 500);
+            }
+        };
+        this.hold = () => {
+            this.outer.height = '24px';
+            this.outer.width = '24px';
+            this.outer.background = "rgba(255, 255, 255, 0.5)";
+        };
+        this.relax = () => {
+            this.outer.height = '36px';
+            this.outer.width = '36px';
+            this.outer.background = "unset";
+        };
+        this.pushHolder = (items) => {
+            items.forEach(item => {
+                if (!item.classList.contains('is--active')) {
+                    item.addEventListener('mouseover', this.hold, { passive: true });
+                    item.addEventListener('mouseout', this.relax, { passive: true });
+                }
+            });
+        };
+        this.pushHolders = () => {
+            this.pushHolder(document.querySelectorAll(this.attention));
+        };
+        this.effecter.transform = 'translate(-50%, -50%) scale(0)';
+        this.effecter.opacity = '1';
+        window.addEventListener('mousemove', this.reset, { passive: true });
+        window.addEventListener('click', this.Aeffect, { passive: true });
+        this.pushHolders();
+        const observer = new MutationObserver(this.pushHolders);
+        observer.observe(document, { childList: true, subtree: true });
+    }
+}
+new Cursor();
+class Index {
+    constructor() {
+        this.setItem = (item) => {
+            item.classList.add('active');
+            let parent = getParent(item), brother = parent.children;
+            for (let i = 0; i < brother.length; i++) {
+                const item = brother.item(i);
+                if (item.classList.contains('toc-child')) {
+                    item.classList.add('has-active');
+                    break;
+                }
+            }
+            for (; parent.classList[0] != 'toc'; parent = getParent(parent)) {
+                if (parent.classList[0] == 'toc-child') {
+                    parent.classList.add('has-active');
+                }
+            }
+        };
+        this.reset = () => {
+            let tocs = document.querySelectorAll('#toc-div .active');
+            let tocTree = document.querySelectorAll('#toc-div .has-active');
+            tocs.forEach(item => {
+                item.classList.remove('active');
+            });
+            tocTree.forEach(item => {
+                item.classList.remove('has-active');
+            });
+        };
+        this.modifyIndex = (headerLink, tocLink) => {
+            let index = [];
+            headerLink.forEach(item => {
+                index.push(item.getBoundingClientRect().top);
+            });
+            this.reset();
+            for (let i = 0; i < tocLink.length; ++i) {
+                const item = tocLink.item(i);
+                if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
+                    this.setItem(item);
+                    break;
+                }
+            }
+        };
+        this.setHtml = () => {
+            let headerLink = document.querySelectorAll('.headerlink'), tocLink = document.querySelectorAll('.toc-link');
+            if (tocLink.length !== 0) {
+                this.setItem(tocLink.item(0));
+            }
+            getElement('main').addEventListener('scroll', () => {
+                if (tocLink.length === 0)
+                    return;
+                this.modifyIndex(headerLink, tocLink);
+            }, { passive: true });
+        };
+        document.addEventListener('pjax:success', this.setHtml);
+        this.setHtml();
+    }
+}
+new Index();
+class Header {
+    constructor() {
+        this.header = getElement('header');
+        this.button = getElement('.navBtnIcon');
+        this.closeSearch = false;
+        this.relabel = () => {
+            let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
+            getElement('.navBtn').classList.remove('hide');
+            navs.forEach(item => {
+                if (item.classList.contains('search-header')) {
+                    return;
+                }
+                let now = item, link = getElement('a', now);
+                if (link !== null) {
+                    let href = link.href, match = now.getAttribute('matchdata');
+                    now.classList.remove('active');
+                    if (href.length > mayLen && document.URL.match(href) !== null) {
+                        mayLen = href.length;
+                        may = now;
+                    }
+                    if (match) {
+                        const s = match.split(',');
+                        s.forEach(item => {
+                            if (document.URL.match(item) !== null) {
+                                may = now;
+                                mayLen = Infinity;
+                            }
+                        });
+                    }
+                }
+            });
+            if (may !== null) {
+                may.classList.add('active');
+            }
+        };
+        this.open = () => {
+            scrolls.slideDown();
+            this.header.classList.add('expanded');
+            this.header.classList.add('moving');
+            this.header.classList.remove('closed');
+            setTimeout(() => this.header.classList.remove('moving'), 300);
+        };
+        this.close = () => {
+            this.header.classList.add('closed');
+            this.header.classList.add('moving');
+            this.header.classList.remove('expanded');
+            setTimeout(() => this.header.classList.remove('moving'), 300);
+        };
+        this.reverse = () => {
+            if (this.closeSearch) {
+                this.closeSearch = false;
+            }
+            else if (this.header.classList[0] === 'expanded') {
+                this.close();
+            }
+            else {
+                this.open();
+            }
+        };
+        this.relabel();
+        document.addEventListener('pjax:success', this.relabel);
+        this.button.addEventListener('mousedown', () => {
+            if (document.querySelector('.search')) {
+                this.closeSearch = true;
+            }
+        });
+        this.button.onclick = this.reverse;
+    }
+}
+var header = new Header();
+class Scroll {
+    constructor() {
+        this.scrolling = 0;
+        this.getingtop = false;
+        this.height = 0;
+        this.visible = false;
+        this.touchX = 0;
+        this.touchY = 0;
+        this.mayNotUp = false;
+        this.reallyUp = false;
+        this.intop = false;
+        this.startTop = false;
+        this.scrolltop = () => {
+            getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
+            this.totop.style.opacity = '0';
+            this.getingtop = true;
+            setTimeout(() => this.totop.style.display = 'none', 300);
+        };
+        this.totopChange = (post) => {
+            if (post.getBoundingClientRect().top < -200) {
+                this.totop.style.display = '';
+                this.visible = true;
+                setTimeout(() => {
+                    if (this.visible) {
+                        this.totop.style.opacity = '1';
+                    }
+                }, 300);
+            }
+            else {
+                this.totop.style.opacity = '0';
+                this.visible = false;
+                setTimeout(() => {
+                    if (!this.visible) {
+                        this.totop.style.display = 'none';
+                    }
+                }, 300);
+            }
+        };
+        this.slideDown = () => {
+            if (!this.intop) {
+                return;
+            }
+            const main = getElement('main').classList;
+            main.remove('up');
+            main.add('down');
+            main.add('moving');
+            setTimeout(() => {
+                main.remove('down');
+                main.remove('moving');
+            }, 300);
+            this.intop = false;
+        };
+        this.slideUp = () => {
+            if (this.intop) {
+                return;
+            }
+            getElement('.navBtn').classList.remove('hide');
+            getElement('main').classList.add('up');
+            getElement('main').classList.add('moving');
+            this.intop = true;
+            setTimeout(() => getElement('main').classList.remove('moving'), 300);
+        };
+        this.setHtml = () => {
+            try {
+                let navBtn = getElement('.navBtn');
+                let onScroll = () => {
+                    try {
+                        let nowheight = getElement('article').getBoundingClientRect().top, post = getElement('#post-title');
+                        if (this.height >= nowheight && this.intop) {
+                            this.slideDown();
+                        }
+                        if (!document.querySelector('.expanded')) {
+                            if (this.height - nowheight > 100) {
+                                navBtn.classList.add('hide');
+                                this.height = nowheight;
+                            }
+                            else if (nowheight > this.height) {
+                                if (nowheight - this.height > 20) {
+                                    navBtn.classList.remove('hide');
+                                }
+                                this.height = nowheight;
+                            }
+                        }
+                        ++this.scrolling;
+                        setTimeout(() => {
+                            if (!--this.scrolling) {
+                                this.getingtop = false;
+                            }
+                        }, 100);
+                        if (!this.getingtop) {
+                            this.totopChange(post);
+                        }
+                    }
+                    catch (e) { }
+                };
+                this.totop = getElement('#to-top');
+                this.height = 0;
+                this.visible = false;
+                getElement('main').addEventListener('scroll', onScroll);
+            }
+            catch (e) { }
+        };
+        this.checkTouchMove = (event) => {
+            if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 && !this.reallyUp) {
+                this.mayNotUp = true;
+            }
+            if (document.querySelector('.expanded') ||
+                window.innerWidth > 1024 ||
+                this.mayNotUp ||
+                event.changedTouches[0].screenY == this.touchY) {
+                return;
+            }
+            if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
+                this.reallyUp = true;
+                if (event.changedTouches[0].screenY > this.touchY) {
+                    this.slideUp();
+                }
+                else {
+                    this.slideDown();
+                }
+                this.touchY = event.changedTouches[0].screenY;
+            }
+        };
+        this.startTouch = (event) => {
+            this.touchX = event.changedTouches[0].screenX;
+            this.touchY = event.changedTouches[0].screenY;
+            this.mayNotUp = false;
+            this.startTop = getElement('article').getBoundingClientRect().top >= 0;
+        };
+        document.addEventListener('pjax:success', this.setHtml);
+        if (document.querySelector('.search-header')) {
+            document.addEventListener('touchstart', this.startTouch);
+            document.addEventListener('touchmove', this.checkTouchMove);
+            document.addEventListener('wheel', (event) => {
+                if (document.querySelector('.expanded') || window.innerWidth > 1024) {
+                    return;
+                }
+                if (getElement('article').getBoundingClientRect().top >= 0) {
+                    if (event.deltaY < 0) {
+                        this.slideUp();
+                    }
+                    else {
+                        this.slideDown();
+                    }
+                }
+            });
+        }
+        this.setHtml();
+        this.totop = document.querySelector('#to-top');
+    }
+}
+var scrolls = new Scroll();
+class pjaxSupport {
+    constructor() {
+        this.loading = getElement('.loading');
+        this.left = getElement('.loadingBar.left');
+        this.right = getElement('.loadingBar.right');
+        this.timestamp = 0;
+        this.start = (need) => {
+            this.left.style.width = need + '%';
+            this.right.style.width = need + '%';
+            ++this.timestamp;
+        };
+        this.loaded = () => {
+            ++this.timestamp;
+            if (this.loading.style.opacity === '1') {
+                getElement('main').scrollTop = 0;
+                header.close();
+                if (this.left.style.width !== "50%") {
+                    this.start(50);
+                    setTimeout((time) => {
+                        if (this.timestamp == time) {
+                            this.loading.style.opacity = '0';
+                        }
+                    }, 600, this.timestamp);
+                }
+            }
+        };
+        document.addEventListener('pjax:send', () => {
+            if (getElement('main').classList.contains('up')) {
+                scrolls.slideDown();
+            }
+            this.loading.classList.add('reset');
+            this.start(0);
+            setTimeout((time) => {
+                if (this.timestamp == time) {
+                    this.loading.style.opacity = '1';
+                    this.loading.classList.remove('reset');
+                    this.start(15);
+                    setTimeout((time) => {
+                        if (this.timestamp == time) {
+                            this.start(30);
+                        }
+                    }, 800, this.timestamp);
+                }
+            }, 10, this.timestamp);
+        });
+        document.addEventListener('pjax:start', this.loaded);
+        document.addEventListener('pjax:complete', this.loaded);
+    }
+}
+try {
+    new pjaxSupport();
+}
+catch (e) { }
+/// <reference path="_include/canvaDust.ts" />
+/// <reference path="_include/Code.ts" />
+/// <reference path="_include/cursors.ts" />
+/// <reference path="_include/Index.ts" />
+/// <reference path="_include/Header.ts" />
+/// <reference path="_include/scroll.ts" />
+/// <reference path="_include/pjaxSupport.ts" />

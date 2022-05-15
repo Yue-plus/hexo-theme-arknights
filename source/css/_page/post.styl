@@ -1,4 +1,6 @@
 #post-bg
+  width 100%
+  box-sizing border-box
   padding 20px 30px
   background-color rgba(#141516, .8)
   overflow-x auto
@@ -40,6 +42,7 @@
   background-color #555
 
 #post-content
+  margin-bottom 1em
   table
     width 100%
   .footnote-ref:before
@@ -84,9 +87,10 @@
   bottom 0
   z-index 1
   a
+    overflow hidden
     position absolute
     right 0
-    transition .3s
+    transition .3s color, .3s line-height, .3s background-color, .3s opacity
     width 40px
     height 40px
     color #fff

@@ -1,0 +1,83 @@
+@media ( max-width 1023px )
+  .search-header
+    width calc(100% - 6.5em)
+    max-width 284px
+  .search
+    [class$="navItem"],[class$="active"]
+      transform translateX(-100%)
+  .up,
+  .up .search
+    .navItem.search-header
+      width 200px
+      animation get-in-right .6s
+      transform translateX(100vw)
+      position fixed
+      top 0
+      input
+        animation none
+    .search-popup
+      left unset
+      transform translateX(100%)
+      top 53px
+      height calc(100vh - 53px)
+      background-color rgba(20,21,22,.95)
+      &.open
+        transform translateX(0)
+  .down.moving .search-header
+    animation get-out-up .6s -.05s
+    transition unset
+  .down.moving .expanded .search-header
+    animation unset
+  .search-popup
+    left 0
+    right 0
+    transform translateX(-100%)
+    &.open
+      transform translateX(0%)
+@media ( max-width 1023px )
+  @media ( min-width 769px )
+    .up,
+    .up .search
+      .navItem.search-header
+          right 200px
+
+@media ( max-width 768px )
+  nav .navItem.search-header
+    padding-left 4.5em
+    padding-right 2em
+  .up .search-header
+    right 0
+
+@keyframes get-in
+  0%
+    left -100%
+  100%
+    left 0
+
+@keyframes get-out
+  0%
+    width 180%
+  100%
+    width 100%
+
+animate-up(get-right)
+  @keyframes get-out-up
+    0%
+      top 0
+      right get-right
+      width 200px
+      position fixed
+      transform translateX(100vw)
+      top 0
+    100%
+      top -80px
+      right get-right
+      width 200px
+      position fixed
+      transform translateX(100vw)
+
+@media ( min-width 769px )
+  animate-up(200px)
+
+@media ( max-width 768px )
+  animate-up(0)
