@@ -21,8 +21,12 @@
 .navContent .navItem.search-header
   .navItemTitle
     overflow hidden
-  .navItemTitle:hover
-    margin unset
+    &:hover
+      margin unset
+    &::after
+      display block
+      content ""
+      position absolute
 
 .search
   transition .6s

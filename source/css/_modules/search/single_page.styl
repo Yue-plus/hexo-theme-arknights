@@ -8,7 +8,6 @@
   .up,
   .up .search
     .navItem.search-header
-      right 200px
       width 200px
       animation get-in-right .6s
       transform translateX(100vw)
@@ -35,6 +34,12 @@
     transform translateX(-100%)
     &.open
       transform translateX(0%)
+@media ( max-width 1023px )
+  @media ( min-width 769px )
+    .up,
+    .up .search
+      .navItem.search-header
+          right 200px
 
 @media ( max-width 768px )
   nav .navItem.search-header

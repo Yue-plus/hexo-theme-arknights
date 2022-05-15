@@ -31,7 +31,7 @@ nav
       sum += 3
     if hexo-config("search") && hexo-config("search.enable")
       sum += 1
-    padding (42em/sum) 0
+    padding (34em/sum) 0
     width 100%
     color #fff
     &:active
@@ -96,16 +96,23 @@ nav
   position relative
   margin unset
   transition .6s
-  &.active a
-    color #2bf
-  &.active:hover a
-    color #2bf
-  .navItemTitle
-    &::after
+  &.active
+    a
+      color #2bf
+    &:hover a
+      color #2bf
+    .navItemTitle::after
       content ""
       display block
       width 100%
       position absolute
+  @media ( max-width 1023px )
+    & .navItemTitle::after
+      content ""
+      display block
+      width 100%
+      position absolute
+  .navItemTitle
     transition .3s
     width 100%
     overflow-wrap break-word
