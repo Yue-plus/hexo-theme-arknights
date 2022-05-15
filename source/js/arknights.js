@@ -146,27 +146,15 @@ class Code {
                 }
             });
         };
-        this.doAsAdmon = (item) => {
-            item.classList.add('AD-fold');
-            const header = item.children[0];
-            header.innerHTML = `<div class="admon-icon"></div>${header.innerHTML}`;
-            getElement('.admonition-title', item).addEventListener('click', (click) => {
-                this.reverse(click.currentTarget, 'AD-open', 'AD-fold');
-            });
-        };
         this.findCode = () => {
             let codeBlocks = document.querySelectorAll('.highlight');
             if (codeBlocks !== null) {
                 codeBlocks.forEach(item => {
-                    if (!item.getAttribute('finded')) {
+                    if (!item.getAttribute('code-find')) {
                         this.doAsCode(item);
-                        item.setAttribute('finded', '');
+                        item.setAttribute('code-find', '');
                     }
                 });
-            }
-            codeBlocks = document.querySelectorAll('.admonition');
-            if (codeBlocks !== null) {
-                codeBlocks.forEach(item => this.doAsAdmon(item));
             }
         };
         this.findCode();

@@ -28,15 +28,6 @@ class Code {
     })
   }
 
-  private doAsAdmon = (item: Element) => {
-    item.classList.add('AD-fold')
-    const header = item.children[0]
-    header.innerHTML = `<div class="admon-icon"></div>${header.innerHTML}`
-    getElement('.admonition-title', item).addEventListener('click', (click: Event) => {
-      this.reverse(click.currentTarget as HTMLElement, 'AD-open', 'AD-fold')
-    })
-  }
-
   public findCode = () => {
     let codeBlocks = document.querySelectorAll('.highlight')
     if (codeBlocks !== null) {
@@ -46,10 +37,6 @@ class Code {
           item.setAttribute('code-find','')
         }
       })
-    }
-    codeBlocks = document.querySelectorAll('.admonition')
-    if (codeBlocks !== null) {
-      codeBlocks.forEach(item => this.doAsAdmon(item))
     }
   }
 
