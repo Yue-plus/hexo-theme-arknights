@@ -157,13 +157,19 @@ class Code {
         this.findCode = () => {
             let codeBlocks = document.querySelectorAll('.highlight');
             if (codeBlocks !== null) {
-                codeBlocks.forEach(item => this.doAsCode(item));
+                codeBlocks.forEach(item => {
+                    if (!item.getAttribute('finded')) {
+                        this.doAsCode(item);
+                        item.setAttribute('finded', '');
+                    }
+                });
             }
             codeBlocks = document.querySelectorAll('.admonition');
             if (codeBlocks !== null) {
                 codeBlocks.forEach(item => this.doAsAdmon(item));
             }
         };
+        this.findCode();
     }
 }
 let code = new Code();
@@ -238,8 +244,8 @@ class Cursor {
         this.pushHolder = (items) => {
             items.forEach(item => {
                 if (!item.classList.contains('is--active')) {
-                    item.addEventListener('mouseover', () => this.hold(), { passive: true });
-                    item.addEventListener('mouseout', () => this.relax(), { passive: true });
+                    item.addEventListener('mouseover', this.hold, { passive: true });
+                    item.addEventListener('mouseout', this.relax, { passive: true });
                 }
             });
         };
@@ -248,8 +254,8 @@ class Cursor {
         };
         this.effecter.transform = 'translate(-50%, -50%) scale(0)';
         this.effecter.opacity = '1';
-        window.addEventListener('mousemove', mouse => this.reset(mouse), { passive: true });
-        window.addEventListener('click', mouse => this.Aeffect(mouse), { passive: true });
+        window.addEventListener('mousemove', this.reset, { passive: true });
+        window.addEventListener('click', this.Aeffect, { passive: true });
         this.pushHolders();
         const observer = new MutationObserver(this.pushHolders);
         observer.observe(document, { childList: true, subtree: true });
@@ -350,6 +356,7 @@ class Header {
             }
         };
         this.open = () => {
+            scrolls.slideDown();
             this.header.classList.add('expanded');
             this.header.classList.add('moving');
             this.header.classList.remove('closed');
@@ -389,7 +396,10 @@ class Scroll {
         this.getingtop = false;
         this.height = 0;
         this.visible = false;
+        this.touchX = 0;
         this.touchY = 0;
+        this.mayNotUp = false;
+        this.reallyUp = false;
         this.intop = false;
         this.startTop = false;
         this.scrolltop = () => {
@@ -419,17 +429,23 @@ class Scroll {
             }
         };
         this.slideDown = () => {
+            if (!this.intop) {
+                return;
+            }
             const main = getElement('main').classList;
             main.remove('up');
             main.add('down');
-            getElement('main').classList.add('moving');
+            main.add('moving');
             setTimeout(() => {
                 main.remove('down');
-                getElement('main').classList.remove('moving');
+                main.remove('moving');
             }, 300);
             this.intop = false;
         };
         this.slideUp = () => {
+            if (this.intop) {
+                return;
+            }
             getElement('.navBtn').classList.remove('hide');
             getElement('main').classList.add('up');
             getElement('main').classList.add('moving');
@@ -476,26 +492,37 @@ class Scroll {
             }
             catch (e) { }
         };
+        this.checkTouchMove = (event) => {
+            if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 && !this.reallyUp) {
+                this.mayNotUp = true;
+            }
+            if (document.querySelector('.expanded') ||
+                window.innerWidth > 1024 ||
+                this.mayNotUp ||
+                event.changedTouches[0].screenY == this.touchY) {
+                return;
+            }
+            if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
+                this.reallyUp = true;
+                if (event.changedTouches[0].screenY > this.touchY) {
+                    this.slideUp();
+                }
+                else {
+                    this.slideDown();
+                }
+                this.touchY = event.changedTouches[0].screenY;
+            }
+        };
+        this.startTouch = (event) => {
+            this.touchX = event.changedTouches[0].screenX;
+            this.touchY = event.changedTouches[0].screenY;
+            this.mayNotUp = false;
+            this.startTop = getElement('article').getBoundingClientRect().top >= 0;
+        };
         document.addEventListener('pjax:success', this.setHtml);
         if (document.querySelector('.search-header')) {
-            document.addEventListener('touchstart', (event) => {
-                this.touchY = event.changedTouches[0].screenY;
-                this.startTop = getElement('article').getBoundingClientRect().top >= 0;
-            });
-            document.addEventListener('touchmove', (event) => {
-                if (document.querySelector('.expanded') || window.innerWidth > 1024) {
-                    return;
-                }
-                if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
-                    if (event.changedTouches[0].screenY > this.touchY) {
-                        this.slideUp();
-                    }
-                    else {
-                        this.slideDown();
-                    }
-                    this.touchY = event.changedTouches[0].screenY;
-                }
-            });
+            document.addEventListener('touchstart', this.startTouch);
+            document.addEventListener('touchmove', this.checkTouchMove);
             document.addEventListener('wheel', (event) => {
                 if (document.querySelector('.expanded') || window.innerWidth > 1024) {
                     return;
@@ -564,7 +591,10 @@ class pjaxSupport {
         document.addEventListener('pjax:complete', this.loaded);
     }
 }
-new pjaxSupport();
+try {
+    new pjaxSupport();
+}
+catch (e) { }
 /// <reference path="_include/canvaDust.ts" />
 /// <reference path="_include/Code.ts" />
 /// <reference path="_include/cursors.ts" />
