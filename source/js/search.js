@@ -297,7 +297,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseup', EscapeSearch)
   })
   window.addEventListener('keyup', event => {
-    if (event.key === 27) {
+    if (event.key === 'Escape') {
       EscapeSearch()
     }
   })
