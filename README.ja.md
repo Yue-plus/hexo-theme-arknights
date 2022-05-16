@@ -220,6 +220,7 @@ mathjax: true
 - [飞龙project](https://github.com/feilongproject)
 - [DarkLingYun](https://github.com/DarkLingYun)
 - [RyoJerryYu](https://github.com/RyoJerryYu)
+- [Shuangqi Liu](https://github.com/TTsdzb)
 
 >  [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) と [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)は大歓迎。  
 
