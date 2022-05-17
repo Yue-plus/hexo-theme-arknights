@@ -16,6 +16,7 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
+- **Dr.TTsdzb <https://blog.ttech.link/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
@@ -439,7 +440,7 @@ post:
 - [飞龙project](https://github.com/feilongproject)
 - [DarkLingYun](https://github.com/DarkLingYun)
 - [RyoJerryYu](https://github.com/RyoJerryYu)
-- [Shuangqi Liu](https://github.com/TTsdzb)
+- [TTsdzb](https://github.com/TTsdzb)
 
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 

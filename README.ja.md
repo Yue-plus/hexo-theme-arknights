@@ -16,6 +16,7 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
+- **Dr.TTsdzb <https://blog.ttech.link/>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 
@@ -220,7 +221,7 @@ mathjax: true
 - [飞龙project](https://github.com/feilongproject)
 - [DarkLingYun](https://github.com/DarkLingYun)
 - [RyoJerryYu](https://github.com/RyoJerryYu)
-- [Shuangqi Liu](https://github.com/TTsdzb)
+- [TTsdzb](https://github.com/TTsdzb)
 
 >  [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) と [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)は大歓迎。  
 
