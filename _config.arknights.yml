@@ -33,11 +33,26 @@ archives:
   categories_count: true # 是否显示分类总数
   tags_count: true # 是否显示标签总数
 
+# 搜索框
+search:
+  enable: true
+
 # Valine 无后端评论系统
 valine:
   enable: true
   app_id: LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz # <APP ID>
   app_key: Fu9giJfnidkCamaW89FUpidw # <APP KEY>
+
+gitalk:
+  enable: false
+  client_id: # GitHub Application Client ID
+  client_secret: # GitHub Application Client Secret
+  repo: # GitHub repository
+  owner: # GitHub repository owner
+  admin: [] # GitHub repository owner and collaborators (Users who having write access to this repository)
+  # Example: [adminA,adminB]
+  id: # (optional) The unique id of the page
+  # Example: location.pathname
 
 # 图表支持
 mermaid:
@@ -54,5 +69,13 @@ menu:
 
 # pjax 支持
 pjax:
-  enable: true
+  enable: false
   version: '0.2.8'
+
+# stylesheets loaded in the <head>
+stylesheets:
+  - //unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css
+
+# scripts loaded in the end of the body
+scripts:
+  - //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
