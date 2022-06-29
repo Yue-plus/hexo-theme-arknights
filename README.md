@@ -435,19 +435,6 @@ post:
 | gh-pages | gh-page 托管                    |
 | hexo     | Hexo 目录，这里有可以用于测试主题的 `.md` 文件 |
 
-### 搭建开发环境
-
-先装好 [nodejs](https://nodejs.org/) 和 [yarn](https://classic.yarnpkg.com/zh-Hans/) ，然后执行以下命令：
-
-```shell script
-yarn global add hexo-cli yo generator-hexo-theme sass
-git clone -b hexo https://github.com/Yue-plus/hexo-theme-arknights.git
-cd hexo-theme-arknights
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
-yarn install
-hexo serve --debug
-```
-
 ### 开发中可能遇见的 BUG 及解决方法
 
 <!--
@@ -459,6 +446,10 @@ hexo serve --debug
 注释掉。
 -->
 
+#### 修改 TS 文件不生效
+
+这是因为在拆分文件后 JavaScript 改为了手动编译，请全局安装 `typescript` 后在 `arknights\source\js` 目录下执行 `tsc` 以编译。
+
 #### 运行 ‘hexo serve --debug’ 时，长文章渲染不全
 
 这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布
@@ -467,9 +458,7 @@ hexo serve --debug
 #### 参与开发可能需要的文档
 
 - [Hexo 官方文档](https://hexo.io/zh-cn/docs/templates)
-- [SASS 中文网](https://www.sass.hk/guide/)
-  > 注意，这个中文网标的是 SASS 但写的是 SCSS 的语法。
-  > 其最大区别是 SASS 不要写分号和花括号、文件拓展名不同。
+- [Stylus 中文网](http://stylus.bootcss.com/)
 - [Pug 模板引擎中文文档](https://www.pugjs.cn/api/getting-started.html)
 
 - 另外引用几个大佬的blog
