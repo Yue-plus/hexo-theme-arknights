@@ -1,11 +1,8 @@
 | [简体中文](README.md)
 | [English](README.en.md)
 | [日本語](README.ja.md)
-| 
 
 # hexo-theme-arknights
-
-
 
 ## 预览
 
@@ -16,6 +13,7 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
+- **Dr.TTsdzb <https://blog.ttech.link/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
@@ -345,26 +343,11 @@ wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时
 
 ## 搜索
 
-请安装 hexo-generator-searchdb 用于生成搜索数据：
-
-npm 用户：
-```shell script 
-cnpm install hexo-generator-searchdb --save
-```
-
-yarn 用户：
-```shell script
-yarn add hexo-generator-searchdb
-```
-
-之后在 `Hexo/_config.yml` 文件中添加：
+仅需在 `Hexo/_config.arknights.yml` 文件中开启：
 
 ```yaml
 search:
   enable: true
-  preload: true # 非必要
-  path: search.json # 非必要，缩小文件用
-  format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
 ```
 
 ## Front-matter
@@ -439,6 +422,7 @@ post:
 - [飞龙project](https://github.com/feilongproject)
 - [DarkLingYun](https://github.com/DarkLingYun)
 - [RyoJerryYu](https://github.com/RyoJerryYu)
+- [TTsdzb](https://github.com/TTsdzb)
 
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 
