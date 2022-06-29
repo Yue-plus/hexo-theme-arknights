@@ -32,7 +32,7 @@ class Code {
     let codeBlocks = document.querySelectorAll('.highlight')
     if (codeBlocks !== null) {
       codeBlocks.forEach(item => {
-        if (!item.getAttribute('code-find')) {
+        if (item.getAttribute('code-find') === null) {
           this.doAsCode(item)
           item.setAttribute('code-find','')
         }

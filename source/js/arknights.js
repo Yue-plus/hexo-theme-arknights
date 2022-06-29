@@ -2,14 +2,14 @@
 function getElement(string, item = document.documentElement) {
     let tmp = item.querySelector(string);
     if (tmp === null) {
-        throw new Error("Unknow HTML");
+        throw new Error("Unknown HTML");
     }
     return tmp;
 }
 function getParent(item) {
     let tmp = item.parentElement;
     if (tmp === null) {
-        throw new Error("Unknow HTML");
+        throw new Error("Unknown HTML");
     }
     return tmp;
 }
@@ -150,7 +150,7 @@ class Code {
             let codeBlocks = document.querySelectorAll('.highlight');
             if (codeBlocks !== null) {
                 codeBlocks.forEach(item => {
-                    if (!item.getAttribute('code-find')) {
+                    if (item.getAttribute('code-find') === null) {
                         this.doAsCode(item);
                         item.setAttribute('code-find', '');
                     }
