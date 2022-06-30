@@ -22,6 +22,10 @@ aside
              span.total-title Categories:
              span.total-number= site.categories.length
   footer(style=footerStyle)
+    if theme.aside.icp !== null
+      nobr
+        span.text-title ICP
+        a(href='https://beian.miit.gov.cn/').text-content= theme.aside.icp
     if theme.aside.copyright !== null
       each content, title in theme.aside.copyright
         nobr
