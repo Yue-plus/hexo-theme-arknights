@@ -16,7 +16,7 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
-- **Dr.TTsdzb <https://blog.ttech.link/>**
+- **Dr.TTsdzb <https://blog.ttsdzb.monster/>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 
