@@ -16,7 +16,7 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
-- **Dr.TTsdzb <https://blog.ttech.link/>**
+- **Dr.TTsdzb <https://blog.ttsdzb.monster/>**
 
 If you're using this theme, we will appreciate it if you could put your link here for a preview!  
 
@@ -454,19 +454,6 @@ post:
 | gh-pages | gh-page hosting               |
 | hexo     | Hexo directory, where you can fine `.md` files to test your theme |
 
-### Build up a development environment
-
-Install [nodejs](https://nodejs.org/) and [yarn](https://classic.yarnpkg.com/zh-Hans/), then execute the following commands:  
-
-```shell script
-yarn global add hexo-cli yo generator-hexo-theme sass
-git clone -b hexo https://github.com/Yue-plus/hexo-theme-arknights.git
-cd hexo-theme-arknights
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
-yarn install
-hexo serve --debug
-```
-
 ### Bugs and solutions that may encounter during development
 
 <!--
@@ -476,6 +463,9 @@ Workaround: Comment out
 in the file
 `./node_modules/hexo-renderer-pug/lib/pug.js`.  
 -->
+
+#### Modified TS file does not take effect
+This is because after splitting the file, JavaScript is compiled manually instead. Please install `typescript` and run `tsc` in `arknights\source\js` to compile.  
 
 #### Long articles are not fully rendered when running 'hexo serve --debug'
 
