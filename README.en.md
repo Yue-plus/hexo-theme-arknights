@@ -17,6 +17,7 @@
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 - **Dr.TTsdzb <https://blog.ttsdzb.monster/>**
+- **Dr.Tanle <https://ztblog.work/>**
 
 If you're using this theme, we will appreciate it if you could put your link here for a preview!  
 
