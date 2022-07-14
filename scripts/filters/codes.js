@@ -53,5 +53,6 @@ hexo.extend.filter.register('after_post_render', data => {
     for (let i in processed) {
       data.content = data.content.replace(codeBlocks[i], processed[i])
     }
+    return data;
   }
-});
+}, 9);
