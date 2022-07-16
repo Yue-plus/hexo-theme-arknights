@@ -4,10 +4,10 @@
 
 function doAsMermaid(item) {
   return item.match(/<code[\S\s]*?mermaid[\S\s]*?\/code>/)[0]
-    .replace(/<br>/g, '&#10;')
     .replace(/hljs/g, '')
-    .replace('<code', '<div')
-    .replace('/code>', '/div>');
+    .replace('<code', '<pre')
+    .replace('/code>', '/pre>')
+    .replace(/<br>/g, '\n');
 }
 function resetName(str) {
   if (str == 'plaintext') {
@@ -38,21 +38,18 @@ function doAsCode(item) {
 
 hexo.extend.filter.register('after_post_render', data => {
   const mermaid = hexo.theme.config.mermaid.enable
-  let codeBlocks = data.content.match(
-    mermaid?
-      /<figure[\S\s]*?highlight[\S\s]*?\/figure>/g:
-      /<figure[\S\s]*?highlight(?! mermaid)[\S\s]*?\/figure>/g);
+  let codeBlocks = data.content.match(/<figure[\S\s]*?highlight[\S\s]*?\/figure>/g)
   if (codeBlocks !== null) {
     let processed = Array.from(codeBlocks, item => {
-      if (item.match('.mermaid') !== null) {
+      if (item.match('hljs mermaid') !== null && mermaid) {
         return doAsMermaid(item);
       } else {
         return doAsCode(item);
       }
     })
     for (let i in processed) {
-      data.content = data.content.replace(codeBlocks[i], processed[i])
+      data.content = data.content.replace(codeBlocks[i], processed[i]);
     }
-    return data;
   }
+  return data;
 }, 9);
