@@ -23,7 +23,7 @@ A Hexo Theme for *RHODES ISLAND* in *Arknights*.
 ## 预览
 
 - **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
-- [其他使用者的友链](https://github.com/Yue-plus/hexo-theme-arknights/wiki/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5)
+- [其他使用者的友链](./friend_Links.md)
 
 ## 快速使用
 
