@@ -110,7 +110,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
 - 给颗小星星吧 `(/▽＼)`
   > - [x] `ヾ(✿ﾟ▽ﾟ)ノ` 100star 做个新主题哦~
-  > - 新主题开发中 [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
+  > - [ ] 新主题开发中 [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - 开发者的B服ID：`24444750`
 - 加入 QQ 群：618221514
     > 群内开发为主，吹水晒卡，分享线索7也都欢迎哦~ `d=====(￣▽￣*)b`
