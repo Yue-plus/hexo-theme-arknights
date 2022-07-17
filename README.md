@@ -14,7 +14,7 @@ A Hexo Theme for *RHODES ISLAND* in *Arknights*.
 
 ![ScreenShot](./demo.jpg)
 
-<p>zh-CN 简体中文  |  <a title="Traditional Chinese" href="README.tc.md">zh-HK 繁體中文</a>  |  <a title="English" href="README.en.md">en-US English</a>  |  <a title="Japanese" href="README.ja.md">jp-JP 日本語</a></p>
+<p>zh-CN 简体中文  |  <a title="Traditional Chinese" href="README.tc.md">zh-HK 繁體中文</a>  |  <a title="English" href="README.en.md">en-US English</a>  |  <a title="Japanese" href="README.ja.md">ja-JP 日本語</a></p>
 
 <span>文档：</span>
   <a href="https://github.com/Yue-plus/hexo-theme-arknights/wiki">主题配置</a> | 
