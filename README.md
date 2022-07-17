@@ -30,7 +30,7 @@ A Hexo Theme for *RHODES ISLAND* in *Arknights*.
 <a title="Hexo Version" target="_blank" href="https://hexo.io/zh-cn/"><img alt="Hexo Version" src="https://img.shields.io/badge/Hexo-%3E%3D%206.0.0-orange?style=flat"></a>
 <a title="Node Version" target="_blank" href="https://nodejs.org/zh-cn/"><img alt="Node Version" src="https://img.shields.io/badge/Node-%3E%3D%2016.13.0-yellowgreen?style=flat"></a>
 
-### 建议参考[快速使用](https://github.com/Yue-plus/hexo-theme-arknights/wiki/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8)
+### 建议参考本项目 Wiki [快速使用](https://github.com/Yue-plus/hexo-theme-arknights/wiki/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8)
 
 ### 1. 搭建 Hexo 博客
 
