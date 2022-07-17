@@ -27,6 +27,8 @@ A Hexo Theme for *RHODES ISLAND* in *Arknights*.
 
 ## 快速使用
 
+### 建议参考[快速使用](https://github.com/Yue-plus/hexo-theme-arknights/wiki/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8)
+
 ### 系统环境
 
 - [Node.js `16.13.x` 以上](https://nodejs.org/zh-cn/)
@@ -49,12 +51,6 @@ git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 
 然后在博客目录下创建 `_config.arknights.yml` 即主题的配置文件，将主题的 `_config.yml` 内容复制进去。
 
-主题的配置文件可参照中文注释修改。
-
-> 建议参考：
-  > - [Hexo 官方文档 - 使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-  > - [hexo 分支的 `_config.arknights.yml`](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml)
-
 ### 3. 指定主题
 
 对 Hexo 博客目录中的 `_config.yml` 进行如下修改：
@@ -65,9 +61,6 @@ theme: arknights  # 指定主题
 highlight:  # 开启代码高亮
     hljs: true
 ```
-
-> 建议参考：
-  > - [Hexo 官方文档 - 配置](https://hexo.io/zh-cn/docs/configuration) 
 
 ### 4. 安装依赖
 
