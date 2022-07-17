@@ -6,25 +6,23 @@
   if (is_category()) pageTitle = 'Category: ' + page.category
   if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
   if (is_year()) pageTitle += ': ' + page.year
-  pageTitle += ' | ' + config.title
+  if (pageTitle) pageTitle += ' | '
+  pageTitle += config.title
   const asideLogo = theme.aside.logo
-  const asideBlock = theme.aside.block_in_top ? 'order: -1' : ''
-  let onload = ''
-  if (theme.pjax.enable) onload = "pjax = new Pjax({cacheBust:false,selectors:['title','article','#aside-block','.pjax-js']});"
-  let needReset = "code.findCode();"
+  const pjax = theme.pjax ? theme.pjax.enable : false
+  let onload = "code.findCode();"
   if (theme.mermaid.enable === true && theme.mermaid.version !== undefined) {
     onload += "mermaid.init(undefined, ('.mermaid'));";
-    needReset += "mermaid.init(undefined, ('.mermaid'));";
   }
   let searchConfig = null
-  if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
   if (config.search !== undefined && config.search.enable === true) searchConfig = config.search;
-  const configs = searchConfig !== null ? JSON.stringify({
+  if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
+  const configs = JSON.stringify({
     hostname: config.url,
     root    : config.root,
     preload : searchConfig.preload !== undefined ? searchConfig.preload : false,
     path    : searchConfig.path !== undefined ? searchConfig.path : '',
-    }) : null
+  })
 
 doctype html
 html(lang=config.language)
@@ -32,39 +30,40 @@ html(lang=config.language)
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title= pageTitle
-    if theme.valine.enable === true
+    if theme.valine !== undefined && theme.valine.enable === true
       script(src='//unpkg.com/valine/dist/Valine.min.js')
-    script var config = !{configs}
-    if theme.gitalk.enable === true
+    if searchConfig
+      script var config = !{configs}
+    if theme.gitalk !== undefined && theme.gitalk.enable === true
       script(src=config.root + "js/gitalk.js")
-    if theme.mermaid.enable === true && theme.mermaid.version !== undefined
+    if theme.mermaid !== undefined && theme.mermaid.enable === true && theme.mermaid.version !== undefined
       script(src= "//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
       script
-        | mermaid.initialize({
-        |   startOnLoad: false
-        |   , theme: 'dark'
-        | });
-    if theme.mathjax.enable === true
+        |mermaid.initialize({
+        |  startOnLoad: true
+        |  , theme: 'dark'
+        |});
+    if theme.mathjax !== undefined && theme.mathjax.enable === true
       script(src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
       script
-        | MathJax.Hub.Config({
-        |   menuSettings: {
-        |     zoom: "None"
-        |   },
-        |   showMathMenu: false,
-        |   jax: ["input/TeX","output/CommonHTML"],
-        |   extensions: ["tex2jax.js"],
-        |   TeX: {
-        |     extensions: ["AMSmath.js","AMSsymbols.js"],
-        |     equationNumbers: {
-        |       autoNumber: "AMS"
-        |     }
-        |   },
-        |   tex2jax: {
-        |     inlineMath: [["\\(", "\\)"]],
-        |     displayMath: [["\\[", "\\]"]]
-        |   }
-        | });
+        |MathJax.Hub.Config({
+        |  menuSettings: {
+        |    zoom: "None"
+        |  },
+        |  showMathMenu: false,
+        |  jax: ["input/TeX","output/CommonHTML"],
+        |  extensions: ["tex2jax.js"],
+        |  TeX: {
+        |    extensions: ["AMSmath.js","AMSsymbols.js"],
+        |    equationNumbers: {
+        |      autoNumber: "AMS"
+        |    }
+        |  },
+        |  tex2jax: {
+        |    inlineMath: [["\\(", "\\)"]],
+        |    displayMath: [["\\[", "\\]"]]
+        |  }
+        |});
     link(rel="stylesheet", href=config.root + "css/arknights.css")
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from _config.yml
@@ -80,30 +79,12 @@ html(lang=config.language)
       |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
       |}
   body(style={'background-image': `url(${theme.background_image})`})
-    #cursor-container
-      #cursor-outer
-      #cursor-effect
+    if pjax
+      .loading(style='opacity: 0')
+        .loadingBar.left
+        .loadingBar.right
     main
-      header
-        nav
-          .navBtn
-            i.navBtnIcon
-              span.navBtnIconBar
-              span.navBtnIconBar
-              span.navBtnIconBar
-          ol.navContent
-            if configs !== null
-              li.navItem.search-header
-                input(autocomplete="off" autocorrect="off" autocapitalize="none"
-                     placeholder="数据检索" spellcheck="false" maxlength="50"
-                     type="text" id="search-input")
-            each url, label in theme.menu
-              li.navItem
-                a(href= config.root + url)
-                  span.navItemTitle= label
-        if configs !== null
-          .search-popup
-            #search-result
+      include ./header.pug
       article
         if body
           div!= body
@@ -111,87 +92,63 @@ html(lang=config.language)
           block content
         if page.published !== undefined
           #bottom-btn
-            if tocLength > 0
+            if tocLength !== null
               a#to-index(href="#toc-div" title="index") ≡
-            a#to-top(onClick="index.scrolltop();" title="to top" style="opacity: 0; display: none;") ∧
-      div.aside-box
-        aside
-          #aside-top
-            #about
-              a(href=config.root)#logo
-                img(src=asideLogo, alt="Logo")
-              h1#Dr
-                a(href= theme.aside.dr)= config.author
-              #description
-                p= config.description
-              //if page.published === undefined
-              section#total
-                 a#total-archives(href= config.root + "archives")
-                   span.total-title Archives Total:
-                   span.total-number= site.posts.length
-                 #total-tags
-                   span.total-title Tags:
-                   span.total-number= site.tags.length
-                 #total-categories
-                   span.total-title Categories:
-                   span.total-number= site.categories.length
-            #aside-block(style= asideBlock)
-              block aside-block
-          footer(style=footerStyle)
-            if theme.aside.copyright !== null
-              each content, title in theme.aside.copyright
-                nobr
-                  span.text-title= title
-                  span.text-content= content
-                br
-            text="published with "
-              a(href='http://hexo.io') Hexo
-            text=" Theme "
-              a(href='https://github.com/Yue-plus/hexo-theme-arknights') Arknight
-            wbr
-            text="by "
-              a(href='https://github.com/Yue-plus') Yue_plus
+            a#to-top(onClick="scrolls.scrolltop();" title="to top" style="opacity: 0; display: none;") ∧
+      include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust
+    #cursor-container
+      #cursor-outer
+      #cursor-effect
     if searchConfig !== null
       script(src="/js/search.js")
-    script const reset=_=>{
-      | !{onload}
-      if page.comments
-        if theme.valine.enable === true
-          |  new Valine({
-          |    el: '#Valine'
-          |    , appId: '#{theme.valine.app_id}'
-          |    , appKey: '#{theme.valine.app_key}'
-          if theme.valine.server_url
-            | , serverURLs: '#{theme.valine.server_url}'
-          |    , placeholder: '此条评论委托企鹅物流发送'
-          |  })
-        if theme.gitalk.enable === true
-          - gitAdmin = ''
-          for str in theme.gitalk.admin
-            - gitAdmin= gitAdmin + "'" + str + "'"
-          |  gitalk = new Gitalk({
-          |    clientID: '#{theme.gitalk.client_id}',
-          |    clientSecret: '#{theme.gitalk.client_secret}',
-          |    repo: '#{theme.gitalk.repo}',
-          |    owner: '#{theme.gitalk.owner}',
-          |    admin: [#{gitAdmin}],
-          |    id: location.pathname
-          |  })
-          |  gitalk.render("comments")
-        |
-      |}
+    script.pjax-js reset=_=>{
+      if theme.valine !== undefined && theme.valine.enable === true
+        |new Valine({
+        |  el: '#Valine'
+        |  , appId: '#{theme.valine.app_id}'
+        |  , appKey: '#{theme.valine.app_key}'
+        if theme.valine.server_url
+          | , serverURLs: '#{theme.valine.server_url}'
+        |  , placeholder: '此条评论委托企鹅物流发送'
+        |});
+      if theme.gitalk !== undefined && theme.gitalk.enable === true
+        - let config = theme.gitalk, gitAdmin = ''
+        for str in theme.gitalk.admin
+          - gitAdmin= gitAdmin + "'" + str + "'"
+        |gitalk = new Gitalk({
+        |  clientID: '#{config.client_id}',
+        |  clientSecret: '#{config.client_secret}',
+        |  repo: '#{config.repo}',
+        |  owner: '#{config.owner}',
+        |  admin: [#{gitAdmin}],
+        |  distractionFreeMode: #{config.distraction_free_mode || false},
+        |  id: #{config.id}
+        |});
+        |if (document.querySelector("#comments")) gitalk.render("comments");
+      | !{onload}}
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts
         script(src=url)
     script(src=config.root + "js/arknights.js")
-    if theme.pjax.enable !== undefined && theme.pjax.enable === true
-      script(class="pjax-js") !{needReset}
-      script(src="//unpkg.com/pjax@" + theme.pjax.version + "/pjax.js")
-    if page.comments && theme.pjax.enable === true
-      script.pjax-js document.addEventListener("pjax:success", _=>{reset();
-        if searchConfig !== null 
-          | EscapeSearch()});
-    script document.addEventListener("load",reset())
+    if pjax
+      script(src=config.root + "js/pjax.js")
+    script window.addEventListener("load",()=>{
+      if pjax
+        |pjax = new Pjax({
+        |  cacheBust: false,
+        |  selectors: ['title','article','#aside-block','.pjax-js'],
+        |  switches: {'article': Pjax.switches.sideBySide},
+        |  switchesOptions: {
+        |    'article': {
+        |      classNames: {
+        |        remove: "pjax-out",
+        |        add: "pjax-in"
+        |      }
+        |    }
+        |  }
+        |});
+        |document.addEventListener("pjax:complete", reset);
+      | reset()})

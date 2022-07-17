@@ -1,8 +1,8 @@
+| [简体中文](README.md)
+| [English](README.en.md)
+| [日本語](README.ja.md)
+
 # hexo-theme-arknights
-
-## 多国语言Readme
-
-[日本語バージョン](README-Ja.md)  
 
 ## 预览
 
@@ -13,6 +13,8 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
+- **Dr.TTsdzb <https://blog.ttsdzb.monster/>**
+- **Dr.Tanle <https://ztblog.work/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
@@ -202,8 +204,6 @@ mathjax: true
 +\begin{eqnarray\*}
 ```
 
-> 也可以尝试更换能更好处理数学公式的渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)
-
 ### 方案二：动态渲染
 
 本主题也支持 [MathJax](https://www.mathjax.org/) ，在用户浏览时动态渲染公式：
@@ -247,7 +247,6 @@ hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： h
 1. 动态渲染方案 LaTeX 语法不需要转义，能更好的支持从其他地方导出的 Markdown 文件。但因为需要在浏览器渲染，页面显示会略有延迟。
 2. 静态渲染方案将公式直接编译在静态文件里，显示性能更优，但语法需要转义。
 3. 使用 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) 兼顾显示性能与无需转义两者的特点，但需要在环境中另外安装 pandoc 转换器。
-
 
 ## 图表支持
 
@@ -345,26 +344,11 @@ wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时
 
 ## 搜索
 
-请安装 hexo-generator-searchdb 用于生成搜索数据：
-
-npm 用户：
-```shell script 
-cnpm install hexo-generator-searchdb --save
-```
-
-yarn 用户：
-```shell script
-yarn add hexo-generator-searchdb
-```
-
-之后在 `Hexo/_config.yml` 文件中添加：
+仅需在 `Hexo/_config.arknights.yml` 文件中开启：
 
 ```yaml
 search:
   enable: true
-  preload: true # 非必要
-  path: search.json # 非必要，缩小文件用
-  format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
 ```
 
 ## Front-matter
@@ -432,10 +416,14 @@ post:
 ## 参与开发
 
 ### 开发人员
+
 - [Yue_plus](https://github.com/Yue-plus)
 - [Laurenfrost](https://github.com/Laurenfrost)
 - [ToUNVRSe](https://github.com/ToUNVRSe)
 - [飞龙project](https://github.com/feilongproject)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
+- [TTsdzb](https://github.com/TTsdzb)
 
 > 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 
@@ -448,19 +436,6 @@ post:
 | gh-pages | gh-page 托管                    |
 | hexo     | Hexo 目录，这里有可以用于测试主题的 `.md` 文件 |
 
-### 搭建开发环境
-
-先装好 [nodejs](https://nodejs.org/) 和 [yarn](https://classic.yarnpkg.com/zh-Hans/) ，然后执行以下命令：
-
-```shell script
-yarn global add hexo-cli yo generator-hexo-theme sass
-git clone -b hexo https://github.com/Yue-plus/hexo-theme-arknights.git
-cd hexo-theme-arknights
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
-yarn install
-hexo serve --debug
-```
-
 ### 开发中可能遇见的 BUG 及解决方法
 
 <!--
@@ -472,6 +447,10 @@ hexo serve --debug
 注释掉。
 -->
 
+#### 修改 TS 文件不生效
+
+这是因为在拆分文件后 JavaScript 改为了手动编译，请全局安装 `typescript` 后在 `arknights\source\js` 目录下执行 `tsc` 以编译。
+
 #### 运行 ‘hexo serve --debug’ 时，长文章渲染不全
 
 这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布
@@ -480,9 +459,7 @@ hexo serve --debug
 #### 参与开发可能需要的文档
 
 - [Hexo 官方文档](https://hexo.io/zh-cn/docs/templates)
-- [SASS 中文网](https://www.sass.hk/guide/)
-  > 注意，这个中文网标的是 SASS 但写的是 SCSS 的语法。
-  > 其最大区别是 SASS 不要写分号和花括号、文件拓展名不同。
+- [Stylus 中文网](http://stylus.bootcss.com/)
 - [Pug 模板引擎中文文档](https://www.pugjs.cn/api/getting-started.html)
 
 - 另外引用几个大佬的blog

@@ -1,13 +1,12 @@
+@import "single_page"
+
 @media ( max-width 768px )
-  body
-    margin 0 12px
-    main
-      flex-direction column
+  main
+    padding 0 12px
   article
     border none
     width 100%
     max-height none
-    flex-shrink 0
   .highlight, blockquote
     margin 0
   aside
@@ -74,12 +73,15 @@
     .control
       width 55px
 @media ( min-width 769px )
+  main
+    display flex
+  article
+    width calc(95% - 212px)
   #to-index
     display none
   aside
-    position fixed
     top 0
-    width 160px
+    width 170px
     transition 0s
     #description p
       font-size small
@@ -90,19 +92,30 @@
       &:hover
         background-color rgba(#fff , .1)
   #archive-aside
+    position sticky
     max-width 36%
 
+@media ( max-width 1024px )
+  header
+    position fixed
+  @media ( min-width 769px )
+    header
+      width calc(100% - 212px)
+
 @media ( min-width 1024px )
-  main
-    aside
-      width 190px
-      transition .3s
-      #description p
-        font-size medium
-      h1
-        font-size 45px
+  article
+    width calc(100% - 412px)
+  aside
+    width 190px
+    transition .3s
+    #description p
+      font-size medium
+    h1
+      font-size 45px
 
 @media ( min-width 1440px )
+  article
+    width calc(100% - 520px)
   aside
     width 230px
     h1
@@ -120,18 +133,19 @@
     display block
     position relative
 @media ( min-width 1920px )
-  main
-    aside
-      width 270px
-      h1
-        font-size 55px
-      #total-archives
-        .total-title
-          font-size 37px
-        .total-number
-          font-size 48px
-      #total-tags, #total-categories
-        font-size 28px
+  article
+    width calc(95% - 630px)
+  aside
+    width 270px
+    h1
+      font-size 55px
+    #total-archives
+      .total-title
+        font-size 37px
+      .total-number
+        font-size 48px
+    #total-tags, #total-categories
+      font-size 28px
   .search-pop-overlay .popup
     left 65%
   .recent-post img

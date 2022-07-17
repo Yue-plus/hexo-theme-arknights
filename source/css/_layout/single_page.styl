@@ -1,0 +1,24 @@
+@media ( max-width 1023px )
+  .hide.navBtn
+    transform translateY(-2em)
+
+  .moving
+    .search-header,
+    .search-popup
+      transition unset
+    nav
+      overflow visible
+
+  .up .closed
+    .navBtn
+      transform translateY(-.5em)
+    &.header,
+    nav,
+    .navContent
+      overflow visible
+
+@keyframes get-in-right
+  0%
+    transform translateX(calc(100vw + 100%))
+  100%
+    transform translateX(100vw)

@@ -1,54 +1,55 @@
 // ========= 基础样式
 // ====== base style
 html, body
-  height 100%
   cursor url(../cursor-inner.png) 3 3, default
   position static
 
 a, button
   cursor url(../cursor-inner.png) 3 3, pointer
 
-#cursor-container
-  #cursor-outer
-    position fixed
-    z-index 65536
-    transform translate3d(-50%, -50%, 0px)
-    height 36px
-    width 36px
-    border 1px solid #ccc
-    border-radius 50%
-    pointer-events none
-    transition background-color .3s, width .3s, height .3s
-  #cursor-effect
-    position fixed
-    z-index 65535
-    transform translate3d(-50%, -50%, 0px) scale(0)
-    height 80px
-    width 80px
-    border 4px solid #ccc
-    border-radius 50%
-    opacity 0
-    pointer-events none
+#cursor-outer
+  z-index 65536
+  position fixed
+  transform translate3d(-50%, -50%, 0px)
+  height 36px
+  width 36px
+  border 1px solid #ccc
+  border-radius 50%
+  pointer-events none
+  transition background-color .3s, width .3s, height .3s
+#cursor-effect
+  z-index 65535
+  position fixed
+  transform translate3d(-50%, -50%, 0px) scale(0)
+  height 80px
+  width 80px
+  border 4px solid #ccc
+  border-radius 50%
+  opacity 0
+  pointer-events none
 
-html
+main
   -ms-scrollbar-base-color #fe24
   -ms-scrollbar-track-color #fe22
-  scrollbar-width thin
   scrollbar-color #fe2 #69620a
-::-webkit-scrollbar
-  width 6px
-  height 6px
-::-webkit-scrollbar-thumb
-  background-color #fe24
-  border-radius .25em
-::-webkit-scrollbar-track
-  background-color #fe22
-::-webkit-scrollbar-thumb:hover
-  background-color #fe2a
-::-webkit-scrollbar-thumb:window-inactive
-  background-color #fe22
+  scrollbar-width thin
+  scrollbar-gutter stable
+@media ( min-width 769px)
+  ::-webkit-scrollbar
+    width 6px
+    height 6px
+  ::-webkit-scrollbar-thumb
+    background-color #fe24
+    border-radius .25em
+  ::-webkit-scrollbar-track
+    background-color #fe22
+  ::-webkit-scrollbar-thumb:hover
+    background-color #fe2a
+  ::-webkit-scrollbar-thumb:window-inactive
+    background-color #fe22
+
 body
-  margin 0 auto
+  margin 0
   color #c4c4c4
   background-color #141516
   background-attachment fixed
@@ -56,8 +57,6 @@ body
   background-repeat no-repeat
   background-size cover
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
-  overflow-y overlay
-  overflow-x hidden
 
 h1, h2, h3, h4, h5, h6
   color #fff
@@ -82,11 +81,19 @@ h1, h2, h3, h4, h5, h6
   h6
     font-size 1em
 
+p
+  overflow-x auto
+
 a
   color #22bbff
   padding 0 3px
   text-decoration none
-  transition .3s
+  transition color .3s,
+    background-color .3s,
+    line-height .3s,
+    padding .3s,
+    border .3s,
+    opacity .3s
   @media ( min-width 769px )
     &:hover
       color #000
@@ -134,6 +141,8 @@ blockquote
     padding-right 0
   &:hover
     background-color rgba(#fff, .1)
+ol
+  overflow auto
 
 li
   margin-block-start 0.2em
@@ -159,6 +168,4 @@ table
 input
   cursor url(../cursor-inner.png) 3 3, text
   user-select none
-
-mjx-container
-  padding 5px 0
+  font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif

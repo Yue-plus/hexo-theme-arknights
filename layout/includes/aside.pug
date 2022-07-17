@@ -1,0 +1,41 @@
+aside
+  #aside-top
+    #about
+      a(href=config.root)#logo
+        img(src=asideLogo, alt="Logo")
+      h1#Dr
+        a(href= theme.aside.dr)= config.author
+      #description
+        for str in config.description
+          p= str
+    #aside-block
+      block aside-block
+      if page.published === undefined
+        section#total
+           a#total-archives(href= config.root + "archives")
+             span.total-title Archives Total:
+             span.total-number= site.posts.length
+           #total-tags
+             span.total-title Tags:
+             span.total-number= site.tags.length
+           #total-categories
+             span.total-title Categories:
+             span.total-number= site.categories.length
+  footer(style=footerStyle)
+    if theme.aside.icp !== null
+      nobr
+        span.text-title ICP
+        a(href='https://beian.miit.gov.cn/').text-content= theme.aside.icp
+    if theme.aside.copyright !== null
+      each content, title in theme.aside.copyright
+        nobr
+          span.text-title= title
+          span.text-content= content
+        br
+    text="published with "
+      a(href='http://hexo.io') Hexo
+    text=" Theme "
+      a(href='https://github.com/Yue-plus/hexo-theme-arknights') Arknight
+    wbr
+    text="by "
+      a(href='https://github.com/Yue-plus') Yue_plus

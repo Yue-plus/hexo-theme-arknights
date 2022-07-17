@@ -12,15 +12,15 @@
     "url": "https://github.com/Yue-plus/hexo-theme-arknights/issues"
   },
   "homepage": "https://github.com/Yue-plus/hexo-theme-arknights#readme",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p source/js"
   },
   "keywords": [],
   "dependencies": {
     "hexo-browsersync": "^0.3.0",
     "hexo-renderer-pug": "^2.0.0",
-    "hexo-renderer-dartsass": "^0.1.2",
+    "hexo-renderer-stylus": "^0.1.2",
     "hexo-server": "^2.0.0"
   }
 }
