@@ -29,14 +29,6 @@ A Hexo Theme for *RHODES ISLAND* in *Arknights*.
 
 ### 建议参考[快速使用](https://github.com/Yue-plus/hexo-theme-arknights/wiki/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8)
 
-### 系统环境
-
-- [Node.js `16.13.x` 以上](https://nodejs.org/zh-cn/)
-- [最新版 Hexo](https://hexo.io/zh-cn/)
-  > Hexo `6.0.0` 以上；
-  > hexo-cli `4.3.0` 以上；
-- 中国大陆用户推荐使用 `cnpm` 安装依赖包，参考 [中国 NPM 镜像](https://npmmirror.com/)。
-
 ### 1. 搭建 Hexo 博客
 
 如果你还没有 Hexo 博客，请按照[Hexo 官方文档](https://hexo.io/zh-cn/docs/)进行安装、建站。
@@ -44,10 +36,6 @@ A Hexo Theme for *RHODES ISLAND* in *Arknights*.
 ### 2. 获取主题最新版本
 
 下载最新 release 版本解压到 `themes` 目录，并将解压出的文件夹重命名为 `arknights`。
-
-``` shell script
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
-```
 
 然后在博客目录下创建 `_config.arknights.yml` 即主题的配置文件，将主题的 `_config.yml` 内容复制进去。
 
