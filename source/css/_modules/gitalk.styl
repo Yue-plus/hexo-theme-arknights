@@ -24,8 +24,6 @@
     svg
       width 100%
       height 100%
-    &:hover
-      fill #000
   .gt-ico
     display inline-block
     
@@ -143,8 +141,6 @@
       margin 0 0 0 0.3125em
       svg
         fill #c4c4c4
-    .is--poping .gt-ico svg
-      fill #2bf
   .gt-user-pic
     width 16px
     height 16px
@@ -301,9 +297,10 @@
         border-left 4px solid #dfe2e5
       &.expanded
         display block
-.gt-ico-tip
-  fill #2bf
-  &:hover
+a
+  .gt-ico
+    fill #2bf
+  &:hover .gt-ico
     fill #000
 @media ( max-width 479px )
   .gt-container .gt-avatar
@@ -397,7 +394,6 @@
   height 1.375em
 .gt-container .gt-comment-edit:hover
   top 0
-  right 2em
 .gt-container .gt-comment-edit,.gt-container .gt-comment-reply
   top 0
   right 0

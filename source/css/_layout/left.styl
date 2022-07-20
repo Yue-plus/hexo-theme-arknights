@@ -37,11 +37,28 @@ header
     padding-right 1.2em
     .navItemTitle:hover
       margin-left -1em
-    a
+    .navBlock
       .navItemTitle::after
         border-right 4px solid
-      &:hover .navItemTitle
-        margin-left -1em
+      &:hover
+        &::after
+          content ""
+          height 100%
+          width 100%
+          position absolute
+          top 0
+          right 2em
+        .navItemTitle
+          margin-left -1em
+      &>.navItemList
+        right calc(100% + 2em)
+        .navItemTitle
+          padding-right 0.8em
+          padding-left 0.5em
+  .navItemList
+    right 100%
+    .navItem
+      padding-left 1px
 
 @media ( min-width 1440px )
   .navItem
