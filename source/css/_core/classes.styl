@@ -85,10 +85,16 @@
       font-size 0.75em
       &:before
         content '复制'
-      &:hover
-        border 1px solid #fe2
-        color  #fe2
-        transition .3s
+      @media (min-width 769px)
+        &:hover
+          border 1px solid #fe2
+          color  #fe2
+          transition .3s
+      @media (max-width 768px)
+        &:active
+          border 1px solid #fe2
+          color  #fe2
+          transition .3s
     .copied
       &:before
         content '完成'
@@ -116,8 +122,9 @@ table
     width 100%
     background-color rgba(#fff, .05)
     transition .3s
-    &:hover
-      background-color rgba(#fff, .1)
+    @media (min-width 769px)
+      &:hover
+        background-color rgba(#fff, .1)
 
 .mermaid
   margin 10px 0

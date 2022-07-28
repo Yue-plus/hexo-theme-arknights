@@ -85,9 +85,12 @@ p
   overflow-x auto
 
 a
-  color #22bbff
-  padding 0 3px
   text-decoration none
+
+a,
+:is(strong, em)>a
+  color #2bf
+  padding 0 3px
   transition color .3s,
     background-color .3s,
     line-height .3s,
@@ -118,6 +121,7 @@ pre
 kbd
   color #000
   background-color #fe2
+  box-shadow 0 0.12em #ba2;
   margin 0 2px
   border-radius 2px
   padding 0 3px
@@ -125,10 +129,11 @@ kbd
 
 em
   font-family Times, "Times New Roman", 'FangSong', 'SimSun', serif
-strong, em
-  color #fff
 strong em, em strong
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
+:not(a)>:is(strong, em)
+  color #fff
+:not(a)>:is(strong em, em strong)
   color #C0392B
 
 blockquote
