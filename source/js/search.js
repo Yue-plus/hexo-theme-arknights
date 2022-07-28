@@ -270,17 +270,19 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   function StartSearch() {
     document.querySelector('.navContent').classList.add('search')
+    header.closeAll()
     document.querySelector('#search-input').placeholder = '键入以进行'
     if (isfetched === false) {
       searchFunc()
     }
   }
   function EscapeSearch() {
+    document.querySelector('#search-input').value = ''
+    document.getElementById('search-result').innerHTML = ''
     document.querySelector('.navContent').classList.remove('search')
     document.removeEventListener('mouseup', EscapeSearch)
     wait = false
     onPopupClose()
-    document.querySelector('#search-input').value = ''
   }
   document.querySelector('#search-input').addEventListener('keyup', () => {
     document.querySelector('.navContent').classList.add('search')

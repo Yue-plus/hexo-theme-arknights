@@ -18,7 +18,6 @@ class pjaxSupport {
     ++this.timestamp
     if (this.loading.style.opacity === '1') {
       getElement('main').scrollTop = 0
-      header.close()
       if (this.left.style.width !== "50%") {
         this.start(50)
         setTimeout((time: number) => {
