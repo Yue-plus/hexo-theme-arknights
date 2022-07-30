@@ -29,7 +29,7 @@ block content
             - year = yearMonth
             h2= year
           .article-item
-            .control
+            .control-archive
               time= date(article.date, 'MM-DD')
             a(href=url_for(article.path) target="_blank")
               = article.title || 'No Title'

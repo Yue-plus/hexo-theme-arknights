@@ -13,7 +13,7 @@ class Header {
       may: Element = navs.item(0)
     getElement('.navBtn').classList.remove('hide')
     navs.forEach(item => {
-      if (item.classList.contains('search-header')) {
+      if (item.id === 'search-header') {
         return
       }
       let now = item as HTMLElement,

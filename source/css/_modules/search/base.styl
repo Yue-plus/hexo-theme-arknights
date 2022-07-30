@@ -1,6 +1,6 @@
 @import "single_page.styl"
 
-.search-header
+#search-header
   position relative
   transition .3s
   input
@@ -18,7 +18,7 @@
 .moved input
   animation get-in .6s
 
-.navContent .navItem.search-header
+#search-header
   .navItemTitle
     overflow hidden
     &:hover
@@ -30,7 +30,7 @@
 
 .search
   transition .6s
-  .navItem.search-header
+  #search-header
     transition .6s
     position absolute
     top 40px
@@ -39,9 +39,9 @@
       animation get-out .6s
 
 @media ( max-width 1023px )
-  .search .navItem.search-header
+  .search #search-header
     top 38px
-  .search-header
+  #search-header
     padding 6px 2em
     input
       padding unset
@@ -49,7 +49,7 @@
 @media ( min-width 1024px )
   .search-popup
     background-color rgba(20,21,22,.95)
-  .search-header
+  #search-header
     .navItemTitle
       &::after
         width 0
@@ -79,32 +79,32 @@
   width 32%
   padding 0 0 0 1px
   overflow-y auto
-  #loading p
-    text-align center
-  #search-result
-    width 100%
-    .recent-post
-      font-family 'JetBrains Mono'
-      margin 0
-      padding 8px
-      border none
-      border-top 1px solid rgba(#fff, .1)
-      border-bottom 1px solid rgba(#fff, .1)
-      p
-        margin .5em
-        max-height 40px
-        overflow hidden
-      b
-        color #fff
-      &:hover .search-keyword
-        color #fe2
-        transition .3s
-        background-color unset
+#loading p
+  text-align center
+#search-result
+  width 100%
+  .recent-post
+    font-family 'JetBrains Mono'
+    margin 0
+    padding 8px
+    border none
+    border-top 1px solid rgba(#fff, .1)
+    border-bottom 1px solid rgba(#fff, .1)
+    p
+      margin .5em
+      max-height 40px
       overflow hidden
-      .search-keyword
-        background-color #2bf
-        color #fff
-      .search-result-title
-        font-size 1.1em
-    #no-result p
-      text-align center
+    b
+      color #fff
+    &:hover .search-keyword
+      color #fe2
+      transition .3s
+      background-color unset
+    overflow hidden
+    .search-keyword
+      background-color #2bf
+      color #fff
+    .search-result-title
+      font-size 1.1em
+#no-result p
+  text-align center

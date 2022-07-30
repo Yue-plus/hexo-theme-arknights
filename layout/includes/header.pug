@@ -1,6 +1,9 @@
 mixin expand_list(list)
   each url, label in list
-    li.navItem
+    - var match = null
+    if typeof(url) === "string" && url.match(config.archive_dir)
+      - match = config.category_dir + ',' + config.tag_dir
+    li.navItem(matchdata=match)
       if typeof(url) === "object"
         span.navItemTitle= label
         ol.navItemList
@@ -8,6 +11,7 @@ mixin expand_list(list)
       else
         a(href= config.root + url)
           span.navItemTitle= label
+
 header.closed
   nav
     .navBtn
@@ -17,22 +21,22 @@ header.closed
         span.navBtnIconBar
     ol.navContent
       if searchConfig !== null
-        li.navItem.search-header
+        li.navItem#search-header
           span.navItemTitle
             input(autocomplete="off" autocorrect="off" autocapitalize="none"
               placeholder="数据检索" spellcheck="false" maxlength="50"
               type="text" id="search-input")
       each url, label in theme.menu
+        - var match = null
+        if typeof(url) === "string" && url.match(config.archive_dir)
+          - match = config.category_dir + ',' + config.tag_dir
         li.navItem(matchdata=match)
           if typeof(url) === "object"
             div.navBlock
               span.navItemTitle= label
               ol.navItemList
                 +expand_list(url)
-          else  
-            - var match = null
-            if url.match(config.archive_dir)
-              - match = config.category_dir + ',' + config.tag_dir
+          else
             a.navBlock(href= config.root + url)
               span.navItemTitle= label
   if searchConfig !== null

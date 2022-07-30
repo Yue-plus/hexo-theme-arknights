@@ -23,7 +23,7 @@ block content
       #Archives-bg
         - page.posts.each(function(article){
         .category-item
-          div(style="width:115px;display:inline-block")
+          .control-category
             time(datetime=date_xml(article.date))= date(article.date)
           a(href=url_for(article.path))= article.title
         - })

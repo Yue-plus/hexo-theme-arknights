@@ -1,6 +1,5 @@
-.search
-  [class$="navItem"],[class$="active"]
-    transform translateX(-100%)
+.search .navItem:not(#search-header)
+  transform translateX(-100%)
 .search-popup
   left 0
   transform translateX(-100%)
@@ -12,11 +11,11 @@
   .up .closed .search-popup
     right 200px
   @media ( max-width 1023px )
-    .navItem.search-header
+    #search-header
       padding-left 4.5em
 
 @media ( min-width 1024px )
-  .search-header
+  #search-header
     input
       padding 0 0 0 10px
       &::placeholder

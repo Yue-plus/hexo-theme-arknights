@@ -211,7 +211,7 @@ class Cursor {
         this.fadeIng = false;
         this.outer = getElement('#cursor-outer').style;
         this.effecter = getElement('#cursor-effect').style;
-        this.attention = "a,input,button,.admonition,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon";
+        this.attention = "a,input,button,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon";
         this.move = (timestamp) => {
             if (this.now !== undefined) {
                 let SX = this.outer.left, SY = this.outer.top, preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2)), delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3;
@@ -358,7 +358,7 @@ class Header {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
             getElement('.navBtn').classList.remove('hide');
             navs.forEach(item => {
-                if (item.classList.contains('search-header')) {
+                if (item.id === 'search-header') {
                     return;
                 }
                 let now = item, link = getElement('a', now);
