@@ -4,6 +4,9 @@ language: zh
 # canvas 动态背景
 canvas_dust: true
 
+# <body> 背景图片链接
+background_image: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # /img/bg.jpg
+
 # 右侧边栏
 aside:
   in_left: false # 侧边栏在左 true / false
