@@ -22,8 +22,8 @@ block content
       h1= page.category
       #Archives-bg
         - page.posts.each(function(article){
-        .category-item
-          .control-category
+        .article-item
+          .control-long
             time(datetime=date_xml(article.date))= date(article.date)
           a(href=url_for(article.path))= article.title
         - })
