@@ -189,6 +189,7 @@
     display -ms-flexbox
     display flex
   .gt-header-comment
+    max-width calc(100% - 4.25em)
     -webkit-box-flex 1
     -ms-flex 1
     flex 1
@@ -198,6 +199,8 @@
     border 1px solid #fe2
   .gt-header-preview
     min-height 72px
+    width 100%
+    overflow auto
     transition .2s
     padding 0.75em
     border-radius 5px
@@ -208,6 +211,8 @@
       border-radius 5px
       border 1px solid #fe2
       background-color rgba(255, 255, 255, 0.1)
+    p
+      width fit-content
   .gt-header-controls
     position relative
     margin 0.75em 0 0
