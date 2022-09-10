@@ -47,7 +47,7 @@ class Index {
   }
 
   private setHtml = () => {
-    let headerLink: NodeList = document.querySelectorAll('.headerlink'),
+    let headerLink: NodeList = document.querySelectorAll('h2,h3,h4,h5,h6'),
       tocLink: NodeList = document.querySelectorAll('.toc-link')
     if (tocLink.length !== 0) {
       this.setItem(tocLink.item(0) as HTMLElement)

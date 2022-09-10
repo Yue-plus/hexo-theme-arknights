@@ -15,12 +15,9 @@
     onload += "mermaid.init(undefined, ('.mermaid'));";
   }
   let searchConfig = null
-  if (config.search !== undefined && config.search.enable === true) searchConfig = config.search;
   if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
   const configs = JSON.stringify({
-    hostname: config.url,
     root    : config.root,
-    preload : searchConfig.preload !== undefined ? searchConfig.preload : false,
     path    : searchConfig.path !== undefined ? searchConfig.path : '',
   })
 

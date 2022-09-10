@@ -6,12 +6,15 @@ function getElement(string, item = document.documentElement) {
     }
     return tmp;
 }
-function getParent(item) {
-    let tmp = item.parentElement;
-    if (tmp === null) {
-        throw new Error("Unknown HTML");
+function getParent(item, level = 1) {
+    for (; level--;) {
+        let tmp = item.parentElement;
+        if (tmp === null) {
+            throw new Error("Unknown HTML");
+        }
+        item = tmp;
     }
-    return tmp;
+    return item;
 }
 class dust {
     constructor() {
@@ -134,6 +137,16 @@ class Code {
             }
         };
         this.doAsCode = (item) => {
+            const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
+            item.classList.add(lineCount < 16 ? 'open' : 'fold');
+            item.innerHTML =
+                `<span class="code-header">\
+        <span class="code-title">\
+          <div class="code-icon"></div>${this.resetName(codeType)} 共 ${lineCount} 行</span>\
+          <span class="code-header-tail">\
+            <button class="code-copy"></button>\
+            <span class="code-space">展开</span></span></span></span>\
+      <div class="code-box">${item.innerHTML}</div>`;
             getElement('.code-copy', item).addEventListener('click', (click) => {
                 const button = click.target;
                 navigator.clipboard.writeText(getElement('code', item).innerText);
@@ -151,13 +164,41 @@ class Code {
             if (codeBlocks !== null) {
                 codeBlocks.forEach(item => {
                     if (item.getAttribute('code-find') === null) {
-                        this.doAsCode(item);
+                        try {
+                            if (!item.classList.contains('mermaid') && item.querySelector('.code-header') === null) {
+                                if (item.querySelector('.mermaid') !== null) {
+                                    this.doAsMermaid(item);
+                                }
+                                else {
+                                    this.doAsCode(item);
+                                }
+                            }
+                        }
+                        catch (e) {
+                            return;
+                        }
                         item.setAttribute('code-find', '');
                     }
                 });
             }
         };
         this.findCode();
+    }
+    doAsMermaid(item) {
+        let Amermaid = item.querySelector('.mermaid');
+        item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
+    }
+    resetName(str) {
+        if (str == 'plaintext') {
+            return 'TEXT';
+        }
+        if (str == 'cs') {
+            return 'C#';
+        }
+        if (str == 'cpp') {
+            return 'C++';
+        }
+        return str.toUpperCase();
     }
 }
 let code = new Code();
@@ -170,7 +211,7 @@ class Cursor {
         this.fadeIng = false;
         this.outer = getElement('#cursor-outer').style;
         this.effecter = getElement('#cursor-effect').style;
-        this.attention = "a,input,button,.admonition,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon";
+        this.attention = "a,input,button,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon";
         this.move = (timestamp) => {
             if (this.now !== undefined) {
                 let SX = this.outer.left, SY = this.outer.top, preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2)), delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3;
@@ -293,7 +334,7 @@ class Index {
             }
         };
         this.setHtml = () => {
-            let headerLink = document.querySelectorAll('.headerlink'), tocLink = document.querySelectorAll('.toc-link');
+            let headerLink = document.querySelectorAll('h2,h3,h4,h5,h6'), tocLink = document.querySelectorAll('.toc-link');
             if (tocLink.length !== 0) {
                 this.setItem(tocLink.item(0));
             }
@@ -317,13 +358,16 @@ class Header {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
             getElement('.navBtn').classList.remove('hide');
             navs.forEach(item => {
-                if (item.classList.contains('search-header')) {
+                if (item.id === 'search-header') {
                     return;
                 }
                 let now = item, link = getElement('a', now);
                 if (link !== null) {
                     let href = link.href, match = now.getAttribute('matchdata');
                     now.classList.remove('active');
+                    if (getParent(link) != now) {
+                        return;
+                    }
                     if (href.length > mayLen && document.URL.match(href) !== null) {
                         mayLen = href.length;
                         may = now;
@@ -340,41 +384,66 @@ class Header {
                 }
             });
             if (may !== null) {
-                may.classList.add('active');
+                do {
+                    if (may.classList.contains('navItem')) {
+                        may.classList.add('active');
+                    }
+                } while (!(may = getParent(may)).classList.contains('navContent'));
             }
         };
-        this.open = () => {
+        this.open = (item = this.header) => {
             scrolls.slideDown();
-            this.header.classList.add('expanded');
-            this.header.classList.add('moving');
-            this.header.classList.remove('closed');
-            setTimeout(() => this.header.classList.remove('moving'), 300);
+            item.classList.add('expanded');
+            item.classList.remove('closed');
+            if (item === this.header) {
+                item.classList.add('moving');
+                setTimeout(() => item.classList.remove('moving'), 300);
+            }
         };
-        this.close = () => {
-            this.header.classList.add('closed');
-            this.header.classList.add('moving');
-            this.header.classList.remove('expanded');
-            setTimeout(() => this.header.classList.remove('moving'), 300);
+        this.close = (item = this.header) => {
+            item.classList.add('closed');
+            item.classList.remove('expanded');
+            if (item === this.header) {
+                item.classList.add('moving');
+                setTimeout(() => item.classList.remove('moving'), 300);
+                this.closeAll();
+            }
         };
-        this.reverse = () => {
+        this.reverse = (item = this.header) => {
             if (this.closeSearch) {
                 this.closeSearch = false;
             }
-            else if (this.header.classList[0] === 'expanded') {
-                this.close();
+            else if (item.classList.contains('expanded')) {
+                this.close(item);
             }
             else {
-                this.open();
+                this.open(item);
             }
+        };
+        this.closeAll = () => {
+            this.header.querySelectorAll('.expanded').forEach((item) => item.classList.remove('expanded'));
         };
         this.relabel();
         document.addEventListener('pjax:success', this.relabel);
+        document.addEventListener('pjax:send', () => this.close());
         this.button.addEventListener('mousedown', () => {
             if (document.querySelector('.search')) {
                 this.closeSearch = true;
             }
         });
-        this.button.onclick = this.reverse;
+        this.button.onclick = () => this.reverse(this.header);
+        document.querySelectorAll('.navItemList').forEach((item) => {
+            item = getParent(item);
+            if (item.classList.contains('navBlock')) {
+                item = getParent(item);
+            }
+            item.addEventListener('click', (event) => {
+                if (getParent(event.target) === item ||
+                    getParent(event.target, 2) === item) {
+                    this.reverse(item);
+                }
+            });
+        });
     }
 }
 var header = new Header();
@@ -545,7 +614,6 @@ class pjaxSupport {
             ++this.timestamp;
             if (this.loading.style.opacity === '1') {
                 getElement('main').scrollTop = 0;
-                header.close();
                 if (this.left.style.width !== "50%") {
                     this.start(50);
                     setTimeout((time) => {

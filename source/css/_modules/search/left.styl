@@ -1,12 +1,10 @@
-@media ( min-width 769 )
-  @media ( max-width 1023px )
-    .search-popup
-      left 212px
+@media ( min-width 769, max-width 1023px )
+  .search-popup
+    left 212px
 
 @media ( min-width 1024px )
-  .search
-    [class$="navItem"],[class$="active"]
-      transform translateX(100%)
+  .search .navItem:not(#search-header)
+    transform translateX(100%)
   .search-popup
     right 0
     transform translateX(100%)
@@ -14,7 +12,7 @@
       transform translateX(0%)
   .search-popup.open
     transform translateX(0%)
-  .search-header
+  #search-header
     input
       padding 0 10px 0 0
     .navItemTitle
@@ -40,6 +38,6 @@
       right 0
 
 @media ( max-width 1023px )
-  .navItem.search-header
+  #search-header
     padding-right 4.5em
 

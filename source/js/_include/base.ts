@@ -8,10 +8,13 @@ function getElement(string: string, item: Element = document.documentElement): H
   return tmp
 }
 
-function getParent(item: Element): HTMLElement {
-  let tmp: HTMLElement | null = item.parentElement
-  if (tmp === null) {
-    throw new Error("Unknown HTML")
+function getParent(item: Element, level: number = 1): HTMLElement {
+  for (; level--;) {
+    let tmp: HTMLElement | null = item.parentElement
+    if (tmp === null) {
+      throw new Error("Unknown HTML")
+    }
+    item = tmp;
   }
-  return tmp
+  return item as HTMLElement
 }

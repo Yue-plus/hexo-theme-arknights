@@ -4,9 +4,6 @@ header
   order 1
 
 @media ( min-width 769px )
-  @media ( max-width 1023px )
-    article
-      margin-right 5%
   header
     left 212px
   .navBtn
@@ -14,16 +11,17 @@ header
   aside
     left 0
   @media ( max-width 1023px )
+    article
+      margin-right 5%
     .navContent
       padding-right 0
       transform translateX(-100%)
     .navItem
       padding-right 2.5em
 
-@media ( min-width 992px )
-  @media ( max-width 1919px )
-    aside
-      padding 0 15px 0 25px
+@media ( min-width 992px, max-width 1919px)
+  aside
+    padding 0 15px 0 25px
 
 @media ( min-width 1024px )
   header
@@ -31,17 +29,34 @@ header
     right 0
   .navContent
     align-items flex-end
-    padding 1em 0 1em 1em
+    margin 0 0 1.5em 0
     transform unset
   .navItem
     padding-right 1.2em
-    .navItemTitle:hover
-      margin-left -1em
-    a
-      .navItemTitle::after
-        border-right 4px solid
-      &:hover .navItemTitle
+  .navBlock
+    .navItemTitle::after
+      border-right 4px solid
+    &:hover
+      &::after
+        content ""
+        height 100%
+        width 100%
+        position absolute
+        top 0
+        right 2em
+      .navItemTitle
         margin-left -1em
+    &>.navItemList
+      right calc(100% + 2em)
+  .navItemList
+    right 100%
+    .navItem
+      padding-left 1px
+    .navItemTitle
+      padding-right 0.8em
+      padding-left 0.5em
+  .navItemList>.navItem>.navItemTitle:hover
+    padding-right 1.8em
 
 @media ( min-width 1440px )
   .navItem

@@ -1,6 +1,6 @@
 {
-  "include": [
-    "_arknights.ts"
+  "files": [
+    "_arknights.ts",
   ],
   "compilerOptions": {
     "target": "es6",

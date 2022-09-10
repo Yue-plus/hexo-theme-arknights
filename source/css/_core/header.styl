@@ -13,31 +13,32 @@ nav
   position relative
   height 100%
   white-space nowrap
-  overflow-y auto
   scroll-width none
+  overflow auto
+  pointer-events all
   &::-webkit-scrollbar
     display none
   &::-ms-scrollbar
     display none
-  a
-    transition unset
-    position relative
-    height 40px
-    line-height 40px
-    padding 0 12px
-    display inline-block
-    sum = 0
-    for i in hexo-config("menu")
-      sum += 3
-    if hexo-config("search") && hexo-config("search.enable")
-      sum += 1
-    padding (34em/sum) 0
-    width 100%
-    color #fff
-    &:active
-      background unset
-  ol li
+  li
     display block
+
+.navBlock
+  transition unset
+  position relative
+  height 40px
+  line-height 40px
+  padding 0 12px
+  display inline-block
+  List-sum = 0
+  for i in hexo-config("menu")
+    List-sum += 3
+  if hexo-config("search") && hexo-config("search.enable")
+    List-sum += 1
+  padding (34em/List-sum) 0
+  width 100%
+  &:active
+    background unset
 
 .navBtn
   transition transform .3s
@@ -47,32 +48,33 @@ nav
   top 1em
   font-size 2em
   z-index 10
-  .navBtnIcon 
-    z-index 10
-    width 1em
-    height 1em
-    display block
-    position relative
-  .navBtnIconBar
-    position absolute
-    top 50%
-    width 1em
-    height 0.1em
-    background-color #d4d8dd
-    text-indent 101%
-    white-space nowrap
-    overflow hidden
-    transition transform ease-in-out 0.3s
-  .navBtnIconBar
-    &:nth-child(1)
-      left 0
-      transform translate(0, -350%)
-    &:nth-child(2)
-      left 0
-      transform translate(0, -50%)
-    &:nth-child(3)
-      right 0
-      transform translate(0, 250%)
+.navBtnIcon 
+  z-index 10
+  width 1em
+  height 1em
+  display block
+  position relative
+.navBtnIconBar
+  position absolute
+  top 50%
+  width 1em
+  height 0.1em
+  background-color #d4d8dd
+  text-indent 101%
+  white-space nowrap
+  overflow hidden
+  transition transform ease-in-out 0.3s
+.navBtnIconBar
+  &:nth-child(1)
+    left 0
+    transform translate(0, -350%)
+  &:nth-child(2)
+    left 0
+    transform translate(0, -50%)
+  &:nth-child(3)
+    right 0
+    transform translate(0, 250%)
+
 .expanded .navBtnIconBar
   &:nth-child(1)
     transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(-50%)
@@ -83,29 +85,20 @@ nav
 
 .navContent
   overflow visible
-  pointer-events all
-  box-sizing border-box
   margin unset
-  height 100%
+  min-height 100%
+  height fit-content
   display flex
   flex-direction column
   justify-content center
+  position relative
+  padding 0
 
 .navItem
   overflow visible
   position relative
   margin unset
   transition .6s
-  &.active
-    a
-      color #2bf
-    &:hover a
-      color #2bf
-    .navItemTitle::after
-      content ""
-      display block
-      width 100%
-      position absolute
   @media ( max-width 1023px )
     & .navItemTitle::after
       content ""
@@ -119,10 +112,43 @@ nav
     white-space normal
     position relative
     display block
-  @media ( min-width 1024px )
-    a:hover
+.active
+  &>:is(a,.navBlock)>.navItemTitle,&>.navItemTitle
+    color #2bf
+    &::after
+      content ""
+      display block
       color #2bf
-      background-color unset
+      border-color #2bf
+      width 100%
+      position absolute
+      left 0
+
+.navItemList
+  overflow visible
+  display none
+  top 0
+  text-align left
+  padding 0
+  .navItem
+    min-width max-content
+    box-sizing border-box
+    margin 0
+    a
+      min-width max-content
+      padding 0
+      display block
+      width 100%
+      line-height 40px
+
+extendList()
+  display block
+  &>.navItemList
+    box-sizing border-box
+    display inline-block
+    width max-content
+    min-width 100%
+    margin 0
 
 @media ( max-width 768px )
   header
@@ -139,46 +165,87 @@ nav
     position fixed
   nav
     max-width 428px
+    height max-content
+    min-height 100vh
   .navBtn
     left 1em
   .navContent
+    overflow-y auto
     transform translateX(-100%)
     width 100%
     padding: 4.5em 2.5em 2em;
     transition transform 0.6s
     background-color rgba(0, 0, 0, 0.88)
-  .navItem a
+    height 100vh
+  .navBlock
     &:hover
       background-color unset
-      color #fff
     box-sizing border-box
     align-items flex-end
     padding 2px 2em
     border-bottom 1px solid rgba(57, 57, 57, 0.5)
     height 100%
   .navItemTitle
+    color #fff
     padding-bottom 7px
     &::after
       height 0
       border-bottom 2px solid #fff
       bottom 0
       right 0
-  .navItem.active .navItemTitle::after
+  .active>:is(a,.navBlock)>.navItemTitle::after
     border-color #2bf
   .expanded .navContent
     transform translateX(0%)
+  .navItemList
+    width 100%
+    &>.navItem
+      padding-left 1em
+      width calc(100% - 1em)
+  .navItemTitle:not(:only-child)::before
+    content '>'
+    margin 0 5px
+  .expanded,
+  .expanded>.navBlock
+    &>.navItemList
+      margin-top 6px
+      extendList()
+    &>.navItemTitle:not(:only-child)::before
+      content '▽'
+      color #2bf
 
 @media ( min-width 1024px )
   header
     width 180px
   .navBtn
     display none
-  .navItemTitle::after
-    height 100%
-    top 0
-    box-sizing border-box
-  .navItem
-    width 120px
+  .navBlock:hover
+    background-color unset
+  .navItemTitle
+    color #fff
+    &::after
+      height 100%
+      top 0
+      box-sizing border-box
+  .navItemList
+    width max-content
+    min-width 100px
+    position absolute
+    background-color #000
+    .navItem
+      width 100%
+      padding 0
+      .navItemTitle
+        box-sizing border-box
+        color #2bf
+      a:hover .navItemTitle
+        color #000
+      &:hover>.navItemTitle
+        background-color #2bf
+        color #000
+  .navBlock,.navItem
+    &:hover
+      extendList()
 
 @media ( min-width 1440px )
   header
