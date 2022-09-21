@@ -343,13 +343,29 @@ wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时
 ```
 
 ## 搜索
+安装 `hexo-generator-searchdb` 提供搜索支持：
 
-仅需在 `Hexo/_config.arknights.yml` 文件中开启：
+npm:
+```shell script 
+cnpm install hexo-generator-searchdb --save
+```
+
+yarn:
+```shell script
+yarn add hexo-generator-searchdb
+```
+
+在 `Hexo/_config.yml` 或 `Hexo/_config.arknights.yml` 文件中添加：
 
 ```yaml
 search:
   enable: true
+  preload: true # 非必要
+  path: search.json # 非必要，缩小文件用
+  format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
 ```
+
+注意：如果您在 `Hexo/_config.yml` 中添加了这段配置，请在 `Hexo/_config.arknights.yml` 中移除整个 `search` 字段，否则主题会找不到正确的配置位置！  
 
 ## Front-matter
 

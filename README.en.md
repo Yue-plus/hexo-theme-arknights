@@ -360,7 +360,7 @@ For yarn users:
 yarn add hexo-generator-searchdb
 ```
 
-Add the following into `Hexo/_config.yml`:  
+Add the following into `Hexo/_config.yml` or `Hexo/_config.arknights.yml`:  
 
 ```yaml
 search:
@@ -369,6 +369,8 @@ search:
   path: search.json # Non-essential, use to shrink the file
   format: striptags # Non-essential, use to shrink the file (Can greatly reduce the size of the search data file, recommended)
 ```
+
+Warn: Delete the whole `search` field in `Hexo/_config.arknights.yml` if you already added it to `Hexo/_config.yml`, or the theme won't be able to find the proper config!  
 
 ## Front-matter
 
