@@ -355,7 +355,7 @@ yarn:
 yarn add hexo-generator-searchdb
 ```
 
-在 `Hexo/_config.yml` 或 `Hexo/_config.arknights.yml` 文件中添加：
+在 `Hexo/_config.arknights.yml` 文件中添加：
 
 ```yaml
 search:
@@ -364,8 +364,6 @@ search:
   path: search.json
   format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
 ```
-
-注意：如果您在 `Hexo/_config.yml` 中添加了这段配置，请在 `Hexo/_config.arknights.yml` 中移除整个 `search` 字段，否则主题会找不到正确的配置位置！  
 
 ## Front-matter
 
