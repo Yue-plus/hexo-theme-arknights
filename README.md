@@ -361,7 +361,7 @@ yarn add hexo-generator-searchdb
 search:
   enable: true
   preload: true # 非必要
-  path: search.json # 非必要，缩小文件用
+  path: search.json
   format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
 ```
 

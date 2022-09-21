@@ -366,7 +366,7 @@ Add the following into `Hexo/_config.yml` or `Hexo/_config.arknights.yml`:
 search:
   enable: true
   preload: true # Non-essential
-  path: search.json # Non-essential, use to shrink the file
+  path: search.json
   format: striptags # Non-essential, use to shrink the file (Can greatly reduce the size of the search data file, recommended)
 ```
 
