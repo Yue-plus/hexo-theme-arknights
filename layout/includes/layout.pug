@@ -18,7 +18,7 @@
   if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
   const configs = JSON.stringify({
     root    : config.root,
-    path    : searchConfig.path !== undefined ? searchConfig.path : '',
+    path    : searchConfig !== undefined && searchConfig.path !== undefined ? searchConfig.path : '',
   })
 
 doctype html
