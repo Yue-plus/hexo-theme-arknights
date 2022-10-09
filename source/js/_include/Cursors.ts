@@ -11,7 +11,7 @@ class Cursor {
   private readonly outer: CSSStyleDeclaration = getElement('#cursor-outer').style
   private readonly effecter: CSSStyleDeclaration = getElement('#cursor-effect').style
   private readonly attention: string =
-    "a,input,button,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon"
+    "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon"
 
   private move = (timestamp: number) => {
     if (this.now !== undefined) {

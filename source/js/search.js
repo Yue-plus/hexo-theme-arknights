@@ -84,11 +84,15 @@ window.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
       document.querySelector('.navBtn').classList.remove('expanded')
     }
-    document.body.classList.remove('blur')
+    if (window.innerWidth > 1023) {
+      document.body.classList.remove('blur')
+    }
     document.querySelector('.search-popup').classList.remove('open')
   }
   function proceedSearch() {
-    document.body.classList.add('blur')
+    if (window.innerWidth > 1023) {
+      document.body.classList.add('blur')
+    }
     if (document.querySelector('.up') && document.querySelector('.closed')) {
       document.querySelector('.navBtn').classList.add('expanded')
     }
@@ -222,7 +226,7 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       resultContent.innerHTML = searchResultList
     }
-    if (pjax) {
+    if (typeof pjax !== 'undefined') {
       pjax.refresh(resultContent)
     }
   }
@@ -241,7 +245,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   function EscapeSearch() {
     document.querySelector('#search-input').value = ''
-    document.getElementById('search-result').innerHTML = ''
     document.querySelector('.navContent').classList.remove('search')
     document.removeEventListener('mouseup', EscapeSearch)
     wait = false
