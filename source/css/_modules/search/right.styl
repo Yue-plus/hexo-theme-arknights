@@ -4,7 +4,7 @@
   left 0
   transform translateX(-100%)
   &.open
-    transform translateX(0%)
+    transform translateX(0)
 
 
 @media ( min-width 769px )
@@ -30,9 +30,9 @@
 
 @keyframes get-in
   0%
-    left -100%
+    transform translateX(-100%)
   100%
-    left 0
+    transform translateX(0)
 
 @keyframes get-out
   0%

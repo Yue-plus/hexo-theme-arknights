@@ -1,11 +1,11 @@
 header
+  pointer-events none
   top 0
   z-index 15
   height 100%
   font-family BenderLight
   display inline
   position sticky
-  pointer-events none
   @media (max-width 1023px)
     clip-path polygon(0 0, 0 100%, 100% 100%, 100% 0)
 
@@ -15,7 +15,6 @@ nav
   white-space nowrap
   scroll-width none
   overflow auto
-  pointer-events all
   &::-webkit-scrollbar
     display none
   &::-ms-scrollbar
@@ -43,6 +42,7 @@ nav
 .navBtn
   transition transform .3s
   pointer-events all
+  
   display block
   position absolute
   top 1em
@@ -93,6 +93,8 @@ nav
   justify-content center
   position relative
   padding 0
+  box-sizing border-box
+  pointer-events all
 
 .navItem
   overflow visible

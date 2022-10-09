@@ -211,7 +211,7 @@ class Cursor {
         this.fadeIng = false;
         this.outer = getElement('#cursor-outer').style;
         this.effecter = getElement('#cursor-effect').style;
-        this.attention = "a,input,button,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon";
+        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon";
         this.move = (timestamp) => {
             if (this.now !== undefined) {
                 let SX = this.outer.left, SY = this.outer.top, preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2)), delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3;
@@ -391,6 +391,14 @@ class Header {
                 } while (!(may = getParent(may)).classList.contains('navContent'));
             }
         };
+        this.inHeader = (mouse) => {
+            let item = mouse.target;
+            while (item !== this.header && item !== document.body)
+                item = getParent(item);
+            if (item !== this.header) {
+                this.close();
+            }
+        };
         this.open = (item = this.header) => {
             scrolls.slideDown();
             item.classList.add('expanded');
@@ -399,8 +407,10 @@ class Header {
                 item.classList.add('moving');
                 setTimeout(() => item.classList.remove('moving'), 300);
             }
+            document.addEventListener('click', this.inHeader);
         };
         this.close = (item = this.header) => {
+            document.removeEventListener('click', this.inHeader);
             item.classList.add('closed');
             item.classList.remove('expanded');
             if (item === this.header) {
