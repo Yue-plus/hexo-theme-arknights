@@ -60,10 +60,9 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
       highlight:
         hljs: true
       ```
-- 复制 `Hexo/themes/arknights/_config.yml` 到 Hexo 目录下，并重命名为 `_config.arknights.yml`。
+- 复制 [hexo 分支的 `_config.arknights.yml`](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml) 到 Hexo 目录下，并重命名为 `_config.arknights.yml`。
   > 建议参考：
   > - [使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-  > - [hexo 分支的 `_config.arknights.yml`](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml)
   
   主题的配置文件可参照中文注释修改。
 
