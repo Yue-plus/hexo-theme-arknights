@@ -248,6 +248,8 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.navContent').classList.remove('search')
     document.removeEventListener('mouseup', EscapeSearch)
     wait = false
+    document.querySelector('.navContent').classList.remove('search')
+    document.querySelector('.navContent').classList.add('moved')
     onPopupClose()
   }
   document.querySelector('#search-input').addEventListener('keyup', () => {

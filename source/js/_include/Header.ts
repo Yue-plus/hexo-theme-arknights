@@ -48,6 +48,15 @@ class Header {
     }
   }
 
+  public inHeader = (mouse: MouseEvent) => {
+      let item = mouse.target as HTMLElement;
+      while (item !== this.header && item !== document.body)
+        item = getParent(item);
+      if (item !== this.header) {
+        this.close();
+      }
+  }
+
   public open = (item: Element = this.header) => {
     scrolls.slideDown()
     item.classList.add('expanded')
@@ -56,9 +65,11 @@ class Header {
       item.classList.add('moving')
       setTimeout(() => item.classList.remove('moving'), 300)
     }
+    document.addEventListener('click', this.inHeader);
   }
 
   public close = (item: Element = this.header) => {
+    document.removeEventListener('click', this.inHeader);
     item.classList.add('closed')
     item.classList.remove('expanded')
     if (item === this.header) {
