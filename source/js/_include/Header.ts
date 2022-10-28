@@ -11,7 +11,7 @@ class Header {
     let navs = this.header.querySelectorAll('.navItem'),
       mayLen: number = 0,
       may: Element = navs.item(0)
-    getElement('.navBtn').classList.remove('hide')
+    getElement('.navBtn').classList.add('hide')
     navs.forEach(item => {
       if (item.id === 'search-header') {
         return
@@ -49,12 +49,12 @@ class Header {
   }
 
   public inHeader = (mouse: MouseEvent) => {
-      let item = mouse.target as HTMLElement;
-      while (item !== this.header && item !== document.body)
-        item = getParent(item);
-      if (item !== this.header) {
-        this.close();
-      }
+    let item = mouse.target as HTMLElement;
+    while (item !== this.header && item !== document.body)
+      item = getParent(item);
+    if (item !== this.header) {
+      this.close();
+    }
   }
 
   public open = (item: Element = this.header) => {

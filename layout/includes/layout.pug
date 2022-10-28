@@ -95,9 +95,6 @@ html(lang=config.language)
       include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust
-    #cursor-container
-      #cursor-outer
-      #cursor-effect
     if searchConfig !== null
       script(src="/js/search.js")
     script.pjax-js reset=_=>{

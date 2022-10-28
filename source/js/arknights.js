@@ -209,8 +209,6 @@ class Cursor {
         this.last = 0;
         this.moveIng = false;
         this.fadeIng = false;
-        this.outer = getElement('#cursor-outer').style;
-        this.effecter = getElement('#cursor-effect').style;
         this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon";
         this.move = (timestamp) => {
             if (this.now !== undefined) {
@@ -281,6 +279,13 @@ class Cursor {
         this.pushHolders = () => {
             this.pushHolder(document.querySelectorAll(this.attention));
         };
+        let node = document.createElement('div');
+        node.id = 'cursor-container';
+        node.innerHTML = `<div id="cursor-outer"></div><div id="cursor-effect"></div>`;
+        document.body.appendChild(node);
+        this.outer = getElement('#cursor-outer', node).style;
+        this.outer.top = '-100%';
+        this.effecter = getElement('#cursor-effect', node).style;
         this.effecter.transform = 'translate(-50%, -50%) scale(0)';
         this.effecter.opacity = '1';
         window.addEventListener('mousemove', this.reset, { passive: true });
@@ -290,7 +295,7 @@ class Cursor {
         observer.observe(document, { childList: true, subtree: true });
     }
 }
-new Cursor();
+window.onload = () => new Cursor();
 class Index {
     constructor() {
         this.setItem = (item) => {
@@ -356,7 +361,7 @@ class Header {
         this.closeSearch = false;
         this.relabel = () => {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
-            getElement('.navBtn').classList.remove('hide');
+            getElement('.navBtn').classList.add('hide');
             navs.forEach(item => {
                 if (item.id === 'search-header') {
                     return;
