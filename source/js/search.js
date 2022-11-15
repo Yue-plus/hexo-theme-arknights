@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   let isfetched = false, wait = false
   let datas
-  const path = config.root + config.path
+  const path = config.root + 'search.json'
   const input = document.getElementById('search-input')
   fetch(path)
     .then(response => response.text())

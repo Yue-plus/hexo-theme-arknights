@@ -11,70 +11,19 @@
   const asideLogo = theme.aside.logo
   const pjax = theme.pjax ? theme.pjax.enable : false
   let onload = "code.findCode();"
+  let searchConfig = null
+  if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
   if (theme.mermaid.enable === true && theme.mermaid.version !== undefined) {
     onload += "mermaid.init(undefined, ('.mermaid'));";
   }
-  let searchConfig = null
-  if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
   const configs = JSON.stringify({
-    root    : config.root,
-    path    : searchConfig !== undefined && searchConfig.path !== undefined ? searchConfig.path : '',
+    root: config.root
   })
 
 doctype html
 html(lang=config.language)
   head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title= pageTitle
-    if theme.valine !== undefined && theme.valine.enable === true
-      script(src='//unpkg.com/valine/dist/Valine.min.js')
-    if searchConfig
-      script var config = !{configs}
-    if theme.gitalk !== undefined && theme.gitalk.enable === true
-      script(src=config.root + "js/gitalk.js")
-    if theme.mermaid !== undefined && theme.mermaid.enable === true && theme.mermaid.version !== undefined
-      script(src= "//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
-      script
-        |mermaid.initialize({
-        |  startOnLoad: true
-        |  , theme: 'dark'
-        |});
-    if theme.mathjax !== undefined && theme.mathjax.enable === true
-      script(src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
-      script
-        |MathJax.Hub.Config({
-        |  menuSettings: {
-        |    zoom: "None"
-        |  },
-        |  showMathMenu: false,
-        |  jax: ["input/TeX","output/CommonHTML"],
-        |  extensions: ["tex2jax.js"],
-        |  TeX: {
-        |    extensions: ["AMSmath.js","AMSsymbols.js"],
-        |    equationNumbers: {
-        |      autoNumber: "AMS"
-        |    }
-        |  },
-        |  tex2jax: {
-        |    inlineMath: [["\\(", "\\)"]],
-        |    displayMath: [["\\[", "\\]"]]
-        |  }
-        |});
-    link(rel="stylesheet", href=config.root + "css/arknights.css")
-    if theme.stylesheets !== undefined && theme.stylesheets.length > 0
-      //- stylesheets list from _config.yml
-      each url in theme.stylesheets
-        link(rel='stylesheet', href=url)
-    style
-      |@font-face {
-      |  font-family: BenderLight;
-      |  src: local('Bender'), url("#{config.root}font/BenderLight.ttf");
-      |}
-      |@font-face {
-      |  font-family: 'JetBrains Mono';
-      |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
-      |}
+    include ./meta-data.pug
   body(style={'background-image': `url(${theme.background_image})`})
     if pjax
       .loading(style='opacity: 0')
@@ -95,54 +44,4 @@ html(lang=config.language)
       include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust
-    if searchConfig !== null
-      script(src="/js/search.js")
-    script.pjax-js reset=_=>{
-      if theme.valine !== undefined && theme.valine.enable === true
-        |new Valine({
-        |  el: '#Valine'
-        |  , appId: '#{theme.valine.app_id}'
-        |  , appKey: '#{theme.valine.app_key}'
-        if theme.valine.server_url
-          | , serverURLs: '#{theme.valine.server_url}'
-        |  , placeholder: '此条评论委托企鹅物流发送'
-        |});
-      if theme.gitalk !== undefined && theme.gitalk.enable === true
-        - let config = theme.gitalk, gitAdmin = ''
-        for str in theme.gitalk.admin
-          - gitAdmin= gitAdmin + "'" + str + "'"
-        |gitalk = new Gitalk({
-        |  clientID: '#{config.client_id}',
-        |  clientSecret: '#{config.client_secret}',
-        |  repo: '#{config.repo}',
-        |  owner: '#{config.owner}',
-        |  admin: [#{gitAdmin}],
-        |  distractionFreeMode: #{config.distraction_free_mode || false},
-        |  id: #{config.id}
-        |});
-        |if (document.querySelector("#comments")) gitalk.render("comments");
-      | !{onload}}
-    if theme.scripts !== undefined && theme.scripts.length > 0
-      //- scripts list from config.yml
-      each url in theme.scripts
-        script(src=url)
-    script(src=config.root + "js/arknights.js")
-    if pjax
-      script(src=config.root + "js/pjax.js")
-    script window.addEventListener("load",()=>{
-      if pjax
-        |pjax = new Pjax({
-        |  cacheBust: false,
-        |  selectors: ['title','article','#aside-block','.pjax-js'],
-        |  switches: {'article': Pjax.switches.sideBySide},
-        |  switchesOptions: {
-        |    'article': {
-        |      classNames: {
-        |        remove: "pjax-out",
-        |        add: "pjax-in"
-        |      }
-        |    }
-        |  }
-        |});
-        |document.addEventListener("pjax:complete", reset);
-      | reset()})
+    include ./js-data.pug

@@ -1,0 +1,55 @@
+meta(charset='UTF-8')
+meta(name='viewport' content='width=device-width, initial-scale=1.0')
+title= pageTitle
+
+script var config = !{configs}
+if theme.valine !== undefined && theme.valine.enable === true
+  script(src='//unpkg.com/valine/dist/Valine.min.js')
+if theme.gitalk !== undefined && theme.gitalk.enable === true
+  script(src=config.root + "js/gitalk.js")
+
+if theme.mermaid !== undefined && theme.mermaid.enable === true && theme.mermaid.version !== undefined
+  script(src= "//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
+  script
+    |mermaid.initialize({
+    |  startOnLoad: true
+    |  , theme: 'dark'
+    |});
+
+if theme.mathjax !== undefined && theme.mathjax.enable === true
+  script(src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
+  script
+    |MathJax.Hub.Config({
+    |  menuSettings: {
+    |    zoom: "None"
+    |  },
+    |  showMathMenu: false,
+    |  jax: ["input/TeX","output/CommonHTML"],
+    |  extensions: ["tex2jax.js"],
+    |  TeX: {
+    |    extensions: ["AMSmath.js","AMSsymbols.js"],
+    |    equationNumbers: {
+    |      autoNumber: "AMS"
+    |    }
+    |  },
+    |  tex2jax: {
+    |    inlineMath: [["\\(", "\\)"]],
+    |    displayMath: [["\\[", "\\]"]]
+    |  }
+    |});
+
+link(rel="stylesheet", href=config.root + "css/arknights.css")
+if theme.stylesheets && theme.stylesheets.length > 0
+  //- stylesheets list from _config.yml
+  each url in theme.stylesheets
+    link(rel='stylesheet', href=url)
+
+style
+  |@font-face {
+  |  font-family: BenderLight;
+  |  src: local('Bender'), url("#{config.root}font/BenderLight.ttf");
+  |}
+  |@font-face {
+  |  font-family: 'JetBrains Mono';
+  |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
+  |}
