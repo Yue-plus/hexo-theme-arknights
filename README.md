@@ -60,7 +60,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
       highlight:
         hljs: true
       ```
-- 复制 [hexo 分支的 `_config.arknights.yml`](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml) 到 Hexo 目录下，并重命名为 `_config.arknights.yml`。
+- **剪切** [`Hexo/themes/arknights/_config.yml`](https://github.com/Yue-plus/hexo-theme-arknights/blob/main/_config.yml) 到 Hexo 目录下，并重命名为 `_config.arknights.yml`。
   > 建议参考：
   > - [使用代替主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
   
@@ -112,12 +112,11 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 请参考 [Valine 快速开始](https://valine.js.org/quickstart.html) 修改 Hexo 目录下的 `_config.arknights.yml` 文件：
 
 ```yaml
-# Valine 无后端评论系统
 valine:
   enable: false
   app_id: # APP ID
   app_key: # APP KEY
-  server_url: # APP DOMAIN（LeanCloud 国际版需要）
+  server_url: # APP DOMAIN（LeanCloud 国际版）
 ```
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
@@ -133,14 +132,14 @@ valine:
 ```yaml
 gitalk:
   enable: false
-  client_id: # GitHub Application Client ID
-  client_secret: # GitHub Application Client Secret
-  repo: # GitHub repository
-  owner: # GitHub repository owner
-  admin: [] # GitHub repository owner and collaborators (Users who having write access to this repository)
-                # Example: [adminA,adminB]
-  id: # The unique id of the page
-      # Example: location.pathname
+  client_id: # GitHub 应用 Client ID
+  client_secret: # GitHub 应用 Client Secret
+  repo: # 用于存放评论数据的 GitHub 仓库
+  owner: # 该 GitHub 仓库所有者
+  admin: [] # 具有写该 GitHub 仓库权限的用户
+  # 例如: [adminA,adminB]
+  id: # (可选) 页面的唯一标识
+  # 例如: location.pathname
 ```
 
 ## 数学公式
@@ -245,7 +244,6 @@ hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： h
 几种公式显示方案各有优缺点：
 1. 动态渲染方案 LaTeX 语法不需要转义，能更好的支持从其他地方导出的 Markdown 文件。但因为需要在浏览器渲染，页面显示会略有延迟。
 2. 静态渲染方案将公式直接编译在静态文件里，显示性能更优，但语法需要转义。
-3. 使用 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) 兼顾显示性能与无需转义两者的特点，但需要在环境中另外安装 pandoc 转换器。
 
 ## 图表支持
 
@@ -286,6 +284,28 @@ hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： h
 
 > 如果习惯使用 `代码块` 也完全支持。
 
+## 字数/阅读时长统计
+
+依赖 [`hexo-wordcount`](https://github.com/willin/hexo-wordcount)：
+
+npm 用户：
+```shell script 
+cnpm install hexo-wordcount --save
+```
+
+yarn 用户：
+```shell script
+yarn add hexo-wordcount
+```
+
+之后修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件：
+
+```yaml
+post:
+  count: true # 是否显示字数统计
+  time: true # 是否显示阅读时长统计
+```
+
 ## 文档加密
 
 **注意： 前端加密并不可靠！**
@@ -293,13 +313,8 @@ hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： h
 **注意！** 此加密插件会加密摘要内容，所以使用此插件时不能在正文中隐藏摘要。在 `_config.arknights.yaml` 文件中：
 
 ```yaml
-# post 文章页面配置；true / false
 post:
-  date: true # 是否显示发布日期
-  updated: true # 是否显示修改日期
-  source: false # 是否显示源文件路径
-  excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）   《===== 不能为 false
-  reward: true # 文章末显示打赏二维码
+  excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
 ```
 
 可尝试使用 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件进行文档加密。
@@ -342,26 +357,12 @@ wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时
 ```
 
 ## 搜索
-安装 `hexo-generator-searchdb` 提供搜索支持：
 
-npm:
-```shell script 
-cnpm install hexo-generator-searchdb --save
-```
-
-yarn:
-```shell script
-yarn add hexo-generator-searchdb
-```
-
-在 `Hexo/_config.arknights.yml` 文件中添加：
+默认开启，若要关闭，在 `Hexo/_config.arknights.yml` 文件中：
 
 ```yaml
 search:
-  enable: true
-  preload: true # 非必要
-  path: search.json
-  format: striptags # 非必要，缩小文件用（该选项能极大缩小搜索数据文件大小，建议开启）
+  enable: false
 ```
 
 ## Front-matter
@@ -404,28 +405,6 @@ reward: true/false
 >
 > ——来自 [Hexo 官方文档](https://hexo.io/zh-cn/docs/setup#source)
 
-## 字数/阅读时长统计
-
-可以使用 [`hexo-wordcount`](https://github.com/willin/hexo-wordcount)：
-
-npm 用户：
-```shell script 
-cnpm install hexo-wordcount --save
-```
-
-yarn 用户：
-```shell script
-yarn add hexo-wordcount
-```
-
-之后修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件：
-
-```yaml
-post:
-  count: true # 是否显示字数统计
-  time: true # 是否显示阅读时长统计
-```
-
 ## 参与开发
 
 ### 开发人员
@@ -452,6 +431,7 @@ post:
 ### 开发中可能遇见的 BUG 及解决方法
 
 <!--
+
 #### 修改 `.pug` 模板文件无法自动刷新页面。
 解决方法：将 Hexo 目录下的
 `./node_modules/hexo-renderer-pug/lib/pug.js`
@@ -462,9 +442,9 @@ post:
 
 #### 修改 TS 文件不生效
 
-这是因为在拆分文件后 JavaScript 改为了手动编译，请全局安装 `typescript` 后在 `arknights\source\js` 目录下执行 `tsc` 以编译。
+这是因为在拆分文件后 TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\source\js` 目录下执行 `tsc` 以编译。
 
-#### 运行 ‘hexo serve --debug’ 时，长文章渲染不全
+#### 运行 `hexo serve --debug` 时，长文章渲染不全
 
 这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布
 解决方法：禁用该插件。（反正不影响发布，不管也行）
@@ -476,11 +456,11 @@ post:
 - [Pug 模板引擎中文文档](https://www.pugjs.cn/api/getting-started.html)
 
 - 另外引用几个大佬的blog
-  > - <https://easyhexo.com/>
+  > - [Easy Hexo](https://easyhexo.com/)
   > - [让 Hexo 搭建的博客支持 LaTeX](http://cps.ninja/2019/03/16/hexo-with-latex/)
   > - [Hexo主题开发 - ﹏猴子请来的救兵 - 博客园](https://www.cnblogs.com/yyhh/p/11058985.html)
-  > - 【墙】[Hexo主题开发经验杂谈 | MARKSZのBlog](https://molunerfinn.com/make-a-hexo-theme/)
-  > - 【墙】[Hexo 主题开发指南 | Peak Xin's Blog](https://xinyufeng.net/2019/04/15/hexo-theme-guide/)
+  > - [Hexo主题开发经验杂谈 | MARKSZのBlog](https://molunerfinn.com/make-a-hexo-theme/)
+  > - [Hexo 主题开发指南 | Peak Xin's Blog](https://xinyufeng.net/2019/04/15/hexo-theme-guide/)
 
 ## 支援主题开发
 
