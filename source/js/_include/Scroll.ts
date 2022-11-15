@@ -14,7 +14,6 @@ class Scroll {
   private intop: boolean = false
   private totop: HTMLElement
   private startTop: boolean = false
-  private dragBtn: boolean = false
 
   public scrolltop = () => {
     getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
@@ -63,7 +62,11 @@ class Scroll {
   }
 
   public slideUp = () => {
-    if (this.intop) {
+    if (this.intop || document.querySelector('.moving')) {
+      return
+    }
+    if (!document.querySelector('#search-header')) {
+      getElement('.navBtn').classList.remove('hide')
       return
     }
     const main = getElement('main').classList

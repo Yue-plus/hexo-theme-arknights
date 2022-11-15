@@ -6,7 +6,9 @@ header
   font-family BenderLight
   display inline
   position sticky
-  @media (max-width 1023px)
+
+@media (max-width 1023px)
+  :not(.up, .moving)>header
     clip-path polygon(0 0, 0 100%, 100% 100%, 100% 0)
 
 nav
@@ -162,7 +164,7 @@ extendList()
 
 @media ( max-width 1023px )
   header
-    width calc(100% - 200px)
+    width max(428px ,100% - 200px)
     max-width 100%
     position fixed
   nav

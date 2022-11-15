@@ -8,7 +8,6 @@
   .up,
   .up .search
     #search-header
-      right 200px
       width 200px
       animation get-in-right .6s
       transform translateX(100vw)
@@ -24,10 +23,8 @@
       background-color rgba(20,21,22,.95)
       &.open
         transform translateX(0)
-  .down.moving :not(.expanded) #search-header
+  .down.moving :not(.expanded)>nav>ol>#search-header
     animation get-out-up .6s -.05s
-  .down.moving .expanded #search-header
-    animation unset
   .search-popup
     left 0
     right 0
