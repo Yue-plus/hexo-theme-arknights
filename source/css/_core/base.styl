@@ -3,12 +3,11 @@
 
 cursor = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGBAMAAAAS4vJ7AAAAElBMVEX///////////////////////+65XQCAAAABXRSTlPUzXppDN7WmLAAAAAZSURBVAjXY3ASVGEwDQ1mYA0NAGEQGyQGAC9SA/00lbgwAAAAAElFTkSuQmCC"
 
-html, body
+html, body, a, button, input, textarea
   cursor url(cursor) 3 3, default
-  position static
 
-a, button
-  cursor url(cursor) 3 3, pointer
+html, body
+  position static
 
 #cursor-outer
   z-index 65536
@@ -86,7 +85,7 @@ h1, h2, h3, h4, h5, h6
     font-size 1em
 
 p
-  overflow-x auto
+  overflow visiable
 
 a
   text-decoration none
