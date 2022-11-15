@@ -11,8 +11,8 @@ block content
     const reward = theme.post.reward
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
-    const countWord = theme.post.word_count === true ? wordcount(page.content) : null
-    const countTime = theme.post.reading_time === true ? min2read(page.content) : null
+    const countWord = theme.post.word_count === true && wordcount !== undefined ? wordcount(page.content) : null
+    const countTime = theme.post.reading_time === true && min2read !== undefined ? min2read(page.content) : null
   #post-bg
     #post-title
       h1= page.title
