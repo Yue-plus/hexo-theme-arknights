@@ -6,25 +6,19 @@ block content
     const next = page.next
     const dateConf = theme.post.date
     const updatedConf = theme.post.updated
-    const sourceConf = theme.post.source
     const excerptConf = theme.post.excerpt
     const reward = theme.post.reward
     const encrypted = page.encrypt || page.password
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
-    const countWord = theme.post.word_count === true && wordcount !== undefined ? wordcount(page.content) : null
-    const countTime = theme.post.reading_time === true && min2read !== undefined ? min2read(page.content) : null
+    const countWord = theme.post.count === true && wordcount !== undefined ? wordcount(page.content) : null
+    const countTime = theme.post.time === true && min2read !== undefined ? min2read(page.content) : null
   #post-bg
     #post-title
       h1= page.title
       if (dateConf || updatedConf) && page.published
         #post-info
           - var first = true
-          if sourceConf
-            a(herf=page.source) View Source File
-            - first = false
           if dateConf
-            if !first
-              br
             span First Post: 
               div.control
                 time(datetime=page.date.toJSON())#date
@@ -58,14 +52,19 @@ block content
       #paginator!= paginator()
     #post-footer
       if prev || next
-        #pages
+        - let fix = ""
+        if prev === undefined
+          - fix="justify-content: flex-end"
+        if next === undefined
+          - fix="justify-content: flex-start"
+        #pages(style=fix)
           if prev !== undefined
-            #footer-link(style="right: calc(50% - 1px);order: 1;border-right: 1px solid #fe2;padding-left: unset;max-width: calc(50% - 4px);")
+            .footer-link(style="width: 50%;text-align:right;border-right:1px #fe2 solid")
               a(href=url_for(prev.path))
                 |← Next
                 =' ' + prev.title
           if next !== undefined
-            #footer-link(style="left: 50%;order: 0;border-left: 1px solid #fe2;padding-right: unset;max-width: calc(50% - 5px);")
+            .footer-link(style="width: 50%;right:1px;border-left:1px #fe2 solid")
               a(href=url_for(next.path))
                 =next.title + ' '
                 |Prev →
