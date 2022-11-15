@@ -58,9 +58,9 @@ class Header {
   }
 
   public open = (item: Element = this.header) => {
-    scrolls.slideDown()
     item.classList.add('expanded')
     item.classList.remove('closed')
+    scrolls.slideDown()
     if (item === this.header) {
       item.classList.add('moving')
       setTimeout(() => item.classList.remove('moving'), 300)
