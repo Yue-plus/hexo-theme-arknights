@@ -78,8 +78,21 @@
   width 32%
   padding 0 0 0 1px
   overflow-y auto
-#loading p
-  text-align center
+#loading
+  font-family 'JetBrains Mono'
+  padding-left calc(50% - 46px)
+  p
+    text-align center
+    animation 2s loading infinite steps(4,jump-none)
+    overflow-wrap normal
+    overflow hidden
+
+@keyframes loading
+  0%
+    width 68px
+  100%
+    width 92px
+
 #search-result
   width 100%
   .recent-post

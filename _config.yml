@@ -19,10 +19,9 @@ post:
   updated: true # 是否显示修改日期
   excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
   reward: false # 文章末显示打赏二维码
-
-  # 依赖 hexo-wordcount
-  count: false # 是否显示字数统计，请参阅 README 开启
-  time: false # 是否显示预计阅读时长，请参阅 README 开启
+  # 以下两项依赖 hexo-wordcount，请参阅 README 开启
+  count: false # 是否显示字数统计
+  time: false # 是否显示预计阅读时长
 
 # 文章内目录
 toc:
@@ -38,6 +37,16 @@ archives:
 # 搜索
 search:
   enable: true
+  content: true # 若为 false，仅可搜索标题及 metadata
+  preload: false # 自动加载搜索数据
+  # 设为 post 时，仅可搜索 post 页面
+  # 设为 page 时，仅可搜索非 post 页面
+  # 设为 all 时，可搜索全部页面
+  field: post
+  # 设为 html 时，依据 html 文件生成
+  # 设为 striptags 时，滤除 html tag
+  # 设为 raw 时，依据 markdown 源文件生成
+  format: striptags
 
 # Valine
 # 详见 https://valine.js.org
@@ -55,10 +64,8 @@ gitalk:
   client_secret: # GitHub 应用 Client Secret
   repo: # 用于存放评论数据的 GitHub 仓库
   owner: # 该 GitHub 仓库所有者
-  admin: [] # 具有写该 GitHub 仓库权限的用户
-  # 例如: [adminA,adminB]
-  id: # (可选) 页面的唯一标识
-  # 例如: location.pathname
+  admin: [] # 具有写该 GitHub 仓库权限的用户，例如: [adminA,adminB]
+  id: # (可选) 页面的唯一标识，例如: location.pathname
 
 # 图表支持
 mermaid:
