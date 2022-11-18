@@ -24,7 +24,7 @@ header.closed
         li.navItem#search-header
           span.navItemTitle
             input(autocomplete="off" autocorrect="off" autocapitalize="none"
-              placeholder="数据检索" spellcheck="false" maxlength="50"
+              placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
               type="text" id="search-input")
       each url, label in theme.menu
         - var match = null

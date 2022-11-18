@@ -80,18 +80,21 @@
   overflow-y auto
 #loading
   font-family 'JetBrains Mono'
-  padding-left calc(50% - 46px)
+  display flex
+  justify-content center
+  div
+    display inline-block
   p
-    text-align center
     animation 2s loading infinite steps(4,jump-none)
     overflow-wrap normal
     overflow hidden
+    display table-caption
 
 @keyframes loading
   0%
-    width 68px
+    width calc(100% - 1.5em)
   100%
-    width 92px
+    width 100%
 
 #search-result
   width 100%

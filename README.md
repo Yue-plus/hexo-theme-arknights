@@ -224,7 +224,7 @@ mathjax: true
    % 单行内联公式
    % 注意需要两边带上 "`" ，且 "`" 与 "$" 之间不能有空格
    `$\sigma$`
-
+   
    % 多行公式
    $$
    \begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
@@ -442,11 +442,12 @@ reward: true/false
 
 #### 修改 TS 文件不生效
 
-这是因为在拆分文件后 TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\source\js` 目录下执行 `tsc` 以编译。
+这是因为在拆分文件后 TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\source\js\_src` 目录下执行 `tsc` 以编译。
 
 #### 运行 `hexo serve --debug` 时，长文章渲染不全
 
-这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布
+这是由热重载插件 `hexo-browsersync` 导致的，不会影响发布。
+
 解决方法：禁用该插件。（反正不影响发布，不管也行）
 
 #### 参与开发可能需要的文档

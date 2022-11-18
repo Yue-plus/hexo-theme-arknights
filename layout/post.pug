@@ -19,7 +19,7 @@ block content
         #post-info
           - var first = true
           if dateConf
-            span First Post: 
+            span #{__('post.posted')}
               div.control
                 time(datetime=page.date.toJSON())#date
                   = ' ' + date(page.date, date_format)
@@ -27,7 +27,7 @@ block content
           if updatedConf
             if !first
               br
-            span Last Update: 
+            span #{__('post.edited')}
               div.control
                 time(datetime=page.updated.toJSON())#updated
                   = ' ' + date(page.updated, date_format)
@@ -35,17 +35,17 @@ block content
           if countWord
             if !first
               br
-            span Word Count: 
+            span #{__('post.countTotal')}
               div.control #{countWord}
             - first = false
           if countTime
             if !first
               br
-            span Read Time: 
-              div.control #{countTime} min
+            span #{__('post.timeTotal')}
+              div.control #{countTime} #{__('post.timeUnit')}
     hr
     #post-content
-      if excerptConf
+      if excerptConf || encrypted
         != page.content
       else
         != page.more
@@ -54,31 +54,28 @@ block content
       if prev || next
         - let fix = ""
         if prev === undefined
-          - fix="justify-content: flex-end"
+          - fix = "justify-content: flex-end"
         if next === undefined
-          - fix="justify-content: flex-start"
+          - fix = "justify-content: flex-start"
         #pages(style=fix)
           if prev !== undefined
             .footer-link(style="width: 50%;text-align:right;border-right:1px #fe2 solid")
               a(href=url_for(prev.path))
                 |← Next
-                =' ' + prev.title
+                = ' ' + prev.title
           if next !== undefined
             .footer-link(style="width: 50%;right:1px;border-left:1px #fe2 solid")
               a(href=url_for(next.path))
-                =next.title + ' '
+                = next.title + ' '
                 |Prev →
-    if reward === true
+    if reward !== false
       details#reward
-        summary 打赏
-        #alipay
-          span 支付宝 | Alipay
-          br
-          img(src= config.root + 'img/Alipay.png')
-        #wechat
-          span 微信 | WeChat
-          br
-          img(src= config.root + 'img/WeChat.png')
+        summary #{__('post.reward')}
+        each imgSrc, pay in reward
+          div
+            span #{pay}
+            br
+            img(src=config.root + imgSrc)
     if page.comments
       if theme.valine.enable === true
         #Valine
@@ -91,5 +88,5 @@ block aside-block
     const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
   if (tocContent.length > 0)
     #toc-div(style=encrypted !== undefined?"display:none":"")
-      h1 INDEX
+      h1 #{__('post.index')}
       |!{tocContent}

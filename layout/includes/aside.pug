@@ -2,7 +2,7 @@ aside
   #aside-top
     #about
       a(href=config.root)#logo
-        img(src=asideLogo, alt="Logo")
+        img(src= asideLogo, alt= "Logo")
       h1#Dr
         a(href= theme.aside.dr)= config.author
       #description
@@ -13,15 +13,15 @@ aside
       if page.published === undefined
         section#total
            a#total-archives(href= config.root + "archives")
-             span.total-title Archives Total:
+             span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
              span.total-number= site.posts.length
            #total-tags
-             span.total-title Tags:
+             span.total-title #{__('menu.tag.plural')}:
              span.total-number= site.tags.length
            #total-categories
-             span.total-title Categories:
+             span.total-title #{__('menu.category.plural')}:
              span.total-number= site.categories.length
-  footer(style=footerStyle)
+  footer(style= footerStyle)
     if theme.aside.icp !== null
       nobr
         span.text-title ICP
@@ -32,11 +32,11 @@ aside
           span.text-title= title
           span.text-content= content
         br
-    nobr="published with "
-      a(href='http://hexo.io') Hexo
+    nobr #{__('footer.publish')} 
+      a(href= 'http://hexo.io') Hexo
     wbr
-    nobr=" Theme "
-      a(href='https://github.com/Yue-plus/hexo-theme-arknights') Arknight
+    nobr  #{__('footer.theme')} 
+      a(href= 'https://github.com/Yue-plus/hexo-theme-arknights') Arknight
     wbr
-    nobr="by "
-      a(href='https://github.com/Yue-plus') Yue_plus
+    nobr #{__('footer.by')} 
+      a(href= 'https://github.com/Yue-plus') Yue_plus

@@ -4,6 +4,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const path = config.root + 'search.json'
   const input = document.querySelector('#search-input')
   const navContent = document.querySelector('.navContent')
+  const activeHolder = config.search.activeHolder
+  const blurHolder = config.search.blurHolder
+  const noResult = config.search.noResult
   function fetechData() {
     fetching = true
     fetch(path)
@@ -85,7 +88,7 @@ window.addEventListener('DOMContentLoaded', () => {
     return result
   }
   function inLoading() {
-    document.querySelector('.search-popup').innerHTML = '<div id="loading"><p>Loading...</p></div>'
+    document.querySelector('.search-popup').innerHTML = '<div id="loading"><div><p>Loading...</p></div></div>'
   }
   function onPopupClose() {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
@@ -114,11 +117,14 @@ window.addEventListener('DOMContentLoaded', () => {
   function inputEventFunction() {
     let searchText = input.value.trim().toLowerCase()
     if (!searchText.length) {
-      input.placeholder = '键入以进行'
+      input.placeholder = activeHolder
       onPopupClose()
       return
     }
     proceedSearch()
+    if (fetched === false) {
+      return
+    }
     let keywords = searchText.split(/[-\s]+/)
     if (keywords.length > 1) {
       keywords.push(searchText)
@@ -210,7 +216,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     var resultContent = document.getElementById('search-result')
     if (resultItems.length === 0) {
-      resultContent.innerHTML = `<div id="no-result"><p>无“<b>${input.value}</b>”相关数据</p></div>`
+      resultContent.innerHTML =
+        `<div id="no-result"><p>${format(noResult, `<b>${input.value}</b>`)}</p></div>`
     } else {
       resultItems.sort((Left, Right) => {
         if (Left.TextCount !== Right.TextCount) {
@@ -240,14 +247,12 @@ window.addEventListener('DOMContentLoaded', () => {
   function StartSearch() {
     navContent.classList.add('search')
     header.closeAll()
-    input.placeholder = '键入以进行'
-    if (fetched === false) {
-      inLoading()
+    input.placeholder = activeHolder
+    if (!fetched) {
       if (!fetching) {
         fetechData()
       }
       waiting = true
-      return
     }
   }
   function EscapeSearch() {
@@ -269,7 +274,7 @@ window.addEventListener('DOMContentLoaded', () => {
     StartSearch()
   })
   input.addEventListener('blur', () => {
-    input.placeholder = '数据检索'
+    input.placeholder = blurHolder
     navContent.classList.remove('search')
     navContent.classList.add('moved')
     document.addEventListener('mouseup', EscapeSearch)

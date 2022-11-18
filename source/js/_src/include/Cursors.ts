@@ -92,7 +92,7 @@ class Cursor {
   }
 
   constructor() {
-    let node: HTMLElement = document.createElement('div');
+    let node: HTMLElement = document.createElement('div')
     node.id = 'cursor-container'
     node.innerHTML = `<div id="cursor-outer"></div><div id="cursor-effect"></div>`
     document.body.appendChild(node)

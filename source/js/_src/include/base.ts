@@ -1,3 +1,5 @@
+/// <reference path="enviroment.d.ts" />
+
 'use strict'
 
 function getElement(string: string, item: Element = document.documentElement): HTMLElement {
@@ -9,12 +11,25 @@ function getElement(string: string, item: Element = document.documentElement): H
 }
 
 function getParent(item: Element, level: number = 1): HTMLElement {
-  for (; level--;) {
+  while (level--) {
     let tmp: HTMLElement | null = item.parentElement
     if (tmp === null) {
       throw new Error("Unknown HTML")
     }
-    item = tmp;
+    item = tmp
   }
   return item as HTMLElement
+}
+
+function format(format: string, ...args: any[]): string {
+  return format.replaceAll(/\$\*?[0-9]*/g, (match) => {
+    if (match === '$*') {
+      return ''
+    }
+    let Index = match.slice(1) as unknown as number;
+    if (Index >= args.length) {
+      return ''
+    }
+    return args[Index]
+  })
 }

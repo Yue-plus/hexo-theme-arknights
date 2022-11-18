@@ -8,7 +8,7 @@ script.pjax-js reset=_=>{
     |  , appKey: '#{theme.valine.app_key}'
     if theme.valine.server_url
       | , serverURLs: '#{theme.valine.server_url}'
-    |  , placeholder: '此条评论委托企鹅物流发送'
+    |  , placeholder: #{__('Valine.placeHolder')}
     |});
   if theme.gitalk !== undefined && theme.gitalk.enable === true
     - let config = theme.gitalk, gitAdmin = ''

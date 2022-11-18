@@ -1,1 +1,703 @@
-"use strict";function getElement(t,e=document.documentElement){let s=e.querySelector(t);if(null===s)throw new Error("Unknown HTML");return s}function getParent(t,e=1){for(;e--;){let e=t.parentElement;if(null===e)throw new Error("Unknown HTML");t=e}return t}class dust{constructor(){this.x=50,this.y=50,this.vx=2*Math.random()+2,this.vy=2*Math.random(),this.color="#fff",this.shadowBlur=3*Math.random(),this.shadowX=2*Math.random()-1,this.shadowY=2*Math.random()-1,this.radiusX=3*Math.random(),this.radiusY=3*Math.random(),this.rotation=Math.PI*Math.floor(2*Math.random())}}class canvasDust{constructor(t){this.width=300,this.height=300,this.dustQuantity=50,this.dustArr=[],this.build=()=>{if(this.resize(),this.ctx){const t=canvasDust.getPoint(this.dustQuantity);for(let e of t){const t=new dust;this.buildDust(e[0],e[1],t),this.dustArr.push(t)}setInterval(this.play,40)}},this.play=()=>{var t;const e=this.dustArr;null===(t=this.ctx)||void 0===t||t.clearRect(0,0,this.width,this.height);for(let t of e)if(t.x<0||t.y<0){const e=this.width,s=Math.floor(Math.random()*window.innerHeight);t.x=e,t.y=s,this.buildDust(e,s,t)}else{const e=t.x-t.vx,s=t.y-t.vy;this.buildDust(e,s,t)}},this.buildDust=(t,e,s)=>{const i=this.ctx;t&&(s.x=t),e&&(s.y=e),i&&(i.beginPath(),i.shadowBlur=s.shadowBlur,i.shadowColor=s.color,i.shadowOffsetX=s.shadowX,i.shadowOffsetY=s.shadowY,i.ellipse(s.x,s.y,s.radiusX,s.radiusY,s.rotation,0,2*Math.PI),i.closePath(),i.fillStyle=s.color,i.fill())},this.resize=()=>{const t=this.canvas,e=window.innerWidth,s=window.innerHeight;this.width=e,this.height=s,this.dustQuantity=Math.floor((e+s)/38),void 0!==t&&(t.width=e,t.height=s)};const e=getElement(t);if(!e)throw new Error("canvasID 无效");this.canvas=e,this.ctx=e.getContext("2d"),this.build(),window.addEventListener("resize",()=>this.resize())}}canvasDust.getPoint=(t=1)=>{let e=[];for(let s=0;s<t;s++){const t=Math.floor(Math.random()*window.innerWidth),s=Math.floor(Math.random()*window.innerHeight);e.push([t,s])}return e};try{new canvasDust("#canvas-dust")}catch(t){}class Code{constructor(){this.reverse=(t,e,s)=>{const i=getParent(t);i.classList.contains(e)?(i.classList.remove(e),i.classList.add(s)):(i.classList.remove(s),i.classList.add(e))},this.doAsCode=t=>{const e=this.resetName(t.classList[1]),s=getElement(".gutter",t).children[0].childElementCount>>1;t.classList.add(s<16?"open":"fold"),t.innerHTML=`<span class="code-header">        <span class="code-title">          <div class="code-icon"></div>${this.resetName(e)} 共 ${s} 行</span>          <span class="code-header-tail">            <button class="code-copy"></button>            <span class="code-space">展开</span></span></span></span>      <div class="code-box">${t.innerHTML}</div>`,getElement(".code-copy",t).addEventListener("click",e=>{const s=e.target;navigator.clipboard.writeText(getElement("code",t).innerText),s.classList.add("copied"),setTimeout(()=>s.classList.remove("copied"),1200)}),getElement(".code-header",t).addEventListener("click",t=>{t.target.classList.contains("code-copy")||this.reverse(t.currentTarget,"open","fold")})},this.findCode=()=>{let t=document.querySelectorAll(".highlight");null!==t&&t.forEach(t=>{if(null===t.getAttribute("code-find")){try{t.classList.contains("mermaid")||null!==t.querySelector(".code-header")||(null!==t.querySelector(".mermaid")?this.doAsMermaid(t):this.doAsCode(t))}catch(t){return}t.setAttribute("code-find","")}})},this.findCode()}doAsMermaid(t){let e=t.querySelector(".mermaid");t.outerHTML='<div class="highlight mermaid">'+e.innerText+"</div>"}resetName(t){return"plaintext"==t?"TEXT":"cs"==t?"C#":"cpp"==t?"C++":t.toUpperCase()}}let code=new Code;class Cursor{constructor(){this.now=new MouseEvent(""),this.first=!0,this.last=0,this.moveIng=!1,this.fadeIng=!1,this.attention="a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon",this.move=t=>{if(void 0!==this.now){let e=this.outer.left,s=this.outer.top,i=Number(e.substring(0,e.length-2)),o=Number(s.substring(0,s.length-2)),n=.3*(this.now.x-i),a=.3*(this.now.y-o);t-this.last>15&&(i+=n,o+=a,this.outer.left=i.toFixed(2)+"px",this.outer.top=o.toFixed(2)+"px",this.last=t),Math.abs(n)>.2||Math.abs(a)>.2?window.requestAnimationFrame(this.move):this.moveIng=!1}},this.reset=t=>{this.moveIng||(this.moveIng=!0,window.requestAnimationFrame(this.move)),this.now=t,this.first&&(this.first=!1,this.outer.left=String(this.now.x)+"px",this.outer.top=String(this.now.y)+"px")},this.Aeffect=t=>{0==this.fadeIng&&(this.fadeIng=!0,this.effecter.left=String(t.x)+"px",this.effecter.top=String(t.y)+"px",this.effecter.transition="transform .5s cubic-bezier(0.22, 0.61, 0.21, 1)        ,opacity .5s cubic-bezier(0.22, 0.61, 0.21, 1)",this.effecter.transform="translate(-50%, -50%) scale(1)",this.effecter.opacity="0",setTimeout(()=>{this.fadeIng=!1,this.effecter.transition="",this.effecter.transform="translate(-50%, -50%) scale(0)",this.effecter.opacity="1"},500))},this.hold=()=>{this.outer.height="24px",this.outer.width="24px",this.outer.background="rgba(255, 255, 255, 0.5)"},this.relax=()=>{this.outer.height="36px",this.outer.width="36px",this.outer.background="unset"},this.pushHolder=t=>{t.forEach(t=>{t.classList.contains("is--active")||(t.addEventListener("mouseover",this.hold,{passive:!0}),t.addEventListener("mouseout",this.relax,{passive:!0}))})},this.pushHolders=()=>{this.pushHolder(document.querySelectorAll(this.attention))};let t=document.createElement("div");t.id="cursor-container",t.innerHTML='<div id="cursor-outer"></div><div id="cursor-effect"></div>',document.body.appendChild(t),this.outer=getElement("#cursor-outer",t).style,this.outer.top="-100%",this.effecter=getElement("#cursor-effect",t).style,this.effecter.transform="translate(-50%, -50%) scale(0)",this.effecter.opacity="1",window.addEventListener("mousemove",this.reset,{passive:!0}),window.addEventListener("click",this.Aeffect,{passive:!0}),this.pushHolders();new MutationObserver(this.pushHolders).observe(document,{childList:!0,subtree:!0})}}window.onload=()=>new Cursor;class Index{constructor(){this.setItem=t=>{t.classList.add("active");let e=getParent(t),s=e.children;for(let t=0;t<s.length;t++){const e=s.item(t);if(e.classList.contains("toc-child")){e.classList.add("has-active");break}}for(;"toc"!=e.classList[0];e=getParent(e))"toc-child"==e.classList[0]&&e.classList.add("has-active")},this.reset=()=>{let t=document.querySelectorAll("#toc-div .active"),e=document.querySelectorAll("#toc-div .has-active");t.forEach(t=>{t.classList.remove("active")}),e.forEach(t=>{t.classList.remove("has-active")})},this.modifyIndex=(t,e)=>{let s=[];t.forEach(t=>{s.push(t.getBoundingClientRect().top)}),this.reset();for(let t=0;t<e.length;++t){const i=e.item(t);if(t+1==s.length||s[t+1]>150&&(s[t]<=150||0==t)){this.setItem(i);break}}},this.setHtml=()=>{let t=document.querySelectorAll("h2,h3,h4,h5,h6"),e=document.querySelectorAll(".toc-link");0!==e.length&&this.setItem(e.item(0)),getElement("main").addEventListener("scroll",()=>{0!==e.length&&this.modifyIndex(t,e)},{passive:!0})},document.addEventListener("pjax:success",this.setHtml),this.setHtml()}}new Index;class Header{constructor(){this.header=getElement("header"),this.button=getElement(".navBtnIcon"),this.closeSearch=!1,this.relabel=()=>{let t=this.header.querySelectorAll(".navItem"),e=0,s=t.item(0);if(getElement(".navBtn").classList.add("hide"),t.forEach(t=>{if("search-header"===t.id)return;let i=t,o=getElement("a",i);if(null!==o){let t=o.href,n=i.getAttribute("matchdata");if(i.classList.remove("active"),getParent(o)!=i)return;if(t.length>e&&null!==document.URL.match(t)&&(e=t.length,s=i),n){n.split(",").forEach(t=>{null!==document.URL.match(t)&&(s=i,e=1/0)})}}}),null!==s)do{s.classList.contains("navItem")&&s.classList.add("active")}while(!(s=getParent(s)).classList.contains("navContent"))},this.inHeader=t=>{let e=t.target;for(;e!==this.header&&e!==document.body;)e=getParent(e);e!==this.header&&this.close()},this.open=(t=this.header)=>{t.classList.add("expanded"),t.classList.remove("closed"),scrolls.slideDown(),t===this.header&&(t.classList.add("moving"),setTimeout(()=>t.classList.remove("moving"),300)),document.addEventListener("click",this.inHeader)},this.close=(t=this.header)=>{document.removeEventListener("click",this.inHeader),t.classList.add("closed"),t.classList.remove("expanded"),t===this.header&&(t.classList.add("moving"),setTimeout(()=>t.classList.remove("moving"),300),this.closeAll())},this.reverse=(t=this.header)=>{this.closeSearch?this.closeSearch=!1:t.classList.contains("expanded")?this.close(t):this.open(t)},this.closeAll=()=>{this.header.querySelectorAll(".expanded").forEach(t=>t.classList.remove("expanded"))},this.relabel(),document.addEventListener("pjax:success",this.relabel),document.addEventListener("pjax:send",()=>this.close()),this.button.addEventListener("mousedown",()=>{document.querySelector(".search")&&(this.closeSearch=!0)}),this.button.onclick=()=>this.reverse(this.header),document.querySelectorAll(".navItemList").forEach(t=>{(t=getParent(t)).classList.contains("navBlock")&&(t=getParent(t)),t.addEventListener("click",e=>{getParent(e.target)!==t&&getParent(e.target,2)!==t||this.reverse(t)})})}}var header=new Header;class Scroll{constructor(){this.scrolling=0,this.getingtop=!1,this.height=0,this.visible=!1,this.touchX=0,this.touchY=2147483647,this.mayNotUp=!1,this.reallyUp=!1,this.intop=!1,this.startTop=!1,this.scrolltop=()=>{getElement("main").scroll({top:0,left:0,behavior:"smooth"}),this.totop.style.opacity="0",this.getingtop=!0,setTimeout(()=>this.totop.style.display="none",300)},this.totopChange=t=>{t.getBoundingClientRect().top<-200?(this.totop.style.display="",this.visible=!0,setTimeout(()=>{this.visible&&(this.totop.style.opacity="1")},300)):(this.totop.style.opacity="0",this.visible=!1,setTimeout(()=>{this.visible||(this.totop.style.display="none")},300))},this.slideDown=()=>{if(!this.intop)return;const t=getElement("main").classList;document.querySelector(".expanded")||getElement(".navBtn").classList.add("hide"),t.remove("up"),t.add("down"),t.add("down"),t.add("moving"),setTimeout(()=>{t.remove("down"),t.remove("moving")},300),this.intop=!1},this.slideUp=()=>{if(this.intop||document.querySelector(".moving"))return;if(!document.querySelector("#search-header"))return void getElement(".navBtn").classList.remove("hide");const t=getElement("main").classList;getElement(".navBtn").classList.remove("hide"),t.remove("down"),t.add("up"),t.add("moving"),this.intop=!0,setTimeout(()=>getElement("main").classList.remove("moving"),300)},this.setHtml=()=>{try{let t=getElement(".navBtn"),e=()=>{try{let e=getElement("article").getBoundingClientRect().top;if(e>0)return;document.querySelector(".expanded")||(this.height-e>100?(t.classList.add("hide"),this.height=e):e>this.height&&(e-this.height>20&&t.classList.remove("hide"),this.height=e)),++this.scrolling,setTimeout(()=>{--this.scrolling||(this.getingtop=!1)},100),this.getingtop||this.totopChange(getElement("#post-title"))}catch(t){}};getElement("main").addEventListener("scroll",e),this.height=0,this.visible=!1,this.totop=getElement("#to-top")}catch(t){}},this.checkTouchMove=t=>{Math.abs(t.changedTouches[0].clientX-this.touchX)>50&&!this.reallyUp&&(this.mayNotUp=!0),document.querySelector(".expanded")||window.innerWidth>1024||this.mayNotUp||t.changedTouches[0].clientY==this.touchY||(this.startTop||getElement("article").getBoundingClientRect().top>=0)&&(this.reallyUp=!0,t.changedTouches[0].clientY>this.touchY?this.slideUp():this.slideDown(),this.touchY=t.changedTouches[0].clientY)},this.startTouch=t=>{this.touchX=t.changedTouches[0].clientX,this.touchY=t.changedTouches[0].clientY,this.mayNotUp=!1,this.startTop=getElement("article").getBoundingClientRect().top>=0},document.addEventListener("pjax:success",this.setHtml),document.addEventListener("touchstart",this.startTouch),document.addEventListener("touchmove",this.checkTouchMove),document.addEventListener("wheel",t=>{document.querySelector(".expanded")||window.innerWidth>1024||getElement("article").getBoundingClientRect().top>=0&&(t.deltaY<0?this.slideUp():this.slideDown())}),this.setHtml(),this.totop=document.querySelector("#to-top")}}var scrolls=new Scroll;class pjaxSupport{constructor(){this.loading=getElement(".loading"),this.left=getElement(".loadingBar.left"),this.right=getElement(".loadingBar.right"),this.timestamp=0,this.start=t=>{this.left.style.width=t+"%",this.right.style.width=t+"%",++this.timestamp},this.loaded=()=>{++this.timestamp,"1"===this.loading.style.opacity&&(getElement("main").scrollTop=0,"50%"!==this.left.style.width&&(this.start(50),setTimeout(t=>{this.timestamp==t&&(this.loading.style.opacity="0")},600,this.timestamp)))},document.addEventListener("pjax:send",()=>{getElement("main").classList.contains("up")&&scrolls.slideDown(),this.loading.classList.add("reset"),this.start(0),setTimeout(t=>{this.timestamp==t&&(this.loading.style.opacity="1",this.loading.classList.remove("reset"),this.start(15),setTimeout(t=>{this.timestamp==t&&this.start(30)},800,this.timestamp))},10,this.timestamp)}),document.addEventListener("pjax:start",this.loaded),document.addEventListener("pjax:complete",this.loaded)}}try{new pjaxSupport}catch(t){}
+/// <reference path="enviroment.d.ts" />
+'use strict';
+function getElement(string, item = document.documentElement) {
+    let tmp = item.querySelector(string);
+    if (tmp === null) {
+        throw new Error("Unknown HTML");
+    }
+    return tmp;
+}
+function getParent(item, level = 1) {
+    while (level--) {
+        let tmp = item.parentElement;
+        if (tmp === null) {
+            throw new Error("Unknown HTML");
+        }
+        item = tmp;
+    }
+    return item;
+}
+function format(format, ...args) {
+    return format.replaceAll(/\$\*?[0-9]*/g, (match) => {
+        if (match === '$*') {
+            return '';
+        }
+        let Index = match.slice(1);
+        if (Index >= args.length) {
+            return '';
+        }
+        return args[Index];
+    });
+}
+class dust {
+    constructor() {
+        this.x = 50;
+        this.y = 50;
+        this.vx = Math.random() * 2 + 2;
+        this.vy = Math.random() * 2;
+        this.color = '#fff';
+        this.shadowBlur = Math.random() * 3;
+        this.shadowX = (Math.random() * 2) - 1;
+        this.shadowY = (Math.random() * 2) - 1;
+        this.radiusX = Math.random() * 3;
+        this.radiusY = Math.random() * 3;
+        this.rotation = Math.PI * Math.floor(Math.random() * 2);
+    }
+}
+class canvasDust {
+    constructor(canvasID) {
+        this.width = 300;
+        this.height = 300;
+        this.dustQuantity = 50;
+        this.dustArr = [];
+        this.build = () => {
+            this.resize();
+            if (this.ctx) {
+                const point = canvasDust.getPoint(this.dustQuantity);
+                for (let i of point) {
+                    const dustObj = new dust();
+                    this.buildDust(i[0], i[1], dustObj);
+                    this.dustArr.push(dustObj);
+                }
+                setInterval(this.play, 40);
+            }
+        };
+        this.play = () => {
+            const dustArr = this.dustArr;
+            this.ctx?.clearRect(0, 0, this.width, this.height);
+            for (let i of dustArr) {
+                if (i.x < 0 || i.y < 0) {
+                    const x = this.width;
+                    const y = Math.floor(Math.random() * window.innerHeight);
+                    i.x = x;
+                    i.y = y;
+                    this.buildDust(x, y, i);
+                }
+                else {
+                    const x = i.x - i.vx;
+                    const y = i.y - i.vy;
+                    this.buildDust(x, y, i);
+                }
+            }
+        };
+        this.buildDust = (x, y, dust) => {
+            const ctx = this.ctx;
+            if (x)
+                dust.x = x;
+            if (y)
+                dust.y = y;
+            if (ctx) {
+                ctx.beginPath();
+                ctx.shadowBlur = dust.shadowBlur;
+                ctx.shadowColor = dust.color;
+                ctx.shadowOffsetX = dust.shadowX;
+                ctx.shadowOffsetY = dust.shadowY;
+                ctx.ellipse(dust.x, dust.y, dust.radiusX, dust.radiusY, dust.rotation, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fillStyle = dust.color;
+                ctx.fill();
+            }
+        };
+        this.resize = () => {
+            const canvas = this.canvas;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            this.width = width;
+            this.height = height;
+            this.dustQuantity = Math.floor((width + height) / 38);
+            if (canvas !== undefined) {
+                canvas.width = width;
+                canvas.height = height;
+            }
+        };
+        const canvas = getElement(canvasID);
+        if (canvas) {
+            this.canvas = canvas;
+            this.ctx = canvas.getContext('2d');
+            this.build();
+            window.addEventListener('resize', () => this.resize());
+        }
+        else {
+            throw new Error('canvasID 无效');
+        }
+    }
+}
+canvasDust.getPoint = (number = 1) => {
+    let point = [];
+    for (let i = 0; i < number; ++i) {
+        const x = Math.floor(Math.random() * window.innerWidth);
+        const y = Math.floor(Math.random() * window.innerHeight);
+        point.push([x, y]);
+    }
+    return point;
+};
+try {
+    new canvasDust('#canvas-dust');
+}
+catch (e) { }
+class Code {
+    constructor() {
+        this.reverse = (item, s0, s1) => {
+            const block = getParent(item);
+            if (block.classList.contains(s0)) {
+                block.classList.remove(s0);
+                block.classList.add(s1);
+            }
+            else {
+                block.classList.remove(s1);
+                block.classList.add(s0);
+            }
+        };
+        this.doAsCode = (item) => {
+            const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
+            item.classList.add(lineCount < 16 ? 'open' : 'fold');
+            item.innerHTML =
+                `<span class="code-header">\
+        <span class="code-title">\
+          <div class="code-icon"></div>
+          ${format(config.code.codeInfo, codeType, lineCount)}
+        </span>\
+        <span class="code-header-tail">\
+          <button class="code-copy">${config.code.copy}</button>\
+          <span class="code-space">${config.code.expand}</span>\
+        </span>\
+      </span>\
+      <div class="code-box">${item.innerHTML}</div>`;
+            getElement('.code-copy', item).addEventListener('click', (click) => {
+                const button = click.target;
+                navigator.clipboard.writeText(getElement('code', item).innerText);
+                button.classList.add('copied');
+                button.innerText = config.code.copyFinish;
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerText = config.code.copy;
+                }, 1200);
+            });
+            getElement('.code-header', item).addEventListener('click', (click) => {
+                if (!click.target.classList.contains('code-copy')) {
+                    this.reverse(click.currentTarget, 'open', 'fold');
+                }
+            });
+        };
+        this.findCode = () => {
+            let codeBlocks = document.querySelectorAll('.highlight');
+            if (codeBlocks !== null) {
+                codeBlocks.forEach(item => {
+                    if (item.getAttribute('code-find') === null) {
+                        try {
+                            if (!item.classList.contains('mermaid') && item.querySelector('.code-header') === null) {
+                                if (item.querySelector('.mermaid') !== null) {
+                                    this.doAsMermaid(item);
+                                }
+                                else {
+                                    this.doAsCode(item);
+                                }
+                            }
+                        }
+                        catch (e) {
+                            return;
+                        }
+                        item.setAttribute('code-find', '');
+                    }
+                });
+            }
+        };
+        this.findCode();
+    }
+    doAsMermaid(item) {
+        let Amermaid = item.querySelector('.mermaid');
+        item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
+    }
+    resetName(str) {
+        if (str == 'plaintext') {
+            return 'TEXT';
+        }
+        if (str == 'cs') {
+            return 'C#';
+        }
+        if (str == 'cpp') {
+            return 'C++';
+        }
+        return str.toUpperCase();
+    }
+}
+let code = new Code();
+class Cursor {
+    constructor() {
+        this.now = new MouseEvent('');
+        this.first = true;
+        this.last = 0;
+        this.moveIng = false;
+        this.fadeIng = false;
+        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon";
+        this.move = (timestamp) => {
+            if (this.now !== undefined) {
+                let SX = this.outer.left, SY = this.outer.top, preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2)), delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3;
+                if (timestamp - this.last > 15) {
+                    preX += delX;
+                    preY += delY;
+                    this.outer.left = preX.toFixed(2) + 'px';
+                    this.outer.top = preY.toFixed(2) + 'px';
+                    this.last = timestamp;
+                }
+                if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
+                    window.requestAnimationFrame(this.move);
+                }
+                else {
+                    this.moveIng = false;
+                }
+            }
+        };
+        this.reset = (mouse) => {
+            if (!this.moveIng) {
+                this.moveIng = true;
+                window.requestAnimationFrame(this.move);
+            }
+            this.now = mouse;
+            if (this.first) {
+                this.first = false;
+                this.outer.left = String(this.now.x) + 'px';
+                this.outer.top = String(this.now.y) + 'px';
+            }
+        };
+        this.Aeffect = (mouse) => {
+            if (this.fadeIng == false) {
+                this.fadeIng = true;
+                this.effecter.left = String(mouse.x) + 'px';
+                this.effecter.top = String(mouse.y) + 'px';
+                this.effecter.transition =
+                    'transform .5s cubic-bezier(0.22, 0.61, 0.21, 1)\
+        ,opacity .5s cubic-bezier(0.22, 0.61, 0.21, 1)';
+                this.effecter.transform = 'translate(-50%, -50%) scale(1)';
+                this.effecter.opacity = '0';
+                setTimeout(() => {
+                    this.fadeIng = false;
+                    this.effecter.transition = '';
+                    this.effecter.transform = 'translate(-50%, -50%) scale(0)';
+                    this.effecter.opacity = '1';
+                }, 500);
+            }
+        };
+        this.hold = () => {
+            this.outer.height = '24px';
+            this.outer.width = '24px';
+            this.outer.background = "rgba(255, 255, 255, 0.5)";
+        };
+        this.relax = () => {
+            this.outer.height = '36px';
+            this.outer.width = '36px';
+            this.outer.background = "unset";
+        };
+        this.pushHolder = (items) => {
+            items.forEach(item => {
+                if (!item.classList.contains('is--active')) {
+                    item.addEventListener('mouseover', this.hold, { passive: true });
+                    item.addEventListener('mouseout', this.relax, { passive: true });
+                }
+            });
+        };
+        this.pushHolders = () => {
+            this.pushHolder(document.querySelectorAll(this.attention));
+        };
+        let node = document.createElement('div');
+        node.id = 'cursor-container';
+        node.innerHTML = `<div id="cursor-outer"></div><div id="cursor-effect"></div>`;
+        document.body.appendChild(node);
+        this.outer = getElement('#cursor-outer', node).style;
+        this.outer.top = '-100%';
+        this.effecter = getElement('#cursor-effect', node).style;
+        this.effecter.transform = 'translate(-50%, -50%) scale(0)';
+        this.effecter.opacity = '1';
+        window.addEventListener('mousemove', this.reset, { passive: true });
+        window.addEventListener('click', this.Aeffect, { passive: true });
+        this.pushHolders();
+        const observer = new MutationObserver(this.pushHolders);
+        observer.observe(document, { childList: true, subtree: true });
+    }
+}
+window.onload = () => new Cursor();
+class Index {
+    constructor() {
+        this.setItem = (item) => {
+            item.classList.add('active');
+            let parent = getParent(item), brother = parent.children;
+            for (let i = 0; i < brother.length; ++i) {
+                const item = brother.item(i);
+                if (item.classList.contains('toc-child')) {
+                    item.classList.add('has-active');
+                    break;
+                }
+            }
+            for (; parent.classList[0] != 'toc'; parent = getParent(parent)) {
+                if (parent.classList[0] == 'toc-child') {
+                    parent.classList.add('has-active');
+                }
+            }
+        };
+        this.reset = () => {
+            let tocs = document.querySelectorAll('#toc-div .active');
+            let tocTree = document.querySelectorAll('#toc-div .has-active');
+            tocs.forEach(item => {
+                item.classList.remove('active');
+            });
+            tocTree.forEach(item => {
+                item.classList.remove('has-active');
+            });
+        };
+        this.modifyIndex = (headerLink, tocLink) => {
+            let index = [];
+            headerLink.forEach(item => {
+                index.push(item.getBoundingClientRect().top);
+            });
+            this.reset();
+            for (let i = 0; i < tocLink.length; ++i) {
+                const item = tocLink.item(i);
+                if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
+                    this.setItem(item);
+                    break;
+                }
+            }
+        };
+        this.setHtml = () => {
+            let headerLink = document.querySelectorAll('h2,h3,h4,h5,h6'), tocLink = document.querySelectorAll('.toc-link');
+            if (tocLink.length !== 0) {
+                this.setItem(tocLink.item(0));
+            }
+            getElement('main').addEventListener('scroll', () => {
+                if (tocLink.length === 0)
+                    return;
+                this.modifyIndex(headerLink, tocLink);
+            }, { passive: true });
+        };
+        document.addEventListener('pjax:success', this.setHtml);
+        this.setHtml();
+    }
+}
+new Index();
+class Header {
+    constructor() {
+        this.header = getElement('header');
+        this.button = getElement('.navBtnIcon');
+        this.closeSearch = false;
+        this.relabel = () => {
+            let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
+            getElement('.navBtn').classList.add('hide');
+            navs.forEach(item => {
+                if (item.id === 'search-header') {
+                    return;
+                }
+                let now = item, link = getElement('a', now);
+                if (link !== null) {
+                    let href = link.href, match = now.getAttribute('matchdata');
+                    now.classList.remove('active');
+                    if (getParent(link) != now) {
+                        return;
+                    }
+                    if (href.length > mayLen && document.URL.match(href) !== null) {
+                        mayLen = href.length;
+                        may = now;
+                    }
+                    if (match) {
+                        const s = match.split(',');
+                        s.forEach(item => {
+                            if (document.URL.match(item) !== null) {
+                                may = now;
+                                mayLen = Infinity;
+                            }
+                        });
+                    }
+                }
+            });
+            if (may !== null) {
+                do {
+                    if (may.classList.contains('navItem')) {
+                        may.classList.add('active');
+                    }
+                } while (!(may = getParent(may)).classList.contains('navContent'));
+            }
+        };
+        this.inHeader = (mouse) => {
+            let item = mouse.target;
+            while (item !== this.header && item !== document.body)
+                item = getParent(item);
+            if (item !== this.header) {
+                this.close();
+            }
+        };
+        this.open = (item = this.header) => {
+            item.classList.add('expanded');
+            item.classList.remove('closed');
+            scrolls.slideDown();
+            if (item === this.header) {
+                item.classList.add('moving');
+                setTimeout(() => item.classList.remove('moving'), 300);
+            }
+            document.addEventListener('click', this.inHeader);
+        };
+        this.close = (item = this.header) => {
+            document.removeEventListener('click', this.inHeader);
+            item.classList.add('closed');
+            item.classList.remove('expanded');
+            if (item === this.header) {
+                item.classList.add('moving');
+                setTimeout(() => item.classList.remove('moving'), 300);
+                this.closeAll();
+            }
+        };
+        this.reverse = (item = this.header) => {
+            if (this.closeSearch) {
+                this.closeSearch = false;
+            }
+            else if (item.classList.contains('expanded')) {
+                this.close(item);
+            }
+            else {
+                this.open(item);
+            }
+        };
+        this.closeAll = () => {
+            this.header.querySelectorAll('.expanded').forEach((item) => item.classList.remove('expanded'));
+        };
+        this.relabel();
+        document.addEventListener('pjax:success', this.relabel);
+        document.addEventListener('pjax:send', () => this.close());
+        this.button.addEventListener('mousedown', () => {
+            if (document.querySelector('.search')) {
+                this.closeSearch = true;
+            }
+        });
+        this.button.onclick = () => this.reverse(this.header);
+        document.querySelectorAll('.navItemList').forEach((item) => {
+            item = getParent(item);
+            if (item.classList.contains('navBlock')) {
+                item = getParent(item);
+            }
+            item.addEventListener('click', (event) => {
+                if (getParent(event.target) === item ||
+                    getParent(event.target, 2) === item) {
+                    this.reverse(item);
+                }
+            });
+        });
+    }
+}
+var header = new Header();
+class Scroll {
+    constructor() {
+        this.scrolling = 0;
+        this.getingtop = false;
+        this.height = 0;
+        this.visible = false;
+        this.touchX = 0;
+        this.touchY = 0x7fffffff;
+        this.mayNotUp = false;
+        this.reallyUp = false;
+        this.intop = false;
+        this.startTop = false;
+        this.scrolltop = () => {
+            getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
+            this.totop.style.opacity = '0';
+            this.getingtop = true;
+            setTimeout(() => this.totop.style.display = 'none', 300);
+        };
+        this.totopChange = (post) => {
+            if (post.getBoundingClientRect().top < -200) {
+                this.totop.style.display = '';
+                this.visible = true;
+                setTimeout(() => {
+                    if (this.visible) {
+                        this.totop.style.opacity = '1';
+                    }
+                }, 300);
+            }
+            else {
+                this.totop.style.opacity = '0';
+                this.visible = false;
+                setTimeout(() => {
+                    if (!this.visible) {
+                        this.totop.style.display = 'none';
+                    }
+                }, 300);
+            }
+        };
+        this.slideDown = () => {
+            if (!this.intop) {
+                return;
+            }
+            const main = getElement('main').classList;
+            if (!document.querySelector('.expanded')) {
+                getElement('.navBtn').classList.add('hide');
+            }
+            main.remove('up');
+            main.add('down');
+            main.add('down');
+            main.add('moving');
+            setTimeout(() => {
+                main.remove('down');
+                main.remove('moving');
+            }, 300);
+            this.intop = false;
+        };
+        this.slideUp = () => {
+            if (this.intop || document.querySelector('.moving')) {
+                return;
+            }
+            if (!document.querySelector('#search-header')) {
+                getElement('.navBtn').classList.remove('hide');
+                return;
+            }
+            const main = getElement('main').classList;
+            getElement('.navBtn').classList.remove('hide');
+            main.remove('down');
+            main.add('up');
+            main.add('moving');
+            this.intop = true;
+            setTimeout(() => getElement('main').classList.remove('moving'), 300);
+        };
+        this.setHtml = () => {
+            try {
+                let navBtn = getElement('.navBtn');
+                let onScroll = () => {
+                    try {
+                        let nowheight = getElement('article').getBoundingClientRect().top;
+                        if (nowheight > 0) {
+                            return;
+                        }
+                        if (!document.querySelector('.expanded')) {
+                            if (this.height - nowheight > 100) {
+                                navBtn.classList.add('hide');
+                                this.height = nowheight;
+                            }
+                            else if (nowheight > this.height) {
+                                if (nowheight - this.height > 20) {
+                                    navBtn.classList.remove('hide');
+                                }
+                                this.height = nowheight;
+                            }
+                        }
+                        ++this.scrolling;
+                        setTimeout(() => {
+                            if (!--this.scrolling) {
+                                this.getingtop = false;
+                            }
+                        }, 100);
+                        if (!this.getingtop) {
+                            this.totopChange(getElement('#post-title'));
+                        }
+                    }
+                    catch (e) { }
+                };
+                getElement('main').addEventListener('scroll', onScroll);
+                this.height = 0;
+                this.visible = false;
+                this.totop = getElement('#to-top');
+            }
+            catch (e) { }
+        };
+        this.checkTouchMove = (event) => {
+            if (Math.abs(event.changedTouches[0].clientX - this.touchX) > 50 && !this.reallyUp) {
+                this.mayNotUp = true;
+            }
+            if (document.querySelector('.expanded') ||
+                window.innerWidth > 1024 ||
+                this.mayNotUp ||
+                event.changedTouches[0].clientY == this.touchY) {
+                return;
+            }
+            if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
+                this.reallyUp = true;
+                if (event.changedTouches[0].clientY > this.touchY) {
+                    this.slideUp();
+                }
+                else {
+                    this.slideDown();
+                }
+                this.touchY = event.changedTouches[0].clientY;
+            }
+        };
+        this.startTouch = (event) => {
+            this.touchX = event.changedTouches[0].clientX;
+            this.touchY = event.changedTouches[0].clientY;
+            this.mayNotUp = false;
+            this.startTop = getElement('article').getBoundingClientRect().top >= 0;
+        };
+        document.addEventListener('pjax:success', this.setHtml);
+        document.addEventListener('touchstart', this.startTouch);
+        document.addEventListener('touchmove', this.checkTouchMove);
+        document.addEventListener('wheel', (event) => {
+            if (document.querySelector('.expanded') || window.innerWidth > 1024) {
+                return;
+            }
+            if (getElement('article').getBoundingClientRect().top >= 0) {
+                if (event.deltaY < 0) {
+                    this.slideUp();
+                }
+                else {
+                    this.slideDown();
+                }
+            }
+        });
+        this.setHtml();
+        this.totop = document.querySelector('#to-top');
+    }
+}
+var scrolls = new Scroll();
+class pjaxSupport {
+    constructor() {
+        this.loading = getElement('.loading');
+        this.left = getElement('.loadingBar.left');
+        this.right = getElement('.loadingBar.right');
+        this.timestamp = 0;
+        this.start = (need) => {
+            this.left.style.width = need + '%';
+            this.right.style.width = need + '%';
+            ++this.timestamp;
+        };
+        this.loaded = () => {
+            ++this.timestamp;
+            if (this.loading.style.opacity === '1') {
+                getElement('main').scrollTop = 0;
+                if (this.left.style.width !== "50%") {
+                    this.start(50);
+                    setTimeout((time) => {
+                        if (this.timestamp == time) {
+                            this.loading.style.opacity = '0';
+                        }
+                    }, 600, this.timestamp);
+                }
+            }
+        };
+        document.addEventListener('pjax:send', () => {
+            if (getElement('main').classList.contains('up')) {
+                scrolls.slideDown();
+            }
+            this.loading.classList.add('reset');
+            this.start(0);
+            setTimeout((time) => {
+                if (this.timestamp == time) {
+                    this.loading.style.opacity = '1';
+                    this.loading.classList.remove('reset');
+                    this.start(15);
+                    setTimeout((time) => {
+                        if (this.timestamp == time) {
+                            this.start(30);
+                        }
+                    }, 800, this.timestamp);
+                }
+            }, 10, this.timestamp);
+        });
+        document.addEventListener('pjax:start', this.loaded);
+        document.addEventListener('pjax:complete', this.loaded);
+    }
+}
+try {
+    new pjaxSupport();
+}
+catch (e) { }
+/// <reference path="include/canvaDust.ts" />
+/// <reference path="include/Code.ts" />
+/// <reference path="include/Cursors.ts" />
+/// <reference path="include/Index.ts" />
+/// <reference path="include/Header.ts" />
+/// <reference path="include/scroll.ts" />
+/// <reference path="include/pjaxSupport.ts" />

@@ -17,27 +17,16 @@ block content
       , order: -1
       , show_count: false
     })
+
   #archive-flex
     #Archives
-      h1= 'Tag: ' + page.tag
+      h1 #{__('menu.tag.name')}: #{page.tag}
       #Archives-bg
-        - page.posts.each(function(article){
+        - page.posts.each((article) => {
         .article-item
           .control-long
             time(datetime=date_xml(article.date))= date(article.date)
           a(href=url_for(article.path))= article.title
         - })
         #paginator!= paginator()
-    #archive-aside
-      #Categories
-        h1 categories
-        if categoriesList
-          != categoriesList
-        else
-          p None.
-      #Tags
-        h1 tags
-        if tagsList
-          != tagsList
-        else
-          p None.
+    include includes/archive-aside.pug

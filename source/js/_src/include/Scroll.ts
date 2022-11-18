@@ -16,7 +16,7 @@ class Scroll {
   private startTop: boolean = false
 
   public scrolltop = () => {
-    getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
+    getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' })
     this.totop.style.opacity = '0'
     this.getingtop = true
     setTimeout(() => this.totop.style.display = 'none', 300)

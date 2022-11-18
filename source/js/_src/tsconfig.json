@@ -1,7 +1,7 @@
 {
-  "files": ["arknights.ts",],
+  "files": ["arknights.ts"],
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2021",
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,

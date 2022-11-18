@@ -1,9 +1,9 @@
 -
   let pageTitle = page.title || config.subtitle || ''
   if (is_post()) pageTitle = page.title
-  if (is_archive()) pageTitle = 'Archives'
-  if (is_tag()) pageTitle = 'Tag: ' + page.tag
-  if (is_category()) pageTitle = 'Category: ' + page.category
+  if (is_archive()) pageTitle = __('menu.archive.plural')
+  if (is_tag()) pageTitle = __('menu.tag.plural') + ': ' + page.tag
+  if (is_category()) pageTitle = __('menu.category.plural') + ': ' + page.category
   if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
   if (is_year()) pageTitle += ': ' + page.year
   if (pageTitle) pageTitle += ' | '
@@ -19,7 +19,16 @@
   const configs = JSON.stringify({
     root: config.root,
     search: {
-      preload: searchConfig.preload
+      preload: searchConfig.preload,
+      activeHolder: __('search.activeHolder'),
+      blurHolder: __('search.blurHolder'),
+      noResult: __('search.noResult')
+    },
+    code: {
+      codeInfo: __('code.codeInfo'),
+      copy: __('code.copy'),
+      copyFinish: __('code.copyFinish'),
+      expand: __('code.expand')
     }
   })
 
@@ -42,7 +51,7 @@ html(lang=config.language)
         if page.published !== undefined
           #bottom-btn
             if tocLength !== null
-              a#to-index(href="#toc-div" title="index") ≡
+              a#to-index(href="#toc-div" title=__('post.index')) ≡
             a#to-top(onClick="scrolls.scrolltop();" title="to top" style="opacity: 0; display: none;") ∧
       include ./aside.pug
     if theme.canvas_dust

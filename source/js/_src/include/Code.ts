@@ -27,7 +27,7 @@ class Code {
       return 'C#'
     }
     if (str == 'cpp') {
-      return 'C++';
+      return 'C++'
     }
     return str.toUpperCase()
   }
@@ -40,16 +40,24 @@ class Code {
     item.innerHTML =
       `<span class="code-header">\
         <span class="code-title">\
-          <div class="code-icon"></div>${this.resetName(codeType)} 共 ${lineCount} 行</span>\
-          <span class="code-header-tail">\
-            <button class="code-copy"></button>\
-            <span class="code-space">展开</span></span></span></span>\
+          <div class="code-icon"></div>
+          ${format(config.code.codeInfo, codeType, lineCount)}
+        </span>\
+        <span class="code-header-tail">\
+          <button class="code-copy">${config.code.copy}</button>\
+          <span class="code-space">${config.code.expand}</span>\
+        </span>\
+      </span>\
       <div class="code-box">${item.innerHTML}</div>`
     getElement('.code-copy', item).addEventListener('click', (click: Event) => {
       const button = click.target as HTMLElement
       navigator.clipboard.writeText(getElement('code', item).innerText)
       button.classList.add('copied')
-      setTimeout(() => button.classList.remove('copied'), 1200)
+      button.innerText = config.code.copyFinish
+      setTimeout(() => {
+        button.classList.remove('copied')
+        button.innerText = config.code.copy
+      }, 1200)
     })
     getElement('.code-header', item).addEventListener('click', (click: Event) => {
       if (!(click.target as HTMLElement).classList.contains('code-copy')) {
