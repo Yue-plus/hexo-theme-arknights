@@ -20,7 +20,7 @@
   "dependencies": {
     "hexo-browsersync": "^0.3.0",
     "hexo-renderer-pug": "^2.0.0",
-    "hexo-renderer-stylus": "^0.1.2",
+    "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^2.0.0"
   }
 }

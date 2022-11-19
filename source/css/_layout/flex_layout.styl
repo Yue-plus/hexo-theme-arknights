@@ -7,6 +7,9 @@
     border none
     width 100%
     max-height none
+    #post-bg
+      margin 0
+      padding 10px 10px 0 10px
   .highlight, blockquote
     margin 1em 0
   aside
@@ -26,9 +29,6 @@
     margin 20px 0 0 0
     a, span
       margin 5px 5px 0 0
-  #post-bg
-    margin 0
-    padding 5px 10px 0 10px
   #post-index
     margin 0
   #logo
@@ -82,36 +82,27 @@
   aside
     top 0
     width 170px
-    transition 0s
-    #description p
-      font-size small
     h1
       font-size xx-large
     a img
       transition background-color 1s
       &:hover
         background-color rgba(#fff , .1)
+  #description p
+    font-size small
   #archive-aside
     position sticky
     max-width 36%
-
-@media ( max-width 1024px )
-  header
-    position fixed
-  @media ( min-width 769px )
-    header
-      width calc(100% - 212px)
 
 @media ( min-width 1024px )
   article
     width calc(100% - 412px)
   aside
     width 190px
-    transition .3s
-    #description p
-      font-size medium
     h1
       font-size 45px
+  #description p
+    font-size medium
 
 @media ( min-width 1440px )
   article
@@ -120,13 +111,13 @@
     width 230px
     h1
       font-size 50px
-    #total-archives
-      .total-title
-        font-size 36px
-      .total-number
-        font-size 48px
-    #total-tags, #total-categories
-      font-size 23px
+  #total-archives
+    .total-title
+      font-size 36px
+    .total-number
+      font-size 48px
+  #total-tags, #total-categories
+    font-size 23px
   .recent-post img
     width 90%
     margin 0 auto
@@ -139,13 +130,13 @@
     width 270px
     h1
       font-size 55px
-    #total-archives
-      .total-title
-        font-size 37px
-      .total-number
-        font-size 48px
-    #total-tags, #total-categories
-      font-size 28px
+  #total-archives
+    .total-title
+      font-size 37px
+    .total-number
+      font-size 48px
+  #total-tags, #total-categories
+    font-size 28px
   .search-pop-overlay .popup
     left 65%
   .recent-post img

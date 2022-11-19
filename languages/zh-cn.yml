@@ -1,0 +1,50 @@
+---
+name: 简体中文
+
+page:
+  readMore: READ MORE +
+  noTag: empty
+  noCategory: NO CATEGORY
+
+post:
+  posted: "First Post: "
+  edited: "Last Update: "
+  countTotal: "Word Count: "
+  timeTotal: "Read Time: "
+  timeUnit: min
+  index: INDEX
+  reward: 打赏
+  noTitle: No Title
+
+code:
+  codeInfo: $0 共 $1 行
+  copy: 复制
+  copyFinish: 完成
+  expand: 展开
+
+menu:
+  archive:
+    name: Archive
+    plural: Archives
+  navigation: NAVIGATION
+  tag:
+    name: Tag
+    plural: Tags
+  category:
+    name: Category
+    plural: Categories
+  empty: None.
+  total: Total
+
+search:
+  activeHolder: 键入以继续
+  blurHolder: 数据检索
+  noResult: 无 $0 相关数据
+
+footer:
+  publish: published with
+  theme: Theme
+  by: by
+
+Valine:
+  placeHolder: 此条评论委托企鹅物流发送

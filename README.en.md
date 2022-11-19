@@ -360,13 +360,13 @@ For yarn users:
 yarn add hexo-generator-searchdb
 ```
 
-Add the following into `Hexo/_config.yml`:  
+Add the following into `Hexo/_config.arknights.yml`:  
 
 ```yaml
 search:
   enable: true
   preload: true # Non-essential
-  path: search.json # Non-essential, use to shrink the file
+  path: search.json
   format: striptags # Non-essential, use to shrink the file (Can greatly reduce the size of the search data file, recommended)
 ```
 

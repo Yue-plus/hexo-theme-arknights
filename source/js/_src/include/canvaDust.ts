@@ -99,7 +99,7 @@ class canvasDust {
 
   private static getPoint = (number: number = 1): Array<[number, number]> => {
     let point: Array<[number, number]> = []
-    for (let i: number = 0; i < number; i++) {
+    for (let i: number = 0; i < number; ++i) {
       const x: number = Math.floor(Math.random() * window.innerWidth)
       const y: number = Math.floor(Math.random() * window.innerHeight)
       point.push([x, y])

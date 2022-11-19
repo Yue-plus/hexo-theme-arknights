@@ -8,10 +8,10 @@ class Cursor {
   private last: number = 0
   private moveIng: boolean = false
   private fadeIng: boolean = false
-  private readonly outer: CSSStyleDeclaration = getElement('#cursor-outer').style
-  private readonly effecter: CSSStyleDeclaration = getElement('#cursor-effect').style
+  private readonly outer: CSSStyleDeclaration
+  private readonly effecter: CSSStyleDeclaration
   private readonly attention: string =
-    "a,input,button,.admonition,.code-header,.gt-user-inner,.gt-header-textarea,.navBtnIcon"
+    "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon"
 
   private move = (timestamp: number) => {
     if (this.now !== undefined) {
@@ -92,6 +92,13 @@ class Cursor {
   }
 
   constructor() {
+    let node: HTMLElement = document.createElement('div')
+    node.id = 'cursor-container'
+    node.innerHTML = `<div id="cursor-outer"></div><div id="cursor-effect"></div>`
+    document.body.appendChild(node)
+    this.outer = getElement('#cursor-outer', node).style
+    this.outer.top = '-100%'
+    this.effecter = getElement('#cursor-effect', node).style
     this.effecter.transform = 'translate(-50%, -50%) scale(0)'
     this.effecter.opacity = '1'
     window.addEventListener('mousemove', this.reset, { passive: true })
@@ -101,5 +108,4 @@ class Cursor {
     observer.observe(document, { childList: true, subtree: true })
   }
 }
-
-new Cursor()
+window.onload = () => new Cursor()

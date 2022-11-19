@@ -1,12 +1,14 @@
 header
+  pointer-events none
   top 0
   z-index 15
   height 100%
   font-family BenderLight
   display inline
   position sticky
-  pointer-events none
-  @media (max-width 1023px)
+
+@media (max-width 1023px)
+  :not(.up, .moving)>header
     clip-path polygon(0 0, 0 100%, 100% 100%, 100% 0)
 
 nav
@@ -14,63 +16,67 @@ nav
   height 100%
   white-space nowrap
   scroll-width none
+  overflow auto
   &::-webkit-scrollbar
     display none
   &::-ms-scrollbar
     display none
-  .navBlock
-    transition unset
-    position relative
-    height 40px
-    line-height 40px
-    padding 0 12px
-    display inline-block
-    List-sum = 0
-    for i in hexo-config("menu")
-      List-sum += 3
-    if hexo-config("search") && hexo-config("search.enable")
-      List-sum += 1
-    padding (34em/List-sum) 0
-    width 100%
-    &:active
-      background unset
-  ol li
+  li
     display block
+
+.navBlock
+  transition unset
+  position relative
+  height 40px
+  line-height 40px
+  padding 0 12px
+  display inline-block
+  List-sum = 0
+  for i in hexo-config("menu")
+    List-sum += 3
+  if hexo-config("search") && hexo-config("search.enable")
+    List-sum += 1
+  padding (34em/List-sum) 0
+  width 100%
+  &:active
+    background unset
 
 .navBtn
   transition transform .3s
   pointer-events all
+  
   display block
   position absolute
   top 1em
   font-size 2em
   z-index 10
-  .navBtnIcon 
-    z-index 10
-    width 1em
-    height 1em
-    display block
-    position relative
-  .navBtnIconBar
-    position absolute
-    top 50%
-    width 1em
-    height 0.1em
-    background-color #d4d8dd
-    text-indent 101%
-    white-space nowrap
-    overflow hidden
-    transition transform ease-in-out 0.3s
-  .navBtnIconBar
-    &:nth-child(1)
-      left 0
-      transform translate(0, -350%)
-    &:nth-child(2)
-      left 0
-      transform translate(0, -50%)
-    &:nth-child(3)
-      right 0
-      transform translate(0, 250%)
+.navBtnIcon 
+  z-index 10
+  width 1em
+  height 1em
+  display block
+  position relative
+.navBtnIconBar
+  position absolute
+  top 50%
+  width 1em
+  height 0.1em
+  background-color #d4d8dd
+  text-indent 101%
+  white-space nowrap
+  overflow hidden
+  transition transform ease-in-out 0.3s
+.navBtnIconBar
+  &:nth-child(1)
+    left 0
+    transform translate(0, -350%)
+  &:nth-child(2)
+    left 0
+    transform translate(0, -50%)
+  &:nth-child(3)
+    right 0
+    transform translate(0, 250%)
+
 .expanded .navBtnIconBar
   &:nth-child(1)
     transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(-50%)
@@ -81,29 +87,22 @@ nav
 
 .navContent
   overflow visible
-  pointer-events all
-  box-sizing border-box
   margin unset
-  height 100%
+  min-height 100%
+  height fit-content
   display flex
   flex-direction column
   justify-content center
+  position relative
+  padding 0
+  box-sizing border-box
+  pointer-events all
 
 .navItem
   overflow visible
   position relative
   margin unset
   transition .6s
-  &.active
-    &>*>.navItemTitle,&>.navItemTitle
-      color #2bf
-      &::after
-        content ""
-        display block
-        color #2bf
-        width 100%
-        position absolute
-        left 0
   @media ( max-width 1023px )
     & .navItemTitle::after
       content ""
@@ -117,6 +116,17 @@ nav
     white-space normal
     position relative
     display block
+.active
+  &>:is(a,.navBlock)>.navItemTitle,&>.navItemTitle
+    color #2bf
+    &::after
+      content ""
+      display block
+      color #2bf
+      border-color #2bf
+      width 100%
+      position absolute
+      left 0
 
 .navItemList
   overflow visible
@@ -137,14 +147,12 @@ nav
 
 extendList()
   display block
-  .navItemTitle
+  &>.navItemList
     box-sizing border-box
     display inline-block
-    margin 0
     width max-content
     min-width 100%
-  a>.navItemTitle
-    transition unset
+    margin 0
 
 @media ( max-width 768px )
   header
@@ -156,7 +164,7 @@ extendList()
 
 @media ( max-width 1023px )
   header
-    width 100%
+    width max(428px ,100% - 200px)
     max-width 100%
     position fixed
   nav
@@ -173,7 +181,7 @@ extendList()
     transition transform 0.6s
     background-color rgba(0, 0, 0, 0.88)
     height 100vh
-  .navItem .navBlock
+  .navBlock
     &:hover
       background-color unset
     box-sizing border-box
@@ -189,7 +197,7 @@ extendList()
       border-bottom 2px solid #fff
       bottom 0
       right 0
-  .navItem.active>*>.navItemTitle::after
+  .active>:is(a,.navBlock)>.navItemTitle::after
     border-color #2bf
   .expanded .navContent
     transform translateX(0%)
@@ -201,14 +209,14 @@ extendList()
   .navItemTitle:not(:only-child)::before
     content '>'
     margin 0 5px
-  .navItem.expanded
-    &>.navBlock,&
-      &>.navItemList
-        margin-top 6px
-        extendList()
-      &>.navItemTitle:not(:only-child)::before
-        content '▽'
-        color #2bf
+  .expanded,
+  .expanded>.navBlock
+    &>.navItemList
+      margin-top 6px
+      extendList()
+    &>.navItemTitle:not(:only-child)::before
+      content '▽'
+      color #2bf
 
 @media ( min-width 1024px )
   header
@@ -219,10 +227,10 @@ extendList()
     background-color unset
   .navItemTitle
     color #fff
-  .navItemTitle::after
-    height 100%
-    top 0
-    box-sizing border-box
+    &::after
+      height 100%
+      top 0
+      box-sizing border-box
   .navItemList
     width max-content
     min-width 100px
@@ -232,14 +240,15 @@ extendList()
       width 100%
       padding 0
       .navItemTitle
+        box-sizing border-box
         color #2bf
       a:hover .navItemTitle
         color #000
       &:hover>.navItemTitle
         background-color #2bf
         color #000
-  .navItem .navBlock:hover,.navItem:hover
-    &>.navItemList
+  .navBlock,.navItem
+    &:hover
       extendList()
 
 @media ( min-width 1440px )

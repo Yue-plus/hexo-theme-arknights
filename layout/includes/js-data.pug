@@ -1,0 +1,51 @@
+if searchConfig !== null
+  script(src="/js/search.js")
+script.pjax-js reset=_=>{
+  if theme.valine !== undefined && theme.valine.enable === true
+    |new Valine({
+    |  el: '#Valine'
+    |  , appId: '#{theme.valine.app_id}'
+    |  , appKey: '#{theme.valine.app_key}'
+    if theme.valine.server_url
+      | , serverURLs: '#{theme.valine.server_url}'
+    |  , placeholder: #{__('Valine.placeHolder')}
+    |});
+  if theme.gitalk !== undefined && theme.gitalk.enable === true
+    - let config = theme.gitalk, gitAdmin = ''
+    for str in theme.gitalk.admin
+      - gitAdmin= gitAdmin + "'" + str + "'"
+    |gitalk = new Gitalk({
+    |  clientID: '#{config.client_id}',
+    |  clientSecret: '#{config.client_secret}',
+    |  repo: '#{config.repo}',
+    |  owner: '#{config.owner}',
+    |  admin: [#{gitAdmin}],
+    |  distractionFreeMode: #{config.distraction_free_mode || false},
+    |  id: #{config.id}
+    |});
+    |if (document.querySelector("#comments")) gitalk.render("comments");
+  | !{onload}}
+if theme.scripts && theme.scripts.length > 0
+  //- scripts list from config.yml
+  each url in theme.scripts
+    script(src=url)
+script(src=config.root + "js/arknights.js")
+if pjax
+  script(src=config.root + "js/pjax.js")
+script window.addEventListener("load",()=>{
+  if pjax
+    |pjax = new Pjax({
+    |  cacheBust: false,
+    |  selectors: ['title','article','#aside-block','.pjax-js'],
+    |  switches: {'article': Pjax.switches.sideBySide},
+    |  switchesOptions: {
+    |    'article': {
+    |      classNames: {
+    |        remove: "pjax-out",
+    |        add: "pjax-in"
+    |      }
+    |    }
+    |  }
+    |});
+    |document.addEventListener("pjax:complete", reset);
+  | reset()})

@@ -10,12 +10,12 @@ function savedb(article, config, isPost) {
   if (article.path) {
     data.url = encodeURI(config.root + article.path);
   }
-  if (config.search.content !== false) {
-    if (config.search.format === 'raw') {
+  if (config.content !== false) {
+    if (config.format === 'raw') {
       data.content = article._content;
     } else {
       data.content = article.content.replace(/<td class="gutter">.*?<\/td>/g, '');
-      if (config.search.format === 'striptags') {
+      if (config.format === 'striptags') {
         data.content = stripHTML(data.content);
       }
     }
@@ -34,8 +34,8 @@ function savedb(article, config, isPost) {
   return data;
 }
 
-module.exports = function(locals, config) {
-  const searchfield = config.search.field;
+module.exports = function (locals, config) {
+  const searchfield = config.field;
   const database = [];
   if (searchfield === 'all' || searchfield === 'post') {
     locals.posts.each(post => {

@@ -1,11 +1,13 @@
 // ========= 基础样式
 // ====== base style
-html, body
-  cursor url(../cursor-inner.png) 3 3, default
-  position static
 
-a, button
-  cursor url(../cursor-inner.png) 3 3, pointer
+cursor = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGBAMAAAAS4vJ7AAAAElBMVEX///////////////////////+65XQCAAAABXRSTlPUzXppDN7WmLAAAAAZSURBVAjXY3ASVGEwDQ1mYA0NAGEQGyQGAC9SA/00lbgwAAAAAElFTkSuQmCC"
+
+html, body, a, button, input, textarea
+  cursor url(cursor) 3 3, default
+
+html, body
+  position static
 
 #cursor-outer
   z-index 65536
@@ -68,6 +70,7 @@ h1, h2, h3, h4, h5, h6
 #post-content
   h1, h2, h3, h4 ,h5, h6
     border-bottom #89898966 solid 1px
+    display flex
   h1
     font-size 1.75em
   h2
@@ -82,7 +85,7 @@ h1, h2, h3, h4, h5, h6
     font-size 1em
 
 p
-  overflow-x auto
+  overflow visiable
 
 a
   text-decoration none
@@ -171,6 +174,6 @@ table
       background-color rgba(#2bf, .1)
 
 input
-  cursor url(../cursor-inner.png) 3 3, text
+  cursor url(cursor) 3 3, text
   user-select none
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif

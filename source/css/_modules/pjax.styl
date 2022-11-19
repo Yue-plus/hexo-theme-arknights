@@ -41,9 +41,11 @@
   transition box-shadow .3s .1s
 
 .pjax-out
+  pointer-events none
   position absolute!important
   animation .6s pjax-animate-out
 .pjax-in
+  pointer-events none
   position absolute!important
   animation .6s pjax-animate-in
 
@@ -52,8 +54,7 @@
 #bottom-btn.pjax-in,
 #bottom-btn.pjax-out
   visibility hidden
-  
-
+  pointer-events none
 
 @keyframes pjax-animate-in
   0%

@@ -14,43 +14,42 @@
   .navItem
     padding-left 2.5em
 
-@media ( min-width 992px )
-  @media ( max-width 1919px )
-    aside
-      padding 0 25px 0 15px
+@media ( min-width 992px, max-width 1919px )
+  aside
+    padding 0 25px 0 15px
 
 @media ( min-width 1024px )
   .navContent
-    padding 1em 1em 1em 0
+    margin 0 1.5em 0 0
     transform unset
   .navItem
     padding-left 1.2em
-    .navItemTitle:hover
-      margin-left 1em
-    .navBlock
-      text-align right
-      .navItemTitle::after
-        border-left 4px solid
-        left 0px
-      &:hover
-        &::after
-          content ""
-          height 100%
-          width 100%
-          position absolute
-          top 0
-          left 2em
-        .navItemTitle
-          margin-left 1em
-      &>.navItemList
-        left calc(100% + 2em)
-        .navItemTitle
-          padding-left 0.8em
-          padding-right 0.5em
+  .navBlock
+    text-align right
+    .navItemTitle::after
+      border-left 4px solid
+      left 0px
+    &:hover
+      &>.navItemTitle
+        margin-left 1em
+      &::after
+        content ""
+        height 100%
+        width 100%
+        position absolute
+        top 0
+        left 2em
+    &>.navItemList
+      left calc(100% + 2em)
   .navItemList
     left 100%
     .navItem
       padding-right 1px
+    .navItemTitle
+      padding-left 0.8em
+      padding-right 0.5em
+  .navItemList>.navItem>.navItemTitle:hover
+    padding-left 1.8em
 
 @media ( min-width 1440px )
   .navItem

@@ -6,7 +6,7 @@ class Index {
   private setItem = (item: HTMLElement) => {
     item.classList.add('active')
     let parent = getParent(item), brother = parent.children
-    for (let i = 0; i < brother.length; i++) {
+    for (let i = 0; i < brother.length; ++i) {
       const item = brother.item(i) as HTMLElement
       if (item.classList.contains('toc-child')) {
         item.classList.add('has-active')
