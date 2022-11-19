@@ -1,17 +1,27 @@
 window.addEventListener('DOMContentLoaded', () => {
-  let isfetched = false, wait = false
+  let fetched = false, fetching = false, waiting = false
   let datas
-  const path = config.root + config.path
-  const input = document.getElementById('search-input')
-  fetch(path)
-    .then(response => response.text())
-    .then(res => {
-      isfetched = true
-      datas = JSON.parse(res)
-      if (wait === true) {
-        inputEventFunction()
-      }
-    })
+  const path = config.root + 'search.json'
+  const input = document.querySelector('#search-input')
+  const navContent = document.querySelector('.navContent')
+  const activeHolder = config.search.activeHolder
+  const blurHolder = config.search.blurHolder
+  const noResult = config.search.noResult
+  function fetechData() {
+    fetching = true
+    fetch(path)
+      .then(response => response.text())
+      .then(res => {
+        fetched = true
+        datas = JSON.parse(res)
+        if (waiting === true) {
+          inputEventFunction()
+        }
+      })
+  }
+  if (config.search.preload) {
+    fetechData()
+  }
   function getIndexByWord(word, text, caseSensitive) {
     let wordLen = word.length
     if (wordLen === 0) return []
@@ -78,7 +88,7 @@ window.addEventListener('DOMContentLoaded', () => {
     return result
   }
   function inLoading() {
-    document.querySelector('.search-popup').innerHTML = '<div id="loading"><p>Loading...</p></div>'
+    document.querySelector('.search-popup').innerHTML = '<div id="loading"><div><p>Loading...</p></div></div>'
   }
   function onPopupClose() {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
@@ -97,7 +107,7 @@ window.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.navBtn').classList.add('expanded')
     }
     document.querySelector('.search-popup').classList.add('open')
-    if (isfetched === true) {
+    if (fetched === true) {
       document.querySelector('.search-popup').innerHTML = "<div id='search-result'></div>"
       document.getElementById('search-result').innerHTML = ''
     } else {
@@ -105,16 +115,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
   function inputEventFunction() {
-    proceedSearch()
-    if (isfetched === false) {
-      wait = true
-      inLoading()
-      return
-    }
     let searchText = input.value.trim().toLowerCase()
     if (!searchText.length) {
-      document.querySelector('#search-input').placeholder = '键入以进行'
+      input.placeholder = activeHolder
       onPopupClose()
+      return
+    }
+    proceedSearch()
+    if (fetched === false) {
       return
     }
     let keywords = searchText.split(/[-\s]+/)
@@ -208,7 +216,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     var resultContent = document.getElementById('search-result')
     if (resultItems.length === 0) {
-      resultContent.innerHTML = `<div id="no-result"><p>无“<b>${input.value}</b>”相关数据</p></div>`
+      resultContent.innerHTML =
+        `<div id="no-result"><p>${format(noResult, `<b>${input.value}</b>`)}</p></div>`
     } else {
       resultItems.sort((Left, Right) => {
         if (Left.TextCount !== Right.TextCount) {
@@ -236,39 +245,46 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })
   function StartSearch() {
-    document.querySelector('.navContent').classList.add('search')
+    navContent.classList.add('search')
     header.closeAll()
-    document.querySelector('#search-input').placeholder = '键入以进行'
-    if (isfetched === false) {
-      inLoading()
+    input.placeholder = activeHolder
+    if (!fetched) {
+      if (!fetching) {
+        fetechData()
+      }
+      waiting = true
     }
   }
   function EscapeSearch() {
-    document.querySelector('#search-input').value = ''
-    document.querySelector('.navContent').classList.remove('search')
+    input.value = ''
+    input.blur()
+    navContent.classList.remove('search')
     document.removeEventListener('mouseup', EscapeSearch)
-    wait = false
-    document.querySelector('.navContent').classList.remove('search')
-    document.querySelector('.navContent').classList.add('moved')
+    waiting = false
+    navContent.classList.remove('search')
+    navContent.classList.add('moved')
     onPopupClose()
   }
-  document.querySelector('#search-input').addEventListener('keyup', () => {
-    document.querySelector('.navContent').classList.add('search')
-    document.querySelector('.navContent').classList.remove('moved')
+  input.addEventListener('keyup', () => {
+    navContent.classList.add('search')
+    navContent.classList.remove('moved')
     inputEventFunction()
   })
-  document.querySelector('#search-input').addEventListener('focus', () => {
+  input.addEventListener('focus', () => {
     StartSearch()
   })
-  document.querySelector('#search-input').addEventListener('blur', () => {
-    document.querySelector('#search-input').placeholder = '数据检索'
-    document.querySelector('.navContent').classList.remove('search')
-    document.querySelector('.navContent').classList.add('moved')
+  input.addEventListener('blur', () => {
+    input.placeholder = blurHolder
+    navContent.classList.remove('search')
+    navContent.classList.add('moved')
     document.addEventListener('mouseup', EscapeSearch)
   })
   window.addEventListener('keyup', event => {
     if (event.key === 'Escape') {
       EscapeSearch()
+    } else if (event.key === 'f') {
+      StartSearch()
+      input.focus()
     }
   })
 })

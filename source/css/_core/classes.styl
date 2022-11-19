@@ -83,8 +83,6 @@
       color #fff
       outline none
       font-size 0.75em
-      &:before
-        content '复制'
       @media (min-width 769px)
         &:hover
           border 1px solid #fe2
@@ -96,11 +94,9 @@
           color  #fe2
           transition .3s
     .copied
-      &:before
-        content '完成'
       border 1px solid #fe2
       color  #fe2
-      transition .3s, visibility 0
+      transition .3s
 
 table
   td

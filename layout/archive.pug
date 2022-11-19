@@ -20,10 +20,10 @@ block content
 
   #archive-flex
     #Archives
-      h1 archives
+      h1 #{__('menu.archive.plural')}
       #Archives-bg
         - let year
-        - page.posts.each(function (article) {
+        - page.posts.each((article) => {
           - let yearMonth = date(article.date, 'YYYY-MM')
           if yearMonth !== year
             - year = yearMonth
@@ -32,27 +32,15 @@ block content
             .control-archive
               time= date(article.date, 'MM-DD')
             a(href=url_for(article.path) target="_blank")
-              = article.title || 'No Title'
+              = article.title || __('post.noTitle')
         - })
         if config.per_page != 0
           #paginator!= paginator()
-    #archive-aside
-      #Categories
-        h1 categories
-        if categoriesList
-          != categoriesList
-        else
-          p None.
-      #Tags
-        h1 tags
-        if tagsList
-          != tagsList
-        else
-          p None.
+    include includes/archive-aside.pug
 
 block aside-block
-  h1 NAVIGATION
+  h1 #{__('menu.navigation')}
   #navigation
-    a(href='#Archives') Archives
-    a(href='#Categories') Categories
-    a(href='#Tags') Tags
+    a(href='#Archives') #{__('menu.archive.plural')}
+    a(href='#Categories') #{__('menu.category.plural')}
+    a(href='#Tags') #{__('menu.tag.plural')}

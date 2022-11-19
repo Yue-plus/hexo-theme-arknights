@@ -8,14 +8,14 @@ if page.posts.length > 0
               object
                 a(href=url_for(category.path))= category.name
           else
-            span NO CATEGORY
+            span #{__('page.noCategory')}
         span.tags
           if post.tags.length > 0
             each tag in post.tags.data
               object
                 a(href=url_for(tag.path))= tag.name
           else
-            span empty
+            span #{__('page.noTag')}
         if post.date
           time(datetime=post.date.toJSON())= date(post.date, date_format)
       h1.recent-title= post.title
@@ -23,4 +23,4 @@ if page.posts.length > 0
         if post.excerpt.length > 0
           hr
           object!= post.excerpt
-      span.read-more READ MORE +
+      span.read-more #{__('page.readMore')}

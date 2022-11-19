@@ -2,7 +2,6 @@
 
 #search-header
   position relative
-  transition .3s
   input
     box-sizing border-box
     color #fff
@@ -67,11 +66,11 @@
 .search-popup
   scrollbar-width thin
   pointer-events all
-  height calc(100% - 92px)
+  height calc(100% - 90px)
   z-index 20
   transition transform .6s
   position fixed
-  top 92px
+  top 90px
   overflow-wrap anywhere
   @media ( max-width 1023px )
     width 428px
@@ -79,8 +78,24 @@
   width 32%
   padding 0 0 0 1px
   overflow-y auto
-#loading p
-  text-align center
+#loading
+  font-family 'JetBrains Mono'
+  display flex
+  justify-content center
+  div
+    display inline-block
+  p
+    animation 2s loading infinite steps(4,jump-none)
+    overflow-wrap normal
+    overflow hidden
+    display table-caption
+
+@keyframes loading
+  0%
+    width calc(100% - 1.5em)
+  100%
+    width 100%
+
 #search-result
   width 100%
   .recent-post

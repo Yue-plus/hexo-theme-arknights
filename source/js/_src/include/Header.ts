@@ -3,15 +3,15 @@
 'use strict'
 
 class Header {
-  private readonly header: HTMLElement = getElement('header');
-  private readonly button: HTMLElement = getElement('.navBtnIcon');
-  private closeSearch: boolean = false;
+  private readonly header: HTMLElement = getElement('header')
+  private readonly button: HTMLElement = getElement('.navBtnIcon')
+  private closeSearch: boolean = false
 
   private relabel = () => {
     let navs = this.header.querySelectorAll('.navItem'),
       mayLen: number = 0,
       may: Element = navs.item(0)
-    getElement('.navBtn').classList.remove('hide')
+    getElement('.navBtn').classList.add('hide')
     navs.forEach(item => {
       if (item.id === 'search-header') {
         return
@@ -25,15 +25,15 @@ class Header {
           return
         }
         if (href.length > mayLen && document.URL.match(href) !== null) {
-          mayLen = href.length;
-          may = now;
+          mayLen = href.length
+          may = now
         }
         if (match) {
-          const s = match.split(',');
+          const s = match.split(',')
           s.forEach(item => {
             if (document.URL.match(item) !== null) {
-              may = now;
-              mayLen = Infinity;
+              may = now
+              mayLen = Infinity
             }
           })
         }
@@ -42,34 +42,34 @@ class Header {
     if (may !== null) {
       do {
         if (may.classList.contains('navItem')) {
-          may.classList.add('active');
+          may.classList.add('active')
         }
       } while (!(may = getParent(may)).classList.contains('navContent'))
     }
   }
 
   public inHeader = (mouse: MouseEvent) => {
-      let item = mouse.target as HTMLElement;
-      while (item !== this.header && item !== document.body)
-        item = getParent(item);
-      if (item !== this.header) {
-        this.close();
-      }
+    let item = mouse.target as HTMLElement
+    while (item !== this.header && item !== document.body)
+      item = getParent(item)
+    if (item !== this.header) {
+      this.close()
+    }
   }
 
   public open = (item: Element = this.header) => {
-    scrolls.slideDown()
     item.classList.add('expanded')
     item.classList.remove('closed')
+    scrolls.slideDown()
     if (item === this.header) {
       item.classList.add('moving')
       setTimeout(() => item.classList.remove('moving'), 300)
     }
-    document.addEventListener('click', this.inHeader);
+    document.addEventListener('click', this.inHeader)
   }
 
   public close = (item: Element = this.header) => {
-    document.removeEventListener('click', this.inHeader);
+    document.removeEventListener('click', this.inHeader)
     item.classList.add('closed')
     item.classList.remove('expanded')
     if (item === this.header) {
@@ -81,7 +81,7 @@ class Header {
 
   public reverse = (item: Element = this.header) => {
     if (this.closeSearch) {
-      this.closeSearch = false;
+      this.closeSearch = false
     } else if (item.classList.contains('expanded')) {
       this.close(item)
     } else {
@@ -95,7 +95,7 @@ class Header {
   }
 
   constructor() {
-    this.relabel();
+    this.relabel()
     document.addEventListener('pjax:success', this.relabel)
     document.addEventListener('pjax:send', () => this.close())
     this.button.addEventListener('mousedown', () => {

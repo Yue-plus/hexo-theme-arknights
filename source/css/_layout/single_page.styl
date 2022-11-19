@@ -1,12 +1,14 @@
 @media ( max-width 1023px )
   .hide.navBtn
     transform translateY(-2em)
-
+  :is(.moving, .up) nav
+    overflow visible
   .moving
+    pointer-events none
     .search-header,
     .search-popup
       transition unset
-    nav
+    .navContent
       overflow visible
 
   .up article
@@ -14,8 +16,6 @@
   .up .closed
     .navBtn
       transform translateY(-.5em)
-    &.header,
-    nav,
     .navContent
       overflow visible
 

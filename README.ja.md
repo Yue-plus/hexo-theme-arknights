@@ -9,7 +9,7 @@
 
 デモページはこちらです。　　
 
-- ### **Dr.Yue_plus: <http://ark.theme.yueplus.ink/>**
+- ### **Dr.Yue_plus: <http://arknights.theme.hexo.yue.zone/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
 - **Dr.XIMU：<http://b.ligzs.cn/>**

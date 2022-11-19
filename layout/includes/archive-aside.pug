@@ -1,0 +1,13 @@
+#archive-aside
+  #Categories
+    h1 #{__('menu.category.plural')}
+    if categoriesList
+      != categoriesList
+    else
+      p #{__('menu.empty')}
+  #Tags
+    h1 #{__('menu.tag.plural')}
+    if tagsList
+      != tagsList
+    else
+      p #{__('menu.empty')}
