@@ -1,11 +1,8 @@
 | [简体中文](README.md)
 | [English](README.en.md)
 | [日本語](README.ja.md)
-| 
 
 # hexo-theme-arknights
-
-
 
 ## Preview
 
@@ -26,14 +23,15 @@ If you're using this theme, we will appreciate it if you could put your link her
 ## System requirements
 
 - [Node.js >= `16.13.x`](https://nodejs.org/)
-- [Hexo](https://hexo.io/)
+- [Newest Hexo](https://hexo.io/)
   > Hexo >= `6.0.0`;
   > hexo-cli >= `4.3.0`;
 - It is recommended to use `cnpm` to install dependencies if you're in mainland China. Please refer to [npmmirror](https://npmmirror.com/)
 
 ## Install
 
-### Use `hexo-cli` to create a new blog project:
+### Use `hexo-cli` to create a new blog project
+
 (and clone this repo into it)  
 
 ```shell script
@@ -42,33 +40,35 @@ cd Hexo
 npm install
 git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 ```
+
 Note: For `cnpm` users, please replace `npm` with `cnpm`. Same below.  
 
 ### Install dependencies
 
 For npm users:
-```shell script 
+
+```shell script
 npm install hexo-server hexo-browsersync hexo-renderer-pug --save
 ```
 
 For yarn users:
+
 ```shell script
 yarn add hexo-server hexo-browsersync hexo-renderer-pug
 ```
 
 ### Edit configurations
 
--  Edit `_config.yml` under folder `Hexo/`. You can refer to [Hexo](https://hexo.io/docs/configuration).  
+- Edit `_config.yml` under folder `Hexo/`. You can refer to [Hexo](https://hexo.io/docs/configuration).  
     - Change the value of `theme:` to `arknights`
     - Enable code highlighting：
       ```yml
       highlight:
         hljs: true
       ```
-- Copy `Hexo/themes/arknights/_config.yml` to the root directory of Hexo, and rename it to `_config.arknights.yml`.  
+- **Move** `Hexo/themes/arknights/_config.yml` to the root directory of Hexo, and rename it to `_config.arknights.yml`.  
   > Please refer to：
   > - [Alternate Theme Config](https://hexo.io/docs/configuration#Alternate-Theme-Config)
-  > - [`_config.arknights.yml` in branch hexo](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml)
   
   The configuration file of the theme can be modified by referring to the Chinese comments.  
 
@@ -93,7 +93,8 @@ These files in folder `Hexo/themes/arknights/source/` can be modified as needed:
   category: Example
   ---
   ```
-- The content before `<!-- more -->` is called a summary, it will be displayed on the home page, and you can set whether it is also displayed in the main body of the article.  
+
+- The content before `<!-- more -->` is called a summary. It will be displayed on the home page, and you can set whether it is also displayed in the main body of the article.  
 
 ## Custom pages in the top navigation bar
 
@@ -104,7 +105,7 @@ These files in folder `Hexo/themes/arknights/source/` can be modified as needed:
   ```
   Hexo will create an `about` folder in `Hexo/source/`  
 - Edit file `Hexo/source/about/index.md`  
-- Edit `_config.yml` in the theme's folder, and add a link there:  
+- Edit `_config.arknights.yml`, and add a link there:  
   ```yml
   menu:
     About: /about
@@ -118,7 +119,6 @@ The theme supports [Valine](https://valine.js.org/en/index.html).
 Please refer to [Valine Quick Start](https://valine.js.org/en/quickstart.html) and edit `_config.arknights.yml` in your Hexo directory:  
 
 ```yaml
-# Valine no backend comment system
 valine:
   enable: false
   app_id: # APP ID
@@ -143,7 +143,7 @@ gitalk:
   repo: # GitHub repository
   owner: # GitHub repository owner
   admin: [] # GitHub repository owner and collaborators (Users who having write access to this repository)
-                # Example: [adminA,adminB]
+            # Example: [adminA,adminB]
   id: # The unique id of the page
       # Example: location.pathname
 ```
@@ -154,7 +154,7 @@ The theme supports two scenarios for displaying math formulas:
 
 ### Option 1: Static rendering
 
-You can use [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) to render math formulas:  
+You can use [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) filter to render math formulas statically:  
 
 1. Run the following commands in your Hexo directory:  
 
@@ -174,7 +174,7 @@ mathjax:
   cjk_width: 0.9 # Relatively CJK character width
   normal_width: 0.6 # Relatively normal width
   append_css: true # Add CSS to every pages
-  every_page: false # If true, then every page will be rendered by mathjax, regardless of the `mathjax` setting in the preamble of each article
+  every_page: false # If true, then every page will be rendered by mathjax, regardless of the `mathjax` setting in the front-matter of each article
 ```
 
 3. Add `mathjax: true` in the [Front-matter](https://hexo.io/docs/front-matter) of article that requires mathjax to be enabled:  
@@ -213,44 +213,50 @@ Then, you can use LaTeX in your articles.
 The theme also supports [MathJax](https://www.mathjax.org/), to dynamically render formulas as the user browses：
 
 1. First, uninstall the hexo-renderer-marked renderer that comes with Hexo by default, and replace with [hexo-renderer-kramed](https://github.com/sun11/hexo-renderer-kramed) with better MathJax support:  
-   ```shell
-   $ npm uninstall hexo-renderer-marked --save
-   $ npm install hexo-renderer-kramed --save
-   ```
-2. Edit `_config.arknights.yml` in your **Hexo directory**:  
-   ```diff
-    # Formula support
-    mathjax:
-   -  enable: false
-   +  enable: true
-      version: '2.6.1'
-   ```
-3. Then, you can use LaTeX in your articles:  
-   ```latex
-   % Single-line inline formula
-   % Note that you need to put "`" on both sides, and there can be no space between "`" and "$"
-   `$\sigma$`
 
-   % Multi-line formula
-   $$
-   \begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
-   &= x\end{aligned}
-   $$
-   ```
+```shell
+npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-kramed --save
+```
+
+2. Edit `_config.arknights.yml` in your **Hexo directory**:  
+
+```diff
+# Formula support
+mathjax:
+-  enable: false
++  enable: true
+  version: '2.6.1'  # important
+```
+
+3. Then, you can use LaTeX in your articles:  
+
+```latex
+% Single-line inline formula
+% Note that you need to put "`" on both sides, and there can be no space between "`" and "$"
+`$\sigma$`
+
+% Multi-line formula
+$$
+\begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
+&= x\end{aligned}
+$$
+```
+
 4. With this scheme, there will be no conflict between LaTeX and Markdown syntax. Escaping is not required to use LaTeX syntax in the text.  
-   The following formulas can be used directly without any problems:  
-   ```latex
-   \epsilon_0
-   \begin{eqnarray*}
-   ```
+The following formulas can be used directly without any problems:  
+
+```latex
+\epsilon_0
+\begin{eqnarray*}
+```
 
 The hexo-renderer-kramed plugin has other configurable items, please refer to the plugin documentation: https://github.com/sun11/hexo-renderer-kramed  
 
-
 Advantages and disadvantages of these formula display schemes:  
-1. The dynamic rendering does not require escaping, and can better support Markdown files exported from other places. But since it needs to be rendered in the browser, the page display will be slightly delayed.  
+
+1. Dynamic rendering does not require escaping, and can better support Markdown files exported from other places. But since it needs to be rendered in the browser, the page display will be slightly delayed.  
 2. The static rendering compiles the formula directly into the static file, which has better display performance, but the syntax needs to be escaped.  
-3. Use [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) to take into account both display performance and no escaping, but you need to install a pandoc converter in the environment.  
 
 ## Chart support
 
@@ -291,6 +297,30 @@ Syntax：
 
 > It is also fully supported if you are used to using `code blocks`.  
 
+## Word count & Reading time statistics
+
+Depends [`hexo-wordcount`](https://github.com/willin/hexo-wordcount)：
+
+For npm users:
+
+```shell script
+cnpm install hexo-wordcount --save
+```
+
+For yarn users:
+
+```shell script
+yarn add hexo-wordcount
+```
+
+Then edit `_config.arknights.yml` in your **Hexo directory**:
+
+```yaml
+post:
+  count: true # Display word count
+  time: true # Display reading time statistics
+```
+
 ## Document encryption
 
 **Note: Front-end encryption is not reliable!**
@@ -298,18 +328,13 @@ Syntax：
 **Note！** This encryption plugin encrypts the digest content, so it is not possible to hide digests in the body when using this plugin. In `_config.arknights.yaml`:  
 
 ```yaml
-# post artical page configuration; true / false
 post:
-  date: true # Whether to show the publish date
-  updated: true # Whether to show the modification date
-  source: false # Whether to display the source file path
-  excerpt: true # Whether to show summary content in the article（contents before <!-- more--> ）   <===== cannot be false
-  reward: true # Whether to show reward QR code at the end of the article
+  excerpt: true # Whether to show digest in the article（contents before <!-- more--> ）   <===== cannot be false
 ```
 
 You can try the [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) plugin for document encryption.  
 
-> Detailed reference: [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.md)
+> Detailed reference: [hexo-blog-encrypt/ReadMe.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.md)
 
 ```sh
 cnpm install hexo-blog-encrypt --save
@@ -321,7 +346,7 @@ Add the following into `Hexo/_config.yml`:
 # Security
 encrypt: # hexo-blog-encrypt
   abstract: Password required for weak neural connection to Rhodes Island™
-  message: Please enter password for weak neural connection to Rhodes Island™: 
+  message: Please enter password for weak neural connection to Rhodes Island™
   tags:
   - {name: tagName, password: PassowrdA}
   - {name: tagName, password: PasswordB}
@@ -340,7 +365,7 @@ tags:
 date: 2016-03-30 21:12:21
 password: mikemessi
 abstract: Password required for weak neural connection to Rhodes Island™
-message: Please enter password for weak neural connection to Rhodes Island™: 
+message: Please enter password for weak neural connection to Rhodes Island™
 wrong_pass_message: Failed to verify password with Rhodes Island™, please try again.
 wrong_hash_message: Failed to validate password with Rhodes Island™, currently viewing with temporary privileges.
 ---
@@ -348,26 +373,11 @@ wrong_hash_message: Failed to validate password with Rhodes Island™, currently
 
 ## Searching
 
-Please install hexo-generator-searchdb to generate search database:  
-
-For npm users:
-```shell script 
-cnpm install hexo-generator-searchdb --save
-```
-
-For yarn users:
-```shell script
-yarn add hexo-generator-searchdb
-```
-
-Add the following into `Hexo/_config.arknights.yml`:  
+Searching is enabled by default. To disable it, edit your `Hexo/_config.arknights.yml` file:
 
 ```yaml
 search:
-  enable: true
-  preload: true # Non-essential
-  path: search.json
-  format: striptags # Non-essential, use to shrink the file (Can greatly reduce the size of the search data file, recommended)
+  enable: false
 ```
 
 ## Front-matter
@@ -408,29 +418,7 @@ Then edit `Hexo/_config.arknights.yml`:
 > With the exception of the `_posts` folder, files/folders and hidden files named starting with `_` (underscore) will be ignored.
 > Markdown and HTML files will be parsed and put into the `public` folder, while other files are copied over there.
 >
-> - From [Hexo Official Documentation](https://hexo.io/docs/setup#source)
-
-## Word count/reading time statistics
-
-You can use [`hexo-wordcount`](https://github.com/willin/hexo-wordcount):  
-
-For npm users:  
-```shell script 
-cnpm install hexo-wordcount --save
-```
-
-For yarn users:  
-```shell script
-yarn add hexo-wordcount
-```
-
-Then edit `_config.arknights.yml` in your **Hexo directory**:  
-
-```yaml
-post:
-  count: true # Whether to display word count
-  time: true # Whether to display reading time statistics
-```
+> -- From [Hexo Official Documentation](https://hexo.io/docs/setup#source)
 
 ## Contribute
 
@@ -466,6 +454,7 @@ in the file
 -->
 
 #### Modified TS file does not take effect
+
 This is because after splitting the file, JavaScript is compiled manually instead. Please install `typescript` and run `tsc` in `arknights\source\js` to compile.  
 
 #### Long articles are not fully rendered when running 'hexo serve --debug'
@@ -485,4 +474,3 @@ If you enjoy this theme:
 - reward/sponsor:
 
 ![Reward QR code](./support.jpg)
-    

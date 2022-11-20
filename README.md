@@ -98,7 +98,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
   ```
   然后 `Hexo/source/` 目录下会多一个 `about` 文件夹
 - 编辑 `Hexo/source/about/index.md` 文件
-- 编辑主题目录下的 `_config.yml`，添加一个链接：
+- 编辑 `_config.arknights.yml`，添加一个链接：
   ```yml
   menu:
     About: /about
@@ -207,41 +207,48 @@ mathjax: true
 本主题也支持 [MathJax](https://www.mathjax.org/) ，在用户浏览时动态渲染公式：
 
 1. 首先要卸载 Hexo 默认自带的 hexo-renderer-marked 渲染器，更换成对 MathJax 支持更好的 [hexo-renderer-kramed](https://github.com/sun11/hexo-renderer-kramed) 渲染器：
-   ```shell
-   $ npm uninstall hexo-renderer-marked --save
-   $ npm install hexo-renderer-kramed --save
-   ```
+
+```shell
+npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-kramed --save
+```
+
 2. 修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件：
-   ```diff
-    # 公式支持
-    mathjax:
-   -  enable: false
-   +  enable: true
-      version: '2.6.1'
-   ```
+
+```diff
+# 公式支持
+mathjax:
+-  enable: false
++  enable: true
+  version: '2.6.1'  # 重要
+```
+
 3. 然后，就可以在文章中使用 LaTeX 语法：
-   ```latex
-   % 单行内联公式
-   % 注意需要两边带上 "`" ，且 "`" 与 "$" 之间不能有空格
-   `$\sigma$`
-   
-   % 多行公式
-   $$
-   \begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
-   &= x\end{aligned}
-   $$
-   ```
+
+```latex
+% 单行内联公式
+% 注意需要两边带上 "`" ，且 "`" 与 "$" 之间不能有空格
+`$\sigma$`
+
+% 多行公式
+$$
+\begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
+&= x\end{aligned}
+$$
+```
+
 4. 用这种方案，不会造成 LaTeX 与 Markdown 语法之间的冲突。在文中使用 LaTeX 语法不需要转义。
-   以下公式可以直接使用，不会造成任何问题：
-   ```latex
-   \epsilon_0
-   \begin{eqnarray*}
-   ```
+以下公式可以直接使用，不会造成任何问题：
+
+```latex
+\epsilon_0
+\begin{eqnarray*}
+```
 
 hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： https://github.com/sun11/hexo-renderer-kramed
 
-
 几种公式显示方案各有优缺点：
+
 1. 动态渲染方案 LaTeX 语法不需要转义，能更好的支持从其他地方导出的 Markdown 文件。但因为需要在浏览器渲染，页面显示会略有延迟。
 2. 静态渲染方案将公式直接编译在静态文件里，显示性能更优，但语法需要转义。
 
@@ -289,11 +296,13 @@ hexo-renderer-kramed 插件还有其他可配置项，请参考插件文档： h
 依赖 [`hexo-wordcount`](https://github.com/willin/hexo-wordcount)：
 
 npm 用户：
-```shell script 
+
+```shell script
 cnpm install hexo-wordcount --save
 ```
 
 yarn 用户：
+
 ```shell script
 yarn add hexo-wordcount
 ```
@@ -476,4 +485,3 @@ reward: true/false
 - 打赏、赞助:
 
 ![收款二维码](./support.jpg)
-    
