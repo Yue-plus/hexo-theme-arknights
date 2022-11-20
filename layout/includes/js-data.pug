@@ -8,7 +8,7 @@ script.pjax-js reset=_=>{
     |  , appKey: '#{theme.valine.app_key}'
     if theme.valine.server_url
       | , serverURLs: '#{theme.valine.server_url}'
-    |  , placeholder: #{__('Valine.placeHolder')}
+    |  , placeholder: '#{__('Valine.placeHolder')}'
     |});
   if theme.gitalk !== undefined && theme.gitalk.enable === true
     - let config = theme.gitalk, gitAdmin = ''
