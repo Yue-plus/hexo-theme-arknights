@@ -68,7 +68,7 @@ block content
               a(href=url_for(next.path))
                 = next.title + ' '
                 |Prev →
-    if reward !== false
+    if reward
       details#reward
         summary #{__('post.reward')}
         each imgSrc, pay in reward
