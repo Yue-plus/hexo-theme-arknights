@@ -18,6 +18,7 @@
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Tanle <https://ztblog.work/>**
+- **Dr.Sherkey <https://blog.sherkey.ml/>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 

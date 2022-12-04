@@ -2,39 +2,39 @@
 name: 简体中文
 
 page:
-  readMore: READ MORE +
-  noTag: empty
-  noCategory: NO CATEGORY
+  readMore: 阅读文章 +
+  noTag: 无标签
+  noCategory: 无分类
 
 post:
-  posted: "First Post: "
-  edited: "Last Update: "
-  countTotal: "Word Count: "
-  timeTotal: "Read Time: "
-  timeUnit: min
-  index: INDEX
+  posted: "文章发布时间: "
+  edited: "最后更新时间: "
+  countTotal: "文章总字数: "
+  timeTotal: "预计阅读时间: "
+  timeUnit: 分钟
+  index: 文章目录
   reward: 打赏
-  noTitle: No Title
+  noTitle: 无标题
 
 code:
-  codeInfo: $0 共 $1 行
+  codeInfo: $0 - 共 $1 行
   copy: 复制
-  copyFinish: 完成
+  copyFinish: 复制成功
   expand: 展开
 
 menu:
   archive:
-    name: Archive
-    plural: Archives
-  navigation: NAVIGATION
+    name: 文章
+    plural: 文章
+  navigation: 导航
   tag:
-    name: Tag
-    plural: Tags
+    name: 标签
+    plural: 标签
   category:
-    name: Category
-    plural: Categories
-  empty: None.
-  total: Total
+    name: 分类
+    plural: 分类
+  empty: 无
+  total: 总数
 
 search:
   activeHolder: 键入以继续
@@ -42,9 +42,9 @@ search:
   noResult: 无 $0 相关数据
 
 footer:
-  publish: published with
-  theme: Theme
-  by: by
+  publish: 构建自
+  theme: 使用主题
+  by: 主题作者
 
 Valine:
   placeHolder: 此条评论委托企鹅物流发送

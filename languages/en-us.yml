@@ -1,0 +1,50 @@
+---
+name: english
+
+page:
+  readMore: READ MORE +
+  noTag: empty
+  noCategory: NO CATEGORY
+
+post:
+  posted: "First Post: "
+  edited: "Last Update: "
+  countTotal: "Word Count: "
+  timeTotal: "Read Time: "
+  timeUnit: min
+  index: Catalog
+  reward: reward
+  noTitle: No Title
+
+code:
+  codeInfo: $0 - $1 lines
+  copy: copy
+  copyFinish: copied
+  expand: expand
+
+menu:
+  archive:
+    name: Archive
+    plural: Archives
+  navigation: NAVIGATION
+  tag:
+    name: Tag
+    plural: Tags
+  category:
+    name: Category
+    plural: Categories
+  empty: None.
+  total: Total
+
+search:
+  activeHolder: Enter here
+  blurHolder: Search the blog
+  noResult: Data "$0" not found
+
+footer:
+  publish: Published with
+  theme: Theme
+  by: by
+
+Valine:
+  placeHolder: This comment is sent by Penguin Logistics.
