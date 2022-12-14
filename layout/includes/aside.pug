@@ -6,8 +6,7 @@ aside
       h1#Dr
         a(href= theme.aside.dr)= config.author
       #description
-        for str in config.description
-          p= str
+        p!= config.description
     #aside-block
       block aside-block
       if page.published === undefined
