@@ -13,8 +13,9 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
-- **Dr.TTsdzb <https://blog.ttsdzb.monster/>**
+- **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Tanle <https://ztblog.work/>**
+- **Dr.Sherkey <https://blog.sherkey.ml/>**
 
 If you're using this theme, we will appreciate it if you could put your link here for a preview!  
 
