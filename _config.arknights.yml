@@ -1,5 +1,5 @@
 # html lang
-language: zh
+language: en-us
 
 # canvas 动态背景
 canvas_dust: true
