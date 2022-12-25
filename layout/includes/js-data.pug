@@ -1,5 +1,12 @@
 if searchConfig !== null
   script(src="/js/search.js")
+if theme.waline !== undefined && theme.waline.enable === true
+  script(type='module').
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+    init({
+        el: '#waline',
+        serverURL: '#{theme.waline.server_url}',
+      });
 script.pjax-js reset=_=>{
   if theme.valine !== undefined && theme.valine.enable === true
     |new Valine({
