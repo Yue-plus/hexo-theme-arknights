@@ -5,6 +5,8 @@ title= pageTitle
 script var config = !{configs}
 if theme.valine !== undefined && theme.valine.enable === true
   script(src='//unpkg.com/valine/dist/Valine.min.js')
+if theme.waline !== undefined && theme.waline.enable === true
+  link(rel="stylesheet", href= url_for('https://unpkg.com/@waline/client@v2/dist/waline.css'))
 if theme.gitalk !== undefined && theme.gitalk.enable === true
   script(src=config.root + "js/gitalk.js")
 
