@@ -9,7 +9,7 @@
 - ### **Dr.Yue_plus: <http://arknights.theme.hexo.yue.zone/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
-- **Dr.XIMU：<http://b.ligzs.cn/>**
+- **Dr.XIMU:<http://b.ligzs.cn/>**
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
@@ -62,13 +62,13 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
 - Edit `_config.yml` under folder `Hexo/`. You can refer to [Hexo](https://hexo.io/docs/configuration).  
     - Change the value of `theme:` to `arknights`
-    - Enable code highlighting：
+    - Enable code highlighting:
       ```yml
       highlight:
         hljs: true
       ```
 - **Move** `Hexo/themes/arknights/_config.yml` to the root directory of Hexo, and rename it to `_config.arknights.yml`.  
-  > Please refer to：
+  > Please refer to:
   > - [Alternate Theme Config](https://hexo.io/docs/configuration#Alternate-Theme-Config)
   
   The configuration file of the theme can be modified by referring to the Chinese comments.  
@@ -76,14 +76,14 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 ### Edit asset files
 
 These files in folder `Hexo/themes/arknights/source/` can be modified as needed:
-- `favicon.ico`：Icons on browser tabs
+- `favicon.ico`:Icons on browser tabs
 - `CNAME`: Custom domain name when GitHub Pages is deployed
 - `README.md`: README for deployment repository
 - `Alipay.png` and `WeChat.png` in folder `img/` can be replaced with your own reward QR code (1:1 scale `png` image);  
 
 ## Writing
 
-- Please refer to [Hexo | Writing](https://hexo.io/docs/writing)。
+- Please refer to [Hexo | Writing](https://hexo.io/docs/writing).
 - There are some [sample texts](https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts) available in the Hexo branch.  
 - To add tags and categories, or for more features, please refer to [Hexo | Front-matter](https://hexo.io/docs/front-matter). Example:
   ```markdown
@@ -129,11 +129,11 @@ valine:
 
 For notifications with email: [zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
-> **Note！** `server_url:` is ONLY required when using *LeanCloud international version* .  
+> **Note!** `server_url:` is ONLY required when using *LeanCloud international version* .  
 
 ### Gitalk
 
-The theme supports [Gitalk](https://gitalk.github.io/) 。
+The theme supports [Gitalk](https://gitalk.github.io/) .
 Please refer to [gitalk/readme.md](https://github.com/gitalk/gitalk/blob/master/readme.md) and edit `_config.arknights.yml` in your Hexo directory:  
 
 ```yaml
@@ -147,6 +147,17 @@ gitalk:
             # Example: [adminA,adminB]
   id: # The unique id of the page
       # Example: location.pathname
+```
+
+### Waline
+
+The theme supports [Waline](https://waline.js.org/).  
+Please refer to [Waline docs](https://waline.js.org/) and edit `_config.arknights.yml` in your Hexo directory
+
+```yaml
+waline:
+  enable: false 
+  server_url: #Server_Url
 ```
 
 ## Mathematical formulas
@@ -211,7 +222,7 @@ Then, you can use LaTeX in your articles.
 
 ### Option 2: Dynamic rendering
 
-The theme also supports [MathJax](https://www.mathjax.org/), to dynamically render formulas as the user browses：
+The theme also supports [MathJax](https://www.mathjax.org/), to dynamically render formulas as the user browses:
 
 1. First, uninstall the hexo-renderer-marked renderer that comes with Hexo by default, and replace with [hexo-renderer-kramed](https://github.com/sun11/hexo-renderer-kramed) with better MathJax support:  
 
@@ -273,7 +284,7 @@ Edit `_config.arknights.yml` in your **Hexo directory**:
 
 The theme renders various charts via mermaid-js. **[Examples](https://ark.theme.yueplus.ink/mermaid/)**
 
-Supports：
+Supports:
 [Flow Chart](https://ark.theme.yueplus.ink/mermaid/#%E6%B5%81%E7%A8%8B%E5%9B%BE)
 | [Sequence Diagram](https://ark.theme.yueplus.ink/mermaid/#%E5%BA%8F%E5%88%97%E5%9B%BE)
 | [Class Diagram](https://ark.theme.yueplus.ink/mermaid/#%E7%B1%BB%E5%9B%BE)
@@ -284,7 +295,7 @@ Supports：
 | [Instruction Map](https://ark.theme.yueplus.ink/mermaid/#%E6%8C%87%E4%BB%A4%E5%9B%BE)
 | [Pie Chart](https://ark.theme.yueplus.ink/mermaid/#%E9%A5%BC%E5%9B%BE)
 
-Syntax：
+Syntax:
 
 ```html
 <div class="mermaid">
@@ -300,7 +311,7 @@ Syntax：
 
 ## Word count & Reading time statistics
 
-Depends [`hexo-wordcount`](https://github.com/willin/hexo-wordcount)：
+Depends [`hexo-wordcount`](https://github.com/willin/hexo-wordcount):
 
 For npm users:
 
@@ -326,11 +337,11 @@ post:
 
 **Note: Front-end encryption is not reliable!**
 
-**Note！** This encryption plugin encrypts the digest content, so it is not possible to hide digests in the body when using this plugin. In `_config.arknights.yaml`:  
+**Note!** This encryption plugin encrypts the digest content, so it is not possible to hide digests in the body when using this plugin. In `_config.arknights.yaml`:  
 
 ```yaml
 post:
-  excerpt: true # Whether to show digest in the article（contents before <!-- more--> ）   <===== cannot be false
+  excerpt: true # Whether to show digest in the article(contents before <!-- more--> )   <===== cannot be false
 ```
 
 You can try the [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) plugin for document encryption.  
@@ -471,7 +482,7 @@ If you enjoy this theme:
   > - √ `ヾ(✿ﾟ▽ﾟ)ノ` 100star for a new theme~
   > - new theme developing: [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - Arknights ID of the developer: `24444750` (Chinese Bilibili server)
-- join Tencent QQ discussion group：618221514
+- join Tencent QQ discussion group:618221514
 - reward/sponsor:
 
 ![Reward QR code](./support.jpg)

@@ -142,6 +142,16 @@ gitalk:
   id: # (可选) 页面的唯一标识
   # 例如: location.pathname
 ```
+### Waline
+
+本主题支持 [Waline](https://waline.js.org/) 。  
+请参考 [Waline官方文档](https://waline.js.org/) 修改 Hexo 目录下的 `_config.arknights.yml` 文件:  
+```yaml
+waline:
+  enable: false 
+  server_url: #Server_Url
+```
+
 
 ## 数学公式
 
