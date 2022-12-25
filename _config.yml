@@ -76,6 +76,12 @@ gitalk:
   admin: [] # 具有写该 GitHub 仓库权限的用户，例如: [adminA,adminB]
   id: # (可选) 页面的唯一标识，例如: location.pathname
 
+# Waline
+# 详情: https://waline.js.org/
+waline:
+  enable: false 
+  server_url: #Server_Url
+
 # 图表支持
 mermaid:
   enable: true
