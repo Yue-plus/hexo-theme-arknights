@@ -8,7 +8,8 @@
 - **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
-- **Dr.TTsdzb <https://blog.ttsdzb.monster/>**
+- **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Tanle <https://ztblog.work/>**
+- **Dr.Sherkey <https://blog.sherkey.ml/>**
 
 如果使用了这个主题，欢迎发起 Pull Requests 在这儿贴友链~
