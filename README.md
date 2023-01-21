@@ -16,6 +16,7 @@
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Tanle <https://ztblog.work/>**
 - **Dr.Sherkey <https://blog.sherkey.ml/>**
+- **Dr.Angine <https://angine.tech>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
