@@ -379,34 +379,35 @@ class Header {
         this.header = getElement('header');
         this.button = getElement('.navBtnIcon');
         this.closeSearch = false;
+        this.readyRev = true;
         this.relabel = () => {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
             getElement('.navBtn').classList.add('hide');
             navs.forEach(item => {
-                if (item.id === 'search-header') {
-                    return;
+                try {
+                    let now = item, link = getElement('a', now);
+                    if (link !== null) {
+                        let href = link.href, match = now.getAttribute('matchdata');
+                        now.classList.remove('active');
+                        if (getParent(link) != now) {
+                            return;
+                        }
+                        if (href.length > mayLen && document.URL.match(href) !== null) {
+                            mayLen = href.length;
+                            may = now;
+                        }
+                        if (match) {
+                            const s = match.split(',');
+                            s.forEach(item => {
+                                if (document.URL.match(item) !== null) {
+                                    may = now;
+                                    mayLen = Infinity;
+                                }
+                            });
+                        }
+                    }
                 }
-                let now = item, link = getElement('a', now);
-                if (link !== null) {
-                    let href = link.href, match = now.getAttribute('matchdata');
-                    now.classList.remove('active');
-                    if (getParent(link) != now) {
-                        return;
-                    }
-                    if (href.length > mayLen && document.URL.match(href) !== null) {
-                        mayLen = href.length;
-                        may = now;
-                    }
-                    if (match) {
-                        const s = match.split(',');
-                        s.forEach(item => {
-                            if (document.URL.match(item) !== null) {
-                                may = now;
-                                mayLen = Infinity;
-                            }
-                        });
-                    }
-                }
+                catch (e) { }
             });
             if (may !== null) {
                 do {
@@ -442,18 +443,25 @@ class Header {
                 item.classList.add('moving');
                 setTimeout(() => item.classList.remove('moving'), 300);
                 this.closeAll();
+                getElement('nav', item).classList.remove('moved');
             }
         };
         this.reverse = (item = this.header) => {
             if (this.closeSearch) {
                 this.closeSearch = false;
+                return;
             }
-            else if (item.classList.contains('expanded')) {
+            if (!this.readyRev) {
+                return;
+            }
+            this.readyRev = false;
+            if (item.classList.contains('expanded')) {
                 this.close(item);
             }
             else {
                 this.open(item);
             }
+            setTimeout(() => this.readyRev = true, 300);
         };
         this.closeAll = () => {
             this.header.querySelectorAll('.expanded').forEach((item) => item.classList.remove('expanded'));
@@ -490,10 +498,9 @@ class Scroll {
         this.visible = false;
         this.touchX = 0;
         this.touchY = 0x7fffffff;
-        this.mayNotUp = false;
+        this.notMoveY = false;
         this.reallyUp = false;
         this.intop = false;
-        this.startTop = false;
         this.scrolltop = () => {
             getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
             this.totop.style.opacity = '0';
@@ -595,31 +602,32 @@ class Scroll {
             catch (e) { }
         };
         this.checkTouchMove = (event) => {
-            if (Math.abs(event.changedTouches[0].clientX - this.touchX) > 50 && !this.reallyUp) {
-                this.mayNotUp = true;
+            if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 &&
+                !this.reallyUp) {
+                this.notMoveY = true;
             }
             if (document.querySelector('.expanded') ||
                 window.innerWidth > 1024 ||
-                this.mayNotUp ||
-                event.changedTouches[0].clientY == this.touchY) {
+                this.notMoveY ||
+                event.changedTouches[0].screenY === this.touchY ||
+                document.querySelector('.moving')) {
                 return;
             }
-            if (this.startTop || getElement('article').getBoundingClientRect().top >= 0) {
+            if (getElement('article').getBoundingClientRect().top >= 0) {
                 this.reallyUp = true;
-                if (event.changedTouches[0].clientY > this.touchY) {
+                if (event.changedTouches[0].screenY > this.touchY) {
                     this.slideUp();
                 }
                 else {
                     this.slideDown();
                 }
-                this.touchY = event.changedTouches[0].clientY;
+                this.touchY = event.changedTouches[0].screenY;
             }
         };
         this.startTouch = (event) => {
-            this.touchX = event.changedTouches[0].clientX;
-            this.touchY = event.changedTouches[0].clientY;
-            this.mayNotUp = false;
-            this.startTop = getElement('article').getBoundingClientRect().top >= 0;
+            this.touchX = event.changedTouches[0].screenX;
+            this.touchY = event.changedTouches[0].screenY;
+            this.notMoveY = false;
         };
         document.addEventListener('pjax:success', this.setHtml);
         document.addEventListener('touchstart', this.startTouch);
