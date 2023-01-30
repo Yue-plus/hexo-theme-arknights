@@ -6,6 +6,7 @@ class Header {
   private readonly header: HTMLElement = getElement('header')
   private readonly button: HTMLElement = getElement('.navBtnIcon')
   private closeSearch: boolean = false
+  private readyRev: boolean = true
 
   private relabel = () => {
     let navs = this.header.querySelectorAll('.navItem'),
@@ -13,31 +14,30 @@ class Header {
       may: Element = navs.item(0)
     getElement('.navBtn').classList.add('hide')
     navs.forEach(item => {
-      if (item.id === 'search-header') {
-        return
-      }
-      let now = item as HTMLElement,
-        link = getElement('a', now) as HTMLAnchorElement
-      if (link !== null) {
-        let href = link.href, match = now.getAttribute('matchdata')
-        now.classList.remove('active')
-        if (getParent(link) != now) {
-          return
+      try { 
+        let now = item as HTMLElement,
+          link = getElement('a', now) as HTMLAnchorElement
+        if (link !== null) {
+          let href = link.href, match = now.getAttribute('matchdata')
+          now.classList.remove('active')
+          if (getParent(link) != now) {
+            return
+          }
+          if (href.length > mayLen && document.URL.match(href) !== null) {
+            mayLen = href.length
+            may = now
+          }
+          if (match) {
+            const s = match.split(',')
+            s.forEach(item => {
+              if (document.URL.match(item) !== null) {
+                may = now
+                mayLen = Infinity
+              }
+            })
+          }
         }
-        if (href.length > mayLen && document.URL.match(href) !== null) {
-          mayLen = href.length
-          may = now
-        }
-        if (match) {
-          const s = match.split(',')
-          s.forEach(item => {
-            if (document.URL.match(item) !== null) {
-              may = now
-              mayLen = Infinity
-            }
-          })
-        }
-      }
+      } catch (e) {}
     })
     if (may !== null) {
       do {
@@ -76,17 +76,25 @@ class Header {
       item.classList.add('moving')
       setTimeout(() => item.classList.remove('moving'), 300)
       this.closeAll()
+      getElement('nav', item).classList.remove('moved');
     }
   }
 
   public reverse = (item: Element = this.header) => {
     if (this.closeSearch) {
       this.closeSearch = false
-    } else if (item.classList.contains('expanded')) {
+      return
+    }
+    if (!this.readyRev) {
+      return
+    }
+    this.readyRev = false
+    if (item.classList.contains('expanded')) {
       this.close(item)
     } else {
       this.open(item)
     }
+    setTimeout(() => this.readyRev = true, 300)
   }
 
   public closeAll = () => {

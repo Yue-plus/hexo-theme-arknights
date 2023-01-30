@@ -15,8 +15,11 @@ nav
   position relative
   height 100%
   white-space nowrap
-  scroll-width none
-  overflow auto
+  scrollbar-width none
+  overflow hidden
+  display flex
+  flex-direction column
+  justify-content center
   &::-webkit-scrollbar
     display none
   &::-ms-scrollbar
@@ -44,7 +47,6 @@ nav
 .navBtn
   transition transform .3s
   pointer-events all
-  
   display block
   position absolute
   top 1em
@@ -88,14 +90,8 @@ nav
 .navContent
   overflow visible
   margin unset
-  min-height 100%
-  height fit-content
-  display flex
-  flex-direction column
-  justify-content center
   position relative
   padding 0
-  box-sizing border-box
   pointer-events all
 
 .navItem
@@ -159,8 +155,6 @@ extendList()
     left 0
     .navContent
       padding-left 0
-  .navItem
-    padding-left 2.5em
 
 @media ( max-width 1023px )
   header
@@ -171,27 +165,37 @@ extendList()
     max-width 428px
     height max-content
     min-height 100vh
+    &::before
+      content ""
+      height 100%
+      width 100%
+      position absolute
+      top 0
+      left 0
+      background-color rgba(0, 0, 0, 0.88)
+      transform translateX(-100%)
+      transition transform .6s
+      pointer-events all
   .navBtn
     left 1em
   .navContent
     overflow-y auto
     transform translateX(-100%)
     width 100%
-    padding: 4.5em 2.5em 2em;
     transition transform 0.6s
-    background-color rgba(0, 0, 0, 0.88)
-    height 100vh
+  .navItem
+    padding .1em 4em
   .navBlock
     &:hover
       background-color unset
     box-sizing border-box
     align-items flex-end
-    padding 2px 2em
+    padding unset
     border-bottom 1px solid rgba(57, 57, 57, 0.5)
     height 100%
   .navItemTitle
     color #fff
-    padding-bottom 7px
+    padding-bottom 5px
     &::after
       height 0
       border-bottom 2px solid #fff
@@ -199,8 +203,10 @@ extendList()
       right 0
   .active>:is(a,.navBlock)>.navItemTitle::after
     border-color #2bf
-  .expanded .navContent
-    transform translateX(0%)
+  .expanded
+    .navContent,
+    nav::before
+      transform translateX(0%)
   .navItemList
     width 100%
     &>.navItem
@@ -221,6 +227,8 @@ extendList()
 @media ( min-width 1024px )
   header
     width 180px
+  .navItem
+    width 120px
   .navBtn
     display none
   .navBlock:hover
@@ -247,7 +255,8 @@ extendList()
       &:hover>.navItemTitle
         background-color #2bf
         color #000
-  .navBlock,.navItem
+  .navBlock,
+  .navItem
     &:hover
       extendList()
 

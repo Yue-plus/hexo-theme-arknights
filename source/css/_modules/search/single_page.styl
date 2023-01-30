@@ -1,76 +1,91 @@
 @media ( max-width 1023px )
-  #search-header
-    transition unset
-    width calc(100% - 6.5em)
-    max-width 284px
-  .search .navItem:not(#search-header)
-    transform translateX(-100%)
-  .up,
-  .up .search
-    #search-header
-      width 200px
-      animation get-in-right .6s
-      transform translateX(100vw)
-      position fixed
-      top 0
-      input
-        animation none
+  .hide.navBtn
+    transform translateY(-2em)
+  :is(.moving, .up) nav
+    overflow visible
+  .moving
+    pointer-events none
+    .search-header,
     .search-popup
-      left unset
-      transform translateX(100%)
-      top 53px
-      height calc(100vh - 53px)
-      background-color rgba(20,21,22,.95)
-      &.open
-        transform translateX(0)
-  .down.moving :not(.expanded)>nav>ol>#search-header
-    animation get-out-up .6s -.05s
+      transition unset
+      pointer-events none
+    .navContent
+      overflow visible
+
+  .up .search-popup
+    left 100vw
+    transform translateX(0)
+    &.open
+      transform translateX(-100%)
+  .up article
+    margin-top 50px
+  .up .closed
+    .navBtn
+      transform translateY(-.5em)
+    .navContent
+      overflow visible
+
+  #search-header
+    top 0
+    width 100%
+    box-sizing border-box
+    transform translateX(-100%)
+
+  .expanded #search-header
+    transition transform .6s
+    transform translateX(0)
+
+  .up #search-header
+    padding .5em 2em 0 5em
+    animation get-in-top .3s
+    position absolute
+    input
+      animation none
+  .search-popup
+    left unset
+    transform translateX(100%)
+    top 53px
+    height calc(100vh - 53px)
+    background-color rgba(20,21,22,.95)
+    &.open
+      transform translateX(0)
+  .down.moving header:not(.expanded) #search-header
+    animation get-out-top .3s
+
   .search-popup
     left 0
     right 0
     transform translateX(-100%)
     &.open
       transform translateX(0%)
-@media ( max-width 1023px, min-width 769px )
-  :is(.up,.up .search) #search-header
-    right 200px
 
 @media ( max-width 768px )
-  nav #search-header
-    padding-left 4.5em
-    padding-right 2em
-  .up #search-header
-    right 0
+  .up header:not(.expanded) #search-header
+    left 100vw
 
-@keyframes get-in
-  0%
-    transform translateX(-100%)
-  100%
-    transform translateX(0)
-
-@keyframes get-out
-  0%
-    width 180%
-  100%
-    width 100%
-
-animate-up(get-right)
-  @keyframes get-out-up
+animate-up(distance)
+  @keyframes get-out-top
     0%
-      top 0
-      right get-right
-      width 200px
-      position fixed
-      transform translateX(100vw)
+      padding .5em 2em 0 5em
+      left distance
+      transform translate(-100%, 0)
+      position absolute
     100%
-      top -80px
-      right get-right
-      width 200px
-      position fixed
-      transform translateX(100vw)
+      padding .5em 2em 0 5em
+      left distance
+      position absolute
+      transform translate(-100%, -100%)
 
 @media ( min-width 769px )
-  animate-up(200px)
+  animate-up(calc(100vw - 238px))
 
 @media ( max-width 768px )
-  animate-up(0)
+  animate-up(100vw)
+
+@keyframes get-in-top
+  0%
+    padding .5em 2em 0 5em
+    transform translate(-100%, -100%)
+  100%
+    transform translate(-100%, 0)
+

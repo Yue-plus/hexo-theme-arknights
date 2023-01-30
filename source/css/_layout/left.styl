@@ -5,19 +5,11 @@ header
 
 @media ( min-width 769px )
   header
-    left 212px
+    left 238px
   .navBtn
     left 1em
   aside
     left 0
-  @media ( max-width 1023px )
-    article
-      margin-right 5%
-    .navContent
-      padding-right 0
-      transform translateX(-100%)
-    .navItem
-      padding-right 2.5em
 
 @media ( min-width 992px, max-width 1919px)
   aside
@@ -28,14 +20,16 @@ header
     left unset
     right 0
   .navContent
-    align-items flex-end
-    margin 0 0 1.5em 0
+    display flex
+    flex-direction column
     transform unset
   .navItem
+    align-self end
     padding-right 1.2em
   .navBlock
     .navItemTitle::after
       border-right 4px solid
+  .navContent:not(.search) .navBlock
     &:hover
       &::after
         content ""

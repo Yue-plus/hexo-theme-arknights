@@ -1,8 +1,10 @@
 @import "single_page.styl"
 
 #search-header
+  pointer-events all
   position relative
   input
+    padding unset
     box-sizing border-box
     color #fff
     position relative
@@ -14,10 +16,6 @@
     border unset
     outline none
     width 100%
-.moved .navItem
-  animation get-in .6s
-
-#search-header
   .navItemTitle
     overflow hidden
     &:hover
@@ -27,50 +25,51 @@
       content ""
       position absolute
 
+#search-holder
+  @media (min-width: 1024px)
+    height 40px
+  @media (max-width: 1023px)
+    height 2.82em
+  display none
+
 .search
-  transition .6s
+  #search-holder
+    display block
   #search-header
-    transition .6s
     position absolute
-    top 40px
-    transform unset
     input
       animation get-out .6s
 
-@media ( max-width 1023px )
+:not(.up)>header
   .search #search-header
-    top 38px
-  #search-header
-    padding 6px 2em
-    input
-      padding unset
+    top 40px
+  .search-popup
+    top 90px
+    height calc(100% - 90px)
 
 @media ( min-width 1024px )
   .search-popup
     background-color rgba(20,21,22,.95)
-  #search-header
-    .navItemTitle
-      &::after
-        width 0
+  #search-header .navItemTitle
+    &::after
+      width 0
+      transition .3s
+      z-index -1
+    &:hover
+      input::placeholder
         transition .3s
-        z-index -1
-      &:hover
-        input::placeholder
-          transition .3s
-          color #000
-        &::after
-          transition .3s
-          width 100%
-          background-color #2bf
+        color #000
+      &::after
+        transition .3s
+        width 100%
+        background-color #2bf
 
 .search-popup
   scrollbar-width thin
   pointer-events all
-  height calc(100% - 90px)
   z-index 20
   transition transform .6s
   position fixed
-  top 90px
   overflow-wrap anywhere
   @media ( max-width 1023px )
     width 428px
