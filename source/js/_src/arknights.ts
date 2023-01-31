@@ -5,3 +5,4 @@
 /// <reference path="include/Header.ts" />
 /// <reference path="include/scroll.ts" />
 /// <reference path="include/pjaxSupport.ts" />
+/// <reference path="include/ColorMode.ts" />

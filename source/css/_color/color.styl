@@ -1,7 +1,9 @@
-@import url(https://unpkg.com/browse/@highlightjs/cdn-assets@11.6.0/styles/atom-one-light.min.css)
+:root
+  --dark-background s('url(' + hexo-config('background_image.dark') + ')')
+  --light-background s('url(' + hexo-config('background_image.light') + ')')
 
 :root[theme-mode=dark]
-  --body-background s('url(' + hexo-config('background_image.dark') + ')')
+  --body-background var(--dark-background)
 
   --theme-highlight #2bf
   --theme-subcolor #fe2
@@ -54,7 +56,7 @@
   --theme-loadingbar #fff
 
 :root[theme-mode=light]
-  --body-background s('url(' + hexo-config('background_image.light') + ')')
+  --body-background var(--light-background)
 
   --theme-highlight #2bf
   --theme-subcolor #fe2
