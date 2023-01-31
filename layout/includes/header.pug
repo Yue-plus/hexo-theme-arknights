@@ -19,13 +19,14 @@ header.closed
         span.navBtnIconBar
         span.navBtnIconBar
         span.navBtnIconBar
+    if searchConfig !== null
+      .navItem#search-header
+        span.navItemTitle
+          input(autocomplete="off" autocorrect="off" autocapitalize="none"
+            placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
+            type="text" id="search-input")
+      .navItem#search-holder
     ol.navContent
-      if searchConfig !== null
-        li.navItem#search-header
-          span.navItemTitle
-            input(autocomplete="off" autocorrect="off" autocapitalize="none"
-              placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
-              type="text" id="search-input")
       each url, label in theme.menu
         - var match = null
         if typeof(url) === "string" && url.match(config.archive_dir)
