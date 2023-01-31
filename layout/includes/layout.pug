@@ -33,10 +33,10 @@
   })
 
 doctype html
-html(lang=config.language)
+html(lang=config.language theme-mode=theme.color)
   head
     include ./meta-data.pug
-  body(style={'background-image': `url(${theme.background_image})`})
+  body
     if pjax
       .loading(style='opacity: 0')
         .loadingBar.left

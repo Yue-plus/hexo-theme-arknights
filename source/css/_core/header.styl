@@ -96,7 +96,7 @@ nav
   margin unset
   transition .6s
   @media ( max-width 1023px )
-    & .navItemTitle::after
+    & .navItemTitle::before
       content ""
       display block
       width 100%
@@ -111,7 +111,7 @@ nav
 .active
   &>:is(a,.navBlock)>.navItemTitle,&>.navItemTitle
     color var(--theme-highlight)
-    &::after
+    &::before
       content ""
       display block
       color var(--theme-highlight)
@@ -192,8 +192,8 @@ extendList()
     color var(--theme-text-light)
     padding-bottom 5px
     border-bottom 1px solid var(--theme-unimportant)
-  .active>:is(a,.navBlock)>.navItemTitle::after
-    border-color #2bf
+  .active>:is(a,.navBlock)>.navItemTitle::before
+    border-color var(--theme-highlight)
   .expanded
     .navContent,
     nav::before
@@ -213,7 +213,7 @@ extendList()
       extendList()
     &>.navItemTitle:not(:only-child)::before
       content '▽'
-      color #2bf
+      color var(--theme-highlight)
 
 @media ( min-width 1024px )
   header
@@ -225,8 +225,8 @@ extendList()
   .navBlock:hover
     background-color unset
   .navItemTitle
-    color #fff
-    &::after
+    color var(--theme-text-light)
+    &::before
       height 100%
       top 0
       box-sizing border-box
@@ -234,18 +234,18 @@ extendList()
     width max-content
     min-width 100px
     position absolute
-    background-color #000
+    background-color var(--theme-bg-hover)
     .navItem
       width 100%
       padding 0
       .navItemTitle
         box-sizing border-box
-        color #2bf
+        color var(--theme-highlight)
       a:hover .navItemTitle
-        color #000
+        color var(--theme-text-hover)
       &:hover>.navItemTitle
-        background-color #2bf
-        color #000
+        background-color var(--theme-highlight)
+        color var(--theme-text-hover)
   .navBlock,
   .navItem
     &:hover

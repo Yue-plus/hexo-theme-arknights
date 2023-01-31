@@ -93,7 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   function onPopupClose() {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
-      document.querySelector('.navBtn').classList.remove('expanded')
+      getElement('.navBtn').classList.remove('expanded')
     }
     document.body.classList.remove('blur')
     popup.classList.remove('open')
@@ -101,7 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function proceedSearch() {
     document.body.classList.add('blur')
     if (document.querySelector('.up') && document.querySelector('.closed')) {
-      document.querySelector('.navBtn').classList.add('expanded')
+      getElement('.navBtn').classList.add('expanded')
     }
     popup.classList.add('open')
     if (fetched === true) {
@@ -212,7 +212,7 @@ window.addEventListener('DOMContentLoaded', () => {
       })
     }
     var resultContent = document.getElementById('search-result')
-    getElement('main').scroll({ top: 0, left: 0 })
+    getElement('.search-popup').scroll({ top: 0, left: 0 })
     if (resultItems.length === 0) {
       resultContent.innerHTML =
         `<div id="no-result"><p>${format(noResult, `<b>${input.value}</b>`)}</p></div>`
@@ -246,7 +246,7 @@ window.addEventListener('DOMContentLoaded', () => {
     nav.classList.add('search')
     header.closeAll()
     if (document.querySelector('.up')) {
-      document.querySelector('main').style.pointerEvents = 'none'
+      getElement('main').style.pointerEvents = 'none'
     }
     input.placeholder = activeHolder
     if (!fetched) {
@@ -267,7 +267,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.removeEventListener('mouseup', EscapeSearch)
     waiting = false
     if (document.querySelector('.up')) {
-      document.querySelector('main').style.pointerEvents = ''
+      getElement('main').style.pointerEvents = ''
     }
     input.blur()
   }
@@ -284,7 +284,7 @@ window.addEventListener('DOMContentLoaded', () => {
       EscapeSearch()
     } else if (event.key === 'f') {
       if (!document.querySelector('.up')) {
-        document.querySelector('.navBtn').classList.remove('hide')
+        getElement('.navBtn').classList.remove('hide')
         header.open()
       }
       StartSearch()

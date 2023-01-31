@@ -281,7 +281,7 @@ class Cursor {
         this.hold = () => {
             this.outer.height = '24px';
             this.outer.width = '24px';
-            this.outer.background = "rgba(255, 255, 255, 0.5)";
+            this.outer.background = "var(--theme-cursor-bg)";
         };
         this.relax = () => {
             this.outer.height = '36px';

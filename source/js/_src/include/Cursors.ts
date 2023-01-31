@@ -69,7 +69,7 @@ class Cursor {
   private hold = () => {
     this.outer.height = '24px'
     this.outer.width = '24px'
-    this.outer.background = "rgba(255, 255, 255, 0.5)"
+    this.outer.background = "var(--theme-cursor-bg)"
   }
 
   public relax = () => {

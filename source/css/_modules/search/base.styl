@@ -20,7 +20,7 @@
     overflow hidden
     &:hover
       margin unset
-    &::after
+    &::before, &::after
       display block
       content ""
       position absolute
@@ -51,10 +51,16 @@
   .search-popup
     background-color var(--theme-bg-trans0)
   #search-header .navItemTitle
+    &::before
+      z-index -2
     &::after
+      left 0
+      top 0
       width 0
+      height 100%
       transition .3s
       z-index -1
+      background-color var(--theme-highlight)
     &:hover
       input::placeholder
         transition .3s
