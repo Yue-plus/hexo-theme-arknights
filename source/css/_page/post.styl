@@ -1,8 +1,26 @@
+#post-content
+  h1, h2, h3, h4 ,h5, h6
+    border-bottom var(--theme-unimportant-trans) solid 1px
+    display flex
+  h1
+    font-size 1.75em
+  h2
+    font-size 1.60em
+  h3
+    font-size 1.45em
+  h4
+    font-size 1.30em
+  h5
+    font-size 1.15em
+  h6
+    font-size 1em
+
+
 #post-bg
   width 100%
   box-sizing border-box
   padding 20px 30px
-  background-color rgba(#141516, .8)
+  background-color var(--theme-bg-trans1)
   overflow-x auto
   img
     max-width 100%
@@ -17,7 +35,7 @@
     display inline-block
     font-size 2em
   hr
-    color #535353
+    color var(--theme-unimportant-2)
     position relative
     &:before
       content ''
@@ -25,21 +43,21 @@
       height 3px
       display block
       position absolute
-      background-color #fff
+      background-color var(--theme-text-light)
       top -3px
       left -1px
 #post-info
   text-align right
   time
-    color #2bf
+    color var(--theme-highlight)
     font-weight 900
   .control
     text-align left
     display inline-block
     width 90px
 #post-source span
-  color #fe2
-  background-color #555
+  color var(--theme-subcolor)
+  background-color var(--theme-unimportant-2)
 
 #post-content
   margin-bottom 1em
@@ -62,25 +80,25 @@
     &:target
       a
         margin-right 9px
-        background-color #fe2
+        background-color var(--theme-subcolor)
         padding 2px 3px
     .headerlink
       padding 2px 2px
-      background-color #2bf
+      background-color var(--theme-highlight)
       margin-right 7px
   h3, h4 ,h5 ,h6
     &:target
       a
         margin-right 9px
-        background-color #fe2
+        background-color var(--theme-subcolor)
         padding 1px 2px
     .headerlink
       padding 1px 1px
-      background-color #2bf
+      background-color var(--theme-highlight)
       margin-right 7px
 
 #post-footer hr
-  border-color #fe2
+  border-color var(--theme-border)
 
 #bottom-btn
   position sticky
@@ -93,7 +111,7 @@
     transition .3s color, .3s line-height, .3s background-color, .3s opacity
     width 40px
     height 40px
-    color #fff
+    color var(--theme-text-light)
     line-height 40px
     text-align center
     font-size 40px
@@ -102,9 +120,9 @@
     user-select none
     @media ( min-width 769px )
       &:hover
-        color #000
+        color var(--theme-text-hover)
         line-height 30px
-        background-color #fe2
+        background-color var(--theme-subcolor)
 #to-index
   bottom 48px
 #to-top
@@ -112,18 +130,20 @@
 
 #reward
   margin 1em 0
-  color #000
+  color var(--theme-text-rev)
   text-align center
-  background-color rgba(#fff, .1)
+  background-color var(--theme-bg-soft)
+  &:hover
+    background-color var(--theme-bg-soft-hover)
   summary
-    background-color #fe2
+    background-color var(--theme-subcolor)
   div
     width 45%
     margin 0
     padding 20px 0
     display inline-block
   span
-    color #2bf
+    color var(--theme-highlight)
     padding-right 10px
   img
     width 80%
@@ -160,8 +180,8 @@
           display none
   @media ( min-width 769px )
     .active
-      color #000
-      background-color #2bf
+      color var(--theme-text-hover)
+      background-color var(--theme-highlight)
       .toc-number
         display none
 
@@ -169,16 +189,8 @@
   padding 5px
   display flex
   justify-content center
-  border-top #fe2 solid 2px
-  border-bottom #fe2 solid 2px
-
-#split
-  position sticky
-  color #fe2
-  left 50%
-  @media ( min-width 769px )
-    &:hover
-      background-color unset
+  border-top var(--theme-border) solid 2px
+  border-bottom var(--theme-border) solid 2px
 
 .footer-link
   padding 5px

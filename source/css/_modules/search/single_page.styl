@@ -12,43 +12,42 @@
     .navContent
       overflow visible
 
-  .up .search-popup
-    left 100vw
-    transform translateX(0)
-    &.open
-      transform translateX(-100%)
-  .up article
-    margin-top 50px
-  .up .closed
-    .navBtn
-      transform translateY(-.5em)
-    .navContent
-      overflow visible
+  .up 
+    .search-popup
+      left 100vw
+      transform translateX(0)
+      &.open
+        transform translateX(-100%)
+    article
+      margin-top 50px
+    .closed
+      .navBtn
+        transform translateY(-.5em)
+      .navContent
+        overflow visible
+    #search-header
+        padding .5em 2em 0 5em
+        animation get-in-top .3s
+        position absolute
+        input
+          animation none
+    .search-popup
+      top 55px
+      height calc(100vh - 55px)
+      background-color var(--theme-bg-trans0)
 
   #search-header
     top 0
     width 100%
     box-sizing border-box
     transform translateX(-100%)
+    .navItemTitle
+      border-color var(--theme-border-light)
 
   .expanded #search-header
     transition transform .6s
     transform translateX(0)
-
-  .up #search-header
-    padding .5em 2em 0 5em
-    animation get-in-top .3s
-    position absolute
-    input
-      animation none
-  .search-popup
-    left unset
-    transform translateX(100%)
-    top 53px
-    height calc(100vh - 53px)
-    background-color rgba(20,21,22,.95)
-    &.open
-      transform translateX(0)
+  
   .down.moving header:not(.expanded) #search-header
     animation get-out-top .3s
 

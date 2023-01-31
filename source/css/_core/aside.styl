@@ -12,13 +12,13 @@ aside
   align-content stretch
   overflow-y auto
   overflow-x hidden
-  color #fff
+  color var(--theme-text-light)
   padding 0 20px
   h1
     font-family BenderLight, sans-serif
     margin-top 0
   footer
-    color #898989
+    color var(--theme-unimportant)
     padding 0 3px 30px 3px
     font-family BenderLight
 
@@ -35,7 +35,7 @@ aside
 #Dr
   text-align center
   a
-    color #fff
+    color var(--theme-text-light)
 
 #total
   margin 10px 0
@@ -44,10 +44,10 @@ aside
     display inline-block
 
 #total-archives
-  color #fff
+  color var(--theme-text-light)
   box-sizing border-box
   width 100%
-  border-left 5px solid #fff
+  border-left 5px solid var(--theme-border-light)
   padding 0 0 0 10px
   display inline-block
   transition 1s
@@ -61,26 +61,26 @@ aside
     transition .8s
   @media ( min-width 769px )
     &:hover
-      border-color #2bf
-      background-color rgba(#fff, .1)
+      border-color var(--theme-highlight)
+      background-color var(--theme-bg-soft-hover)
       .total-number
-        color #2bf
+        color var(--theme-highlight)
 
 #total-tags, #total-categories
   margin 15px 0 0 15px
 
 #aside-block
   margin-top 10px
-  background linear-gradient(rgba(20, 21, 22, 0.8), #0000)
+  background linear-gradient(var(--theme-bg-trans1), transparent)
   #total-archives .total-number
     letter-spacing 2px
   @media ( min-width 769px )
     &:hover h1
-      background-color #2bf
+      background-color var(--theme-highlight)
   h1
     transition 1s
-    color #000
-    background-color #fff
+    color var(--theme-text-rev)
+    background-color var(--theme-text-light)
     margin 0
     padding 0 10px
     font-size medium

@@ -3,27 +3,27 @@
 .tag-list-item
   position relative
   line-height 23px
-  background-color #313131
+  background-color var(--theme-tag-bg)
   display inline-block
   margin 5px
-  border #313131 solid 1px
+  border var(--theme-tag-border) solid 1px
   border-radius 3px
   &, a, span
     transition .3s
   @media ( min-width 769px )
     &:hover
-      border-color #2bf
+      border-color var(--theme-highlight)
       a
-        color #000
-        background-color #2bf
+        color var(--theme-text-hover)
+        background-color var(--theme-highlight)
       span
-        background-color #313131
+        background-color var(--theme-tag-bg)
     &:active
-      border-color #fe2
+      border-color var(--theme-border)
       a
-        background-color #fe2
+        background-color var(--theme-subcolor)
 .tag-list-link
-  color #fff
+  color var(--theme-text-light)
   padding 3px 6px 3px 12px
   display table-cell
   box-sizing border-box
@@ -37,8 +37,8 @@
 .tag-list-count
   width 10px
   padding 3px 6px
-  color #fff
-  background-color #494949
+  color var(--theme-text-light)
+  background-color var(--theme-tag-count-bg)
   display table-cell
   pointer-events none
   vertical-align middle

@@ -7,10 +7,6 @@ header
   display inline
   position sticky
 
-@media (max-width 1023px)
-  :not(.up, .moving)>header
-    clip-path polygon(0 0, 0 100%, 100% 100%, 100% 0)
-
 nav
   position relative
   height 100%
@@ -63,7 +59,7 @@ nav
   top 50%
   width 1em
   height 0.1em
-  background-color #d4d8dd
+  background-color var(--theme-btn-bg)
   text-indent 101%
   white-space nowrap
   overflow hidden
@@ -114,12 +110,12 @@ nav
     display block
 .active
   &>:is(a,.navBlock)>.navItemTitle,&>.navItemTitle
-    color #2bf
+    color var(--theme-highlight)
     &::after
       content ""
       display block
-      color #2bf
-      border-color #2bf
+      color var(--theme-highlight)
+      border-color var(--theme-highlight)
       width 100%
       position absolute
       left 0
@@ -172,7 +168,7 @@ extendList()
       position absolute
       top 0
       left 0
-      background-color rgba(0, 0, 0, 0.88)
+      background-color var(--theme-bg-trans0)
       transform translateX(-100%)
       transition transform .6s
       pointer-events all
@@ -191,16 +187,11 @@ extendList()
     box-sizing border-box
     align-items flex-end
     padding unset
-    border-bottom 1px solid rgba(57, 57, 57, 0.5)
     height 100%
   .navItemTitle
-    color #fff
+    color var(--theme-text-light)
     padding-bottom 5px
-    &::after
-      height 0
-      border-bottom 2px solid #fff
-      bottom 0
-      right 0
+    border-bottom 1px solid var(--theme-unimportant)
   .active>:is(a,.navBlock)>.navItemTitle::after
     border-color #2bf
   .expanded

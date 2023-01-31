@@ -1,51 +1,51 @@
 #Valine
-  color #fff
+  color var(--theme-text-light)
   padding 10px 0
   code
     font-family "JetBrains Mono"
   .vpanel
     .vwrap
-      background-color rgba(#fff, .05)
+      background-color var(--theme-bg-soft)
       transition .3s
       &:hover
-        background-color rgba(#fff, .1)
-        border-color #fe2
+        background-color var(--theme-bg-soft-hover)
+        border-color var(--theme-border)
       .vheader .vinput
         border-bottom-style solid
         &:focus
-          color #2bf
-          border-bottom-color #fe2
+          color var(--theme-highlight)
+          border-bottom-color var(--theme-border)
       .vicon:hover
         background-color unset
     .vsubmit
       &:hover
-        color #fe2
-        border-color #fe2
-        background-color rgba(#fff, .2)
+        color var(--theme-subcolor)
+        border-color var(--theme-border)
+        background-color var(--theme-bg-soft-hover)
   .vcard .vnick
-    color #2bf
+    color var(--theme-highlight)
     &:hover
-      color #000
+      color var(--theme-text-hover)
   .vsys
     background-color transparent
   .vmeta .vat
-    color #fe2
+    color var(--theme-subcolor)
   .vcontent
-    color #c4c4c4
-    border-left #fe2 solid 3px
+    color var(--theme-text)
+    border-left var(--theme-subcolor) solid 3px
     padding-left 20px
-    background-color rgba(#fff, .05)
+    background-color var(--theme-bg-soft)
     transition .3s
     &:hover
-      border-color #2bf
-      background-color rgba(#fff, .1)
+      border-color var(--theme-highlight)
+      background-color var(--theme-bg-soft-hover)
     &::before
-      background linear-gradient(180deg,hsla(0,0%,10%,0),hsla(0,0%,10%,.9))
+      background linear-gradient(180deg, transparent, var(--theme-bg-trans0))
     &::after
-      background hsla(0,0%,10%,.9)
+      background var(--theme-bg-trans0)
     p
-      color #fff
+      color var(--theme-text-light)
       padding-bottom 14px
 #veditor
-  color #fff
+  color var(--theme-text-light)
   font-family "JetBrains Mono"

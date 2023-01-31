@@ -7,7 +7,7 @@
     z-index 100
     position fixed
     top 0
-    border-bottom 1px solid #fff
+    border-bottom 1px solid var(--theme-loadingbar)
     width 0%
     transition width .6s
     &::before 
@@ -17,18 +17,18 @@
     &.left 
       left 0
       &::before 
-        box-shadow 10px 0 15px 1px #fff
+        box-shadow 10px 0 15px 1px var(--theme-loadingbar)
         right 0
       &::after 
-        box-shadow .5px 0 8px 2px #fff, .5px 0 2px 1px #fff
+        box-shadow .5px 0 8px 2px var(--theme-loadingbar), .5px 0 2px 1px var(--theme-loadingbar)
         right 0
     &.right 
       right 0
       &::before 
-        box-shadow -10px 0 15px 1px #fff
+        box-shadow -10px 0 15px 1px var(--theme-loadingbar)
         left 0
       &::after 
-        box-shadow -.5px 0 8px 2px #fff, -.5px 0 2px 1px #fff
+        box-shadow -.5px 0 8px 2px var(--theme-loadingbar), -.5px 0 2px 1px var(--theme-loadingbar)
         left 0
 
 .loadingBar::before,
