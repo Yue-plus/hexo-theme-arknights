@@ -30,16 +30,15 @@ header
     .navItemTitle::before
       border-right 4px solid
   .navContent:not(.search) .navBlock
-    &:hover
-      &::before
-        content ""
-        height 100%
-        width 100%
-        position absolute
-        top 0
-        right 2em
-      .navItemTitle
-        margin-left -1em
+    &::before
+      content ""
+      height 100%
+      width 100%
+      position absolute
+      top 0
+      right 2em
+    &:hover>.navItemTitle
+      margin-left -1em
     &>.navItemList
       right calc(100% + 2em)
   .navItemList

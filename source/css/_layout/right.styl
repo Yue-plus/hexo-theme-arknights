@@ -19,16 +19,15 @@
       border-left 4px solid
       left 0px
   .navContent:not(.search) .navBlock
-    &:hover
-      &>.navItemTitle
-        margin-left 1em
-      &::before
-        content ""
-        height 100%
-        width 100%
-        position absolute
-        top 0
-        left 2em
+    &::before
+      content ""
+      height 100%
+      width 100%
+      position absolute
+      top 0
+      left 2em
+    &:hover>.navItemTitle
+      margin-left 1em
     &>.navItemList
       left calc(100% + 2em)
   .navItemList
