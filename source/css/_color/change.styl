@@ -1,0 +1,21 @@
+[theme-mode=light]
+  .navItemTitle,
+  aside footer
+    font-weight bold
+    text-shadow 0 0 15px white, 0 0 15px white, 0 0 15px white, 0 0 15px white
+  :where(.recent-post, #paginator a)
+    background-color #fff4
+  aside a img:hover
+    background-color var(--theme-bg-soft)
+
+#post-bg,
+h1, h2, h3, h4, h5, h6
+  transition 1s
+
+@property --theme-bg-trans1
+  syntax '<color>'
+  inherits true
+  initial-value #fff
+
+#aside-block
+  transition --theme-bg-trans1 1s

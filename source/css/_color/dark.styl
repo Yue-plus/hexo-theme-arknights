@@ -1,7 +1,3 @@
-:root
-  --dark-background s('url(' + hexo-config('background_image.dark') + ')')
-  --light-background s('url(' + hexo-config('background_image.light') + ')')
-
 :root[theme-mode=dark]
   --body-background var(--dark-background)
 
@@ -107,11 +103,3 @@
   --theme-tag-border #313131
 
   --theme-loadingbar #fff
-
-  .navItemTitle,
-  aside footer
-    font-weight bold
-    text-shadow: 0 0 15px white, 0 0 15px white, 0 0 15px white, 0 0 15px white
-  :where(.recent-post, #paginator a)
-    background-color #fff4
-

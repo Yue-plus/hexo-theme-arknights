@@ -21,7 +21,6 @@ class ColorMode {
             position: fixed; left: 0; top: 0; z-index: -99999;'></div>`
         document.body.insertBefore(background, document.body.firstChild)
         setTimeout(() => {
-          background.style.opacity = '0'
           if (this.dark) {
             this.html.setAttribute('theme-mode', 'light')
             this.dark = false
@@ -29,6 +28,7 @@ class ColorMode {
             this.html.setAttribute('theme-mode', 'dark')
             this.dark = true
           }
+          background.style.opacity = '0'
         })
         setTimeout(() => document.body.removeChild(background), 1500)
         setTimeout(() => this.inChanging = false, 1000)
