@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (waiting === true) {
           inputEventFunction()
         }
-      })
+      }).catch(() => fetching = false)
   }
   if (config.search.preload) {
     fetechData()
