@@ -20,14 +20,18 @@ class Index {
     }
   }
 
-  private reset = () => {
+  private reset = (not: HTMLElement) => {
     let tocs: NodeList = document.querySelectorAll('#toc-div .active')
     let tocTree: NodeList = document.querySelectorAll('#toc-div .has-active')
     tocs.forEach(item => {
-      (item as HTMLElement).classList.remove('active')
+      if (!item.contains(not)) {
+        (item as HTMLElement).classList.remove('active')
+      }
     })
     tocTree.forEach(item => {
-      (item as HTMLElement).classList.remove('has-active')
+      if (!item.contains(not)) {
+        (item as HTMLElement).classList.remove('has-active')
+      }
     })
   }
 
@@ -36,32 +40,34 @@ class Index {
     headerLink.forEach(item => {
       index.push((item as HTMLElement).getBoundingClientRect().top)
     })
-    this.reset()
     for (let i = 0; i < tocLink.length; ++i) {
       const item = tocLink.item(i) as HTMLElement
       if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
         this.setItem(item)
+        this.reset(item)
         break
       }
     }
   }
 
-  private setHtml = () => {
+  private setHTML = () => {
     let headerLink: NodeList = document.querySelectorAll('h2,h3,h4,h5,h6'),
       tocLink: NodeList = document.querySelectorAll('.toc-link')
     if (tocLink.length !== 0) {
       this.setItem(tocLink.item(0) as HTMLElement)
     }
     getElement('main').addEventListener('scroll', () => {
-      if (tocLink.length === 0) return
+      if (tocLink.length === 0) {
+        return
+      }
       this.modifyIndex(headerLink, tocLink)
     }, { passive: true })
   }
 
   constructor() {
-    document.addEventListener('pjax:success', this.setHtml)
-    this.setHtml()
+    document.addEventListener('pjax:success', this.setHTML)
+    this.setHTML()
   }
 }
 
-new Index()
+let indexs = new Index()

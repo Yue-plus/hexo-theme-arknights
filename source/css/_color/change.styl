@@ -1,12 +1,18 @@
 [theme-mode=light]
+  .footer-link a:not(:hover)
+    text-shadow 0 0 15px white, 0 0 15px white, 0 0 15px white, 0 0 15px white
+  
   .navItemTitle,
   aside footer
+    @extend .footer-link a:not(:hover)
     font-weight bold
-    text-shadow 0 0 15px white, 0 0 15px white, 0 0 15px white, 0 0 15px white
+  
   :where(.recent-post, #paginator a)
     background-color #fff4
+  
   aside a img:hover
     background-color var(--theme-bg-soft)
+  
   #Archives,
   #Categories,
   #Tags

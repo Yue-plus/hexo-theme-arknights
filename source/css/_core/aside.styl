@@ -22,6 +22,9 @@ aside
     color var(--theme-unimportant)
     padding 0 3px 30px 3px
     font-family BenderLight
+  scroll-snap-type y mandatory
+  &>div
+    scroll-snap-align start
 
 #logo
   user-select none
@@ -71,6 +74,8 @@ aside
   margin 15px 0 0 15px
 
 #aside-block
+  height 100vh
+  min-height fit-content
   margin-top 10px
   background linear-gradient(var(--theme-bg-trans1), transparent)
   #total-archives .total-number

@@ -1,25 +1,24 @@
 aside
-  #aside-top
-    #about
-      a(href=config.root)#logo
-        img(src= asideLogo, alt= "Logo")
-      h1#Dr
-        a(href= theme.aside.dr)= config.author
-      #description
-        p!= config.description
-    #aside-block
-      block aside-block
-      if page.published === undefined
-        section#total
-           a#total-archives(href= config.root + "archives")
-             span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
-             span.total-number= site.posts.length
-           #total-tags
-             span.total-title #{__('menu.tag.plural')}:
-             span.total-number= site.tags.length
-           #total-categories
-             span.total-title #{__('menu.category.plural')}:
-             span.total-number= site.categories.length
+  #about
+    a(href=config.root)#logo
+      img(src= asideLogo, alt= "Logo")
+    h1#Dr
+      a(href= theme.aside.dr)= config.author
+    #description
+      p!= config.description
+  #aside-block
+    block aside-block
+    if page.published === undefined
+      section#total
+         a#total-archives(href= config.root + "archives")
+           span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
+           span.total-number= site.posts.length
+         #total-tags
+           span.total-title #{__('menu.tag.plural')}:
+           span.total-number= site.tags.length
+         #total-categories
+           span.total-title #{__('menu.category.plural')}:
+           span.total-number= site.categories.length
   footer(style= footerStyle)
     if theme.aside.icp !== null
       nobr

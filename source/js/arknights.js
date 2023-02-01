@@ -334,14 +334,18 @@ class Index {
                 }
             }
         };
-        this.reset = () => {
+        this.reset = (not) => {
             let tocs = document.querySelectorAll('#toc-div .active');
             let tocTree = document.querySelectorAll('#toc-div .has-active');
             tocs.forEach(item => {
-                item.classList.remove('active');
+                if (!item.contains(not)) {
+                    item.classList.remove('active');
+                }
             });
             tocTree.forEach(item => {
-                item.classList.remove('has-active');
+                if (!item.contains(not)) {
+                    item.classList.remove('has-active');
+                }
             });
         };
         this.modifyIndex = (headerLink, tocLink) => {
@@ -349,31 +353,32 @@ class Index {
             headerLink.forEach(item => {
                 index.push(item.getBoundingClientRect().top);
             });
-            this.reset();
             for (let i = 0; i < tocLink.length; ++i) {
                 const item = tocLink.item(i);
                 if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
                     this.setItem(item);
+                    this.reset(item);
                     break;
                 }
             }
         };
-        this.setHtml = () => {
+        this.setHTML = () => {
             let headerLink = document.querySelectorAll('h2,h3,h4,h5,h6'), tocLink = document.querySelectorAll('.toc-link');
             if (tocLink.length !== 0) {
                 this.setItem(tocLink.item(0));
             }
             getElement('main').addEventListener('scroll', () => {
-                if (tocLink.length === 0)
+                if (tocLink.length === 0) {
                     return;
+                }
                 this.modifyIndex(headerLink, tocLink);
             }, { passive: true });
         };
-        document.addEventListener('pjax:success', this.setHtml);
-        this.setHtml();
+        document.addEventListener('pjax:success', this.setHTML);
+        this.setHTML();
     }
 }
-new Index();
+let indexs = new Index();
 class Header {
     constructor() {
         this.header = getElement('header');
@@ -561,7 +566,7 @@ class Scroll {
             this.intop = true;
             setTimeout(() => getElement('main').classList.remove('moving'), 300);
         };
-        this.setHtml = () => {
+        this.setHTML = () => {
             try {
                 let navBtn = getElement('.navBtn');
                 let onScroll = () => {
@@ -629,7 +634,7 @@ class Scroll {
             this.touchY = event.changedTouches[0].screenY;
             this.notMoveY = false;
         };
-        document.addEventListener('pjax:success', this.setHtml);
+        document.addEventListener('pjax:success', this.setHTML);
         document.addEventListener('touchstart', this.startTouch);
         document.addEventListener('touchmove', this.checkTouchMove);
         document.addEventListener('wheel', (event) => {
@@ -645,7 +650,7 @@ class Scroll {
                 }
             }
         });
-        this.setHtml();
+        this.setHTML();
         this.totop = document.querySelector('#to-top');
     }
 }
