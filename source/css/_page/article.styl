@@ -30,10 +30,6 @@ article
   transition .3s
   .recent-info::after
     transition .3s
-  object
-    h1, h2, h3, h4, h5, h6
-      font-size large
-      margin 0
   .categories, .tags
     font-family BenderLight, sans-serif
   .categories
@@ -43,7 +39,7 @@ article
     padding 0 10px 0 0
   .tags
     font-size small
-    span, object
+    span
       display inline-block
       padding 0 5px 0 0
   time
@@ -75,9 +71,8 @@ article
         color var(--theme-text-hover)
       .recent-info::after
         background-color var(--theme-bg-hover)
-      .recent-excerpt
-        object a
-          color var(--theme-text-light)
+      .recent-excerpt a
+        color var(--theme-text-light)
       hr
         color var(--theme-highlight)
         border-color var(--theme-highlight)

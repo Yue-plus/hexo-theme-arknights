@@ -42,7 +42,6 @@ aside
     color var(--theme-text-light)
 
 #total
-  margin 10px 0
   font-family BenderLight
   div
     display inline-block
@@ -77,12 +76,13 @@ aside
   height 100vh
   min-height fit-content
   margin-top 10px
-  background linear-gradient(var(--theme-bg-trans1), transparent)
   #total-archives .total-number
     letter-spacing 2px
-  @media ( min-width 769px )
-    &:hover h1
-      background-color var(--theme-highlight)
+  #toc-div
+    background linear-gradient(var(--theme-bg-trans1), transparent)
+    @media ( min-width 769px )
+      &:hover h1
+        background-color var(--theme-highlight)
   h1
     color var(--theme-text-rev)
     background-color var(--theme-text-light)

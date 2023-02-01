@@ -89,13 +89,13 @@ window.addEventListener('DOMContentLoaded', () => {
     return result
   }
   function inLoading() {
-    popup.innerHTML = '<div id="loading"><div><p>Loading...</p></div></div>'
+    getElement('#search-result').innerHTML = '<div id="loading"><div><p>Loading...</p></div></div>'
   }
   function onPopupClose() {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
       getElement('.navBtn').classList.remove('expanded')
     }
-    document.getElementById('search-result').querySelectorAll('a').
+    getElement('#search-result').querySelectorAll('a').
       forEach((item) => item.setAttribute('tabindex', -1))
     document.body.classList.remove('blur')
     popup.classList.remove('open')
@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
       getElement('.navBtn').classList.add('expanded')
     }
-    document.getElementById('search-result').removeAttribute('tabindex')
+    getElement('#search-result').removeAttribute('tabindex')
     popup.classList.add('open')
     if (fetched === true) {
       popup.innerHTML = "<div id='search-result'></div>"

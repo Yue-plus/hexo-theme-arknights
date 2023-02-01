@@ -22,5 +22,5 @@ if page.posts.length > 0
       .recent-excerpt
         if post.excerpt.length > 0
           hr
-          object!= post.excerpt
+          != post.excerpt
       span.read-more #{__('page.readMore')}
