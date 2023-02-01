@@ -11,7 +11,7 @@ class ColorMode {
       if (this.inChanging) {
         return
       }
-      if (ev.key === 'c') {
+      if (ev.key === 'c' && ev.target && (ev.target as HTMLElement).tagName !== 'INPUT') {
         this.inChanging = true
         let background = document.createElement('div')
         background.style.transition = '1.5s'
