@@ -2,12 +2,12 @@ window.addEventListener('DOMContentLoaded', () => {
   let fetched = false, fetching = false, waiting = false
   let datas
   const path = config.root + 'search.json'
-  const input = document.querySelector('#search-input')
-  const nav = document.querySelector('nav')
+  const input = getElement('#search-input')
+  const nav = getElement('nav')
   const activeHolder = config.search.activeHolder
   const blurHolder = config.search.blurHolder
   const noResult = config.search.noResult
-  const popup = document.querySelector('.search-popup')
+  const popup = getElement('.search-popup')
   function fetechData() {
     fetching = true
     fetch(path)
@@ -95,6 +95,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
       getElement('.navBtn').classList.remove('expanded')
     }
+    document.getElementById('search-result').querySelectorAll('a').
+      forEach((item) => item.setAttribute('tabindex', -1))
     document.body.classList.remove('blur')
     popup.classList.remove('open')
   }
@@ -103,6 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.up') && document.querySelector('.closed')) {
       getElement('.navBtn').classList.add('expanded')
     }
+    document.getElementById('search-result').removeAttribute('tabindex')
     popup.classList.add('open')
     if (fetched === true) {
       popup.innerHTML = "<div id='search-result'></div>"
@@ -129,8 +132,9 @@ window.addEventListener('DOMContentLoaded', () => {
     let resultItems = []
     if (searchText.length > 0) {
       datas.forEach(data => {
-        if (!data.title)
+        if (!data.title) {
           return
+        }
         let TextCount = 0, TitleCount = 0, ContentCount = 0
         let title = data.title.trim()
         let titleInLowerCase = title.toLowerCase()
@@ -211,10 +215,10 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       })
     }
-    var resultContent = document.getElementById('search-result')
-    getElement('.search-popup').scroll({ top: 0, left: 0 })
+    popup.scroll({ top: 0, left: 0 })
+    let resultList = getElement('#search-result')
     if (resultItems.length === 0) {
-      resultContent.innerHTML =
+      resultList.innerHTML =
         `<div id="no-result"><p>${format(noResult, `<b>${input.value}</b>`)}</p></div>`
     } else {
       resultItems.sort((Left, Right) => {
@@ -231,10 +235,10 @@ window.addEventListener('DOMContentLoaded', () => {
       resultItems.forEach(result => {
         searchResultList += result.item
       })
-      resultContent.innerHTML = searchResultList
+      resultList.innerHTML = searchResultList
     }
     if (typeof pjax !== 'undefined') {
-      pjax.refresh(resultContent)
+      pjax.refresh(resultList)
     }
   }
   input.addEventListener('keypress', event => {
@@ -278,7 +282,19 @@ window.addEventListener('DOMContentLoaded', () => {
   input.addEventListener('focus', () => {
     StartSearch()
   })
-  input.addEventListener('blur', EscapeSearch)
+  input.addEventListener('blur', event => {
+    if (!event.relatedTarget ||
+      event.relatedTarget.parentElement !== getElement('#search-result')) {
+      EscapeSearch()
+    }
+  })
+  popup.addEventListener('focusout', event => {
+    if (!event.relatedTarget ||
+      (event.relatedTarget !== input &&
+        event.relatedTarget.parentElement !== getElement('#search-result'))) {
+      EscapeSearch()
+    }
+  })
   window.addEventListener('keyup', event => {
     if (event.key === 'Escape') {
       EscapeSearch()
