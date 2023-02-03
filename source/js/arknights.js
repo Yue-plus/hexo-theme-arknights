@@ -30,22 +30,22 @@ function format(format, ...args) {
     });
 }
 class dust {
-    constructor() {
-        this.x = 50;
-        this.y = 50;
-        this.vx = Math.random() * 2 + 2;
-        this.vy = Math.random() * 2;
-        this.color = '#fff';
+    constructor(x = 50, y = 50) {
+        this.vx = Math.random() * 1 + 1;
+        this.vy = Math.random() * 1 + 0.01;
         this.shadowBlur = Math.random() * 3;
         this.shadowX = (Math.random() * 2) - 1;
         this.shadowY = (Math.random() * 2) - 1;
-        this.radiusX = Math.random() * 3;
-        this.radiusY = Math.random() * 3;
+        this.radiusX = Math.random() * 1.5 + 0.5;
+        this.radiusY = this.radiusX * (Math.random() * (1.3 - 0.3) + 0.3);
         this.rotation = Math.PI * Math.floor(Math.random() * 2);
+        this.x = x;
+        this.y = y;
     }
 }
 class canvasDust {
     constructor(canvasID) {
+        this.color = '#fff';
         this.width = 300;
         this.height = 300;
         this.dustQuantity = 50;
@@ -55,48 +55,42 @@ class canvasDust {
             if (this.ctx) {
                 const point = canvasDust.getPoint(this.dustQuantity);
                 for (let i of point) {
-                    const dustObj = new dust();
-                    this.buildDust(i[0], i[1], dustObj);
+                    const dustObj = new dust(i[0], i[1]);
+                    this.buildDust(dustObj);
                     this.dustArr.push(dustObj);
                 }
-                setInterval(this.play, 40);
+                requestAnimationFrame(this.play);
             }
         };
         this.play = () => {
             const dustArr = this.dustArr;
-            this.ctx?.clearRect(0, 0, this.width, this.height);
             for (let i of dustArr) {
-                if (i.x < 0 || i.y < 0) {
+                this.ctx.clearRect(i.x - 6, i.y - 6, 12, 12);
+                if (i.x < -5 || i.y < -5) {
                     const x = this.width;
                     const y = Math.floor(Math.random() * window.innerHeight);
                     i.x = x;
                     i.y = y;
-                    this.buildDust(x, y, i);
                 }
                 else {
-                    const x = i.x - i.vx;
-                    const y = i.y - i.vy;
-                    this.buildDust(x, y, i);
+                    i.x -= i.vx;
+                    i.y -= i.vy;
                 }
             }
-        };
-        this.buildDust = (x, y, dust) => {
-            const ctx = this.ctx;
-            if (x)
-                dust.x = x;
-            if (y)
-                dust.y = y;
-            if (ctx) {
-                ctx.beginPath();
-                ctx.shadowBlur = dust.shadowBlur;
-                ctx.shadowColor = dust.color;
-                ctx.shadowOffsetX = dust.shadowX;
-                ctx.shadowOffsetY = dust.shadowY;
-                ctx.ellipse(dust.x, dust.y, dust.radiusX, dust.radiusY, dust.rotation, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fillStyle = dust.color;
-                ctx.fill();
+            for (let i of dustArr) {
+                this.buildDust(i);
             }
+            requestAnimationFrame(this.play);
+        };
+        this.buildDust = (dust) => {
+            const ctx = this.ctx;
+            ctx.beginPath();
+            ctx.shadowBlur = dust.shadowBlur;
+            ctx.shadowOffsetX = dust.shadowX;
+            ctx.shadowOffsetY = dust.shadowY;
+            ctx.ellipse(dust.x, dust.y, dust.radiusX, dust.radiusY, dust.rotation, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
         };
         this.resize = () => {
             const canvas = this.canvas;
@@ -105,21 +99,16 @@ class canvasDust {
             this.width = width;
             this.height = height;
             this.dustQuantity = Math.floor((width + height) / 38);
-            if (canvas !== undefined) {
-                canvas.width = width;
-                canvas.height = height;
-            }
+            canvas.width = width;
+            canvas.height = height;
+            this.ctx.shadowColor =
+                this.ctx.fillStyle = this.color;
         };
         const canvas = getElement(canvasID);
-        if (canvas) {
-            this.canvas = canvas;
-            this.ctx = canvas.getContext('2d');
-            this.build();
-            window.addEventListener('resize', () => this.resize());
-        }
-        else {
-            throw new Error('canvasID 无效');
-        }
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext('2d');
+        this.build();
+        window.addEventListener('resize', this.resize);
     }
 }
 canvasDust.getPoint = (number = 1) => {
@@ -134,8 +123,26 @@ canvasDust.getPoint = (number = 1) => {
 try {
     new canvasDust('#canvas-dust');
 }
-catch (e) { }
+catch (e) {
+    throw new Error('canvasID 无效');
+}
 class Code {
+    doAsMermaid(item) {
+        let Amermaid = item.querySelector('.mermaid');
+        item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
+    }
+    resetName(str) {
+        if (str == 'plaintext') {
+            return 'TEXT';
+        }
+        if (str == 'cs') {
+            return 'C#';
+        }
+        if (str == 'cpp') {
+            return 'C++';
+        }
+        return str.toUpperCase();
+    }
     constructor() {
         this.reverse = (item, s0, s1) => {
             const block = getParent(item);
@@ -152,7 +159,7 @@ class Code {
             const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
             item.classList.add(lineCount < 16 ? 'open' : 'fold');
             item.innerHTML =
-                `<span class="code-header">\
+                `<span class="code-header" tabindex='0'>\
         <span class="code-title">\
           <div class="code-icon"></div>
           ${format(config.code.codeInfo, codeType, lineCount)}
@@ -173,9 +180,15 @@ class Code {
                     button.innerText = config.code.copy;
                 }, 1200);
             });
-            getElement('.code-header', item).addEventListener('click', (click) => {
-                if (!click.target.classList.contains('code-copy')) {
-                    this.reverse(click.currentTarget, 'open', 'fold');
+            const header = getElement('.code-header', item);
+            header.addEventListener('click', (click) => {
+                if (click.target === header) {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+            header.addEventListener('keyup', (key) => {
+                if (key.key === 'Enter' && key.target === header) {
+                    this.reverse(header, 'open', 'fold');
                 }
             });
         };
@@ -204,22 +217,6 @@ class Code {
         };
         this.findCode();
     }
-    doAsMermaid(item) {
-        let Amermaid = item.querySelector('.mermaid');
-        item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
-    }
-    resetName(str) {
-        if (str == 'plaintext') {
-            return 'TEXT';
-        }
-        if (str == 'cs') {
-            return 'C#';
-        }
-        if (str == 'cpp') {
-            return 'C++';
-        }
-        return str.toUpperCase();
-    }
 }
 let code = new Code();
 class Cursor {
@@ -229,26 +226,35 @@ class Cursor {
         this.last = 0;
         this.moveIng = false;
         this.fadeIng = false;
+        this.nowX = 0;
+        this.nowY = 0;
         this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon";
+        this.set = (X = this.nowX, Y = this.nowY) => {
+            this.outer.transform =
+                `translate(calc(${X.toFixed(2)}px - 50%),
+                  calc(${Y.toFixed(2)}px - 50%))`;
+        };
         this.move = (timestamp) => {
             if (this.now !== undefined) {
-                let SX = this.outer.left, SY = this.outer.top, preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2)), delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3;
-                if (timestamp - this.last > 15) {
-                    preX += delX;
-                    preY += delY;
-                    this.outer.left = preX.toFixed(2) + 'px';
-                    this.outer.top = preY.toFixed(2) + 'px';
+                let delX = (this.now.x - this.nowX) * 0.5, delY = (this.now.y - this.nowY) * 0.5;
+                if (timestamp - this.last > 10) {
+                    this.nowX += delX;
+                    this.nowY += delY;
+                    this.set();
                     this.last = timestamp;
                 }
-                if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
+                if (Math.abs(delX) > 0.1 || Math.abs(delY) > 0.1) {
                     window.requestAnimationFrame(this.move);
                 }
                 else {
+                    this.set(this.now.x, this.now.y);
                     this.moveIng = false;
                 }
             }
         };
         this.reset = (mouse) => {
+            this.outer.top = '0';
+            this.outer.left = '0';
             if (!this.moveIng) {
                 this.moveIng = true;
                 window.requestAnimationFrame(this.move);
@@ -256,8 +262,9 @@ class Cursor {
             this.now = mouse;
             if (this.first) {
                 this.first = false;
-                this.outer.left = String(this.now.x) + 'px';
-                this.outer.top = String(this.now.y) + 'px';
+                this.nowX = this.now.x;
+                this.nowY = this.now.y;
+                this.set();
             }
         };
         this.Aeffect = (mouse) => {
@@ -716,7 +723,8 @@ class ColorMode {
             if (this.inChanging) {
                 return;
             }
-            if (ev.key === 'c' && ev.target && ev.target.tagName !== 'INPUT') {
+            if (ev.key === 'c' && ev.target &&
+                !['INPUT', 'TEXTAREA'].includes(ev.target.tagName)) {
                 this.inChanging = true;
                 let background = document.createElement('div');
                 background.style.transition = '1.5s';

@@ -298,7 +298,8 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('keyup', event => {
     if (event.key === 'Escape') {
       EscapeSearch()
-    } else if (event.key === 'f') {
+    } else if (event.key === 'f' && 
+      !['INPUT', 'TEXTAREA'].includes(event.target.tagName)) {
       if (!document.querySelector('.up')) {
         getElement('.navBtn').classList.remove('hide')
         header.open()

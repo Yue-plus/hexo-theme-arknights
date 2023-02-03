@@ -11,7 +11,8 @@ class ColorMode {
       if (this.inChanging) {
         return
       }
-      if (ev.key === 'c' && ev.target && (ev.target as HTMLElement).tagName !== 'INPUT') {
+      if (ev.key === 'c' && ev.target &&
+        !['INPUT', 'TEXTAREA'].includes((ev.target as HTMLElement).tagName)) {
         this.inChanging = true
         let background = document.createElement('div')
         background.style.transition = '1.5s'

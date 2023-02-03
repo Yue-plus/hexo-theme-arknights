@@ -8,33 +8,40 @@ class Cursor {
   private last: number = 0
   private moveIng: boolean = false
   private fadeIng: boolean = false
+  private nowX: number = 0
+  private nowY: number = 0
   private readonly outer: CSSStyleDeclaration
   private readonly effecter: CSSStyleDeclaration
   private readonly attention: string =
     "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon"
 
+  private set = (X: number = this.nowX, Y: number = this.nowY) => {
+    this.outer.transform =
+      `translate(calc(${X.toFixed(2)}px - 50%),
+                  calc(${Y.toFixed(2)}px - 50%))`
+  }
+
   private move = (timestamp: number) => {
     if (this.now !== undefined) {
-      let SX = this.outer.left, SY = this.outer.top,
-        preX = Number(SX.substring(0, SX.length - 2)),
-        preY = Number(SY.substring(0, SY.length - 2)),
-        delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3
-      if (timestamp - this.last > 15) {
-        preX += delX
-        preY += delY
-        this.outer.left = preX.toFixed(2) + 'px'
-        this.outer.top = preY.toFixed(2) + 'px'
+      let delX = (this.now.x - this.nowX) * 0.5, delY = (this.now.y - this.nowY) * 0.5
+      if (timestamp - this.last > 10) {
+        this.nowX += delX
+        this.nowY += delY
+        this.set()
         this.last = timestamp
       }
-      if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
+      if (Math.abs(delX) > 0.1 || Math.abs(delY) > 0.1) {
         window.requestAnimationFrame(this.move)
       } else {
+        this.set(this.now.x, this.now.y)
         this.moveIng = false
       }
     }
   }
 
   private reset = (mouse: MouseEvent) => {
+    this.outer.top = '0'
+    this.outer.left = '0'
     if (!this.moveIng) {
       this.moveIng = true
       window.requestAnimationFrame(this.move)
@@ -42,8 +49,9 @@ class Cursor {
     this.now = mouse
     if (this.first) {
       this.first = false
-      this.outer.left = String(this.now.x) + 'px'
-      this.outer.top = String(this.now.y) + 'px'
+      this.nowX = this.now.x
+      this.nowY = this.now.y
+      this.set()
     }
   }
 
