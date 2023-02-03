@@ -22,6 +22,9 @@ code:
   copyFinish: 复制成功
   expand: 展开
 
+btn:
+  totop: 回到顶部
+
 menu:
   archive:
     name: 文章

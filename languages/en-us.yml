@@ -22,6 +22,9 @@ code:
   copyFinish: copied
   expand: expand
 
+btn:
+  totop: To Top
+
 menu:
   archive:
     name: Archive

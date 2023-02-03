@@ -48,11 +48,10 @@ html(lang=config.language theme-mode=theme.color)
           div!= body
         else
           block content
-        if page.published !== undefined
-          #bottom-btn
-            if tocLength !== null
-              a#to-index(href="#toc-div" title=__('post.index')) ≡
-            a#to-top(onClick="scrolls.scrolltop();" title="to top" style="opacity: 0; display: none;") ∧
+        #bottom-btn
+          if tocLength !== null
+            a#to-index(href="#toc-div" title=__('post.index')) ≡
+          a#to-top(onClick="scrolls.scrolltop();" title=__('btn.totop') style="opacity: 0; display: none;") ∧
       include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust
