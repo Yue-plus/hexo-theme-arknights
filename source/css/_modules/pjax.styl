@@ -49,10 +49,7 @@
   position absolute!important
   animation .6s pjax-animate-in
 
-#paginator.pjax-in,
-#paginator.pjax-out,
-#bottom-btn.pjax-in,
-#bottom-btn.pjax-out
+:is(#paginator,.bottom-btn):is(.pjax-in,.pjax-out)
   visibility hidden
   pointer-events none
 

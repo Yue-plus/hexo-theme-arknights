@@ -21,8 +21,8 @@ class Scroll {
     setTimeout(() => this.totop.style.display = 'none', 300)
   }
 
-  private totopChange = (post: HTMLElement) => {
-    if (post.getBoundingClientRect().top < -200) {
+  private totopChange = (top: number) => {
+    if (top < -200) {
       this.totop.style.display = ''
       this.visible = true
       setTimeout(() => {
@@ -104,7 +104,7 @@ class Scroll {
             }
           }, 100)
           if (!this.getingtop) {
-            this.totopChange(getElement('#post-title'))
+            this.totopChange(nowheight)
           }
         } catch (e) {}
       }

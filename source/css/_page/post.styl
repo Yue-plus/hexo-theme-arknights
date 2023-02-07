@@ -22,6 +22,7 @@
   padding 20px 30px
   background-color var(--theme-bg-trans1)
   overflow-x auto
+  min-height calc(100vh - 20px)
   img
     max-width 100%
 
@@ -99,34 +100,6 @@
 
 #post-footer hr
   border-color var(--theme-border)
-
-#bottom-btn
-  position sticky
-  bottom 0
-  z-index 1
-  a
-    overflow hidden
-    position absolute
-    right 0
-    transition .3s color, .3s line-height, .3s background-color, .3s opacity
-    width 40px
-    height 40px
-    color var(--theme-text-light)
-    line-height 40px
-    text-align center
-    font-size 40px
-    font-weight 900
-    padding 0
-    user-select none
-    @media ( min-width 769px )
-      &:hover
-        color var(--theme-text-hover)
-        line-height 30px
-        background-color var(--theme-subcolor)
-#to-index
-  bottom 48px
-#to-top
-  bottom 8px
 
 #reward
   margin 1em 0

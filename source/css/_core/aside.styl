@@ -22,9 +22,6 @@ aside
     color var(--theme-unimportant)
     padding 0 3px 30px 3px
     font-family BenderLight
-  scroll-snap-type y mandatory
-  &>div
-    scroll-snap-align start
 
 #logo
   user-select none
@@ -73,8 +70,7 @@ aside
   margin 15px 0 0 15px
 
 #aside-block
-  height 100vh
-  min-height fit-content
+  flex-grow 2
   margin-top 10px
   #total-archives .total-number
     letter-spacing 2px

@@ -76,13 +76,26 @@ block content
             span #{pay}
             br
             img(src=config.root + imgSrc)
-    if page.comments
-      if theme.valine.enable === true
-        #Valine
-      if theme.gitalk.enable === true
-        #comments
-      if theme.waline.enable === true
-        #waline(style="margin:0 30px;")
+    -
+      let count = (theme.valine.enable === true) +
+                  (theme.gitalk.enable === true) +
+                  (theme.waline.enable === true)
+    if page.comments && count
+      #comments
+        if count > 0
+          .selector
+            if theme.valine.enable === true
+              button.valine-sel
+            if theme.gitalk.enable === true
+              button.gitalk-sel
+            if theme.waline.enable === true
+              button.waline-sel
+        if theme.valine.enable === true
+          #valine
+        if theme.gitalk.enable === true
+          #gitalk
+        if theme.waline.enable === true
+          #waline
 
 block aside-block
   - 

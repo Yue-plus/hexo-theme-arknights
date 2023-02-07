@@ -1,0 +1,23 @@
+#waline
+  --waline-theme-color var(--theme-highlight)
+  --waline-active-color var(--theme-text-hover)
+  --waline-color var(--theme-text)
+  --waline-bgcolor var(--theme-bg-soft)
+  --waline-bgcolor-hover var(--theme-bg-soft-hover)
+
+  button
+    transition .3s
+  .wl-actions>:first-child
+    display flex
+  a, .wl-action, .wl-sort li, .wl-text-number
+    user-select none
+    cursor var(--cursor-data) 3 3,pointer
+  .wl-btn
+    color var(--theme-text-light)
+    background var(--theme-bg-soft)
+    border var(--theme-border-light) 1px solid
+    cursor var(--cursor-data) 3 3,pointer
+    &:hover
+      color var(--theme-subcolor)
+      border var(--theme-border) 1px solid
+      background var(--theme-bg-soft-hover)

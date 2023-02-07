@@ -1,23 +1,21 @@
 if searchConfig !== null
   script(src="/js/search.js")
-if theme.waline !== undefined && theme.waline.enable === true
+if theme.waline && theme.waline.enable === true
   script(type='module').
     import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-    init({
-        el: '#waline',
-        serverURL: '#{theme.waline.server_url}',
-      });
+    window.waline = init;
+
 script.pjax-js reset=_=>{
-  if theme.valine !== undefined && theme.valine.enable === true
+  if theme.valine && theme.valine.enable === true
     |new Valine({
-    |  el: '#Valine'
+    |  el: '#valine'
     |  , appId: '#{theme.valine.app_id}'
     |  , appKey: '#{theme.valine.app_key}'
     if theme.valine.server_url
       | , serverURLs: '#{theme.valine.server_url}'
-    |  , placeholder: '#{__('Valine.placeHolder')}'
+    |  , placeholder: '#{__('valine.placeHolder')}'
     |});
-  if theme.gitalk !== undefined && theme.gitalk.enable === true
+  if theme.gitalk && theme.gitalk.enable === true
     - let config = theme.gitalk, gitAdmin = ''
     for str in theme.gitalk.admin
       - gitAdmin= gitAdmin + "'" + str + "'"
@@ -30,16 +28,25 @@ script.pjax-js reset=_=>{
     |  distractionFreeMode: #{config.distraction_free_mode || false},
     |  id: #{config.id}
     |});
-    |if (document.querySelector("#comments")) gitalk.render("comments");
+    |if (document.querySelector("#gitalk")) gitalk.render("gitalk");
+  if theme.waline && theme.waline.enable === true
+    |waline({
+    |  el: '#waline',
+    |  dark: ':root[theme-mode="dark"]',
+    |  serverURL: '#{theme.waline.server_url}',
+    |});
   | !{onload}}
+
 if theme.scripts && theme.scripts.length > 0
   //- scripts list from config.yml
   each url in theme.scripts
     script(src=url)
+
 script(src=config.root + "js/arknights.js")
+
 if pjax
   script(src=config.root + "js/pjax.js")
-script window.addEventListener("load",()=>{
+script window.addEventListener("load",() => {
   if pjax
     |pjax = new Pjax({
     |  cacheBust: false,

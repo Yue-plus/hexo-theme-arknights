@@ -27,6 +27,7 @@ class canvasDust {
   public height: number = 300
   private dustQuantity: number = 50
   public dustArr: Array<dust> = []
+  private inStop: boolean = false
 
   constructor(canvasID: string) {
     const canvas: HTMLCanvasElement = getElement(canvasID) as HTMLCanvasElement
@@ -45,11 +46,14 @@ class canvasDust {
         this.buildDust(dustObj)
         this.dustArr.push(dustObj)
       }
-      requestAnimationFrame(this.play)
+      requestAnimationFrame(this.paint)
     }
   }
 
-  private play = () => {
+  private paint = () => {
+    if (this.inStop) {
+      return
+    }
     const dustArr = this.dustArr
     for (let i of dustArr) {
       this.ctx.clearRect(i.x - 6, i.y - 6, 12, 12)
@@ -66,7 +70,7 @@ class canvasDust {
     for (let i of dustArr) {
       this.buildDust(i)
     }
-    requestAnimationFrame(this.play)
+    requestAnimationFrame(this.paint)
   }
 
   private buildDust = (dust: dust) => {
@@ -102,10 +106,20 @@ class canvasDust {
     }
     return point
   }
+
+  public stop = () => {
+    this.inStop = true
+  }
+  public play = () => {
+    if (this.inStop === true) {
+      this.inStop = false
+      requestAnimationFrame(this.paint)
+    }
+  }
 }
 
 try {
-  new canvasDust('#canvas-dust')
+  var canvasDusts = new canvasDust('#canvas-dust')
 } catch (e) {
   throw new Error('canvasID 无效')
 }

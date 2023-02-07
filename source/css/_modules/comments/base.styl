@@ -1,0 +1,41 @@
+.selector
+  margin-top 2em
+  display flex
+  justify-content space-around
+  background var(--theme-bg-soft)
+  position relative
+  &::after
+    content ''
+    position absolute
+    left 0
+    top 100%
+    height 100%
+    width 100%
+    background linear-gradient(180deg, var(--theme-bg-soft), transparent)
+  button
+    transition .3s
+    height 40px
+    flex-grow 1
+    border-left 1px solid var(--theme-border)
+    display flex
+    align-items center
+    &.active
+      background transparent
+    &:hover:not(.active)
+      background var(--theme-bg-soft-hover)
+    &::after
+      display block
+      width 100%
+      text-align center
+      font-size 16px
+    &:last-child
+      border-right 1px solid var(--theme-border)
+
+.valine-sel::after
+  content "Valine"
+
+.gitalk-sel::after
+  content "Gitalk"
+
+.waline-sel::after
+  content "Waline"

@@ -1,10 +1,7 @@
 // ========= 基础样式
 // ====== base style
 
-:root
-  --cursor-data url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGBAMAAAAS4vJ7AAAAElBMVEX///////////////////////+65XQCAAAABXRSTlPUzXppDN7WmLAAAAAZSURBVAjXY3ASVGEwDQ1mYA0NAGEQGyQGAC9SA/00lbgwAAAAAElFTkSuQmCC")
-
-html, body, a, button, input, textarea
+html, body, label
   cursor var(--cursor-data) 3 3, default
 
 html, body
@@ -70,7 +67,7 @@ h1, h2, h3, h4, h5, h6
   padding-bottom 0.2em
 
 p
-  overflow visiable
+  overflow visible
 
 a
   text-decoration none
@@ -92,6 +89,12 @@ a,
     &:active
       color var(--theme-text-hover)
       background-color var(--theme-subcolor)
+
+button
+  background var(--theme-bg-soft)
+  color var(--theme-text-light)
+  font-family "JetBrains Mono"
+  border unset
 
 time
   font-family BenderLight
@@ -157,6 +160,9 @@ table
     border var(--theme-td-border) solid 1px
     &:hover
       background-color var(--theme-td-hover)
+
+a, button, input, textarea
+  cursor var(--cursor) 3 3, pointer
 
 input
   cursor var(--cursor) 3 3, text

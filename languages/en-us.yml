@@ -23,7 +23,9 @@ code:
   expand: expand
 
 btn:
+  index: To Catalog
   totop: To Top
+  colorMode: Light/Dark Mode
 
 menu:
   archive:
@@ -49,5 +51,5 @@ footer:
   theme: Theme
   by: by
 
-Valine:
+valine:
   placeHolder: This comment is sent by Penguin Logistics.

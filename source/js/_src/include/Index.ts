@@ -3,18 +3,19 @@
 'use strict'
 
 class Index {
+  private lastIndex: number = -1
   private setItem = (item: HTMLElement) => {
     item.classList.add('active')
     let parent = getParent(item), brother = parent.children
-    for (let i = 0; i < brother.length; ++i) {
+    for (let i = 0, length = brother.length; i < length; ++i) {
       const item = brother.item(i) as HTMLElement
       if (item.classList.contains('toc-child')) {
         item.classList.add('has-active')
         break
       }
     }
-    for (; parent.classList[0] != 'toc'; parent = getParent(parent)) {
-      if (parent.classList[0] == 'toc-child') {
+    for (; parent.classList[0] !== 'toc'; parent = getParent(parent)) {
+      if (parent.classList[0] === 'toc-child') {
         parent.classList.add('has-active')
       }
     }
@@ -29,10 +30,14 @@ class Index {
       }
     })
     tocTree.forEach(item => {
-      if (!item.contains(not)) {
+      if (!(item.parentElement as HTMLElement).contains(not)) {
         (item as HTMLElement).classList.remove('has-active')
       }
     })
+  }
+
+  private check = (index: Array<number>, id: number) => {
+    return index[id + 1] > 150 && (index[id] <= 150 || !id)
   }
 
   private modifyIndex = (headerLink: NodeList, tocLink: NodeList) => {
@@ -40,9 +45,12 @@ class Index {
     headerLink.forEach(item => {
       index.push((item as HTMLElement).getBoundingClientRect().top)
     })
+    if (this.lastIndex >= 0 && this.check(index, this.lastIndex)) {
+      return
+    }
     for (let i = 0; i < tocLink.length; ++i) {
       const item = tocLink.item(i) as HTMLElement
-      if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
+      if (i + 1 === index.length || this.check(index, i)) {
         this.setItem(item)
         this.reset(item)
         break
@@ -53,11 +61,11 @@ class Index {
   private setHTML = () => {
     let headerLink: NodeList = document.querySelectorAll('h2,h3,h4,h5,h6'),
       tocLink: NodeList = document.querySelectorAll('.toc-link')
-    if (tocLink.length !== 0) {
+    if (tocLink.length) {
       this.setItem(tocLink.item(0) as HTMLElement)
     }
     getElement('main').addEventListener('scroll', () => {
-      if (tocLink.length === 0) {
+      if (!tocLink.length) {
         return
       }
       this.modifyIndex(headerLink, tocLink)

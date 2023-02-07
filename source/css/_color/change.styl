@@ -19,6 +19,24 @@
     background-color var(--theme-bg-soft)
     &:hover
       background-color var(--theme-bg-soft-hover)
+  #color-mode
+    &:hover::after
+      transform rotate(-90deg)
+    &::after
+      transform rotate(-180deg)
+      animation clockwise .3s
+  @keyframes clockwise {
+    0% {
+      transform rotate(-270deg)
+    }
+    100% {
+      transform rotate(-180deg)
+    }
+  }
+
+[theme-mode=dark]
+  #color-mode:hover::after
+    filter invert(1)
 
 #post-bg,
 h1, h2, h3, h4, h5, h6

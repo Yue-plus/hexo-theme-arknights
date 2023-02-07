@@ -50,6 +50,7 @@ class canvasDust {
         this.height = 300;
         this.dustQuantity = 50;
         this.dustArr = [];
+        this.inStop = false;
         this.build = () => {
             this.resize();
             if (this.ctx) {
@@ -59,10 +60,13 @@ class canvasDust {
                     this.buildDust(dustObj);
                     this.dustArr.push(dustObj);
                 }
-                requestAnimationFrame(this.play);
+                requestAnimationFrame(this.paint);
             }
         };
-        this.play = () => {
+        this.paint = () => {
+            if (this.inStop) {
+                return;
+            }
             const dustArr = this.dustArr;
             for (let i of dustArr) {
                 this.ctx.clearRect(i.x - 6, i.y - 6, 12, 12);
@@ -80,7 +84,7 @@ class canvasDust {
             for (let i of dustArr) {
                 this.buildDust(i);
             }
-            requestAnimationFrame(this.play);
+            requestAnimationFrame(this.paint);
         };
         this.buildDust = (dust) => {
             const ctx = this.ctx;
@@ -104,6 +108,15 @@ class canvasDust {
             this.ctx.shadowColor =
                 this.ctx.fillStyle = this.color;
         };
+        this.stop = () => {
+            this.inStop = true;
+        };
+        this.play = () => {
+            if (this.inStop === true) {
+                this.inStop = false;
+                requestAnimationFrame(this.paint);
+            }
+        };
         const canvas = getElement(canvasID);
         this.canvas = canvas;
         this.ctx = this.canvas.getContext('2d');
@@ -121,7 +134,7 @@ canvasDust.getPoint = (number = 1) => {
     return point;
 };
 try {
-    new canvasDust('#canvas-dust');
+    var canvasDusts = new canvasDust('#canvas-dust');
 }
 catch (e) {
     throw new Error('canvasID 无效');
@@ -228,7 +241,7 @@ class Cursor {
         this.fadeIng = false;
         this.nowX = 0;
         this.nowY = 0;
-        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon";
+        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon,.wl-sort>li,.vicon";
         this.set = (X = this.nowX, Y = this.nowY) => {
             this.outer.transform =
                 `translate(calc(${X.toFixed(2)}px - 50%),
@@ -236,13 +249,11 @@ class Cursor {
         };
         this.move = (timestamp) => {
             if (this.now !== undefined) {
-                let delX = (this.now.x - this.nowX) * 0.5, delY = (this.now.y - this.nowY) * 0.5;
-                if (timestamp - this.last > 10) {
-                    this.nowX += delX;
-                    this.nowY += delY;
-                    this.set();
-                    this.last = timestamp;
-                }
+                let delX = this.now.x - this.nowX, delY = this.now.y - this.nowY;
+                this.nowX += delX * Math.min(0.025 * (timestamp - this.last), 1);
+                this.nowY += delY * Math.min(0.025 * (timestamp - this.last), 1);
+                this.set();
+                this.last = timestamp;
                 if (Math.abs(delX) > 0.1 || Math.abs(delY) > 0.1) {
                     window.requestAnimationFrame(this.move);
                 }
@@ -295,16 +306,13 @@ class Cursor {
             this.outer.width = '36px';
             this.outer.background = "unset";
         };
-        this.pushHolder = (items) => {
-            items.forEach(item => {
+        this.pushHolder = () => {
+            document.querySelectorAll(this.attention).forEach(item => {
                 if (!item.classList.contains('is--active')) {
                     item.addEventListener('mouseover', this.hold, { passive: true });
                     item.addEventListener('mouseout', this.relax, { passive: true });
                 }
             });
-        };
-        this.pushHolders = () => {
-            this.pushHolder(document.querySelectorAll(this.attention));
         };
         let node = document.createElement('div');
         node.id = 'cursor-container';
@@ -317,26 +325,27 @@ class Cursor {
         this.effecter.opacity = '1';
         window.addEventListener('mousemove', this.reset, { passive: true });
         window.addEventListener('click', this.Aeffect, { passive: true });
-        this.pushHolders();
-        const observer = new MutationObserver(this.pushHolders);
+        this.pushHolder();
+        const observer = new MutationObserver(this.pushHolder);
         observer.observe(document, { childList: true, subtree: true });
     }
 }
 window.onload = () => new Cursor();
 class Index {
     constructor() {
+        this.lastIndex = -1;
         this.setItem = (item) => {
             item.classList.add('active');
             let parent = getParent(item), brother = parent.children;
-            for (let i = 0; i < brother.length; ++i) {
+            for (let i = 0, length = brother.length; i < length; ++i) {
                 const item = brother.item(i);
                 if (item.classList.contains('toc-child')) {
                     item.classList.add('has-active');
                     break;
                 }
             }
-            for (; parent.classList[0] != 'toc'; parent = getParent(parent)) {
-                if (parent.classList[0] == 'toc-child') {
+            for (; parent.classList[0] !== 'toc'; parent = getParent(parent)) {
+                if (parent.classList[0] === 'toc-child') {
                     parent.classList.add('has-active');
                 }
             }
@@ -350,19 +359,25 @@ class Index {
                 }
             });
             tocTree.forEach(item => {
-                if (!item.contains(not)) {
+                if (!item.parentElement.contains(not)) {
                     item.classList.remove('has-active');
                 }
             });
+        };
+        this.check = (index, id) => {
+            return index[id + 1] > 150 && (index[id] <= 150 || !id);
         };
         this.modifyIndex = (headerLink, tocLink) => {
             let index = [];
             headerLink.forEach(item => {
                 index.push(item.getBoundingClientRect().top);
             });
+            if (this.lastIndex >= 0 && this.check(index, this.lastIndex)) {
+                return;
+            }
             for (let i = 0; i < tocLink.length; ++i) {
                 const item = tocLink.item(i);
-                if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
+                if (i + 1 === index.length || this.check(index, i)) {
                     this.setItem(item);
                     this.reset(item);
                     break;
@@ -371,11 +386,11 @@ class Index {
         };
         this.setHTML = () => {
             let headerLink = document.querySelectorAll('h2,h3,h4,h5,h6'), tocLink = document.querySelectorAll('.toc-link');
-            if (tocLink.length !== 0) {
+            if (tocLink.length) {
                 this.setItem(tocLink.item(0));
             }
             getElement('main').addEventListener('scroll', () => {
-                if (tocLink.length === 0) {
+                if (!tocLink.length) {
                     return;
                 }
                 this.modifyIndex(headerLink, tocLink);
@@ -519,8 +534,8 @@ class Scroll {
             this.getingtop = true;
             setTimeout(() => this.totop.style.display = 'none', 300);
         };
-        this.totopChange = (post) => {
-            if (post.getBoundingClientRect().top < -200) {
+        this.totopChange = (top) => {
+            if (top < -200) {
                 this.totop.style.display = '';
                 this.visible = true;
                 setTimeout(() => {
@@ -601,7 +616,7 @@ class Scroll {
                             }
                         }, 100);
                         if (!this.getingtop) {
-                            this.totopChange(getElement('#post-title'));
+                            this.totopChange(nowheight);
                         }
                     }
                     catch (e) { }
@@ -719,38 +734,94 @@ class ColorMode {
         this.html = document.documentElement;
         this.dark = this.html.getAttribute('theme-mode') === 'dark';
         this.inChanging = false;
+        this.btn = getElement('#color-mode');
+        this.change = () => {
+            this.inChanging = true;
+            let background = document.createElement('div');
+            background.style.transition = '1.5s';
+            background.innerHTML =
+                `<div style='background: var(--${this.dark ? 'dark' : 'light'}-background);
+        height: 100vh; width: 100vw;
+        position: fixed; left: 0; top: 0; z-index: -99999;'></div>`;
+            document.body.insertBefore(background, document.body.firstChild);
+            this.btn.style.pointerEvents = 'none';
+            setTimeout(() => {
+                canvasDusts.stop();
+                if (this.dark) {
+                    this.html.setAttribute('theme-mode', 'light');
+                    this.dark = false;
+                }
+                else {
+                    this.html.setAttribute('theme-mode', 'dark');
+                    this.dark = true;
+                }
+                background.style.opacity = '0';
+            });
+            setTimeout(() => {
+                document.body.removeChild(background);
+                canvasDusts.play();
+            }, 1500);
+            setTimeout(() => {
+                this.btn.style.pointerEvents = '';
+                this.inChanging = false;
+            }, 1000);
+        };
         document.addEventListener('keypress', (ev) => {
             if (this.inChanging) {
                 return;
             }
             if (ev.key === 'c' && ev.target &&
                 !['INPUT', 'TEXTAREA'].includes(ev.target.tagName)) {
-                this.inChanging = true;
-                let background = document.createElement('div');
-                background.style.transition = '1.5s';
-                background.innerHTML =
-                    `<div style='background: var(--${this.dark ? 'dark' : 'light'}-background);
-            height: 100vh; width: 100vw;
-            position: fixed; left: 0; top: 0; z-index: -99999;'></div>`;
-                document.body.insertBefore(background, document.body.firstChild);
-                setTimeout(() => {
-                    if (this.dark) {
-                        this.html.setAttribute('theme-mode', 'light');
-                        this.dark = false;
-                    }
-                    else {
-                        this.html.setAttribute('theme-mode', 'dark');
-                        this.dark = true;
-                    }
-                    background.style.opacity = '0';
-                });
-                setTimeout(() => document.body.removeChild(background), 1500);
-                setTimeout(() => this.inChanging = false, 1000);
+                this.change();
             }
         });
     }
 }
 var colorMode = new ColorMode();
+class Pair {
+    constructor(first, second) {
+        this.comment = first;
+        this.button = second;
+    }
+}
+class Comments {
+    constructor() {
+        this.search = ["valine", "gitalk", "waline"];
+        this.elements = [];
+        this.changeTo = (item) => {
+            if (item === this.nowActive) {
+                return;
+            }
+            this.nowActive.comment.style.display = 'none';
+            this.nowActive.button.classList.remove('active');
+            item.comment.style.display = '';
+            item.button.classList.add('active');
+            this.nowActive = item;
+        };
+        this.setHTML = () => {
+            if (!document.querySelector('#comments'))
+                return;
+            this.elements = [];
+            this.search.forEach((item) => {
+                try {
+                    this.elements.push(new Pair(getElement(`#${item}`), getElement(`.${item}-sel`)));
+                }
+                catch (e) { }
+            });
+            this.elements.forEach((item) => item.comment.style.display = 'none');
+            this.nowActive = this.elements[0];
+            for (let i of this.elements) {
+                i.button.addEventListener('click', () => this.changeTo(i));
+            }
+            this.nowActive.comment.style.display = '';
+            this.nowActive.button.classList.add('active');
+        };
+        this.setHTML();
+        document.addEventListener('pjax:complete', this.setHTML);
+        this.nowActive = this.elements[0];
+    }
+}
+new Comments();
 /// <reference path="include/canvaDust.ts" />
 /// <reference path="include/Code.ts" />
 /// <reference path="include/Cursors.ts" />
@@ -759,3 +830,4 @@ var colorMode = new ColorMode();
 /// <reference path="include/scroll.ts" />
 /// <reference path="include/pjaxSupport.ts" />
 /// <reference path="include/ColorMode.ts" />
+/// <reference path="include/Comments.ts" />

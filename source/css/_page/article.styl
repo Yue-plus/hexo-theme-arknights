@@ -7,7 +7,6 @@ main
 
 article
   transition margin .3s
-  transform translateZ(0)
   box-sizing border-box
   position relative
   min-height calc(100vh - 10px)
@@ -18,8 +17,11 @@ article
     line-height 150%
 
 .posts
-  width 100%
   padding-bottom 72px
+  width 100%
+  min-height calc(100vh - 82px)
+  @media ( max-width 768px )
+    padding-bottom 4em
 
 .recent-post
   color var(--theme-unimportant)

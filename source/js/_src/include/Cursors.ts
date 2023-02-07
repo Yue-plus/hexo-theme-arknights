@@ -13,7 +13,7 @@ class Cursor {
   private readonly outer: CSSStyleDeclaration
   private readonly effecter: CSSStyleDeclaration
   private readonly attention: string =
-    "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon"
+    "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon,.wl-sort>li,.vicon"
 
   private set = (X: number = this.nowX, Y: number = this.nowY) => {
     this.outer.transform =
@@ -23,13 +23,12 @@ class Cursor {
 
   private move = (timestamp: number) => {
     if (this.now !== undefined) {
-      let delX = (this.now.x - this.nowX) * 0.5, delY = (this.now.y - this.nowY) * 0.5
-      if (timestamp - this.last > 10) {
-        this.nowX += delX
-        this.nowY += delY
-        this.set()
-        this.last = timestamp
-      }
+      let delX = this.now.x - this.nowX,
+        delY = this.now.y - this.nowY
+      this.nowX += delX * Math.min(0.025 * (timestamp - this.last), 1)
+      this.nowY += delY * Math.min(0.025 * (timestamp - this.last), 1)
+      this.set()
+      this.last = timestamp
       if (Math.abs(delX) > 0.1 || Math.abs(delY) > 0.1) {
         window.requestAnimationFrame(this.move)
       } else {
@@ -86,17 +85,13 @@ class Cursor {
     this.outer.background = "unset"
   }
 
-  private pushHolder = (items: NodeList) => {
-    items.forEach(item => {
+  private pushHolder = () => {
+    document.querySelectorAll(this.attention).forEach(item => {
       if (!(item as HTMLElement).classList.contains('is--active')) {
         item.addEventListener('mouseover', this.hold, { passive: true })
         item.addEventListener('mouseout', this.relax, { passive: true })
       }
     })
-  }
-
-  private pushHolders = () => {
-    this.pushHolder(document.querySelectorAll(this.attention))
   }
 
   constructor() {
@@ -111,8 +106,8 @@ class Cursor {
     this.effecter.opacity = '1'
     window.addEventListener('mousemove', this.reset, { passive: true })
     window.addEventListener('click', this.Aeffect, { passive: true })
-    this.pushHolders()
-    const observer = new MutationObserver(this.pushHolders)
+    this.pushHolder()
+    const observer = new MutationObserver(this.pushHolder)
     observer.observe(document, { childList: true, subtree: true })
   }
 }
