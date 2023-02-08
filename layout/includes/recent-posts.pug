@@ -1,26 +1,27 @@
 if page.posts.length > 0
   each post in page.posts.sort('date', -1).limit((config.per_page === 0) ? 9999999 : config.per_page).toArray()
     a(href=url_for(post.path)).recent-post
-      .recent-info
-        span.categories
-          if post.categories.length > 0
-            each category in post.categories.data
-              object
-                a(href=url_for(category.path))= category.name
-          else
-            span #{__('page.noCategory')}
-        span.tags
-          if post.tags.length > 0
-            each tag in post.tags.data
-              object
-                a(href=url_for(tag.path))= tag.name
-          else
-            span #{__('page.noTag')}
-        if post.date
-          time(datetime=post.date.toJSON())= date(post.date, date_format)
-      h1.recent-title= post.title
-      .recent-excerpt
-        if post.excerpt.length > 0
-          hr
-          != post.excerpt
-      span.read-more #{__('page.readMore')}
+      object
+        .recent-info
+          span.categories
+            if post.categories.length > 0
+              each category in post.categories.data
+                object
+                  a(href=url_for(category.path))= category.name
+            else
+              span #{__('page.noCategory')}
+          span.tags
+            if post.tags.length > 0
+              each tag in post.tags.data
+                object
+                  a(href=url_for(tag.path))= tag.name
+            else
+              span #{__('page.noTag')}
+          if post.date
+            time(datetime=post.date.toJSON())= date(post.date, date_format)
+        h1.recent-title= post.title
+        .recent-excerpt
+          if post.excerpt.length > 0
+            hr
+            != post.excerpt
+        span.read-more #{__('page.readMore')}
