@@ -765,10 +765,12 @@ class ColorMode {
                 if (this.dark) {
                     this.html.setAttribute('theme-mode', 'light');
                     this.dark = false;
+                    window.localStorage['theme-mode'] = 'light';
                 }
                 else {
                     this.html.setAttribute('theme-mode', 'dark');
                     this.dark = true;
+                    window.localStorage['theme-mode'] = 'dark';
                 }
                 background.style.opacity = '0';
             });

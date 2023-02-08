@@ -31,12 +31,13 @@ script.pjax-js reset=_=>{
     |});
     |if (document.querySelector("#gitalk")) gitalk.render("gitalk");
   if theme.waline && theme.waline.enable === true
-    |waline({
-    |  el: '#waline',
-    |  dark: ':root[theme-mode="dark"]',
-    |  serverURL: '#{theme.waline.server_url}',
-    |  path: !{'window.location.pathname'},
-    |});
+    |if (document.querySelector('#waline'))
+    |  waline({
+    |    el: '#waline',
+    |    dark: ':root[theme-mode="dark"]',
+    |    serverURL: '#{theme.waline.server_url}',
+    |    path: !{'window.location.pathname'},
+    |  });
   | code.findCode();}
 
 if theme.scripts && theme.scripts.length > 0

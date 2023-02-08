@@ -25,7 +25,7 @@ code:
 btn:
   index: To Catalog
   totop: To Top
-  colorMode: Light/Dark Mode
+  colorMode: Change Theme
 
 menu:
   archive:
@@ -43,7 +43,7 @@ menu:
 
 search:
   activeHolder: Enter here
-  blurHolder: Search the blog
+  blurHolder: Search
   noResult: Data "$0" not found
 
 footer:

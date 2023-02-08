@@ -38,7 +38,19 @@ if theme.stylesheets && theme.stylesheets.length > 0
   //- stylesheets list from _config.yml
   each url in theme.stylesheets
     link(rel='stylesheet', href=url)
-
+script
+  |if (window.localStorage.getItem('theme-mode') === 'light'
+  if theme.color === 'auto'
+    |  || window.matchMedia('(prefers-color-scheme:light)').matches)
+  else
+    |)
+  |  document.documentElement.setAttribute('theme-mode', 'light')
+  |if (window.localStorage.getItem('theme-mode') === 'dark'
+  if theme.color === 'auto'
+    |  || window.matchMedia('(prefers-color-scheme:dark)').matches)
+  else
+    |)
+  |  document.documentElement.setAttribute('theme-mode', 'dark')
 style
   |@font-face {
   |  font-family: BenderLight;
