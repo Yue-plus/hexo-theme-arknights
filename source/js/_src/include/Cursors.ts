@@ -8,33 +8,39 @@ class Cursor {
   private last: number = 0
   private moveIng: boolean = false
   private fadeIng: boolean = false
+  private nowX: number = 0
+  private nowY: number = 0
   private readonly outer: CSSStyleDeclaration
   private readonly effecter: CSSStyleDeclaration
   private readonly attention: string =
-    "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon"
+    "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon,.wl-sort>li,.vicon,.clickable"
+
+  private set = (X: number = this.nowX, Y: number = this.nowY) => {
+    this.outer.transform =
+      `translate(calc(${X.toFixed(2)}px - 50%),
+                  calc(${Y.toFixed(2)}px - 50%))`
+  }
 
   private move = (timestamp: number) => {
     if (this.now !== undefined) {
-      let SX = this.outer.left, SY = this.outer.top,
-        preX = Number(SX.substring(0, SX.length - 2)),
-        preY = Number(SY.substring(0, SY.length - 2)),
-        delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3
-      if (timestamp - this.last > 15) {
-        preX += delX
-        preY += delY
-        this.outer.left = preX.toFixed(2) + 'px'
-        this.outer.top = preY.toFixed(2) + 'px'
-        this.last = timestamp
-      }
-      if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
+      let delX = this.now.x - this.nowX,
+        delY = this.now.y - this.nowY
+      this.nowX += delX * Math.min(0.025 * (timestamp - this.last), 1)
+      this.nowY += delY * Math.min(0.025 * (timestamp - this.last), 1)
+      this.set()
+      this.last = timestamp
+      if (Math.abs(delX) > 0.1 || Math.abs(delY) > 0.1) {
         window.requestAnimationFrame(this.move)
       } else {
+        this.set(this.now.x, this.now.y)
         this.moveIng = false
       }
     }
   }
 
   private reset = (mouse: MouseEvent) => {
+    this.outer.top = '0'
+    this.outer.left = '0'
     if (!this.moveIng) {
       this.moveIng = true
       window.requestAnimationFrame(this.move)
@@ -42,8 +48,9 @@ class Cursor {
     this.now = mouse
     if (this.first) {
       this.first = false
-      this.outer.left = String(this.now.x) + 'px'
-      this.outer.top = String(this.now.y) + 'px'
+      this.nowX = this.now.x
+      this.nowY = this.now.y
+      this.set()
     }
   }
 
@@ -69,7 +76,7 @@ class Cursor {
   private hold = () => {
     this.outer.height = '24px'
     this.outer.width = '24px'
-    this.outer.background = "rgba(255, 255, 255, 0.5)"
+    this.outer.background = "var(--theme-cursor-bg)"
   }
 
   public relax = () => {
@@ -78,17 +85,13 @@ class Cursor {
     this.outer.background = "unset"
   }
 
-  private pushHolder = (items: NodeList) => {
-    items.forEach(item => {
+  private pushHolder = () => {
+    document.querySelectorAll(this.attention).forEach(item => {
       if (!(item as HTMLElement).classList.contains('is--active')) {
         item.addEventListener('mouseover', this.hold, { passive: true })
         item.addEventListener('mouseout', this.relax, { passive: true })
       }
     })
-  }
-
-  private pushHolders = () => {
-    this.pushHolder(document.querySelectorAll(this.attention))
   }
 
   constructor() {
@@ -103,8 +106,8 @@ class Cursor {
     this.effecter.opacity = '1'
     window.addEventListener('mousemove', this.reset, { passive: true })
     window.addEventListener('click', this.Aeffect, { passive: true })
-    this.pushHolders()
-    const observer = new MutationObserver(this.pushHolders)
+    this.pushHolder()
+    const observer = new MutationObserver(this.pushHolder)
     observer.observe(document, { childList: true, subtree: true })
   }
 }

@@ -15,20 +15,19 @@
     padding-left 1.2em
   .navBlock
     text-align right
-    .navItemTitle::after
+    .navItemTitle::before
       border-left 4px solid
       left 0px
   .navContent:not(.search) .navBlock
-    &:hover
-      &>.navItemTitle
-        margin-left 1em
-      &::after
-        content ""
-        height 100%
-        width 100%
-        position absolute
-        top 0
-        left 2em
+    &::before
+      content ""
+      height 100%
+      width 100%
+      position absolute
+      top 0
+      left 2em
+    &:hover>.navItemTitle
+      margin-left 1em
     &>.navItemList
       left calc(100% + 2em)
   .navItemList

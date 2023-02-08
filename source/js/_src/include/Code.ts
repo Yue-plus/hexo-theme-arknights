@@ -14,12 +14,12 @@ class Code {
     }
   }
 
-  private doAsMermaid(item: Element) {
+  private doAsMermaid = (item: Element) => {
     let Amermaid = item.querySelector('.mermaid') as HTMLElement
     item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>'
   }
 
-  private resetName(str: string): string {
+  private resetName = (str: string): string => {
     if (str == 'plaintext') {
       return 'TEXT'
     }
@@ -32,13 +32,25 @@ class Code {
     return str.toUpperCase()
   }
 
+  private addEvent = (header: HTMLElement) => {
+    header.addEventListener('click', (click) => {
+      if (click.target === header) {
+        this.reverse(header, 'open', 'fold')
+      }
+    })
+    header.addEventListener('keypress', (key) => {
+      if (key.key === 'Enter' && key.target === header) {
+        this.reverse(header, 'open', 'fold')
+      }
+    })
+  }
 
   private doAsCode = (item: Element) => {
     const codeType = this.resetName(item.classList[1]),
       lineCount = getElement('.gutter', item).children[0].childElementCount >> 1
     item.classList.add(lineCount < 16 ? 'open' : 'fold')
     item.innerHTML =
-      `<span class="code-header">\
+      `<span class="code-header" tabindex='0'>\
         <span class="code-title">\
           <div class="code-icon"></div>
           ${format(config.code.codeInfo, codeType, lineCount)}
@@ -59,9 +71,14 @@ class Code {
         button.innerText = config.code.copy
       }, 1200)
     })
-    getElement('.code-header', item).addEventListener('click', (click: Event) => {
-      if (!(click.target as HTMLElement).classList.contains('code-copy')) {
-        this.reverse(click.currentTarget as HTMLElement, 'open', 'fold')
+    this.addEvent(getElement('.code-header', item))
+  }
+
+  private clearMermaid = () => {
+    document.querySelectorAll('.mermaid').forEach((item) => {
+      let style = item.querySelector('style')
+      if (style) {
+        style.remove()
       }
     })
   }
@@ -86,6 +103,8 @@ class Code {
         }
       })
     }
+    mermaid.init()
+    this.clearMermaid()
   }
 
   constructor() {

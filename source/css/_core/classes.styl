@@ -1,17 +1,17 @@
 .text-title, .text-content
   height 18px
   line-height 18px
-  color #000
+  color var(--theme-text-rev)
   padding 0 5px
   font-size small
   font-family sans-serif
   display inline-block
 .text-title
-  background-color #2bf
+  background-color var(--theme-highlight)
 .text-content
   margin 0 10px 0 0
   padding 0 28px 0 5px
-  background-color #fff
+  background-color var(theme-bg-light)
 
 .gutter pre
   margin 6px 0
@@ -58,45 +58,47 @@
   max-height 0
 .code-header
   user-select none
-  background-color rgba(#fff, 0.2)
+  background-color var(--theme-code-header)
   display flex
   justify-content space-between
+  &:focus-visible
+    outline #fff auto 1px
   .code-title
-    color #fff
+    color var(--theme-text-light)
     margin 7px 8px
-  .code-header-tail
-    align-self center
-    .code-space
-      line-height 35px
-      padding-right 14px
-      font-size 12px
-    .code-copy
-      margin 0px 4px
-      padding 7px 9px
-      display inline-block
-      line-height 1
-      text-decoration none
-      white-space nowrap
-      border 1px solid #fff
-      border-radius 5px
-      background-color rgba(#fff, 0.05)
-      color #fff
-      outline none
-      font-size 0.75em
-      @media (min-width 769px)
-        &:hover
-          border 1px solid #fe2
-          color  #fe2
-          transition .3s
-      @media (max-width 768px)
-        &:active
-          border 1px solid #fe2
-          color  #fe2
-          transition .3s
-    .copied
-      border 1px solid #fe2
-      color  #fe2
+.code-header-tail
+  align-self center
+.code-space
+  line-height 35px
+  padding-right 14px
+  font-size 12px
+.code-copy
+  margin 0px 4px
+  padding 7px 9px
+  display inline-block
+  line-height 1
+  text-decoration none
+  white-space nowrap
+  border 1px solid var(--theme-border-light)
+  border-radius 5px
+  background-color var(--theme-bg-soft)
+  color var(--theme-text-light)
+  font-size 0.75em
+  transition .3s
+  @media (min-width 769px)
+    &:hover
+      border 1px solid var(--theme-border)
+      color  var(--theme-subcolor)
       transition .3s
+  @media (max-width 768px)
+    &:active
+      border 1px solid var(--theme-border)
+      color  var(--theme-subcolor)
+      transition .3s
+  &.copied
+    border 1px solid var(--theme-border)
+    color  var(--theme-subcolor)
+    transition .3s
 
 table
   td
@@ -106,9 +108,9 @@ table
     background-color transparent!important
   .gutter
     position sticky
-    color #000
+    color var(--theme-text-rev)
     text-align right
-    background-color #2bf
+    background-color var(--theme-highlight)
     left 0
     padding 0 8px 5px 8px
     &, pre, span
@@ -116,13 +118,16 @@ table
       pointer-events none
   .code
     width 100%
-    background-color rgba(#fff, .05)
+    background-color var(--theme-bg-soft)
     transition .3s
     @media (min-width 769px)
       &:hover
-        background-color rgba(#fff, .1)
+        background-color var(--theme-bg-soft-hover)
 
 .mermaid
   margin 10px 0
   padding 10px
   text-align center
+
+.MathJax
+  transform translateZ(0)

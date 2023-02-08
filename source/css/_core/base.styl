@@ -1,10 +1,8 @@
 // ========= 基础样式
 // ====== base style
 
-cursor = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGBAMAAAAS4vJ7AAAAElBMVEX///////////////////////+65XQCAAAABXRSTlPUzXppDN7WmLAAAAAZSURBVAjXY3ASVGEwDQ1mYA0NAGEQGyQGAC9SA/00lbgwAAAAAElFTkSuQmCC"
-
-html, body, a, button, input, textarea
-  cursor url(cursor) 3 3, default
+html, body, label
+  cursor var(--cursor-data) 3 3, default
 
 html, body
   position static
@@ -15,7 +13,7 @@ html, body
   transform translate3d(-50%, -50%, 0px)
   height 36px
   width 36px
-  border 1px solid #ccc
+  border 1px solid var(--theme-cursor)
   border-radius 50%
   pointer-events none
   transition background-color .3s, width .3s, height .3s
@@ -25,35 +23,36 @@ html, body
   transform translate3d(-50%, -50%, 0px) scale(0)
   height 80px
   width 80px
-  border 4px solid #ccc
+  border 4px solid var(--theme-cursor)
   border-radius 50%
   opacity 0
   pointer-events none
 
 @media ( min-width 769px)
   main
-    -ms-scrollbar-base-color #fe24
-    -ms-scrollbar-track-color #fe22
-    scrollbar-color #fe2 #69620a
+    -ms-scrollbar-base-color var(--theme-bar-color-2)
+    -ms-scrollbar-track-color var(--theme-bar-color-3)
+    scrollbar-color var(--theme-bar-color-0) var(--theme-bar-color-2)
     scrollbar-width thin
     scrollbar-gutter stable
   ::-webkit-scrollbar
     width 6px
     height 6px
   ::-webkit-scrollbar-thumb
-    background-color #fe24
+    background-color var(--theme-bar-color-2)
     border-radius .25em
   ::-webkit-scrollbar-track
-    background-color #fe22
+    background-color var(--theme-bar-color-3)
   ::-webkit-scrollbar-thumb:hover
-    background-color #fe2a
+    background-color var(--theme-bar-color-1)
   ::-webkit-scrollbar-thumb:window-inactive
-    background-color #fe22
+    background-color var(--theme-bar-color-3)
 
 body
   margin 0
-  color #c4c4c4
-  background-color #141516
+  color var(--theme-text)
+  background-image var(--body-background)
+  background-color var(--theme-background)
   background-attachment fixed
   background-position 50% 0
   background-repeat no-repeat
@@ -61,38 +60,21 @@ body
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
 
 h1, h2, h3, h4, h5, h6
-  color #fff
+  color var(--theme-text-light)
   margin-block-start 0.33em
   margin-block-end 0.23em
   padding-top 0.2em
   padding-bottom 0.2em
 
-#post-content
-  h1, h2, h3, h4 ,h5, h6
-    border-bottom #89898966 solid 1px
-    display flex
-  h1
-    font-size 1.75em
-  h2
-    font-size 1.60em
-  h3
-    font-size 1.45em
-  h4
-    font-size 1.30em
-  h5
-    font-size 1.15em
-  h6
-    font-size 1em
-
 p
-  overflow visiable
+  overflow visible
 
 a
   text-decoration none
 
 a,
 :is(strong, em)>a
-  color #2bf
+  color var(--theme-highlight)
   padding 0 3px
   transition color .3s,
     background-color .3s,
@@ -102,11 +84,17 @@ a,
     opacity .3s
   @media ( min-width 769px )
     &:hover
-      color #000
-      background-color #22bbff
+      color var(--theme-text-hover)
+      background-color var(--theme-highlight)
     &:active
-      color #000
-      background-color #fe2
+      color var(--theme-text-hover)
+      background-color var(--theme-subcolor)
+
+button
+  background var(--theme-bg-soft)
+  color var(--theme-text-light)
+  font-family "JetBrains Mono"
+  border unset
 
 time
   font-family BenderLight
@@ -115,16 +103,16 @@ code, pre
   font-family "JetBrains Mono"
 code
   margin 0!important
-  background-color rgba(#fff, .1)
+  background-color var(--theme-bg-soft-hover)
   padding 0 3px!important
 pre
   margin 6px 0
   background-color transparent
 
 kbd
-  color #000
-  background-color #fe2
-  box-shadow 0 0.12em #ba2;
+  color var(--theme-kbd-text)
+  background-color var(--theme-subcolor)
+  box-shadow 0 0.12em var(--theme-kbd-shadow)
   margin 0 2px
   border-radius 2px
   padding 0 3px
@@ -135,20 +123,20 @@ em
 strong em, em strong
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
 :not(a)>:is(strong, em)
-  color #fff
+  color var(--theme-light)
 :not(a)>:is(strong em, em strong)
-  color #C0392B
+  color var(--theme-stress)
 
 blockquote
-  border-left #2bf solid 5px
+  border-left var(--theme-highlight) solid 5px
   padding 3px 20px
-  background-color rgba(#fff, .05)
+  background-color var(--theme-bg-soft)
   transition .3s
   blockquote
     margin 0
     padding-right 0
   &:hover
-    background-color rgba(#fff, .1)
+    background-color var(--theme-bg-soft-hover)
 ol
   overflow auto
 
@@ -163,17 +151,20 @@ table
   border 0
   border-collapse collapse
   th
-    color #000
-    background-color #fff
-    border #fff solid 1px
+    color var(--theme-text-rev)
+    background-color var(--theme-bg-light)
+    border var(--theme-border-light) solid 1px
     padding 0 10px
   td
     padding 0px 8px
-    border #2bf solid 1px
+    border var(--theme-td-border) solid 1px
     &:hover
-      background-color rgba(#2bf, .1)
+      background-color var(--theme-td-hover)
+
+a, button, input, textarea
+  cursor var(--cursor) 3 3, pointer
 
 input
-  cursor url(cursor) 3 3, text
+  cursor var(--cursor) 3 3, text
   user-select none
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif

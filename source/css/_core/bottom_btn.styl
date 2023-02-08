@@ -1,0 +1,53 @@
+.bottom-btn
+  position sticky
+  bottom 0
+  z-index 1
+  display flex
+  flex-direction column
+  align-items flex-end
+  @media ( max-width 768px )
+    position fixed
+    left 0
+    width 100vw
+  div
+    position absolute
+    right 8px
+    bottom 8px
+  a
+    overflow hidden
+    display block
+    right 0
+    width 40px
+    height 40px
+    transition .3s, 0 visibility
+    color var(--theme-text-light)
+    line-height 40px
+    text-align center
+    font-size 40px
+    font-weight 900
+    padding 0
+    user-select none
+    @media ( min-width 769px )
+      &:hover
+        color var(--theme-text-hover)
+        line-height 30px
+        background-color var(--theme-subcolor)
+#color-mode
+  display flex
+  @media ( min-width 769px )
+    &:hover
+      line-height 40px
+      &::after
+        transform rotate(90deg)
+  &::after
+    margin auto
+    content ''
+    height 16px
+    width 16px
+    display block
+    display inline-block
+    border 4px solid var(--theme-bg-light)
+    border-radius 50%
+    background linear-gradient(45deg,transparent 10px,
+      var(--theme-bg-light) 12px, var(--theme-bg-light))
+    transition transform .3s

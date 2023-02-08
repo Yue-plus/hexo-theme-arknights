@@ -21,8 +21,8 @@ class Scroll {
     setTimeout(() => this.totop.style.display = 'none', 300)
   }
 
-  private totopChange = (post: HTMLElement) => {
-    if (post.getBoundingClientRect().top < -200) {
+  private totopChange = (top: number) => {
+    if (top < -200) {
       this.totop.style.display = ''
       this.visible = true
       setTimeout(() => {
@@ -77,7 +77,7 @@ class Scroll {
     setTimeout(() => getElement('main').classList.remove('moving'), 300)
   }
 
-  private setHtml = () => {
+  private setHTML = () => {
     try {
       let navBtn: HTMLElement = getElement('.navBtn')
       let onScroll = () => {
@@ -104,7 +104,7 @@ class Scroll {
             }
           }, 100)
           if (!this.getingtop) {
-            this.totopChange(getElement('#post-title'))
+            this.totopChange(nowheight)
           }
         } catch (e) {}
       }
@@ -145,7 +145,7 @@ class Scroll {
   }
 
   constructor() {
-    document.addEventListener('pjax:success', this.setHtml)
+    document.addEventListener('pjax:success', this.setHTML)
     document.addEventListener('touchstart', this.startTouch)
     document.addEventListener('touchmove', this.checkTouchMove)
     document.addEventListener('wheel', (event: WheelEvent) => {
@@ -160,7 +160,7 @@ class Scroll {
         }
       }
     })
-    this.setHtml()
+    this.setHTML()
     this.totop = document.querySelector('#to-top') as HTMLElement
   }
 }

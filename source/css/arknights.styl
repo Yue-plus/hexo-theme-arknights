@@ -1,9 +1,16 @@
 $search = hexo-config('search.enable') ? hexo-config('search.enable') : false
 $isleft = hexo-config('aside.in_left') ? hexo-config('aside.in_left') : false
 $gitalk = hexo-config('gitalk.enable') ? hexo-config('gitalk.enable') : false
-$Valine = hexo-config('Valine.enable') ? hexo-config('Valine.enable') : false
+$valine = hexo-config('valine.enable') ? hexo-config('valine.enable') : false
+$waline = hexo-config('waline.enable') ? hexo-config('waline.enable') : false
+$mermaid = hexo-config('mermaid.enable') ? hexo-config('mermaid.enable') : false
+$comment-count = 0
 $canvas_dust = hexo-config('canvas_dust') ? hexo-config('canvas_dust') : false
 $pjax = hexo-config('pjax.enable') ? hexo-config('pjax.enable') : false
+
+// ===== 颜色
+// == color
+@import "_color/*"
 
 // ===== 基础样式
 // == base style
@@ -22,13 +29,25 @@ if $search
     @import "_modules/search/right"
 
 if $gitalk
-  @import "_modules/gitalk"
+  $comment-count = $comment-count + 1
+  @import "_modules/comments/gitalk"
 
-if $Valine
-  @import "_modules/Valine"
+if $valine
+  $comment-count = $comment-count + 1
+  @import "_modules/comments/valine"
+
+if $waline
+  $comment-count = $comment-count + 1
+  @import "_modules/comments/waline"
+
+if $comment-count > 1
+  @import "_modules/comments/base"
 
 if $pjax
   @import "_modules/pjax"
+
+if $mermaid
+  @import "_modules/mermaid"
 
 // ===== 布局样式
 // == layout style

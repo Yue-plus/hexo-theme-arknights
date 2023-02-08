@@ -25,6 +25,8 @@ header.closed
           input(autocomplete="off" autocorrect="off" autocapitalize="none"
             placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
             type="text" id="search-input")
+        .search-popup
+          #search-result
       .navItem#search-holder
     ol.navContent
       each url, label in theme.menu
@@ -40,6 +42,3 @@ header.closed
           else
             a.navBlock(href= config.root + url)
               span.navItemTitle= label
-  if searchConfig !== null
-    .search-popup
-      #search-result

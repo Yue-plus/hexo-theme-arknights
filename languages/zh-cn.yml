@@ -12,7 +12,7 @@ post:
   countTotal: "文章总字数: "
   timeTotal: "预计阅读时间: "
   timeUnit: 分钟
-  index: 文章目录
+  index: 目录
   reward: 打赏
   noTitle: 无标题
 
@@ -21,6 +21,11 @@ code:
   copy: 复制
   copyFinish: 复制成功
   expand: 展开
+
+btn:
+  totop: 回到顶部
+  index: 文章目录
+  colorMode: 切换主题
 
 menu:
   archive:
@@ -46,5 +51,5 @@ footer:
   theme: 使用主题
   by: 主题作者
 
-Valine:
+valine:
   placeHolder: 此条评论委托企鹅物流发送

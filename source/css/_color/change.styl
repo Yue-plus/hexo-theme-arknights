@@ -1,0 +1,51 @@
+[theme-mode=light]
+  .footer-link a:not(:hover)
+    text-shadow 0 0 15px white, 0 0 15px white, 0 0 15px white, 0 0 15px white
+  
+  .navItemTitle,
+  aside footer
+    @extend .footer-link a:not(:hover)
+    font-weight bold
+  
+  :where(.recent-post, #paginator a)
+    background-color #fff4
+  
+  aside a img:hover
+    background-color var(--theme-bg-soft)
+  
+  #Archives,
+  #Categories,
+  #Tags
+    background-color var(--theme-bg-soft)
+    &:hover
+      background-color var(--theme-bg-soft-hover)
+  #color-mode
+    &:hover::after
+      transform rotate(-90deg)
+    &::after
+      transform rotate(-180deg)
+      animation clockwise .3s
+  @keyframes clockwise {
+    0% {
+      transform rotate(-270deg)
+    }
+    100% {
+      transform rotate(-180deg)
+    }
+  }
+
+[theme-mode=dark]
+  #color-mode:hover::after
+    filter invert(1)
+
+#post-bg,
+h1, h2, h3, h4, h5, h6
+  transition 1s
+
+@property --theme-bg-trans1
+  syntax '<color>'
+  inherits true
+  initial-value #fff
+
+#aside-block
+  transition --theme-bg-trans1 1s

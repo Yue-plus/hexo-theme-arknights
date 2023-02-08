@@ -27,19 +27,18 @@ header
     align-self end
     padding-right 1.2em
   .navBlock
-    .navItemTitle::after
+    .navItemTitle::before
       border-right 4px solid
   .navContent:not(.search) .navBlock
-    &:hover
-      &::after
-        content ""
-        height 100%
-        width 100%
-        position absolute
-        top 0
-        right 2em
-      .navItemTitle
-        margin-left -1em
+    &::before
+      content ""
+      height 100%
+      width 100%
+      position absolute
+      top 0
+      right 2em
+    &:hover>.navItemTitle
+      margin-left -1em
     &>.navItemList
       right calc(100% + 2em)
   .navItemList

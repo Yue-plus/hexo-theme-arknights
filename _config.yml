@@ -1,8 +1,16 @@
 # canvas 动态背景
 canvas_dust: true
 
+# 默认颜色模式 dark / light / auto
+# dark 暗色模式
+# light 亮色模式
+# auto 跟随系统
+color: dark
+
 # <body> 背景图片链接
-background_image: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg
+background_image:
+  dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg  # 暗色模式
+  light: /img/bk.jpg # 亮色模式
 
 # 导航栏
 menu:
@@ -98,7 +106,6 @@ mathjax:
 
 # 在 `<head>` 标签内引入 CSS 样式表
 stylesheets:
-  - //unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark-reasonable.min.css # 代码高亮样式
 
 # 在 `<body>` 尾部引入 JavaScript 脚本
 scripts:

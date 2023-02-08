@@ -18,22 +18,22 @@
 
 #Archives, #Categories, #Tags
   margin 0 10px
-  background-color rgba(#141516, .8)
+  background-color var(--theme-bg-trans1)
   overflow-y auto
   &, h1
     transition .3s
   h1
     margin 0
     padding 0 15px
-    color #000
-    background-color #fff
+    color var(--theme-text-rev)
+    background-color var(--theme-bg-light)
     font-size medium
     font-family BenderLight
   @media ( min-width 769px )
     &:hover, &:target
-      background-color rgba(#fff, .05)
+      background-color var(--theme-bg-soft)
       h1
-        background-color #2bf
+        background-color var(--theme-highlight)
 
 #Archives
   flex-grow 5
@@ -47,9 +47,9 @@
       width 5px
       height 15px
       margin-right 5px
-      background-color #fe2
+      background-color var(--theme-subcolor)
   time
-    color #fff
+    color var(--theme-text-light)
     padding 0 0 0 20px
 .categories, .tags
   display inline-block

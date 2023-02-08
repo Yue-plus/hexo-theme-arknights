@@ -7,7 +7,6 @@ main
 
 article
   transition margin .3s
-  transform translateZ(0)
   box-sizing border-box
   position relative
   min-height calc(100vh - 10px)
@@ -18,84 +17,82 @@ article
     line-height 150%
 
 .posts
-  width 100%
   padding-bottom 72px
+  width 100%
+  min-height calc(100vh - 82px)
+  @media ( max-width 768px )
+    padding-bottom 4em
 
 .recent-post
-  color #898989
+  color var(--theme-unimportant)
   display block
   margin-bottom -1px
-  border 1px solid #898989
+  border 1px solid var(--theme-unimportant)
   padding 13px 15px
   transition .3s
   .recent-info::after
     transition .3s
-  object
-    h1, h2, h3, h4, h5, h6
-      font-size large
-      margin 0
   .categories, .tags
     font-family BenderLight, sans-serif
   .categories
-    color #2bf
+    color var(--theme-highlight)
     font-size large
     font-weight bold
     padding 0 10px 0 0
   .tags
     font-size small
-    span, object
+    span
       display inline-block
       padding 0 5px 0 0
   time
-    color #898989
+    color var(--theme-unimportant)
     display inline-block
     text-align left
     float right
   hr
-    color #898989
-    border-color #898989
+    color var(--theme-unimportant)
+    border-color var(--theme-unimportant)
   img
     width 100%
   h1
     font-family sans-serif
-    color #fff
+    color var(--theme-text-light)
     margin 0
     padding 15px 0 0 0
   @media ( min-width 769px )
     &:hover
-      color #000
-      background-color #2bf
+      color var(--theme-text-hover)
+      background-color var(--theme-highlight)
       a
-        color #000
+        color var(--theme-text-hover)
         &:active
-          color #000!important
+          color var(--theme-text-hover)
         &:hover
-          color #fff
+          color var(--theme-text-light)
       time, .categories
-        color #000
+        color var(--theme-text-hover)
       .recent-info::after
-        background-color #000
-      .recent-excerpt
-        object a
-          color #fff
+        background-color var(--theme-bg-hover)
+      .recent-excerpt a
+        color var(--theme-text-light)
       hr
-        color #2bf
-        border-color #2bf
+        color var(--theme-highlight)
+        border-color var(--theme-highlight)
       figure table
         .gutter
-          background-color #fe2
+          background-color var(--theme-border)
         .code
-          background-color rgba(#141516, .8)
+          background-color var(--theme-bg-trans1)
           &, &:hover
-            color #fff
+            color var(--theme-text-light)
       blockquote
         &, &:hover
-          color #fff
-          border-color #fe2
-          background-color rgba(#141516, .8)
+          color var(--theme-text-light)
+          border-color var(--theme-border)
+          background-color var(--theme-bg-trans1)
       .read-more
-        color #fff
-        background-color #000
+        color var(--theme-text-light)
+        background-color var(--theme-bg-hover)
 
 .recent-info
   min-height 25px
@@ -104,7 +101,7 @@ article
     width 13%
     display block
     height 5px
-    background-color #2bf
+    background-color var(--theme-highlight)
     position relative
     bottom -6px
 
@@ -112,12 +109,12 @@ article
   margin 12px 0 28px 0
 
 .read-more
-  color #141516
+  color var(--theme-background)
   display block
   float right
   font-size smaller
   font-weight 600
-  background-color #22bbff
+  background-color var(--theme-highlight)
   margin-top -21px
   padding 3px 10px 3px 40px
   font-family BenderLight
@@ -133,16 +130,17 @@ article
   bottom 0
   left 0
   a, span
-    color #fff
+    color var(--theme-text-light)
     font-weight bold
     margin 0 10px 0 0
-    border 1px solid #2bf
+    border 1px solid var(--theme-highlight)
     padding 5px 10px
     &:last-child
       margin 0
   @media ( min-width 769px )
     a:hover
-      color #000
+      color var(--theme-text-hover)
+      background-color var(--theme-highlight)
   .current
-    color #000
-    background-color #2bf
+    color var(--theme-text-hover)
+    background-color var(--theme-highlight)

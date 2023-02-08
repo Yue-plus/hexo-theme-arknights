@@ -30,73 +30,71 @@ function format(format, ...args) {
     });
 }
 class dust {
-    constructor() {
-        this.x = 50;
-        this.y = 50;
-        this.vx = Math.random() * 2 + 2;
-        this.vy = Math.random() * 2;
-        this.color = '#fff';
+    constructor(x = 50, y = 50) {
+        this.vx = Math.random() * 1 + 1;
+        this.vy = Math.random() * 1 + 0.01;
         this.shadowBlur = Math.random() * 3;
         this.shadowX = (Math.random() * 2) - 1;
         this.shadowY = (Math.random() * 2) - 1;
-        this.radiusX = Math.random() * 3;
-        this.radiusY = Math.random() * 3;
+        this.radiusX = Math.random() * 1.5 + 0.5;
+        this.radiusY = this.radiusX * (Math.random() * (1.3 - 0.3) + 0.3);
         this.rotation = Math.PI * Math.floor(Math.random() * 2);
+        this.x = x;
+        this.y = y;
     }
 }
 class canvasDust {
     constructor(canvasID) {
+        this.color = '#fff';
         this.width = 300;
         this.height = 300;
         this.dustQuantity = 50;
         this.dustArr = [];
+        this.inStop = false;
         this.build = () => {
             this.resize();
             if (this.ctx) {
                 const point = canvasDust.getPoint(this.dustQuantity);
                 for (let i of point) {
-                    const dustObj = new dust();
-                    this.buildDust(i[0], i[1], dustObj);
+                    const dustObj = new dust(i[0], i[1]);
+                    this.buildDust(dustObj);
                     this.dustArr.push(dustObj);
                 }
-                setInterval(this.play, 40);
+                requestAnimationFrame(this.paint);
             }
         };
-        this.play = () => {
+        this.paint = () => {
+            if (this.inStop) {
+                return;
+            }
             const dustArr = this.dustArr;
-            this.ctx?.clearRect(0, 0, this.width, this.height);
             for (let i of dustArr) {
-                if (i.x < 0 || i.y < 0) {
+                this.ctx.clearRect(i.x - 6, i.y - 6, 12, 12);
+                if (i.x < -5 || i.y < -5) {
                     const x = this.width;
                     const y = Math.floor(Math.random() * window.innerHeight);
                     i.x = x;
                     i.y = y;
-                    this.buildDust(x, y, i);
                 }
                 else {
-                    const x = i.x - i.vx;
-                    const y = i.y - i.vy;
-                    this.buildDust(x, y, i);
+                    i.x -= i.vx;
+                    i.y -= i.vy;
                 }
             }
-        };
-        this.buildDust = (x, y, dust) => {
-            const ctx = this.ctx;
-            if (x)
-                dust.x = x;
-            if (y)
-                dust.y = y;
-            if (ctx) {
-                ctx.beginPath();
-                ctx.shadowBlur = dust.shadowBlur;
-                ctx.shadowColor = dust.color;
-                ctx.shadowOffsetX = dust.shadowX;
-                ctx.shadowOffsetY = dust.shadowY;
-                ctx.ellipse(dust.x, dust.y, dust.radiusX, dust.radiusY, dust.rotation, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fillStyle = dust.color;
-                ctx.fill();
+            for (let i of dustArr) {
+                this.buildDust(i);
             }
+            requestAnimationFrame(this.paint);
+        };
+        this.buildDust = (dust) => {
+            const ctx = this.ctx;
+            ctx.beginPath();
+            ctx.shadowBlur = dust.shadowBlur;
+            ctx.shadowOffsetX = dust.shadowX;
+            ctx.shadowOffsetY = dust.shadowY;
+            ctx.ellipse(dust.x, dust.y, dust.radiusX, dust.radiusY, dust.rotation, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
         };
         this.resize = () => {
             const canvas = this.canvas;
@@ -105,21 +103,25 @@ class canvasDust {
             this.width = width;
             this.height = height;
             this.dustQuantity = Math.floor((width + height) / 38);
-            if (canvas !== undefined) {
-                canvas.width = width;
-                canvas.height = height;
+            canvas.width = width;
+            canvas.height = height;
+            this.ctx.shadowColor =
+                this.ctx.fillStyle = this.color;
+        };
+        this.stop = () => {
+            this.inStop = true;
+        };
+        this.play = () => {
+            if (this.inStop === true) {
+                this.inStop = false;
+                requestAnimationFrame(this.paint);
             }
         };
         const canvas = getElement(canvasID);
-        if (canvas) {
-            this.canvas = canvas;
-            this.ctx = canvas.getContext('2d');
-            this.build();
-            window.addEventListener('resize', () => this.resize());
-        }
-        else {
-            throw new Error('canvasID 无效');
-        }
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext('2d');
+        this.build();
+        window.addEventListener('resize', this.resize);
     }
 }
 canvasDust.getPoint = (number = 1) => {
@@ -132,9 +134,11 @@ canvasDust.getPoint = (number = 1) => {
     return point;
 };
 try {
-    new canvasDust('#canvas-dust');
+    var canvasDusts = new canvasDust('#canvas-dust');
 }
-catch (e) { }
+catch (e) {
+    throw new Error('canvasID 无效');
+}
 class Code {
     constructor() {
         this.reverse = (item, s0, s1) => {
@@ -148,11 +152,39 @@ class Code {
                 block.classList.add(s0);
             }
         };
+        this.doAsMermaid = (item) => {
+            let Amermaid = item.querySelector('.mermaid');
+            item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
+        };
+        this.resetName = (str) => {
+            if (str == 'plaintext') {
+                return 'TEXT';
+            }
+            if (str == 'cs') {
+                return 'C#';
+            }
+            if (str == 'cpp') {
+                return 'C++';
+            }
+            return str.toUpperCase();
+        };
+        this.addEvent = (header) => {
+            header.addEventListener('click', (click) => {
+                if (click.target === header) {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+            header.addEventListener('keypress', (key) => {
+                if (key.key === 'Enter' && key.target === header) {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+        };
         this.doAsCode = (item) => {
             const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
             item.classList.add(lineCount < 16 ? 'open' : 'fold');
             item.innerHTML =
-                `<span class="code-header">\
+                `<span class="code-header" tabindex='0'>\
         <span class="code-title">\
           <div class="code-icon"></div>
           ${format(config.code.codeInfo, codeType, lineCount)}
@@ -173,9 +205,13 @@ class Code {
                     button.innerText = config.code.copy;
                 }, 1200);
             });
-            getElement('.code-header', item).addEventListener('click', (click) => {
-                if (!click.target.classList.contains('code-copy')) {
-                    this.reverse(click.currentTarget, 'open', 'fold');
+            this.addEvent(getElement('.code-header', item));
+        };
+        this.clearMermaid = () => {
+            document.querySelectorAll('.mermaid').forEach((item) => {
+                let style = item.querySelector('style');
+                if (style) {
+                    style.remove();
                 }
             });
         };
@@ -201,24 +237,10 @@ class Code {
                     }
                 });
             }
+            mermaid.init();
+            this.clearMermaid();
         };
         this.findCode();
-    }
-    doAsMermaid(item) {
-        let Amermaid = item.querySelector('.mermaid');
-        item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
-    }
-    resetName(str) {
-        if (str == 'plaintext') {
-            return 'TEXT';
-        }
-        if (str == 'cs') {
-            return 'C#';
-        }
-        if (str == 'cpp') {
-            return 'C++';
-        }
-        return str.toUpperCase();
     }
 }
 let code = new Code();
@@ -229,26 +251,33 @@ class Cursor {
         this.last = 0;
         this.moveIng = false;
         this.fadeIng = false;
-        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon";
+        this.nowX = 0;
+        this.nowY = 0;
+        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon,.wl-sort>li,.vicon,.clickable";
+        this.set = (X = this.nowX, Y = this.nowY) => {
+            this.outer.transform =
+                `translate(calc(${X.toFixed(2)}px - 50%),
+                  calc(${Y.toFixed(2)}px - 50%))`;
+        };
         this.move = (timestamp) => {
             if (this.now !== undefined) {
-                let SX = this.outer.left, SY = this.outer.top, preX = Number(SX.substring(0, SX.length - 2)), preY = Number(SY.substring(0, SY.length - 2)), delX = (this.now.x - preX) * 0.3, delY = (this.now.y - preY) * 0.3;
-                if (timestamp - this.last > 15) {
-                    preX += delX;
-                    preY += delY;
-                    this.outer.left = preX.toFixed(2) + 'px';
-                    this.outer.top = preY.toFixed(2) + 'px';
-                    this.last = timestamp;
-                }
-                if (Math.abs(delX) > 0.2 || Math.abs(delY) > 0.2) {
+                let delX = this.now.x - this.nowX, delY = this.now.y - this.nowY;
+                this.nowX += delX * Math.min(0.025 * (timestamp - this.last), 1);
+                this.nowY += delY * Math.min(0.025 * (timestamp - this.last), 1);
+                this.set();
+                this.last = timestamp;
+                if (Math.abs(delX) > 0.1 || Math.abs(delY) > 0.1) {
                     window.requestAnimationFrame(this.move);
                 }
                 else {
+                    this.set(this.now.x, this.now.y);
                     this.moveIng = false;
                 }
             }
         };
         this.reset = (mouse) => {
+            this.outer.top = '0';
+            this.outer.left = '0';
             if (!this.moveIng) {
                 this.moveIng = true;
                 window.requestAnimationFrame(this.move);
@@ -256,8 +285,9 @@ class Cursor {
             this.now = mouse;
             if (this.first) {
                 this.first = false;
-                this.outer.left = String(this.now.x) + 'px';
-                this.outer.top = String(this.now.y) + 'px';
+                this.nowX = this.now.x;
+                this.nowY = this.now.y;
+                this.set();
             }
         };
         this.Aeffect = (mouse) => {
@@ -281,23 +311,20 @@ class Cursor {
         this.hold = () => {
             this.outer.height = '24px';
             this.outer.width = '24px';
-            this.outer.background = "rgba(255, 255, 255, 0.5)";
+            this.outer.background = "var(--theme-cursor-bg)";
         };
         this.relax = () => {
             this.outer.height = '36px';
             this.outer.width = '36px';
             this.outer.background = "unset";
         };
-        this.pushHolder = (items) => {
-            items.forEach(item => {
+        this.pushHolder = () => {
+            document.querySelectorAll(this.attention).forEach(item => {
                 if (!item.classList.contains('is--active')) {
                     item.addEventListener('mouseover', this.hold, { passive: true });
                     item.addEventListener('mouseout', this.relax, { passive: true });
                 }
             });
-        };
-        this.pushHolders = () => {
-            this.pushHolder(document.querySelectorAll(this.attention));
         };
         let node = document.createElement('div');
         node.id = 'cursor-container';
@@ -310,70 +337,85 @@ class Cursor {
         this.effecter.opacity = '1';
         window.addEventListener('mousemove', this.reset, { passive: true });
         window.addEventListener('click', this.Aeffect, { passive: true });
-        this.pushHolders();
-        const observer = new MutationObserver(this.pushHolders);
+        this.pushHolder();
+        const observer = new MutationObserver(this.pushHolder);
         observer.observe(document, { childList: true, subtree: true });
     }
 }
 window.onload = () => new Cursor();
 class Index {
     constructor() {
+        this.lastIndex = -1;
         this.setItem = (item) => {
             item.classList.add('active');
             let parent = getParent(item), brother = parent.children;
-            for (let i = 0; i < brother.length; ++i) {
+            for (let i = 0, length = brother.length; i < length; ++i) {
                 const item = brother.item(i);
                 if (item.classList.contains('toc-child')) {
                     item.classList.add('has-active');
                     break;
                 }
             }
-            for (; parent.classList[0] != 'toc'; parent = getParent(parent)) {
-                if (parent.classList[0] == 'toc-child') {
+            for (; parent.classList[0] !== 'toc'; parent = getParent(parent)) {
+                if (parent.classList[0] === 'toc-child') {
                     parent.classList.add('has-active');
                 }
             }
         };
-        this.reset = () => {
+        this.reset = (not) => {
             let tocs = document.querySelectorAll('#toc-div .active');
             let tocTree = document.querySelectorAll('#toc-div .has-active');
             tocs.forEach(item => {
-                item.classList.remove('active');
+                if (!item.contains(not)) {
+                    item.classList.remove('active');
+                }
             });
             tocTree.forEach(item => {
-                item.classList.remove('has-active');
+                if (!item.parentElement.contains(not)) {
+                    item.classList.remove('has-active');
+                }
             });
         };
-        this.modifyIndex = (headerLink, tocLink) => {
+        this.check = (index, id) => {
+            return index[id + 1] > 150 && (index[id] <= 150 || !id);
+        };
+        this.modifyIndex = () => {
             let index = [];
-            headerLink.forEach(item => {
+            this.headerLink.forEach(item => {
                 index.push(item.getBoundingClientRect().top);
             });
-            this.reset();
-            for (let i = 0; i < tocLink.length; ++i) {
-                const item = tocLink.item(i);
-                if (i + 1 == index.length || (index[i + 1] > 150 && (index[i] <= 150 || i == 0))) {
+            if (this.lastIndex >= 0 && this.check(index, this.lastIndex)) {
+                return;
+            }
+            for (let i = 0; i < this.tocLink.length; ++i) {
+                const item = this.tocLink.item(i);
+                if (i + 1 === index.length || this.check(index, i)) {
                     this.setItem(item);
+                    this.reset(item);
                     break;
                 }
             }
         };
-        this.setHtml = () => {
-            let headerLink = document.querySelectorAll('h2,h3,h4,h5,h6'), tocLink = document.querySelectorAll('.toc-link');
-            if (tocLink.length !== 0) {
-                this.setItem(tocLink.item(0));
+        this.setHTML = () => {
+            this.headerLink = document.querySelectorAll('h2,h3,h4,h5,h6');
+            this.tocLink = document.querySelectorAll('.toc-link');
+            if (this.tocLink.length) {
+                this.setItem(this.tocLink.item(0));
             }
-            getElement('main').addEventListener('scroll', () => {
-                if (tocLink.length === 0)
-                    return;
-                this.modifyIndex(headerLink, tocLink);
-            }, { passive: true });
         };
-        document.addEventListener('pjax:success', this.setHtml);
-        this.setHtml();
+        document.addEventListener('pjax:success', this.setHTML);
+        this.setHTML();
+        this.headerLink = document.querySelectorAll('h2,h3,h4,h5,h6');
+        this.tocLink = document.querySelectorAll('.toc-link');
+        getElement('main').addEventListener('scroll', () => {
+            if (!this.tocLink.length) {
+                return;
+            }
+            this.modifyIndex();
+        }, { passive: true });
     }
 }
-new Index();
+let indexs = new Index();
 class Header {
     constructor() {
         this.header = getElement('header');
@@ -507,8 +549,8 @@ class Scroll {
             this.getingtop = true;
             setTimeout(() => this.totop.style.display = 'none', 300);
         };
-        this.totopChange = (post) => {
-            if (post.getBoundingClientRect().top < -200) {
+        this.totopChange = (top) => {
+            if (top < -200) {
                 this.totop.style.display = '';
                 this.visible = true;
                 setTimeout(() => {
@@ -561,7 +603,7 @@ class Scroll {
             this.intop = true;
             setTimeout(() => getElement('main').classList.remove('moving'), 300);
         };
-        this.setHtml = () => {
+        this.setHTML = () => {
             try {
                 let navBtn = getElement('.navBtn');
                 let onScroll = () => {
@@ -589,7 +631,7 @@ class Scroll {
                             }
                         }, 100);
                         if (!this.getingtop) {
-                            this.totopChange(getElement('#post-title'));
+                            this.totopChange(nowheight);
                         }
                     }
                     catch (e) { }
@@ -629,7 +671,7 @@ class Scroll {
             this.touchY = event.changedTouches[0].screenY;
             this.notMoveY = false;
         };
-        document.addEventListener('pjax:success', this.setHtml);
+        document.addEventListener('pjax:success', this.setHTML);
         document.addEventListener('touchstart', this.startTouch);
         document.addEventListener('touchmove', this.checkTouchMove);
         document.addEventListener('wheel', (event) => {
@@ -645,7 +687,7 @@ class Scroll {
                 }
             }
         });
-        this.setHtml();
+        this.setHTML();
         this.totop = document.querySelector('#to-top');
     }
 }
@@ -702,6 +744,101 @@ try {
     new pjaxSupport();
 }
 catch (e) { }
+class ColorMode {
+    constructor() {
+        this.html = document.documentElement;
+        this.dark = this.html.getAttribute('theme-mode') === 'dark';
+        this.inChanging = false;
+        this.btn = getElement('#color-mode');
+        this.change = () => {
+            this.inChanging = true;
+            let background = document.createElement('div');
+            background.style.transition = '1.5s';
+            background.innerHTML =
+                `<div style='background: var(--${this.dark ? 'dark' : 'light'}-background);
+        height: 100vh; width: 100vw;
+        position: fixed; left: 0; top: 0; z-index: -99999;'></div>`;
+            document.body.insertBefore(background, document.body.firstChild);
+            this.btn.style.pointerEvents = 'none';
+            setTimeout(() => {
+                canvasDusts.stop();
+                if (this.dark) {
+                    this.html.setAttribute('theme-mode', 'light');
+                    this.dark = false;
+                    window.localStorage['theme-mode'] = 'light';
+                }
+                else {
+                    this.html.setAttribute('theme-mode', 'dark');
+                    this.dark = true;
+                    window.localStorage['theme-mode'] = 'dark';
+                }
+                background.style.opacity = '0';
+            });
+            setTimeout(() => {
+                document.body.removeChild(background);
+                canvasDusts.play();
+            }, 1500);
+            setTimeout(() => {
+                this.btn.style.pointerEvents = '';
+                this.inChanging = false;
+            }, 1000);
+        };
+        document.addEventListener('keypress', (ev) => {
+            if (this.inChanging) {
+                return;
+            }
+            if (ev.key === 'c' && ev.target &&
+                !['INPUT', 'TEXTAREA'].includes(ev.target.tagName)) {
+                this.change();
+            }
+        });
+    }
+}
+var colorMode = new ColorMode();
+class Pair {
+    constructor(first, second) {
+        this.comment = first;
+        this.button = second;
+    }
+}
+class Comments {
+    constructor() {
+        this.search = ["valine", "gitalk", "waline"];
+        this.elements = [];
+        this.changeTo = (item) => {
+            if (item === this.nowActive) {
+                return;
+            }
+            this.nowActive.comment.style.display = 'none';
+            this.nowActive.button.classList.remove('active');
+            item.comment.style.display = '';
+            item.button.classList.add('active');
+            this.nowActive = item;
+        };
+        this.setHTML = () => {
+            if (!document.querySelector('#comments'))
+                return;
+            this.elements = [];
+            this.search.forEach((item) => {
+                try {
+                    this.elements.push(new Pair(getElement(`#${item}`), getElement(`.${item}-sel`)));
+                }
+                catch (e) { }
+            });
+            this.elements.forEach((item) => item.comment.style.display = 'none');
+            this.nowActive = this.elements[0];
+            for (let i of this.elements) {
+                i.button.addEventListener('click', () => this.changeTo(i));
+            }
+            this.nowActive.comment.style.display = '';
+            this.nowActive.button.classList.add('active');
+        };
+        this.setHTML();
+        document.addEventListener('pjax:complete', this.setHTML);
+        this.nowActive = this.elements[0];
+    }
+}
+new Comments();
 /// <reference path="include/canvaDust.ts" />
 /// <reference path="include/Code.ts" />
 /// <reference path="include/Cursors.ts" />
@@ -709,3 +846,5 @@ catch (e) { }
 /// <reference path="include/Header.ts" />
 /// <reference path="include/scroll.ts" />
 /// <reference path="include/pjaxSupport.ts" />
+/// <reference path="include/ColorMode.ts" />
+/// <reference path="include/Comments.ts" />
