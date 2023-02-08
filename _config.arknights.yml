@@ -5,7 +5,9 @@ language: en-us
 canvas_dust: true
 
 # <body> 背景图片链接
-background_image: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # /img/bg.jpg
+background_image:
+  dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # 暗色模式
+  light: /img/bk.jpg # 亮色模式
 
 # 右侧边栏
 aside:
@@ -25,7 +27,10 @@ post:
   word_count: true # 是否显示字数统计
   reading_time: true # 是否显示预计阅读时长
   excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
-  reward: true # 文章末显示打赏二维码
+  reward: # 文章末显示打赏二维码
+    支付宝 | Alipay: img/Alipay.png
+    微信 | Wechat: img/WeChat.png
+
 # 文章内目录
 toc:
   list_number: true # true / false ；是否显示编号
@@ -60,20 +65,20 @@ gitalk:
 # 图表支持
 mermaid:
   enable: true
-  version: '8.13.5'
+  version: "8.13.5"
 
 # main menu navigation
 menu:
-  Home: ''
-#  About: about/
-#  Contact: contact/
+  Home: ""
+  #  About: about/
+  #  Contact: contact/
   Archives: archives/
   独立页面: demo/
 
 # pjax 支持
 pjax:
   enable: false
-  version: '0.2.8'
+  version: "0.2.8"
 
 # stylesheets loaded in the <head>
 stylesheets:
