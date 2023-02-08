@@ -14,6 +14,7 @@ script.pjax-js reset=_=>{
     if theme.valine.server_url
       | , serverURLs: '#{theme.valine.server_url}'
     |  , placeholder: '#{__('valine.placeHolder')}'
+    |  , path: !{'window.location.pathname'}
     |});
   if theme.gitalk && theme.gitalk.enable === true
     - let config = theme.gitalk, gitAdmin = ''
@@ -34,6 +35,7 @@ script.pjax-js reset=_=>{
     |  el: '#waline',
     |  dark: ':root[theme-mode="dark"]',
     |  serverURL: '#{theme.waline.server_url}',
+    |  path: !{'window.location.pathname'},
     |});
   | !{onload}}
 
