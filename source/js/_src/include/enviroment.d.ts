@@ -1,4 +1,4 @@
-declare class configs {
+declare var config: {
   root: string
   search: {
     preload: string
@@ -13,4 +13,7 @@ declare class configs {
     expand: string
   }
 }
-declare var config: configs
+
+declare var mermaid: {
+  init: Function
+}

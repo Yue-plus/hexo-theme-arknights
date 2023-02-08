@@ -14,12 +14,12 @@ class Code {
     }
   }
 
-  private doAsMermaid(item: Element) {
+  private doAsMermaid = (item: Element) => {
     let Amermaid = item.querySelector('.mermaid') as HTMLElement
     item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>'
   }
 
-  private resetName(str: string): string {
+  private resetName = (str: string): string => {
     if (str == 'plaintext') {
       return 'TEXT'
     }
@@ -30,6 +30,19 @@ class Code {
       return 'C++'
     }
     return str.toUpperCase()
+  }
+
+  private addEvent = (header: HTMLElement) => {
+    header.addEventListener('click', (click) => {
+      if (click.target === header) {
+        this.reverse(header, 'open', 'fold')
+      }
+    })
+    header.addEventListener('keypress', (key) => {
+      if (key.key === 'Enter' && key.target === header) {
+        this.reverse(header, 'open', 'fold')
+      }
+    })
   }
 
   private doAsCode = (item: Element) => {
@@ -58,15 +71,14 @@ class Code {
         button.innerText = config.code.copy
       }, 1200)
     })
-    const header = getElement('.code-header', item)
-    header.addEventListener('click', (click) => {
-      if (click.target === header) {
-        this.reverse(header, 'open', 'fold')
-      }
-    })
-    header.addEventListener('keyup', (key) => {
-      if (key.key === 'Enter' && key.target === header) {
-        this.reverse(header, 'open', 'fold')
+    this.addEvent(getElement('.code-header', item))
+  }
+
+  private clearMermaid = () => {
+    document.querySelectorAll('.mermaid').forEach((item) => {
+      let style = item.querySelector('style')
+      if (style) {
+        style.remove()
       }
     })
   }
@@ -91,6 +103,8 @@ class Code {
         }
       })
     }
+    mermaid.init()
+    this.clearMermaid()
   }
 
   constructor() {

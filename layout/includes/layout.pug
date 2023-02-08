@@ -10,12 +10,8 @@
   pageTitle += config.title
   const asideLogo = theme.aside.logo
   const pjax = theme.pjax ? theme.pjax.enable : false
-  let onload = "code.findCode();"
   let searchConfig = null
   if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
-  if (theme.mermaid.enable === true && theme.mermaid.version !== undefined) {
-    onload += "mermaid.init(undefined, ('.mermaid'));";
-  }
   const configs = JSON.stringify({
     root: config.root,
     search: {

@@ -140,22 +140,6 @@ catch (e) {
     throw new Error('canvasID 无效');
 }
 class Code {
-    doAsMermaid(item) {
-        let Amermaid = item.querySelector('.mermaid');
-        item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
-    }
-    resetName(str) {
-        if (str == 'plaintext') {
-            return 'TEXT';
-        }
-        if (str == 'cs') {
-            return 'C#';
-        }
-        if (str == 'cpp') {
-            return 'C++';
-        }
-        return str.toUpperCase();
-    }
     constructor() {
         this.reverse = (item, s0, s1) => {
             const block = getParent(item);
@@ -167,6 +151,34 @@ class Code {
                 block.classList.remove(s1);
                 block.classList.add(s0);
             }
+        };
+        this.doAsMermaid = (item) => {
+            let Amermaid = item.querySelector('.mermaid');
+            item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
+        };
+        this.resetName = (str) => {
+            if (str == 'plaintext') {
+                return 'TEXT';
+            }
+            if (str == 'cs') {
+                return 'C#';
+            }
+            if (str == 'cpp') {
+                return 'C++';
+            }
+            return str.toUpperCase();
+        };
+        this.addEvent = (header) => {
+            header.addEventListener('click', (click) => {
+                if (click.target === header) {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+            header.addEventListener('keypress', (key) => {
+                if (key.key === 'Enter' && key.target === header) {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
         };
         this.doAsCode = (item) => {
             const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
@@ -193,15 +205,13 @@ class Code {
                     button.innerText = config.code.copy;
                 }, 1200);
             });
-            const header = getElement('.code-header', item);
-            header.addEventListener('click', (click) => {
-                if (click.target === header) {
-                    this.reverse(header, 'open', 'fold');
-                }
-            });
-            header.addEventListener('keyup', (key) => {
-                if (key.key === 'Enter' && key.target === header) {
-                    this.reverse(header, 'open', 'fold');
+            this.addEvent(getElement('.code-header', item));
+        };
+        this.clearMermaid = () => {
+            document.querySelectorAll('.mermaid').forEach((item) => {
+                let style = item.querySelector('style');
+                if (style) {
+                    style.remove();
                 }
             });
         };
@@ -227,6 +237,8 @@ class Code {
                     }
                 });
             }
+            mermaid.init();
+            this.clearMermaid();
         };
         this.findCode();
     }
@@ -241,7 +253,7 @@ class Cursor {
         this.fadeIng = false;
         this.nowX = 0;
         this.nowY = 0;
-        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon,.wl-sort>li,.vicon";
+        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon,.wl-sort>li,.vicon,.clickable";
         this.set = (X = this.nowX, Y = this.nowY) => {
             this.outer.transform =
                 `translate(calc(${X.toFixed(2)}px - 50%),
@@ -367,16 +379,16 @@ class Index {
         this.check = (index, id) => {
             return index[id + 1] > 150 && (index[id] <= 150 || !id);
         };
-        this.modifyIndex = (headerLink, tocLink) => {
+        this.modifyIndex = () => {
             let index = [];
-            headerLink.forEach(item => {
+            this.headerLink.forEach(item => {
                 index.push(item.getBoundingClientRect().top);
             });
             if (this.lastIndex >= 0 && this.check(index, this.lastIndex)) {
                 return;
             }
-            for (let i = 0; i < tocLink.length; ++i) {
-                const item = tocLink.item(i);
+            for (let i = 0; i < this.tocLink.length; ++i) {
+                const item = this.tocLink.item(i);
                 if (i + 1 === index.length || this.check(index, i)) {
                     this.setItem(item);
                     this.reset(item);
@@ -385,19 +397,22 @@ class Index {
             }
         };
         this.setHTML = () => {
-            let headerLink = document.querySelectorAll('h2,h3,h4,h5,h6'), tocLink = document.querySelectorAll('.toc-link');
-            if (tocLink.length) {
-                this.setItem(tocLink.item(0));
+            this.headerLink = document.querySelectorAll('h2,h3,h4,h5,h6');
+            this.tocLink = document.querySelectorAll('.toc-link');
+            if (this.tocLink.length) {
+                this.setItem(this.tocLink.item(0));
             }
-            getElement('main').addEventListener('scroll', () => {
-                if (!tocLink.length) {
-                    return;
-                }
-                this.modifyIndex(headerLink, tocLink);
-            }, { passive: true });
         };
         document.addEventListener('pjax:success', this.setHTML);
         this.setHTML();
+        this.headerLink = document.querySelectorAll('h2,h3,h4,h5,h6');
+        this.tocLink = document.querySelectorAll('.toc-link');
+        getElement('main').addEventListener('scroll', () => {
+            if (!this.tocLink.length) {
+                return;
+            }
+            this.modifyIndex();
+        }, { passive: true });
     }
 }
 let indexs = new Index();

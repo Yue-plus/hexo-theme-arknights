@@ -37,7 +37,7 @@ script.pjax-js reset=_=>{
     |  serverURL: '#{theme.waline.server_url}',
     |  path: !{'window.location.pathname'},
     |});
-  | !{onload}}
+  | code.findCode();}
 
 if theme.scripts && theme.scripts.length > 0
   //- scripts list from config.yml
