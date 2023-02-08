@@ -77,8 +77,7 @@ menu:
 
 # pjax 支持
 pjax:
-  enable: false
-  version: "0.2.8"
+  enable: true
 
 # stylesheets loaded in the <head>
 stylesheets:
