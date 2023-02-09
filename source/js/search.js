@@ -270,9 +270,7 @@ window.addEventListener('DOMContentLoaded', () => {
     input.placeholder = blurHolder
     document.removeEventListener('mouseup', EscapeSearch)
     waiting = false
-    if (document.querySelector('.up')) {
-      getElement('main').style.pointerEvents = ''
-    }
+    getElement('main').style.pointerEvents = ''
     input.blur()
   }
   input.addEventListener('keyup', () => {
@@ -295,7 +293,7 @@ window.addEventListener('DOMContentLoaded', () => {
       EscapeSearch()
     }
   })
-  window.addEventListener('keyup', event => {
+  document.addEventListener('keyup', event => {
     if (event.key === 'Escape') {
       EscapeSearch()
     } else if (event.key === 'f' && 
@@ -306,6 +304,12 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       StartSearch()
       input.focus()
+    }
+  })
+  document.addEventListener('click', event => {
+    if (event.target.tagName === 'A' ||
+      event.target.parentElement.tagName === 'A') {
+      EscapeSearch()
     }
   })
 })
