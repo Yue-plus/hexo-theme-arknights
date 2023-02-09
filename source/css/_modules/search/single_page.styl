@@ -5,6 +5,8 @@
     overflow visible
   .moving
     pointer-events none
+    .navBtn
+      pointer-events none
     .search-header,
     .search-popup
       transition unset
@@ -12,7 +14,7 @@
     .navContent
       overflow visible
 
-  .up 
+  .up
     .search-popup
       left 100vw
       transform translateX(0)
@@ -26,11 +28,10 @@
       .navContent
         overflow visible
     #search-header
-      padding .5em 2em 0 70%
+      padding .5em 2em 0 5em
       animation get-in-top .3s
       position absolute
       transform translateX(-100%)
-      width 100vw
       input
         animation none
     .search-popup
@@ -67,14 +68,12 @@
 animate-up(distance)
   @keyframes get-out-top
     0%
-      width 100vw
-      padding .5em 2em 0 70%
+      padding .5em 2em 0 5em
       left distance
       transform translate(-100%, 0)
       position absolute
     100%
-      width 100vw
-      padding .5em 2em 0 70%
+      padding .5em 2em 0 5em
       left distance
       position absolute
       transform translate(-100%, -100%)
@@ -87,11 +86,9 @@ animate-up(distance)
 
 @keyframes get-in-top
   0%
-    width 100vw
-    padding .5em 2em 0 70%
+    padding .5em 2em 0 5em
     transform translate(-100%, -100%)
   100%
-    width 100vw
-    padding .5em 2em 0 70%
+    padding .5em 2em 0 5em
     transform translate(-100%, 0)
 
