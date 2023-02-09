@@ -7,10 +7,10 @@
 ## 预览
 
 - ### **Dr.Yue_plus: <http://arknights.theme.hexo.yue.zone/>**
+- ### **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
 - **Dr.XIMU：<http://b.ligzs.cn/>**
-- **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
@@ -70,11 +70,13 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
 ### 修改资源文件
 
+可按需在 `Hexo/source/` 目录添加以下文件
+- `CNAME`: GitHub Pages 部署时的自定义域名
+- `img/`目录下的 `Alipay.png` 与 `WeChat.png` 为自己的收款二维码（1:1 比例的 `png` 图片）；
+
 可按需修改 `Hexo/themes/arknights/source/` 目录下的
 - `favicon.ico`：浏览器标签页上的图标
-- `CNAME`: GitHub Pages 部署时的自定义域名
 - `README.md`: 部署仓库的 README
-- `img/`目录下的 `Alipay.png` 与 `WeChat.png` 可替换为自己的二维码（1:1 比例的 `png` 图片）；
 
 ## 写作
 
