@@ -216,6 +216,8 @@ mathjax: true
 +\begin{eqnarray\*}
 ```
 
+或是更换能更好处理数学公式的渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)。
+
 ### 方案二：动态渲染
 
 本主题也支持 [MathJax](https://www.mathjax.org/) ，在用户浏览时动态渲染公式：
