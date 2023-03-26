@@ -108,6 +108,17 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
     About: /about
   ```
 
+## 归档页怎么只显示十篇文章
+
+该设置位于 `_config.yml` 约第 92 行。
+
+```yaml
+## Set per_page to 0 to disable pagination
+per_page: 10
+```
+
+改为 0（或某个较大数）即可。
+
 ## 评论系统
 
 ### Valine
@@ -154,7 +165,6 @@ waline:
   enable: false 
   server_url: #Server_Url
 ```
-
 
 ## 数学公式
 
