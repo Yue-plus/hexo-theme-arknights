@@ -22,11 +22,18 @@ block content
     #Archives
       h1 #{__('menu.tag.name')}: #{page.tag}
       #Archives-bg
+        - let year
         - page.posts.each((article) => {
-        .article-item
-          .control-long
-            time(datetime=date_xml(article.date))= date(article.date)
-          a(href=url_for(article.path))= article.title
+          - let yearMonth = date(article.date, 'YYYY-MM')
+          if yearMonth !== year
+            - year = yearMonth
+            h2= year
+          .article-item
+            .control-archive
+              time= date(article.date, 'MM-DD')
+            a(href=url_for(article.path) target="_blank")
+              = article.title || __('post.noTitle')
         - })
-        #paginator!= paginator()
+        if config.per_page != 0
+          #paginator!= paginator()
     include includes/archive-aside.pug

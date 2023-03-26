@@ -36,6 +36,7 @@
         background-color var(--theme-highlight)
 
 #Archives
+  min-height calc(100vh - 40px)
   flex-grow 5
   position relative
   h2
@@ -56,7 +57,19 @@
 #Archives-bg
   box-sizing border-box
   padding 10px
-  padding-bottom 72px
+  padding-bottom 30px
+
+.article-item
+  position relative
+  margin-bottom 15px
+  &::after
+    content ''
+    width calc(100% - 30px)
+    position absolute
+    display block
+    bottom -5px
+    left 15px
+    border-bottom: 1px var(--theme-unimportant-trans) solid
 
 #Categories
   height 50%
@@ -78,7 +91,4 @@
 
 .control-archive
   width 75px
-  display inline-block
-.control-long
-  width 115px
   display inline-block
