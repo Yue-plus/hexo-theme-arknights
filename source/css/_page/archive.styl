@@ -18,7 +18,8 @@
   box-sizing border-box
   padding-top 10px
   top 0
-  height 100vh
+  height fit-content
+  max-height 100vh
   display flex
   order -1
   flex-grow 1
@@ -82,12 +83,14 @@
     border-bottom: 1px var(--theme-unimportant-trans) solid
 
 #Categories
+  height fit-content
   overflow visible
   height 50%
   flex-grow 1
   margin-bottom 20px
 
 #Tags
+  height fit-content
   overflow visible
   height 100%
   flex-grow 1

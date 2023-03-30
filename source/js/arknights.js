@@ -253,7 +253,9 @@ class Cursor {
         this.fadeIng = false;
         this.nowX = 0;
         this.nowY = 0;
-        this.attention = "a,input,button,textarea,.code-header,.gt-user-inner,.navBtnIcon,.wl-sort>li,.vicon,.clickable";
+        this.attention = "a,input,button,textarea,\
+    .code-header,.gt-user-inner,.navBtnIcon,\
+    .wl-sort>li,.vicon,.clickable,#post-bg img,.lg-container img";
         this.set = (X = this.nowX, Y = this.nowY) => {
             this.outer.transform =
                 `translate(calc(${X.toFixed(2)}px - 50%),
