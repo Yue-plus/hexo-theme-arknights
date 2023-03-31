@@ -2,15 +2,24 @@
   width 100%
   height fit-content
   min-height 600px
-  padding-bottom 30px
   box-sizing border-box
   display flex
   justify-content stretch
   position: relative
 
 #archive-aside
-  top 10px
-  height 100%
+  &::-webkit-scrollbar
+    display none
+  &::-ms-scrollbar
+    display none
+  scrollbar-width none
+  padding-bottom 30px
+  overflow auto
+  box-sizing border-box
+  padding-top 10px
+  top 0
+  height fit-content
+  max-height 100vh
   display flex
   order -1
   flex-grow 1
@@ -36,6 +45,8 @@
         background-color var(--theme-highlight)
 
 #Archives
+  margin-bottom 30px
+  padding-top 10px
   min-height calc(100vh - 40px)
   flex-grow 5
   position relative
@@ -72,11 +83,15 @@
     border-bottom: 1px var(--theme-unimportant-trans) solid
 
 #Categories
+  height fit-content
+  overflow visible
   height 50%
   flex-grow 1
   margin-bottom 20px
 
 #Tags
+  height fit-content
+  overflow visible
   height 100%
   flex-grow 1
 
