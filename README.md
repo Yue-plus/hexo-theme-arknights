@@ -75,7 +75,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 - `img/`目录下的 `Alipay.png` 与 `WeChat.png` 为自己的收款二维码（1:1 比例的 `png` 图片）；
 
 可按需修改 `Hexo/themes/arknights/source/` 目录下的
-- `favicon.ico`：浏览器标签页上的图标
+- `favicon.ico`：浏览器标签页上的图标（64*64，分辨率高了显示不出）
 - `README.md`: 部署仓库的 README
 
 ## 写作
