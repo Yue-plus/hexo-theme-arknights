@@ -2,6 +2,12 @@ meta(charset='UTF-8')
 meta(name='viewport' content='width=device-width, initial-scale=1.0')
 title= pageTitle
 
+link(
+  rel="icon"
+  type=(theme.favicon.type ? theme.favicon.type : "image/x-icon")
+  href=(theme.favicon.href ? theme.favicon.href : config.root + "favicon.ico")
+)
+
 script var config = !{configs}
 if theme.valine && theme.valine.enable === true
   script(src='//unpkg.com/valine/dist/Valine.min.js')

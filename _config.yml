@@ -1,3 +1,8 @@
+# 标签页图标
+favicon:
+  type: "image/x-icon"
+  href: "/favicon.ico"
+
 # canvas 动态背景
 canvas_dust: true
 
@@ -9,12 +14,12 @@ color: dark
 
 # <body> 背景图片链接
 background_image:
-  dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg  # 暗色模式
+  dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # 暗色模式
   light: /img/bk.jpg # 亮色模式
 
 # 导航栏
 menu:
-  Home: ''
+  Home: ""
   # About: about/
   # Contact: contact/
   Archives: archives/
@@ -87,13 +92,13 @@ gitalk:
 # Waline
 # 详情: https://waline.js.org/
 waline:
-  enable: false 
+  enable: false
   server_url: #Server_Url
 
 # 图表支持
 mermaid:
   enable: true
-  version: '9.2.2'
+  version: "9.2.2"
 
 # pjax 支持
 pjax:
@@ -102,7 +107,7 @@ pjax:
 # 公式前端渲染
 mathjax:
   enable: false
-  version: '2.6.1'
+  version: "2.6.1"
 
 # 在 `<head>` 标签内引入 CSS 样式表
 stylesheets:
