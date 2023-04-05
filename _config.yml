@@ -4,16 +4,16 @@
 
 # Site
 title: Arknights
-subtitle: ''
-description: ''
+subtitle: ""
+description: ""
 keywords:
 author: Dr.Yue_plus
 language: cn
-timezone: ''
+timezone: ""
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://ark.theme.yueplus.ink
+url: https://arknights.theme.hexo.yue.zone
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -38,7 +38,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -48,14 +48,14 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace: ''
+  tab_replace: ""
   wrap: true
   hljs: true
 prismjs:
   enable: false
   preprocess: true
   line_number: true
-  tab_replace: ''
+  tab_replace: ""
 mathjax:
   tags: none # or 'ams' or 'all'
   single_dollars: true # enable single dollar signs as in-line math delimiters
@@ -71,7 +71,7 @@ aplayer:
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
 
@@ -91,7 +91,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: "mtime"
 
 # Pagination
 ## Set per_page to 0 to disable pagination
