@@ -10,15 +10,23 @@ aside
     block aside-block
     if page.published === undefined
       section#total
-         a#total-archives(href= config.root + "archives")
-           span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
-           span.total-number= site.posts.length
-         #total-tags
-           span.total-title #{__('menu.tag.plural')}:
-           span.total-number= site.tags.length
-         #total-categories
-           span.total-title #{__('menu.category.plural')}:
-           span.total-number= site.categories.length
+        if theme.aside.links !== undefined
+          if theme.aside.links !== null
+            #links
+              each key in theme.aside.links
+                div(class=key.text)
+                  a(href=key.link)
+                    img(src=key.icon alt=key.text)
+                  h2= key.text
+        a#total-archives(href= config.root + "archives")
+          span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
+          span.total-number= site.posts.length
+        #total-tags
+          span.total-title #{__('menu.tag.plural')}:
+          span.total-number= site.tags.length
+        #total-categories
+          span.total-title #{__('menu.category.plural')}:
+          span.total-number= site.categories.length
   footer(style= footerStyle)
     if theme.aside.icp !== null
       nobr
