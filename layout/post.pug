@@ -75,7 +75,7 @@ block content
           div
             span #{pay}
             br
-            img(src=config.root + imgSrc)
+            img(src=url_for(imgSrc))
     -
       let count = (theme.valine.enable === true) +
                   (theme.gitalk.enable === true) +

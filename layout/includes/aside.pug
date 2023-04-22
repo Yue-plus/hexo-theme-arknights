@@ -6,19 +6,16 @@ aside
       a(href= theme.aside.dr)= config.author
     #description
       p!= config.description
+    if theme.social
+      #social-links
+        each value, name in theme.social
+          a.social(href= value.split('||')[0].trim())
+            i(alt=name,class=value.split('||')[1].trim())
   #aside-block
     block aside-block
     if page.published === undefined
       section#total
-        if theme.aside.links !== undefined
-          if theme.aside.links !== null
-            #links
-              each key in theme.aside.links
-                div(class=key.text)
-                  a(href=key.link)
-                    img(src=key.icon alt=key.text)
-                  h2= key.text
-        a#total-archives(href= config.root + "archives")
+        a#total-archives(href= url_for("archives"))
           span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
           span.total-number= site.posts.length
         #total-tags
