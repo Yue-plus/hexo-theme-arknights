@@ -9,7 +9,7 @@ mixin expand_list(list)
         ol.navItemList
           +expand_list(url)
       else
-        a(href= config.root + url)
+        a(href= url_for(url))
           span.navItemTitle= label
 
 header.closed
@@ -40,5 +40,5 @@ header.closed
               ol.navItemList
                 +expand_list(url)
           else
-            a.navBlock(href= config.root + url)
+            a.navBlock(href= url_for(url))
               span.navItemTitle= label

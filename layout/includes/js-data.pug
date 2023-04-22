@@ -1,5 +1,5 @@
 if searchConfig !== null
-  script(src=config.root + "js/search.js")
+  script(src=url_for("js/search.js"))
 if theme.waline && theme.waline.enable === true
   script(type='module').
     import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
@@ -10,12 +10,12 @@ if theme.scripts && theme.scripts.length > 0
   each url in theme.scripts
     script(src=url)
 
-script(src=config.root + "js/arknights.js")
+script(src=url_for("js/arknights.js"))
 script(src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js")
 script(src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js")
 script(src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js")
 if pjax
-  script(src=config.root + "js/pjax.js")
+  script(src=url_for("js/pjax.js"))
 
 script.pjax-js reset= () => {
   if theme.valine && theme.valine.enable === true

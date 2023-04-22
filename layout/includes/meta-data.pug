@@ -5,7 +5,7 @@ title= pageTitle
 link(
   rel="icon"
   type=(theme.favicon.type ? theme.favicon.type : "image/x-icon")
-  href=(theme.favicon.href ? theme.favicon.href : config.root + "favicon.ico")
+  href=(url_for(theme.favicon.href ? theme.favicon.href : "favicon.ico"))
 )
 
 script var config = !{configs}
@@ -14,7 +14,7 @@ if theme.valine && theme.valine.enable === true
 if theme.waline && theme.waline.enable === true
   link(rel="stylesheet", href= url_for('//unpkg.com/@waline/client@v2/dist/waline.css'))
 if theme.gitalk && theme.gitalk.enable === true
-  script(src=config.root + "js/gitalk.js")
+  script(src=url_for("js/gitalk.js"))
 if theme.mermaid && theme.mermaid.enable === true && theme.mermaid.version
   script(src= "//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
 if theme.mathjax && theme.mathjax.enable === true
@@ -41,8 +41,10 @@ if theme.mathjax && theme.mathjax.enable === true
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css")
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css")
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css")
+link(type="text/css" rel="stylesheet" href=url_for('/lib/fontawesome/brands.min.css'))
+link(type="text/css" rel="stylesheet" href=url_for('/lib/fontawesome/fontawesome.min.css'))
 
-link(rel="stylesheet", href=config.root + "css/arknights.css")
+link(rel="stylesheet", href=url_for("css/arknights.css"))
 if theme.stylesheets && theme.stylesheets.length > 0
   //- stylesheets list from _config.yml
   each url in theme.stylesheets
@@ -69,3 +71,13 @@ style
   |  font-family: 'JetBrains Mono';
   |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
   |}
+  |@font-face {
+  |  font-family: 'Font Awesome 6 Brands';
+  |  src: local('Font Awesome 6 Brands'), url('#{config.root}lib/fontawesome/fa-brands.woff2') format('woff2');
+  |}
+  |@font-face {
+  |  font-family: 'Font Awesome 6 Free';
+  |  src: local('Font Awesome 6 Free'), url('#{config.root}lib/fontawesome/fa-regular.woff2') format('woff2');
+  |}
+
+include ./generate-css.pug
