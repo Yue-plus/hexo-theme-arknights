@@ -348,6 +348,8 @@ window.onload = () => new Cursor();
 class Index {
     constructor() {
         this.lastIndex = -1;
+        this.headerLink = document.querySelectorAll('null');
+        this.tocLink = document.querySelectorAll('null');
         this.setItem = (item) => {
             item.classList.add('active');
             let parent = getParent(item), brother = parent.children;
@@ -379,41 +381,47 @@ class Index {
             });
         };
         this.check = (index, id) => {
-            return index[id + 1] > 150 && (index[id] <= 150 || !id);
+            return index[id + 1] > window.innerHeight / 3 || index[id] > 0;
         };
         this.modifyIndex = () => {
             let index = [];
             this.headerLink.forEach(item => {
                 index.push(item.getBoundingClientRect().top);
             });
-            if (this.lastIndex >= 0 && this.check(index, this.lastIndex)) {
+            if (this.lastIndex >= 0 &&
+                (this.lastIndex < 1 || !this.check(index, this.lastIndex - 1)) &&
+                this.check(index, this.lastIndex)) {
                 return;
             }
             for (let i = 0; i < this.tocLink.length; ++i) {
                 const item = this.tocLink.item(i);
                 if (i + 1 === index.length || this.check(index, i)) {
+                    this.lastIndex = i;
                     this.setItem(item);
                     this.reset(item);
-                    break;
+                    return;
                 }
             }
+            this.lastIndex = 0;
+            this.setItem(this.tocLink.item(0));
+            this.reset(this.tocLink.item(0));
         };
         this.setHTML = () => {
-            this.headerLink = document.querySelectorAll('h2,h3,h4,h5,h6');
-            this.tocLink = document.querySelectorAll('.toc-link');
-            if (this.tocLink.length) {
-                this.setItem(this.tocLink.item(0));
+            try {
+                this.headerLink = getElement('#post-content').querySelectorAll('h1,h2,h3,h4,h5,h6');
+                this.tocLink = document.querySelectorAll('.toc-link');
+                if (this.tocLink.length) {
+                    this.setItem(this.tocLink.item(0));
+                }
             }
+            catch { }
         };
         document.addEventListener('pjax:success', this.setHTML);
         this.setHTML();
-        this.headerLink = document.querySelectorAll('h2,h3,h4,h5,h6');
-        this.tocLink = document.querySelectorAll('.toc-link');
         getElement('main').addEventListener('scroll', () => {
-            if (!this.tocLink.length) {
-                return;
+            if (this.tocLink.length) {
+                this.modifyIndex();
             }
-            this.modifyIndex();
         }, { passive: true });
     }
 }
