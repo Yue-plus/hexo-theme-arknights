@@ -34,7 +34,7 @@ html(lang=config.language theme-mode=theme.color)
     include ./meta-data.pug
   body
     if pjax
-      .loading
+      .loading(style="opacity: 0;")
         .loadingBar.left
         .loadingBar.right
     main

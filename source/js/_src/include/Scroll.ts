@@ -1,4 +1,4 @@
-/// <reference path="base.ts" />
+/// <reference path="common/base.ts" />
 
 'use strict'
 

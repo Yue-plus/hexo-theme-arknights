@@ -823,9 +823,8 @@ class Pair {
         this.button = second;
     }
 }
-class Comments {
-    constructor() {
-        this.search = ["valine", "gitalk", "waline"];
+class Selectors {
+    constructor(elements = [], active = 0) {
         this.elements = [];
         this.changeTo = (item) => {
             if (item === this.nowActive) {
@@ -837,8 +836,23 @@ class Comments {
             item.button.classList.add('active');
             this.nowActive = item;
         };
+        this.elements = elements;
+        this.nowActive = this.elements[active];
+        this.elements.forEach((item) => item.comment.style.display = 'none');
+        this.nowActive = this.elements[0];
+        for (let i of this.elements) {
+            i.button.addEventListener('click', () => this.changeTo(i));
+        }
+        this.nowActive.comment.style.display = '';
+        this.nowActive.button.classList.add('active');
+    }
+}
+class Comments {
+    constructor() {
+        this.search = ["valine", "gitalk", "waline"];
+        this.elements = [];
         this.setHTML = () => {
-            if (!document.querySelector('#comments'))
+            if (!document.querySelector('#comments .selector'))
                 return;
             this.elements = [];
             this.search.forEach((item) => {
@@ -847,17 +861,10 @@ class Comments {
                 }
                 catch (e) { }
             });
-            this.elements.forEach((item) => item.comment.style.display = 'none');
-            this.nowActive = this.elements[0];
-            for (let i of this.elements) {
-                i.button.addEventListener('click', () => this.changeTo(i));
-            }
-            this.nowActive.comment.style.display = '';
-            this.nowActive.button.classList.add('active');
+            new Selectors(this.elements, 0);
         };
         this.setHTML();
         document.addEventListener('pjax:complete', this.setHTML);
-        this.nowActive = this.elements[0];
     }
 }
 new Comments();
