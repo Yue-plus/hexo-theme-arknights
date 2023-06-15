@@ -136,9 +136,7 @@ canvasDust.getPoint = (number = 1) => {
 try {
     var canvasDusts = new canvasDust('#canvas-dust');
 }
-catch (e) {
-    throw new Error('canvasID 无效');
-}
+catch (e) { }
 class Code {
     constructor() {
         this.reverse = (item, s0, s1) => {
@@ -783,7 +781,8 @@ class ColorMode {
             document.body.insertBefore(background, document.body.firstChild);
             this.btn.style.pointerEvents = 'none';
             setTimeout(() => {
-                canvasDusts.stop();
+                if (canvasDusts)
+                    canvasDusts.stop();
                 if (this.dark) {
                     this.html.setAttribute('theme-mode', 'light');
                     this.dark = false;
@@ -798,7 +797,8 @@ class ColorMode {
             });
             setTimeout(() => {
                 document.body.removeChild(background);
-                canvasDusts.play();
+                if (canvasDusts)
+                    canvasDusts.play();
             }, 1500);
             setTimeout(() => {
                 this.btn.style.pointerEvents = '';
