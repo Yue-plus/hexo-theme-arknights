@@ -21,39 +21,45 @@
 .hljs span
   line-height 0
 
-.code-icon
+.status-icon
+  font-style normal
   display inline-block
   width 20px
   height 20px
+  margin-right 5px
   &::before
-    content '>'
-    margin 5px
+    content ''
+    display block
+    height 6px
+    width 6px
+    border-top 2px solid var(--theme-text-light)
+    border-right 2px solid var(--theme-text-light)
+    margin 7px 7px 5px 5px
 
-.highlight.open
-  .code-box
-    transition .5s cubic-bezier(0.5, 0, 1, 0)
+.open
+  .content-box
+    transition max-height .5s cubic-bezier(0.5, 0, 1, 0), background .3s
     max-height 10000px
-  .code-header
-    .code-space
-      display none
-    .code-icon
-      transform rotate(90deg)
-      transition transform 0.2s ease
+  .status-icon
+    transform rotate(135deg)
+    transition transform 0.2s ease
+  .code-space
+    display none
 
-.highlight.fold
-  .code-box
-    transition .5s cubic-bezier(0, 1, 0, 1) -0.1s
+.fold
+  .content-box
+    transition max-height .5s cubic-bezier(0, 1, 0, 1) -0.1s, background .3s
     max-height 0
-  .code-header
-    .code-copy
-      display none
-    .code-icon
-      transition transform 0.2s ease
+  .status-icon
+    transform rotate(45deg)
+    transition transform 0.2s ease
+  .code-copy
+    display none
 
 .highlight
-  margin 1em 10px
+  margin 1em
   overflow-x hidden
-.code-box
+.content-box
   overflow-y hidden
   max-height 0
 .code-header
@@ -64,6 +70,7 @@
   &:focus-visible
     outline #fff auto 1px
   .code-title
+    display flex
     pointer-events none
     color var(--theme-text-light)
     margin 7px 8px

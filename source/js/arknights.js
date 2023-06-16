@@ -139,17 +139,6 @@ try {
 catch (e) { }
 class Code {
     constructor() {
-        this.reverse = (item, s0, s1) => {
-            const block = getParent(item);
-            if (block.classList.contains(s0)) {
-                block.classList.remove(s0);
-                block.classList.add(s1);
-            }
-            else {
-                block.classList.remove(s1);
-                block.classList.add(s0);
-            }
-        };
         this.doAsMermaid = (item) => {
             let Amermaid = item.querySelector('.mermaid');
             item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
@@ -166,33 +155,22 @@ class Code {
             }
             return str.toUpperCase();
         };
-        this.addEvent = (header) => {
-            header.addEventListener('click', (click) => {
-                if (click.target === header) {
-                    this.reverse(header, 'open', 'fold');
-                }
-            });
-            header.addEventListener('keypress', (key) => {
-                if (key.key === 'Enter' && key.target === header) {
-                    this.reverse(header, 'open', 'fold');
-                }
-            });
-        };
         this.doAsCode = (item) => {
             const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
             item.classList.add(lineCount < 16 ? 'open' : 'fold');
+            item.classList.add('code');
             item.innerHTML =
-                `<span class="code-header" tabindex='0'>\
-        <span class="code-title">\
-          <div class="code-icon"></div>
-          ${format(config.code.codeInfo, codeType, lineCount)}
-        </span>\
-        <span class="code-header-tail">\
-          <button class="code-copy">${config.code.copy}</button>\
-          <span class="code-space">${config.code.expand}</span>\
-        </span>\
-      </span>\
-      <div class="code-box">${item.innerHTML}</div>`;
+                `<div class="code-header" tabindex='0'>
+        <div class="code-title">
+          <i class="status-icon"></i>
+          <span>${format(config.code.codeInfo, codeType, lineCount)}</span>
+        </div>
+        <div class="code-header-tail">
+          <button class="code-copy">${config.code.copy}</button>
+          <div class="code-space">${config.code.expand}</div>
+        </div>
+      </div>
+      <div class="content-box">${item.innerHTML}</div>`;
             getElement('.code-copy', item).addEventListener('click', (click) => {
                 const button = click.target;
                 navigator.clipboard.writeText(getElement('code', item).innerText);
@@ -203,7 +181,6 @@ class Code {
                     button.innerText = config.code.copy;
                 }, 1200);
             });
-            this.addEvent(getElement('.code-header', item));
         };
         this.clearMermaid = () => {
             document.querySelectorAll('.mermaid').forEach((item) => {
@@ -239,6 +216,7 @@ class Code {
             this.clearMermaid();
         };
         this.findCode();
+        document.addEventListener('pjax:success', this.findCode);
     }
 }
 let code = new Code();
@@ -251,9 +229,13 @@ class Cursor {
         this.fadeIng = false;
         this.nowX = 0;
         this.nowY = 0;
-        this.attention = "a,input,button,textarea,\
-    .code-header,.gt-user-inner,.navBtnIcon,\
-    .wl-sort>li,.vicon,.clickable,#post-bg img,.lg-container img";
+        this.attention = `a,input,button,textarea,
+    .navBtnIcon,
+    #post-bg img,
+    .code-header,.ad-header,
+    .gt-user-inner,
+    .lg-container img,
+    .wl-sort>li,.vicon,.clickable`;
         this.set = (X = this.nowX, Y = this.nowY) => {
             this.outer.transform =
                 `translate(calc(${X.toFixed(2)}px - 50%),
@@ -868,6 +850,45 @@ class Comments {
     }
 }
 new Comments();
+/// <reference path="common/base.ts" />
+class expands {
+    constructor() {
+        this.find = [".admonition", ".code"];
+        this.reverse = (item, s0, s1) => {
+            const block = getParent(item);
+            if (block.classList.contains(s0)) {
+                block.classList.remove(s0);
+                block.classList.add(s1);
+            }
+            else {
+                block.classList.remove(s1);
+                block.classList.add(s0);
+            }
+        };
+        this.addEvent = (header) => {
+            header.addEventListener('click', (click) => {
+                if (click.target === header) {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+            header.addEventListener('keypress', (key) => {
+                if (key.key === 'Enter' && key.target === header) {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+        };
+        this.setHTML = () => {
+            this.find.forEach((str) => {
+                document.querySelectorAll(str).forEach((item) => {
+                    this.addEvent(item.children[0]);
+                });
+            });
+        };
+        this.setHTML();
+        document.addEventListener('pjax:success', this.setHTML);
+    }
+}
+new expands();
 /// <reference path="include/canvaDust.ts" />
 /// <reference path="include/Code.ts" />
 /// <reference path="include/Cursors.ts" />
@@ -877,3 +898,4 @@ new Comments();
 /// <reference path="include/pjaxSupport.ts" />
 /// <reference path="include/ColorMode.ts" />
 /// <reference path="include/Comments.ts" />
+/// <reference path="include/Expands.ts" />

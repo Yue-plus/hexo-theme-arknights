@@ -3,17 +3,6 @@
 'use strict'
 
 class Code {
-  private reverse = (item: Element, s0: string, s1: string) => {
-    const block = getParent(item)
-    if (block.classList.contains(s0)) {
-      block.classList.remove(s0)
-      block.classList.add(s1)
-    } else {
-      block.classList.remove(s1)
-      block.classList.add(s0)
-    }
-  }
-
   private doAsMermaid = (item: Element) => {
     let Amermaid = item.querySelector('.mermaid') as HTMLElement
     item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>'
@@ -32,35 +21,23 @@ class Code {
     return str.toUpperCase()
   }
 
-  private addEvent = (header: HTMLElement) => {
-    header.addEventListener('click', (click) => {
-      if (click.target === header) {
-        this.reverse(header, 'open', 'fold')
-      }
-    })
-    header.addEventListener('keypress', (key) => {
-      if (key.key === 'Enter' && key.target === header) {
-        this.reverse(header, 'open', 'fold')
-      }
-    })
-  }
-
   private doAsCode = (item: Element) => {
     const codeType = this.resetName(item.classList[1]),
       lineCount = getElement('.gutter', item).children[0].childElementCount >> 1
     item.classList.add(lineCount < 16 ? 'open' : 'fold')
+    item.classList.add('code')
     item.innerHTML =
-      `<span class="code-header" tabindex='0'>\
-        <span class="code-title">\
-          <div class="code-icon"></div>
-          ${format(config.code.codeInfo, codeType, lineCount)}
-        </span>\
-        <span class="code-header-tail">\
-          <button class="code-copy">${config.code.copy}</button>\
-          <span class="code-space">${config.code.expand}</span>\
-        </span>\
-      </span>\
-      <div class="code-box">${item.innerHTML}</div>`
+      `<div class="code-header" tabindex='0'>
+        <div class="code-title">
+          <i class="status-icon"></i>
+          <span>${format(config.code.codeInfo, codeType, lineCount)}</span>
+        </div>
+        <div class="code-header-tail">
+          <button class="code-copy">${config.code.copy}</button>
+          <div class="code-space">${config.code.expand}</div>
+        </div>
+      </div>
+      <div class="content-box">${item.innerHTML}</div>`
     getElement('.code-copy', item).addEventListener('click', (click: Event) => {
       const button = click.target as HTMLElement
       navigator.clipboard.writeText(getElement('code', item).innerText)
@@ -71,7 +48,6 @@ class Code {
         button.innerText = config.code.copy
       }, 1200)
     })
-    this.addEvent(getElement('.code-header', item))
   }
 
   private clearMermaid = () => {
@@ -109,6 +85,7 @@ class Code {
 
   constructor() {
     this.findCode()
+    document.addEventListener('pjax:success', this.findCode)
   }
 }
 

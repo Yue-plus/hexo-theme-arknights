@@ -13,9 +13,13 @@ class Cursor {
   private readonly outer: CSSStyleDeclaration
   private readonly effecter: CSSStyleDeclaration
   private readonly attention: string =
-    "a,input,button,textarea,\
-    .code-header,.gt-user-inner,.navBtnIcon,\
-    .wl-sort>li,.vicon,.clickable,#post-bg img,.lg-container img"
+    `a,input,button,textarea,
+    .navBtnIcon,
+    #post-bg img,
+    .code-header,.ad-header,
+    .gt-user-inner,
+    .lg-container img,
+    .wl-sort>li,.vicon,.clickable`
 
   private set = (X: number = this.nowX, Y: number = this.nowY) => {
     this.outer.transform =

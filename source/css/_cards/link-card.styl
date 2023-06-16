@@ -4,11 +4,10 @@
   initial-value transparent
 
 .link-card
-  display inline-flex
-  flex-direction column
+  display inline-block
   width 350px
   padding unset
-  margin .5em
+  margin .5em 1em
   position relative
   z-index 1
   &:hover
@@ -17,6 +16,12 @@
       --card-border var(--theme-highlight)
     .link-main
       border-left 2px solid var(--theme-highlight)
+  img
+    max-height 100%
+    max-width 100%
+    display block
+    border-bottom 1px solid var(--theme-border-soft)
+    margin-bottom -1px
 
 .link-card::before
   content ''
@@ -40,9 +45,6 @@
   .link-ico
     height 50px
     width 50px
-    img
-      max-height 100%
-      max-widh 100%
     &.link-full
       width 100%
       display flex
@@ -68,6 +70,9 @@
     &.link-full
       height 54px
       -webkit-line-clamp 3
+
+.link-main.link-simple
+  height 2em
 
 .link-background
   position relative
