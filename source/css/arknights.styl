@@ -30,6 +30,7 @@ if $search
   else
     @import "_modules/search/right"
 
+
 if $gitalk
   $comment-count = $comment-count + 1
   @import "_modules/comments/gitalk"
@@ -42,8 +43,12 @@ if $waline
   $comment-count = $comment-count + 1
   @import "_modules/comments/waline"
 
-if $comment-count > 1
+if $comment-count > 0
   @import "_modules/comments/base"
+
+if $comment-count > 1
+  @import "_modules/comments/selector"
+
 
 if $pjax
   @import "_modules/pjax"

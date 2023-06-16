@@ -1,0 +1,20 @@
+.hide
+  transition .1s
+  background var(--theme-hide)
+  padding 5px
+  p
+    display inline
+  code
+    box-sizing border-box
+  &:hover
+    code
+      border 1px solid var(--theme-border-soft)
+  &:not(:hover)
+    color var(--theme-hide)
+    code
+      border 1px solid transparent
+      background var(--theme-hide)
+    strong, em, p, i, a
+      color var(--theme-hide)
+    em, strong, a, p, i, span
+      transition .1s

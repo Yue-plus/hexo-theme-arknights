@@ -36,25 +36,25 @@
     border-right 2px solid var(--theme-text-light)
     margin 7px 7px 5px 5px
 
-.open
-  .content-box
-    transition max-height .5s cubic-bezier(0.5, 0, 1, 0), background .3s
-    max-height 10000px
-  .status-icon
-    transform rotate(135deg)
-    transition transform 0.2s ease
-  .code-space
-    display none
+.open>.content-box
+  transition max-height .5s cubic-bezier(0.5, 0, 1, 0), background .3s
+  max-height 10000px
+.open>div>div>.status-icon,
+.open>div>.status-icon
+  transform rotate(135deg)
+  transition transform 0.2s ease
+.open>div>div>.code-space
+  display none
 
-.fold
-  .content-box
-    transition max-height .5s cubic-bezier(0, 1, 0, 1) -0.1s, background .3s
-    max-height 0
-  .status-icon
-    transform rotate(45deg)
-    transition transform 0.2s ease
-  .code-copy
-    display none
+.fold>.content-box
+  transition max-height .5s cubic-bezier(0, 1, 0, 1) -0.1s, background .3s
+  max-height 0
+.fold>div>div>.status-icon,
+.fold>div>.status-icon
+  transform rotate(45deg)
+  transition transform 0.2s ease
+.fold>div>div>.code-copy
+  display none
 
 .highlight
   margin 1em
