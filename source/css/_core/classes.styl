@@ -29,43 +29,46 @@
 .code-title
   color var(--theme-text-light)
   flex-grow 1
-.code-header-tail
-  align-self center
-.code-space
-  line-height 35px
-  padding-right 14px
-  font-size 12px
+.content-box:not(:hover)>.code-copy:not(.copied)
+  opacity 0
 .code-copy
-  margin 0 4px
-  padding 7px 9px
-  display inline-block
-  line-height 1
-  text-decoration none
-  white-space nowrap
-  border 1px solid var(--theme-border-light)
-  border-radius 5px
-  background-color var(--theme-bg-soft)
-  color var(--theme-text-light)
-  font-size 0.75em
-  transition .3s
+  position absolute
+  top .5em
+  right .5em
+  height 30px
+  width 30px
+  border 5px solid transparent
+  background border-box var(--theme-btn-bg)
+  color var(--theme-border-light)
+  transition opacity .15s
+  &::before
+    content ''
+    position absolute
+    top 0
+    right 0
+    height 10px
+    width 10px
+    border 2px solid
+  &::after
+    content ''
+    position absolute
+    bottom 0
+    left 0
+    height 10px
+    width 10px
+    border 2px solid
+    clip-path polygon(0 0,4px 0,4px 10px,100% 10px,100% 100%,0 100%)
   @media (min-width 769px)
-    &:hover
-      border 1px solid var(--theme-border)
-      color  var(--theme-subcolor)
+    &:hover:not(.copied)
+      background var(--theme-subcolor)
       transition .3s
   @media (max-width 768px)
     &:active
-      border 1px solid var(--theme-border)
-      color  var(--theme-subcolor)
+      color var(--theme-subcolor)
       transition .3s
   &.copied
-    border 1px solid var(--theme-border)
-    color  var(--theme-subcolor)
+    color var(--theme-subcolor)
     transition .3s
-.open>div>div>.code-space
-  display none
-.fold>div>div>.code-copy
-  display none
 
 table
   td

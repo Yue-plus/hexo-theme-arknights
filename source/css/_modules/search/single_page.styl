@@ -1,8 +1,4 @@
 @media ( max-width 1023px )
-  .hide.navBtn
-    transform translateY(-2em)
-  :is(.moving, .up) nav
-    overflow visible
   .moving
     pointer-events none
     .navBtn
@@ -64,6 +60,8 @@
 @media ( max-width 768px )
   .up header:not(.expanded) #search-header
     left 100vw
+  .up article
+    margin-top 60px
 
 animate-up(distance)
   @keyframes get-out-top

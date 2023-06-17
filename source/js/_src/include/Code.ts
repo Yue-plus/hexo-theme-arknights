@@ -31,20 +31,16 @@ class Code {
       `<div class="ex-header" tabindex='0'>
         <i class="status-icon"></i>
         <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
-        <div class="code-header-tail">
-          <button class="code-copy">${config.code.copy}</button>
-          <div class="code-space">${config.code.expand}</div>
-        </div>
       </div>
-      <div class="content-box">${item.innerHTML}</div>`
+      <div class="content-box">${item.innerHTML}
+        <button class="code-copy"></button>
+      </div>`
     getElement('.code-copy', item).addEventListener('click', (click: Event) => {
       const button = click.target as HTMLElement
       navigator.clipboard.writeText(getElement('code', item).innerText)
       button.classList.add('copied')
-      button.innerText = config.code.copyFinish
       setTimeout(() => {
         button.classList.remove('copied')
-        button.innerText = config.code.copy
       }, 1200)
     })
   }

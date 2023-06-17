@@ -198,20 +198,16 @@ class Code {
                 `<div class="ex-header" tabindex='0'>
         <i class="status-icon"></i>
         <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
-        <div class="code-header-tail">
-          <button class="code-copy">${config.code.copy}</button>
-          <div class="code-space">${config.code.expand}</div>
-        </div>
       </div>
-      <div class="content-box">${item.innerHTML}</div>`;
+      <div class="content-box">${item.innerHTML}
+        <button class="code-copy"></button>
+      </div>`;
             getElement('.code-copy', item).addEventListener('click', (click) => {
                 const button = click.target;
                 navigator.clipboard.writeText(getElement('code', item).innerText);
                 button.classList.add('copied');
-                button.innerText = config.code.copyFinish;
                 setTimeout(() => {
                     button.classList.remove('copied');
-                    button.innerText = config.code.copy;
                 }, 1200);
             });
         };
@@ -448,7 +444,6 @@ class Header {
         this.readyRev = true;
         this.relabel = () => {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
-            getElement('.navBtn').classList.add('hide');
             navs.forEach(item => {
                 try {
                     let now = item, link = getElement('a', now);
@@ -567,6 +562,7 @@ class Scroll {
         this.notMoveY = false;
         this.reallyUp = false;
         this.intop = false;
+        this.lastID = -1;
         this.scrolltop = () => {
             getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
             this.totop.style.opacity = '0';
@@ -599,7 +595,7 @@ class Scroll {
             }
             const main = getElement('main').classList;
             if (!document.querySelector('.expanded')) {
-                getElement('.navBtn').classList.add('hide');
+                getElement('.navBtn').classList.add('hide-btn');
             }
             main.remove('up');
             main.add('down');
@@ -616,11 +612,11 @@ class Scroll {
                 return;
             }
             if (!document.querySelector('#search-header')) {
-                getElement('.navBtn').classList.remove('hide');
+                getElement('.navBtn').classList.remove('hide-btn');
                 return;
             }
             const main = getElement('main').classList;
-            getElement('.navBtn').classList.remove('hide');
+            getElement('.navBtn').classList.remove('hide-btn');
             main.remove('down');
             main.add('up');
             main.add('moving');
@@ -638,12 +634,12 @@ class Scroll {
                         }
                         if (!document.querySelector('.expanded')) {
                             if (this.height - nowheight > 100) {
-                                navBtn.classList.add('hide');
+                                navBtn.classList.add('hide-btn');
                                 this.height = nowheight;
                             }
                             else if (nowheight > this.height) {
                                 if (nowheight - this.height > 20) {
-                                    navBtn.classList.remove('hide');
+                                    navBtn.classList.remove('hide-btn');
                                 }
                                 this.height = nowheight;
                             }
@@ -668,6 +664,9 @@ class Scroll {
             catch (e) { }
         };
         this.checkTouchMove = (event) => {
+            if (event.changedTouches[0].identifier === this.lastID) {
+                return;
+            }
             if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 &&
                 !this.reallyUp) {
                 this.notMoveY = true;
@@ -681,6 +680,7 @@ class Scroll {
             }
             if (getElement('article').getBoundingClientRect().top >= 0) {
                 this.reallyUp = true;
+                this.lastID = event.changedTouches[0].identifier;
                 if (event.changedTouches[0].screenY > this.touchY) {
                     this.slideUp();
                 }
@@ -695,9 +695,15 @@ class Scroll {
             this.touchY = event.changedTouches[0].screenY;
             this.notMoveY = false;
         };
+        this.endTouch = (event) => {
+            if (event.changedTouches[0].identifier === this.lastID) {
+                this.lastID = -1;
+            }
+        };
         document.addEventListener('pjax:success', this.setHTML);
         document.addEventListener('touchstart', this.startTouch);
         document.addEventListener('touchmove', this.checkTouchMove);
+        document.addEventListener('touchend', this.endTouch);
         document.addEventListener('wheel', (event) => {
             if (document.querySelector('.expanded') || window.innerWidth > 1024) {
                 return;
