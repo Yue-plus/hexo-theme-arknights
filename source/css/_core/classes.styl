@@ -21,59 +21,14 @@
 .hljs span
   line-height 0
 
-.status-icon
-  font-style normal
-  display inline-block
-  width 20px
-  height 20px
-  margin-right 5px
-  &::before
-    content ''
-    display block
-    height 6px
-    width 6px
-    border-top 2px solid var(--theme-text-light)
-    border-right 2px solid var(--theme-text-light)
-    margin 7px 7px 5px 5px
-
-.open>.content-box
-  transition max-height .5s cubic-bezier(0.5, 0, 1, 0), background .3s
-  max-height 10000px
-.open>div>div>.status-icon,
-.open>div>.status-icon
-  transform rotate(135deg)
-  transition transform 0.2s ease
-.open>div>div>.code-space
-  display none
-
-.fold>.content-box
-  transition max-height .5s cubic-bezier(0, 1, 0, 1) -0.1s, background .3s
-  max-height 0
-.fold>div>div>.status-icon,
-.fold>div>.status-icon
-  transform rotate(45deg)
-  transition transform 0.2s ease
-.fold>div>div>.code-copy
-  display none
-
 .highlight
   margin 1em
   overflow-x hidden
-.content-box
-  overflow-y hidden
-  max-height 0
-.code-header
-  user-select none
-  background-color var(--theme-code-header)
-  display flex
-  justify-content space-between
-  &:focus-visible
-    outline #fff auto 1px
-  .code-title
-    display flex
-    pointer-events none
-    color var(--theme-text-light)
-    margin 7px 8px
+  .ex-header
+    background-color var(--theme-code-header)
+.code-title
+  color var(--theme-text-light)
+  flex-grow 1
 .code-header-tail
   align-self center
 .code-space
@@ -107,6 +62,10 @@
     border 1px solid var(--theme-border)
     color  var(--theme-subcolor)
     transition .3s
+.open>div>div>.code-space
+  display none
+.fold>div>div>.code-copy
+  display none
 
 table
   td

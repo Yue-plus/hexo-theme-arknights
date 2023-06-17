@@ -137,6 +137,41 @@ try {
     var canvasDusts = new canvasDust('#canvas-dust');
 }
 catch (e) { }
+/// <reference path="common/base.ts" />
+class expands {
+    constructor() {
+        this.reverse = (item, s0, s1) => {
+            const block = getParent(item);
+            if (block.classList.contains(s0)) {
+                block.classList.remove(s0);
+                block.classList.add(s1);
+            }
+            else {
+                block.classList.remove(s1);
+                block.classList.add(s0);
+            }
+        };
+        this.addEvent = (header) => {
+            header.addEventListener('click', (click) => {
+                if (click.target.tagName !== 'BUTTON' &&
+                    click.target.tagName !== 'A') {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+            header.addEventListener('keypress', (key) => {
+                if (key.key === 'Enter') {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+        };
+        this.setHTML = () => {
+            document.querySelectorAll('.expand-box').forEach((item) => {
+                this.addEvent(item.children[0]);
+            });
+        };
+    }
+}
+let expand = new expands();
 class Code {
     constructor() {
         this.doAsMermaid = (item) => {
@@ -158,13 +193,11 @@ class Code {
         this.doAsCode = (item) => {
             const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
             item.classList.add(lineCount < 16 ? 'open' : 'fold');
-            item.classList.add('code');
+            item.classList.add('expand-box');
             item.innerHTML =
-                `<div class="code-header" tabindex='0'>
-        <div class="code-title">
-          <i class="status-icon"></i>
-          <span>${format(config.code.codeInfo, codeType, lineCount)}</span>
-        </div>
+                `<div class="ex-header" tabindex='0'>
+        <i class="status-icon"></i>
+        <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
         <div class="code-header-tail">
           <button class="code-copy">${config.code.copy}</button>
           <div class="code-space">${config.code.expand}</div>
@@ -214,6 +247,7 @@ class Code {
             }
             mermaid.init();
             this.clearMermaid();
+            expand.setHTML();
         };
         this.findCode();
         document.addEventListener('pjax:success', this.findCode);
@@ -232,7 +266,7 @@ class Cursor {
         this.attention = `a,input,button,textarea,
     .navBtnIcon,
     #post-bg img,
-    .code-header,.ad-header,
+    .ex-header,
     .gt-user-inner,
     .lg-container img,
     .wl-sort>li,.vicon,.clickable`;
@@ -850,45 +884,6 @@ class Comments {
     }
 }
 new Comments();
-/// <reference path="common/base.ts" />
-class expands {
-    constructor() {
-        this.find = [".admonition", ".code"];
-        this.reverse = (item, s0, s1) => {
-            const block = getParent(item);
-            if (block.classList.contains(s0)) {
-                block.classList.remove(s0);
-                block.classList.add(s1);
-            }
-            else {
-                block.classList.remove(s1);
-                block.classList.add(s0);
-            }
-        };
-        this.addEvent = (header) => {
-            header.addEventListener('click', (click) => {
-                if (click.target === header) {
-                    this.reverse(header, 'open', 'fold');
-                }
-            });
-            header.addEventListener('keypress', (key) => {
-                if (key.key === 'Enter' && key.target === header) {
-                    this.reverse(header, 'open', 'fold');
-                }
-            });
-        };
-        this.setHTML = () => {
-            this.find.forEach((str) => {
-                document.querySelectorAll(str).forEach((item) => {
-                    this.addEvent(item.children[0]);
-                });
-            });
-        };
-        this.setHTML();
-        document.addEventListener('pjax:success', this.setHTML);
-    }
-}
-new expands();
 /// <reference path="include/canvaDust.ts" />
 /// <reference path="include/Code.ts" />
 /// <reference path="include/Cursors.ts" />

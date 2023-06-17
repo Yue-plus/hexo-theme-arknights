@@ -1,0 +1,44 @@
+.content-box
+  overflow-y hidden
+  max-height 0
+.ex-header
+  padding 7px 0px 7px 8px
+  overflow hidden
+  height 20px
+  user-select none
+  display flex
+  justify-content space-between
+  color var(--theme-text-light)
+  &:focus-visible
+    outline #fff auto 1px
+.ex-title
+  flex-grow 1
+
+.status-icon
+  font-style normal
+  display inline-block
+  width 20px
+  height 20px
+  margin-right 5px
+  &::before
+    content ''
+    display block
+    height 6px
+    width 6px
+    border-top 2px solid var(--theme-text-light)
+    border-right 2px solid var(--theme-text-light)
+    margin 7px 7px 5px 5px
+
+.open>.content-box
+  transition max-height .5s cubic-bezier(0.5, 0, 1, 0), background .3s
+  max-height 10000px
+.open>div>.status-icon
+  transform rotate(135deg)
+  transition transform 0.2s ease
+
+.fold>.content-box
+  transition max-height .5s cubic-bezier(0, 1, 0, 1) -0.1s, background .3s
+  max-height 0
+.fold>div>.status-icon
+  transform rotate(45deg)
+  transition transform 0.2s ease

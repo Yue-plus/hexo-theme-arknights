@@ -1,46 +1,30 @@
 .admonition
   margin 1em
-  .content-box
-    margin 0
-    border none
+  border-left 5px solid
+  border-color var(--ad-bd-color)
+  &>.ex-header
+    background-color var(--ad-bg-color)
+  &>.content-box
+    border-color var(--ad-bg-color)
+  &>.content-box
     background-color var(--theme-bg-soft)
     &:hover
       background-color var(--theme-bg-soft-hover)
     &>div
       padding 3px 20px
 
-.ad-header
-  padding 7px 8px
-  display flex
-
 .ad-note
-  border-left 5px solid var(--theme-ad-note)
-  .ad-header
-    color var(--theme-text-light)
-    background-color var(--theme-ad-note-trans)
-  .content-box
-    border-color var(--theme-ad-note)
+  --ad-bd-color var(--theme-ad-note)
+  --ad-bg-color var(--theme-ad-note-trans)
 
 .ad-warning
-  border-left 5px solid var(--theme-ad-warning)
-  .ad-header
-    color var(--theme-text-light)
-    background-color var(--theme-ad-warning-trans)
-  .content-box
-    border-color var(--theme-ad-warning)
+  --ad-bd-color var(--theme-ad-warning)
+  --ad-bg-color var(--theme-ad-warning-trans)
 
 .ad-success
-  border-left 5px solid var(--theme-ad-success)
-  .ad-header
-    color var(--theme-text-light)
-    background-color var(--theme-ad-success-trans)
-  .content-box
-    border-color var(--theme-ad-success)
+  --ad-bd-color var(--theme-ad-success)
+  --ad-bg-color var(--theme-ad-success-trans)
 
 .ad-failure
-  border-left 5px solid var(--theme-ad-failure)
-  .ad-header
-    color var(--theme-text-light)
-    background-color var(--theme-ad-failure-trans)
-  .content-box
-    border-color var(--theme-ad-failure)
+  --ad-bd-color var(--theme-ad-failure)
+  --ad-bg-color var(--theme-ad-failure-trans)

@@ -1,4 +1,5 @@
 /// <reference path="common/base.ts" />
+/// <reference path="Expands.ts" />
 
 'use strict'
 
@@ -25,13 +26,11 @@ class Code {
     const codeType = this.resetName(item.classList[1]),
       lineCount = getElement('.gutter', item).children[0].childElementCount >> 1
     item.classList.add(lineCount < 16 ? 'open' : 'fold')
-    item.classList.add('code')
+    item.classList.add('expand-box')
     item.innerHTML =
-      `<div class="code-header" tabindex='0'>
-        <div class="code-title">
-          <i class="status-icon"></i>
-          <span>${format(config.code.codeInfo, codeType, lineCount)}</span>
-        </div>
+      `<div class="ex-header" tabindex='0'>
+        <i class="status-icon"></i>
+        <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
         <div class="code-header-tail">
           <button class="code-copy">${config.code.copy}</button>
           <div class="code-space">${config.code.expand}</div>
@@ -81,6 +80,7 @@ class Code {
     }
     mermaid.init()
     this.clearMermaid()
+    expand.setHTML()
   }
 
   constructor() {

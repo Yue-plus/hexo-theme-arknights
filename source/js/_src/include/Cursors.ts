@@ -16,7 +16,7 @@ class Cursor {
     `a,input,button,textarea,
     .navBtnIcon,
     #post-bg img,
-    .code-header,.ad-header,
+    .ex-header,
     .gt-user-inner,
     .lg-container img,
     .wl-sort>li,.vicon,.clickable`
