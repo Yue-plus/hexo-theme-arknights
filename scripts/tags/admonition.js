@@ -6,10 +6,12 @@ function genBlock(name, args, data) {
     let title = args.length > 0 ? args[0] : name[0].toUpperCase() + name.slice(1),
         status = args.length > 1 ? args[1] : 'open';
     return `<div class="admonition expand-box ad-${name} ${status}">
-        <div class="ex-header"><i class='status-icon'></i>
-        <span class="ex-title">${title}</span>
+        <div class="ex-header">
+            <i class='i-status'></i>
+            <i class='i-ad i-${name}'></i>
+            <span class="ex-title">${title}</span>
         </div>
-        <div class="content-box"><div>${hexo.render.renderSync({ text: data, engine: 'markdown' })}</div></div>
+        <div class="ex-content">${hexo.render.renderSync({ text: data, engine: 'markdown' })}</div>
         </div>`;
 }
 

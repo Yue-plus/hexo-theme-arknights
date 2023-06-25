@@ -1,10 +1,10 @@
 [theme-mode=light]
-  .footer-link a:not(:hover)
+  .footer-link a, .social
     text-shadow 0 0 15px white, 0 0 15px white, 0 0 15px white, 0 0 15px white
   
   .navItemTitle,
   aside footer
-    @extend .footer-link a:not(:hover)
+    @extend .footer-link a
     font-weight bold
   
   :where(.recent-post, #paginator a)
@@ -12,7 +12,7 @@
   
   aside a img:hover
     background-color var(--theme-bg-soft)
-  
+
   #Archives,
   #Categories,
   #Tags

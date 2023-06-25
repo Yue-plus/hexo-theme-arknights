@@ -41,8 +41,7 @@ if theme.mathjax && theme.mathjax.enable === true
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css")
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css")
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css")
-link(type="text/css" rel="stylesheet" href=url_for('/lib/fontawesome/brands.min.css'))
-link(type="text/css" rel="stylesheet" href=url_for('/lib/fontawesome/fontawesome.min.css'))
+link(type="text/css" rel="stylesheet" href=url_for('/lib/fontawesome/css/all.min.css'))
 
 link(rel="stylesheet", href=url_for("css/arknights.css"))
 if theme.stylesheets && theme.stylesheets.length > 0
@@ -70,14 +69,6 @@ style
   |@font-face {
   |  font-family: 'JetBrains Mono';
   |  src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
-  |}
-  |@font-face {
-  |  font-family: 'Font Awesome 6 Brands';
-  |  src: local('Font Awesome 6 Brands'), url('#{config.root}lib/fontawesome/fa-brands.woff2') format('woff2');
-  |}
-  |@font-face {
-  |  font-family: 'Font Awesome 6 Free';
-  |  src: local('Font Awesome 6 Free'), url('#{config.root}lib/fontawesome/fa-regular.woff2') format('woff2');
   |}
 
 include ./generate-css.pug

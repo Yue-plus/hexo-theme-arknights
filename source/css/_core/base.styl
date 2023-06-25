@@ -1,52 +1,8 @@
-// ========= 基础样式
-// ====== base style
-
 html, body, label
   cursor var(--cursor-data) 3 3, default
 
 html, body
   position static
-
-#cursor-outer
-  z-index 65536
-  position fixed
-  transform translate3d(-50%, -50%, 0px)
-  height 36px
-  width 36px
-  border 1px solid var(--theme-cursor)
-  border-radius 50%
-  pointer-events none
-  transition background-color .3s, width .3s, height .3s
-#cursor-effect
-  z-index 65535
-  position fixed
-  transform translate3d(-50%, -50%, 0px) scale(0)
-  height 80px
-  width 80px
-  border 4px solid var(--theme-cursor)
-  border-radius 50%
-  opacity 0
-  pointer-events none
-
-@media ( min-width 769px)
-  main
-    -ms-scrollbar-base-color var(--theme-bar-color-2)
-    -ms-scrollbar-track-color var(--theme-bar-color-3)
-    scrollbar-color var(--theme-bar-color-0) var(--theme-bar-color-2)
-    scrollbar-width thin
-    scrollbar-gutter stable
-  ::-webkit-scrollbar
-    width 6px
-    height 6px
-  ::-webkit-scrollbar-thumb
-    background-color var(--theme-bar-color-2)
-    border-radius .25em
-  ::-webkit-scrollbar-track
-    background-color var(--theme-bar-color-3)
-  ::-webkit-scrollbar-thumb:hover
-    background-color var(--theme-bar-color-1)
-  ::-webkit-scrollbar-thumb:window-inactive
-    background-color var(--theme-bar-color-3)
 
 body
   margin 0
@@ -58,6 +14,13 @@ body
   background-repeat no-repeat
   background-size cover
   font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
+
+main
+  height 100vh
+  width 100vw
+  overflow auto
+  overflow overlay
+  box-sizing border-box
 
 h1, h2, h3, h4, h5, h6
   color var(--theme-text-light)

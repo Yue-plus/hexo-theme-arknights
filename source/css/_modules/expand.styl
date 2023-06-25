@@ -1,8 +1,15 @@
-.content-box
+.expand-box
+  margin 1em
+.ex-content
   position relative
   overflow-y hidden
   max-height 0
+  padding-left 20px
+  background-color var(--theme-bg-soft)
+  &:hover
+    background-color var(--theme-bg-soft-hover)
 .ex-header
+  background-color var(--theme-ex-header)
   padding 7px 0px 7px 8px
   overflow hidden
   height 20px
@@ -15,7 +22,7 @@
 .ex-title
   flex-grow 1
 
-.status-icon
+.i-status
   font-style normal
   display inline-block
   width 20px
@@ -30,16 +37,16 @@
     border-right 2px solid var(--theme-text-light)
     margin 7px 7px 5px 5px
 
-.open>.content-box
+.open>.ex-content
   transition max-height .5s cubic-bezier(0.5, 0, 1, 0), background .3s
   max-height 10000px
-.open>div>.status-icon
+.open>div>.i-status
   transform rotate(135deg)
   transition transform 0.2s ease
 
-.fold>.content-box
+.fold>.ex-content
   transition max-height .5s cubic-bezier(0, 1, 0, 1) -0.1s, background .3s
   max-height 0
-.fold>div>.status-icon
+.fold>div>.i-status
   transform rotate(45deg)
   transition transform 0.2s ease

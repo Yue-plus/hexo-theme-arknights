@@ -1,0 +1,25 @@
+if hexo-config('canvas_dust')
+  @import "canvas_dust"
+
+if hexo-config('search.enable')
+  @import "search/base"
+  if hexo-config('aside.in_left')
+    @import "search/left"
+  else
+    @import "search/right"
+
+if hexo-config('pjax.enable')
+  @import "pjax"
+
+if hexo-config('mermaid.enable')
+  @import "mermaid"
+
+@import "cards/*"
+
+@import "expand"
+
+@import "social"
+
+@import "comments/comments"
+
+@import "lightgallery"

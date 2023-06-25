@@ -196,10 +196,10 @@ class Code {
             item.classList.add('expand-box');
             item.innerHTML =
                 `<div class="ex-header" tabindex='0'>
-        <i class="status-icon"></i>
+        <i class="i-status"></i>
         <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
       </div>
-      <div class="content-box">${item.innerHTML}
+      <div class="ex-content">${item.innerHTML}
         <button class="code-copy"></button>
       </div>`;
             getElement('.code-copy', item).addEventListener('click', (click) => {
@@ -838,7 +838,10 @@ class ColorMode {
         });
     }
 }
-var colorMode = new ColorMode();
+try {
+    var colorMode = new ColorMode();
+}
+catch (e) { }
 class Pair {
     constructor(first, second) {
         this.comment = first;

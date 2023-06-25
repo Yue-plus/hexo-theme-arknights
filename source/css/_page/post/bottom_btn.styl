@@ -19,7 +19,6 @@
     right 0
     width 40px
     height 40px
-    transition 0
     color var(--theme-text-light)
     line-height 40px
     text-align center
@@ -29,10 +28,12 @@
     user-select none
     @media ( min-width 769px )
       &:hover
-        color var(--theme-text-hover)
-        line-height 30px
         background-color var(--theme-subcolor)
-#color-mode
+        color var(--theme-text-hover)
+@media ( min-width 769px )
+  .i-top:hover
+    line-height 30px
+.i-color
   display flex
   @media ( min-width 769px )
     &:hover

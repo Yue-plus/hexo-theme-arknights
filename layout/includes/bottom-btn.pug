@@ -1,0 +1,7 @@
+.bottom-btn
+  div
+    a#to-top.i-top(onClick="scrolls.scrolltop();" title=__('btn.totop') style="opacity: 0; display: none;") ∧
+    if page.published
+      a#to-index.i-index(href="#toc-div" title=__('btn.index')) ≡
+    if theme.color !== 'dark-only' && theme.color !== 'light-only'
+      a#color-mode.i-color(onClick="colorMode.change()" title=__('btn.colorMode'))

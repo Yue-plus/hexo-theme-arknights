@@ -1,18 +1,3 @@
-.text-title, .text-content
-  color black
-  height 18px
-  line-height 18px
-  padding 0 5px
-  font-size small
-  font-family sans-serif
-  display inline-block
-.text-title
-  background-color var(--theme-highlight)
-.text-content
-  margin 0 10px 0 0
-  padding 0 28px 0 5px
-  background-color white
-
 .gutter pre
   margin 6px 0
   padding-top 5px
@@ -24,51 +9,57 @@
 .highlight
   margin 1em
   overflow-x hidden
-  .ex-header
-    background-color var(--theme-code-header)
 .code-title
   color var(--theme-text-light)
   flex-grow 1
-.content-box:not(:hover)>.code-copy:not(.copied)
+.highlight>.ex-content
+  padding-left 0
+  background unset
+  &:hover
+    background unset
+.ex-header:not(:focus-visible)~.ex-content:not(:hover)>.code-copy:not(.copied,:focus-visible)
   opacity 0
+
 .code-copy
   position absolute
   top .5em
   right .5em
-  height 30px
-  width 30px
-  border 5px solid transparent
-  background border-box var(--theme-btn-bg)
-  color var(--theme-border-light)
-  transition opacity .15s
+  height 25px
+  width 25px
+  border 1px solid var(--theme-border-light)
+  color var(--theme-text-light)
+  border-radius 2px
+  transition .3s
   &::before
     content ''
     position absolute
-    top 0
-    right 0
-    height 10px
-    width 10px
+    top 2px
+    right 2px
+    height 9px
+    width 9px
     border 2px solid
+    border-radius 2px
   &::after
     content ''
     position absolute
-    bottom 0
-    left 0
-    height 10px
-    width 10px
+    bottom 2px
+    left 2px
+    height 9px
+    width 9px
     border 2px solid
-    clip-path polygon(0 0,4px 0,4px 10px,100% 10px,100% 100%,0 100%)
+    border-radius 2px
+    clip-path polygon(0 0,4px 0,4px 9px,100% 9px,100% 100%,0 100%)
   @media (min-width 769px)
     &:hover:not(.copied)
+      color var(--theme-text-hover)
+      border-color var(--theme-subcolor)
       background var(--theme-subcolor)
-      transition .3s
   @media (max-width 768px)
     &:active
       color var(--theme-subcolor)
-      transition .3s
   &.copied
+    border-color var(--theme-subcolor)
     color var(--theme-subcolor)
-    transition .3s
 
 table
   td
@@ -93,11 +84,3 @@ table
     @media (min-width 769px)
       &:hover
         background-color var(--theme-bg-soft-hover)
-
-.mermaid
-  margin 10px 0
-  padding 10px
-  text-align center
-
-.MathJax
-  transform translateZ(0)

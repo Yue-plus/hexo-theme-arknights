@@ -55,4 +55,6 @@ class ColorMode {
   }
 }
 
-var colorMode = new ColorMode()
+try {
+  var colorMode = new ColorMode()
+} catch (e) {}

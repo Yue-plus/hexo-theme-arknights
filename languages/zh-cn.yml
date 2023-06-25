@@ -17,9 +17,7 @@ post:
   noTitle: 无标题
 
 code:
-  codeInfo: $0 - 共 $1 行
-  copy: 复制
-  copyFinish: 复制成功
+  codeInfo: $0 - $1 行
   expand: 展开
 
 btn:
