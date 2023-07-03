@@ -72,7 +72,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
 可按需在 `Hexo/source/` 目录添加以下文件
 - `CNAME`: GitHub Pages 部署时的自定义域名
-- `img/`目录下的 `Alipay.png` 与 `WeChat.png` 为自己的收款二维码（1:1 比例的 `png` 图片）；
+- `img/` 目录下的 `Alipay.png` 与 `WeChat.png` 为自己的收款二维码（1:1 比例的 `png` 图片）；
 
 可按需修改 `Hexo/themes/arknights/source/` 目录下的
 - `favicon.ico`：浏览器标签页上的图标（64*64，分辨率高了显示不出）

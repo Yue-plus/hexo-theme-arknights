@@ -34,9 +34,11 @@ aside:
 
 # 社交链接
 # 格式：链接 || 图标
+# 所有可用图标参考：https://fontawesome.com/icons
 social:
   # GitHub: https://github.com/yourname || fab fa-github
   # E-Mail: mailto:yourname@gmail.com || fa fa-envelope
+  # BiliBili: https://space.bilibili.com/0000000 || fa-brands fa-bilibili
   # Weibo: https://weibo.com/yourname || fab fa-weibo
   # Zhihu: https://www.zhihu.com/people/yourname || fab fa-zhihu
 
@@ -95,7 +97,7 @@ gitalk:
   repo: # 用于存放评论数据的 GitHub 仓库
   owner: # 该 GitHub 仓库所有者
   admin: [] # 具有写该 GitHub 仓库权限的用户，例如: [adminA,adminB]
-  id: # (可选) 页面的唯一标识，例如: location.pathname
+  id: location.pathname # (可选) 页面的唯一标识，例如: location.pathname
 
 # Waline
 # 详情: https://waline.js.org/
