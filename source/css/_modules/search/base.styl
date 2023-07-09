@@ -1,4 +1,4 @@
-@import "single_page.styl"
+@import "single_page"
 
 #search-header
   pointer-events all
@@ -32,20 +32,14 @@
     height 2.82em
   display none
 
-.search
-  #search-holder
-    display block
-  #search-header
-    position absolute
-    input
-      animation get-out .6s
-
-:not(.up)>header
-  .search #search-header
-    top 40px
-  .search-popup
-    top 90px
-    height calc(100% - 90px)
+.search #search-holder
+  display block
+  
+main:not(.up) .search #search-header
+  position absolute
+  top 40px
+  input
+    animation get-out .6s
 
 @media ( min-width 1024px )
   .search-popup
@@ -75,8 +69,10 @@
   pointer-events all
   z-index 20
   transition transform .6s
-  position fixed
   overflow-wrap anywhere
+  position fixed
+  top 90px
+  height calc(100vh - 90px)
   @media ( max-width 1023px )
     width 428px
     max-width 100%

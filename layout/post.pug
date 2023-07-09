@@ -61,13 +61,13 @@ block content
           if prev !== undefined
             .footer-link(style="width: 50%;text-align:right;border-right:1px #fe2 solid")
               a(href=url_for(prev.path))
-                |← Next
+                |#{__('post.next')}
                 = ' ' + prev.title
           if next !== undefined
             .footer-link(style="width: 50%;right:1px;border-left:1px #fe2 solid")
               a(href=url_for(next.path))
                 = next.title + ' '
-                |Prev →
+                |#{__('post.prev')}
     if reward
       details#reward
         summary #{__('post.reward')}
@@ -75,14 +75,14 @@ block content
           div
             span #{pay}
             br
-            img(src=config.root + imgSrc)
+            img(src=url_for(imgSrc))
     -
       let count = (theme.valine.enable === true) +
                   (theme.gitalk.enable === true) +
                   (theme.waline.enable === true)
     if page.comments && count
       #comments
-        if count > 0
+        if count > 1
           .selector
             if theme.valine.enable === true
               button.valine-sel

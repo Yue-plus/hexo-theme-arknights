@@ -1,20 +1,26 @@
+# 标签页图标
+favicon:
+  type: "image/x-icon"
+  href: "/favicon.ico"
+
 # canvas 动态背景
 canvas_dust: true
 
-# 默认颜色模式 dark / light / auto
+# 默认颜色模式 dark / dark-only / light / light-only / auto
 # dark 暗色模式
 # light 亮色模式
+# -only 锁定颜色模式
 # auto 跟随系统
 color: dark
 
 # <body> 背景图片链接
 background_image:
-  dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg  # 暗色模式
+  dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # 暗色模式
   light: /img/bk.jpg # 亮色模式
 
 # 导航栏
 menu:
-  Home: ''
+  Home: ""
   # About: about/
   # Contact: contact/
   Archives: archives/
@@ -26,6 +32,16 @@ aside:
   dr: / # 侧边栏 Dr. 链接
   icp: # ICP 备案号，与版权声明相同，但会链接到 https://beian.miit.gov.cn/
   copyright: # 版权声明、备案号等，可自定义键值，不想显示则留空
+
+# 社交链接
+# 格式：链接 || 图标
+# 所有可用图标参考：https://fontawesome.com/icons
+social:
+  # GitHub: https://github.com/yourname || fab fa-github
+  # E-Mail: mailto:yourname@gmail.com || fa fa-envelope
+  # BiliBili: https://space.bilibili.com/0000000 || fa-brands fa-bilibili
+  # Weibo: https://weibo.com/yourname || fab fa-weibo
+  # Zhihu: https://www.zhihu.com/people/yourname || fab fa-zhihu
 
 # post 文章页面配置；true / false
 post:
@@ -82,18 +98,18 @@ gitalk:
   repo: # 用于存放评论数据的 GitHub 仓库
   owner: # 该 GitHub 仓库所有者
   admin: [] # 具有写该 GitHub 仓库权限的用户，例如: [adminA,adminB]
-  id: # (可选) 页面的唯一标识，例如: location.pathname
+  id: location.pathname # (可选) 页面的唯一标识
 
 # Waline
 # 详情: https://waline.js.org/
 waline:
-  enable: false 
+  enable: false
   server_url: #Server_Url
 
 # 图表支持
 mermaid:
   enable: true
-  version: '9.2.2'
+  version: "9.2.2"
 
 # pjax 支持
 pjax:
@@ -102,7 +118,7 @@ pjax:
 # 公式前端渲染
 mathjax:
   enable: false
-  version: '2.6.1'
+  version: "2.6.1"
 
 # 在 `<head>` 标签内引入 CSS 样式表
 stylesheets:

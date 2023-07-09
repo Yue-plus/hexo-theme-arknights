@@ -15,12 +15,11 @@ post:
   index: 目录
   reward: 打赏
   noTitle: 无标题
+  next: ← 下一篇
+  prev: 上一篇 →
 
 code:
-  codeInfo: $0 - 共 $1 行
-  copy: 复制
-  copyFinish: 复制成功
-  expand: 展开
+  codeInfo: $0 - $1 行
 
 btn:
   totop: 回到顶部

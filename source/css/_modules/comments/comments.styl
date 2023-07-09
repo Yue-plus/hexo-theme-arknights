@@ -1,0 +1,20 @@
+$comment-count = 0
+
+if hexo-config('gitalk.enable')
+  $comment-count = $comment-count + 1
+  @import "gitalk"
+
+if hexo-config('valine.enable')
+  $comment-count = $comment-count + 1
+  @import "valine"
+
+if hexo-config('waline.enable')
+  $comment-count = $comment-count + 1
+  @import "waline"
+
+if $comment-count > 0
+  #comments
+    border-top var(--theme-border) solid 2px
+
+if $comment-count > 1
+  @import "selector"

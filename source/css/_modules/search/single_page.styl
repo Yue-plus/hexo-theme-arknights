@@ -1,10 +1,8 @@
 @media ( max-width 1023px )
-  .hide.navBtn
-    transform translateY(-2em)
-  :is(.moving, .up) nav
-    overflow visible
   .moving
     pointer-events none
+    .navBtn
+      pointer-events none
     .search-header,
     .search-popup
       transition unset
@@ -12,7 +10,7 @@
     .navContent
       overflow visible
 
-  .up 
+  .up
     .search-popup
       left 100vw
       transform translateX(0)
@@ -26,11 +24,12 @@
       .navContent
         overflow visible
     #search-header
-        padding .5em 2em 0 5em
-        animation get-in-top .3s
-        position absolute
-        input
-          animation none
+      padding .5em 2em 0 5em
+      animation get-in-top .3s
+      position absolute
+      transform translateX(-100%)
+      input
+        animation none
     .search-popup
       top 55px
       height calc(100vh - 55px)
@@ -61,6 +60,8 @@
 @media ( max-width 768px )
   .up header:not(.expanded) #search-header
     left 100vw
+  .up article
+    margin-top 60px
 
 animate-up(distance)
   @keyframes get-out-top
@@ -86,5 +87,6 @@ animate-up(distance)
     padding .5em 2em 0 5em
     transform translate(-100%, -100%)
   100%
+    padding .5em 2em 0 5em
     transform translate(-100%, 0)
 

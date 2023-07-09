@@ -9,12 +9,12 @@ mixin expand_list(list)
         ol.navItemList
           +expand_list(url)
       else
-        a(href= config.root + url)
+        a(href= url_for(url))
           span.navItemTitle= label
 
 header.closed
   nav
-    .navBtn(class="hide")
+    .navBtn
       i.navBtnIcon
         span.navBtnIconBar
         span.navBtnIconBar
@@ -25,9 +25,9 @@ header.closed
           input(autocomplete="off" autocorrect="off" autocapitalize="none"
             placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
             type="text" id="search-input")
-        .search-popup
-          #search-result
       .navItem#search-holder
+      .search-popup
+        #search-result
     ol.navContent
       each url, label in theme.menu
         - var match = null
@@ -40,5 +40,6 @@ header.closed
               ol.navItemList
                 +expand_list(url)
           else
-            a.navBlock(href= config.root + url)
+            a.navBlock(href= url_for(url))
               span.navItemTitle= label
+#shadow-header

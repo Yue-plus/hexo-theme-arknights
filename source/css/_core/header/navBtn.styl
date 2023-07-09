@@ -1,0 +1,51 @@
+.navBtn
+  transition transform .3s
+  pointer-events all
+  display none
+  position absolute
+  top 1em
+  font-size 2em
+  z-index 10
+.navBtnIcon 
+  z-index 10
+  width 1em
+  height 1em
+  display block
+  position relative
+.navBtnIconBar
+  position absolute
+  top 50%
+  width 1em
+  height 0.1em
+  background-color var(--theme-btn-bg)
+  text-indent 101%
+  white-space nowrap
+  overflow hidden
+  transition transform ease-in-out 0.3s
+  box-shadow 0 0 5px var(--theme-bg-hover), 0 0 5px var(--theme-bg-hover)
+.navBtnIconBar
+  &:nth-child(1)
+    left 0
+    transform translate(0, -350%)
+  &:nth-child(2)
+    left 0
+    transform translate(0, -50%)
+  &:nth-child(3)
+    right 0
+    transform translate(0, 250%)
+
+.expanded .navBtnIconBar
+  box-shadow unset
+  &:nth-child(1)
+    transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(-50%)
+  &:nth-child(3)
+    transform translate(0, -50%) rotateZ(45deg) scaleX(0.5) translate(50%)
+  &:nth-child(2)
+    transform translate(0, -50%) rotateZ(-45deg)
+
+@media ( max-width 1023px )
+  .navBtn
+    display block
+    left 1em
+  .hide-btn.navBtn
+    transform translateY(-2em)

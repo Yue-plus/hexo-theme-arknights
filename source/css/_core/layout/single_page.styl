@@ -1,0 +1,25 @@
+@media ( max-width 1023px )
+  :is(.moving, .up) nav
+    overflow visible
+  .moving
+    pointer-events none
+    .navBtn
+      pointer-events none
+    .navContent
+      overflow visible
+
+  :is(.up, .moving) main
+    overflow hidden
+
+  .up
+    article
+      margin-top 50px
+    .closed
+      .navBtn
+        transform translateY(-.5em)
+      .navContent
+        overflow visible
+
+@media ( max-width 768px )
+  .up article
+    margin-top 60px

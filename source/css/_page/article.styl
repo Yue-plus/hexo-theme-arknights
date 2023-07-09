@@ -1,22 +1,15 @@
-main
-  height 100vh
-  width 100vw
-  overflow auto
-  overflow overlay
-  box-sizing border-box
-
 article
   transition margin .3s
   box-sizing border-box
   position relative
   min-height calc(100vh - 10px)
   height fit-content
-  padding-top 10px
   min-width 1px
   #post-content p, .recent-excerpt p
     line-height 150%
 
 .posts
+  margin-top 10px
   padding-bottom 72px
   width 100%
   min-height calc(100vh - 82px)
@@ -63,17 +56,13 @@ article
     &:hover
       color var(--theme-text-hover)
       background-color var(--theme-highlight)
-      a
-        color var(--theme-text-hover)
-        &:active
-          color var(--theme-text-hover)
-        &:hover
-          color var(--theme-text-light)
       time, .categories
         color var(--theme-text-hover)
+      a, a:active
+        color var(--theme-text-rev)
       .recent-info::after
         background-color var(--theme-bg-hover)
-      .recent-excerpt a
+      .recent-excerpt a, a:hover
         color var(--theme-text-light)
       hr
         color var(--theme-highlight)

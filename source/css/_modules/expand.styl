@@ -1,0 +1,69 @@
+.expand-box
+  --ex-color var(--theme-ex-header)
+
+  margin 1em
+  border-left 5px solid
+  border-color var(--ex-color)
+  &>.ex-header::before
+    content ''
+    display block
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background-color var(--ex-color)
+    opacity .6
+
+.ex-header
+  position relative
+  padding 7px 0px 7px 8px
+  overflow hidden
+  height 20px
+  user-select none
+  display flex
+  justify-content space-between
+  color var(--theme-text-light)
+  &:focus-visible
+    outline #fff auto 1px
+.ex-title
+  z-index 1
+  flex-grow 1
+.i-status
+  font-style normal
+  display inline-block
+  width 20px
+  height 20px
+  margin-right 5px
+  &::before
+    content ''
+    display block
+    height 6px
+    width 6px
+    border-top 2px solid var(--theme-text-light)
+    border-right 2px solid var(--theme-text-light)
+    margin 7px 7px 5px 5px
+
+
+.ex-content
+  position relative
+  overflow-y hidden
+  max-height 0
+  padding-left 20px
+  background-color var(--theme-bg-soft)
+  &:hover
+    background-color var(--theme-bg-soft-hover)
+
+.open>.ex-content
+  transition max-height .5s cubic-bezier(0.5, 0, 1, 0), background .3s
+  max-height 10000px
+.open>div>.i-status
+  transform rotate(135deg)
+  transition transform 0.2s ease
+
+.fold>.ex-content
+  transition max-height .5s cubic-bezier(0, 1, 0, 1) -0.1s, background .3s
+  max-height 0
+.fold>div>.i-status
+  transform rotate(45deg)
+  transition transform 0.2s ease

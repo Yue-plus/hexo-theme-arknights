@@ -1,4 +1,4 @@
-/// <reference path="base.ts" />
+/// <reference path="common/base.ts" />
 
 'use strict'
 
@@ -120,6 +120,4 @@ class canvasDust {
 
 try {
   var canvasDusts = new canvasDust('#canvas-dust')
-} catch (e) {
-  throw new Error('canvasID 无效')
-}
+} catch (e) {}

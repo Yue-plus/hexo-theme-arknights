@@ -6,29 +6,34 @@ aside
       a(href= theme.aside.dr)= config.author
     #description
       p!= config.description
+    if theme.social
+      #social-links
+        each value, name in theme.social
+          a.social(href= value.split('||')[0].trim())
+            i(alt=name,class=value.split('||')[1].trim())
   #aside-block
     block aside-block
     if page.published === undefined
       section#total
-         a#total-archives(href= config.root + "archives")
-           span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
-           span.total-number= site.posts.length
-         #total-tags
-           span.total-title #{__('menu.tag.plural')}:
-           span.total-number= site.tags.length
-         #total-categories
-           span.total-title #{__('menu.category.plural')}:
-           span.total-number= site.categories.length
+        a#total-archives(href= url_for("archives"))
+          span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
+          span.total-number= site.posts.length
+        #total-tags
+          span.total-title #{__('menu.tag.plural')}:
+          span.total-number= site.tags.length
+        #total-categories
+          span.total-title #{__('menu.category.plural')}:
+          span.total-number= site.categories.length
   footer(style= footerStyle)
     if theme.aside.icp !== null
       nobr
-        span.text-title ICP
-        a(href='https://beian.miit.gov.cn/').text-content= theme.aside.icp
+        span.icp-title ICP
+        a(href='https://beian.miit.gov.cn/').icp-content= theme.aside.icp
     if theme.aside.copyright !== null
       each content, title in theme.aside.copyright
         nobr
-          span.text-title= title
-          span.text-content= content
+          span.icp-title= title
+          span.icp-content= content
         br
     nobr #{__('footer.publish')} 
       a(href= 'http://hexo.io') Hexo
@@ -38,3 +43,4 @@ aside
     wbr
     nobr #{__('footer.by')} 
       a(href= 'https://github.com/Yue-plus') Yue_plus
+#shadow-aside

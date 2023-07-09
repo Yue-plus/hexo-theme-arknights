@@ -1,19 +1,9 @@
-/// <reference path="base.ts" />
+/// <reference path="common/base.ts" />
+/// <reference path="Expands.ts" />
 
 'use strict'
 
 class Code {
-  private reverse = (item: Element, s0: string, s1: string) => {
-    const block = getParent(item)
-    if (block.classList.contains(s0)) {
-      block.classList.remove(s0)
-      block.classList.add(s1)
-    } else {
-      block.classList.remove(s1)
-      block.classList.add(s0)
-    }
-  }
-
   private doAsMermaid = (item: Element) => {
     let Amermaid = item.querySelector('.mermaid') as HTMLElement
     item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>'
@@ -32,46 +22,27 @@ class Code {
     return str.toUpperCase()
   }
 
-  private addEvent = (header: HTMLElement) => {
-    header.addEventListener('click', (click) => {
-      if (click.target === header) {
-        this.reverse(header, 'open', 'fold')
-      }
-    })
-    header.addEventListener('keypress', (key) => {
-      if (key.key === 'Enter' && key.target === header) {
-        this.reverse(header, 'open', 'fold')
-      }
-    })
-  }
-
   private doAsCode = (item: Element) => {
     const codeType = this.resetName(item.classList[1]),
       lineCount = getElement('.gutter', item).children[0].childElementCount >> 1
     item.classList.add(lineCount < 16 ? 'open' : 'fold')
+    item.classList.add('expand-box')
     item.innerHTML =
-      `<span class="code-header" tabindex='0'>\
-        <span class="code-title">\
-          <div class="code-icon"></div>
-          ${format(config.code.codeInfo, codeType, lineCount)}
-        </span>\
-        <span class="code-header-tail">\
-          <button class="code-copy">${config.code.copy}</button>\
-          <span class="code-space">${config.code.expand}</span>\
-        </span>\
-      </span>\
-      <div class="code-box">${item.innerHTML}</div>`
+      `<div class="ex-header" tabindex='0'>
+        <i class="i-status"></i>
+        <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
+      </div>
+      <div class="ex-content">${item.innerHTML}
+        <button class="code-copy"></button>
+      </div>`
     getElement('.code-copy', item).addEventListener('click', (click: Event) => {
       const button = click.target as HTMLElement
       navigator.clipboard.writeText(getElement('code', item).innerText)
       button.classList.add('copied')
-      button.innerText = config.code.copyFinish
       setTimeout(() => {
         button.classList.remove('copied')
-        button.innerText = config.code.copy
       }, 1200)
     })
-    this.addEvent(getElement('.code-header', item))
   }
 
   private clearMermaid = () => {
@@ -105,10 +76,12 @@ class Code {
     }
     mermaid.init()
     this.clearMermaid()
+    expand.setHTML()
   }
 
   constructor() {
     this.findCode()
+    document.addEventListener('pjax:success', this.findCode)
   }
 }
 
