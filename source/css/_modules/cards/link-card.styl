@@ -1,0 +1,79 @@
+@property --card-border
+  syntax '<color>'
+  inherits true
+  initial-value transparent
+
+.link-card
+  display inline-block
+  width 350px
+  padding unset
+  margin .5em 1em
+  position relative
+  z-index 1
+  &:hover
+    background-color var(--theme-bg-soft-hover)
+    &::before
+      --card-border var(--theme-highlight)
+    .link-main
+      border-left 2px solid var(--theme-highlight)
+  img
+    max-height 100%
+    max-width 100%
+    display block
+    border-bottom 1px solid var(--theme-border-soft)
+    margin-bottom -1px
+
+.link-card::before
+  content ''
+  position absolute
+  left 0
+  top 0
+  width 100%
+  height 100%
+  transition --card-border .3s
+  box-shadow 0 0 5px inset var(--card-border)
+
+.link-main
+  transition border-color .3s
+  background-color var(--theme-bg-soft)
+  border-left 2px solid var(--theme-text-light)
+  border-block inset 1px solid var(--theme-border-soft)
+  display flex
+  align-items center
+  height 4em
+  padding .5em
+  .link-ico
+    height 50px
+    width 50px
+    &.link-full
+      width 100%
+      display flex
+      justify-content center
+  .link-data
+    padding 0 .5em
+    width calc(100% - 50px)
+    box-sizing border-box
+    &.link-full
+      width 100%
+  .link-title
+    color var(--theme-text-light)
+    font-size 1.2em
+  .link-descr
+    color var(--theme-text)
+    font-family BenderLight, FangSong, sans-serif
+    height 36px
+    overflow hidden
+    text-overflow ellipsis
+    display: -webkit-box
+    -webkit-line-clamp 2
+    -webkit-box-orient vertical
+    &.link-full
+      height 54px
+      -webkit-line-clamp 3
+
+.link-main.link-simple
+  height 2em
+
+.link-background
+  position relative
+  z-index -1

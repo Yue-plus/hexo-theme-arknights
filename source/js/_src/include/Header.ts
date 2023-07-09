@@ -1,4 +1,4 @@
-/// <reference path="base.ts" />
+/// <reference path="common/base.ts" />
 
 'use strict'
 
@@ -10,9 +10,7 @@ class Header {
 
   private relabel = () => {
     let navs = this.header.querySelectorAll('.navItem'),
-      mayLen: number = 0,
-      may: Element = navs.item(0)
-    getElement('.navBtn').classList.add('hide')
+      mayLen = 0, may = navs.item(0)
     navs.forEach(item => {
       try { 
         let now = item as HTMLElement,

@@ -50,7 +50,6 @@ script.pjax-js reset= () => {
     |    serverURL: '#{theme.waline.server_url}',
     |    path: !{'window.location.pathname'},
     |  });
-  | code.findCode();
   | document.querySelector('.lg-container')?.remove()
   | lightGallery(document.getElementById('post-bg'), {
   |   plugins: [lgZoom,lgThumbnail],

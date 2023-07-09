@@ -1,0 +1,19 @@
+@media ( min-width 769px)
+  main
+    -ms-scrollbar-base-color var(--theme-bar-color-2)
+    -ms-scrollbar-track-color var(--theme-bar-color-3)
+    scrollbar-color var(--theme-bar-color-0) var(--theme-bar-color-2)
+    scrollbar-width thin
+    scrollbar-gutter stable
+  ::-webkit-scrollbar
+    width 6px
+    height 6px
+  ::-webkit-scrollbar-thumb
+    background-color var(--theme-bar-color-2)
+    border-radius .25em
+  ::-webkit-scrollbar-track
+    background-color var(--theme-bar-color-3)
+  ::-webkit-scrollbar-thumb:hover
+    background-color var(--theme-bar-color-1)
+  ::-webkit-scrollbar-thumb:window-inactive
+    background-color var(--theme-bar-color-3)

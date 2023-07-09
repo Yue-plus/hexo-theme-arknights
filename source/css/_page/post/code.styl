@@ -1,0 +1,87 @@
+.gutter pre
+  margin 6px 0
+  padding-top 5px
+.code pre
+  margin 6px 0
+.hljs span
+  line-height 0
+
+.highlight
+  margin 1em
+  overflow-x hidden
+  border unset
+.code-title
+  color var(--theme-text-light)
+  flex-grow 1
+.highlight>.ex-content
+  padding-left 0
+  background unset
+  &:hover
+    background unset
+.ex-header:not(:focus-visible)~.ex-content:not(:hover)>.code-copy:not(.copied,:focus-visible)
+  opacity 0
+
+.code-copy
+  position absolute
+  top .5em
+  right .5em
+  height 25px
+  width 25px
+  border 1px solid var(--theme-border-light)
+  color var(--theme-text-light)
+  border-radius 2px
+  transition .3s
+  &::before
+    content ''
+    position absolute
+    top 2px
+    right 2px
+    height 9px
+    width 9px
+    border 2px solid
+    border-radius 2px
+  &::after
+    content ''
+    position absolute
+    bottom 2px
+    left 2px
+    height 9px
+    width 9px
+    border 2px solid
+    border-radius 2px
+    clip-path polygon(0 0,4px 0,4px 9px,100% 9px,100% 100%,0 100%)
+  @media (min-width 769px)
+    &:hover:not(.copied)
+      color var(--theme-text-hover)
+      border-color var(--theme-subcolor)
+      background var(--theme-subcolor)
+  @media (max-width 768px)
+    &:active
+      color var(--theme-subcolor)
+  &.copied
+    border-color var(--theme-subcolor)
+    color var(--theme-subcolor)
+
+table
+  td
+    border 0
+  code
+    padding 0 8px 5px 8px
+    background-color transparent!important
+  .gutter
+    position sticky
+    color var(--theme-text-rev)
+    text-align right
+    background-color var(--theme-highlight)
+    left 0
+    padding 0 8px 5px 8px
+    &, pre, span
+      user-select none
+      pointer-events none
+  .code
+    width 100%
+    background-color var(--theme-bg-soft)
+    transition .3s
+    @media (min-width 769px)
+      &:hover
+        background-color var(--theme-bg-soft-hover)

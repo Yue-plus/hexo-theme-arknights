@@ -1,4 +1,4 @@
-/// <reference path="base.ts" />
+/// <reference path="common/base.ts" />
 
 'use strict'
 
@@ -9,24 +9,35 @@ class pjaxSupport {
   private timestamp: number = 0
 
   private start = (need: number) => {
-    this.left.style.width = need + '%'
-    this.right.style.width = need + '%'
+    this.left.style.transform = `scaleX(${need})`
+    this.right.style.transform = `scaleX(${need})`
     ++this.timestamp
   }
 
   private loaded = () => {
-    ++this.timestamp
-    if (this.loading.style.opacity === '1') {
-      getElement('main').scrollTop = 0
-      if (this.left.style.width !== "50%") {
-        this.start(50)
-        setTimeout((time: number) => {
-          if (this.timestamp == time) {
-            this.loading.style.opacity = '0'
-          }
-        }, 600, this.timestamp)
+    getElement('main').scrollTop = 0
+    this.start(1)
+    setTimeout((time: number) => {
+      if (this.timestamp === time) {
+        this.loading.style.opacity = '0'
       }
-    }
+    }, 600, this.timestamp)
+  }
+
+  private fail = () => {
+    setTimeout((time: number) => {
+      if (this.timestamp !== time) {
+        return;
+      }
+      this.start(0)
+      this.loading.classList.add('fail')
+      setTimeout((time: number) => {
+        if (this.timestamp === time) {
+          this.loading.style.opacity = '0'
+          this.loading.classList.remove('fail')
+        }
+      }, 600, this.timestamp)
+    }, 600, this.timestamp)
   }
 
   constructor() {
@@ -35,22 +46,24 @@ class pjaxSupport {
         scrolls.slideDown()
       }
       this.loading.classList.add('reset')
+      this.loading.classList.remove('fail')
       this.start(0)
       setTimeout((time: number) => {
-        if (this.timestamp == time) {
-          this.loading.style.opacity = '1'
-          this.loading.classList.remove('reset')
-          this.start(15)
-          setTimeout((time: number) => {
-            if (this.timestamp == time) {
-              this.start(30)
-            }
-          }, 800, this.timestamp)
+        if (this.timestamp !== time) {
+          return;
         }
-      }, 10, this.timestamp)
+        this.loading.classList.remove('reset')
+        this.start(0.3)
+        this.loading.style.opacity = '1'
+        setTimeout((time: number) => {
+          if (this.timestamp === time) {
+            this.start(0.6)
+          }
+        }, 1200, this.timestamp)
+      }, 0, this.timestamp)
     })
     document.addEventListener('pjax:start', this.loaded)
-    document.addEventListener('pjax:complete', this.loaded)
+    document.addEventListener('pjax:error', this.fail)
   }
 }
 

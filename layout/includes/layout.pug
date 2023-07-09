@@ -34,7 +34,7 @@ html(lang=config.language theme-mode=theme.color)
     include ./meta-data.pug
   body
     if pjax
-      .loading(style='opacity: 0')
+      .loading(style="opacity: 0;")
         .loadingBar.left
         .loadingBar.right
     main
@@ -44,12 +44,7 @@ html(lang=config.language theme-mode=theme.color)
           div!= body
         else
           block content
-        .bottom-btn
-          div
-            a#to-top(onClick="scrolls.scrolltop();" title=__('btn.totop') style="opacity: 0; display: none;") ∧
-            if page.published
-              a#to-index(href="#toc-div" title=__('btn.index')) ≡
-            a#color-mode(onClick="colorMode.change()" title=__('btn.colorMode'))
+        include ./bottom-btn.pug
       include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust

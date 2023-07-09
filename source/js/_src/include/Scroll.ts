@@ -1,4 +1,4 @@
-/// <reference path="base.ts" />
+/// <reference path="common/base.ts" />
 
 'use strict'
 
@@ -13,6 +13,7 @@ class Scroll {
   private reallyUp: boolean = false
   private intop: boolean = false
   private totop: HTMLElement
+  private lastID: number = -1
 
   public scrolltop = () => {
     getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' })
@@ -47,7 +48,7 @@ class Scroll {
     }
     const main = getElement('main').classList
     if (!document.querySelector('.expanded')) {
-      getElement('.navBtn').classList.add('hide')
+      getElement('.navBtn').classList.add('hide-btn')
     }
     main.remove('up')
     main.add('down')
@@ -65,11 +66,11 @@ class Scroll {
       return
     }
     if (!document.querySelector('#search-header')) {
-      getElement('.navBtn').classList.remove('hide')
+      getElement('.navBtn').classList.remove('hide-btn')
       return
     }
     const main = getElement('main').classList
-    getElement('.navBtn').classList.remove('hide')
+    getElement('.navBtn').classList.remove('hide-btn')
     main.remove('down')
     main.add('up')
     main.add('moving')
@@ -88,11 +89,11 @@ class Scroll {
           }
           if (!document.querySelector('.expanded')) {
             if (this.height - nowheight > 100) {
-              navBtn.classList.add('hide')
+              navBtn.classList.add('hide-btn')
               this.height = nowheight
             } else if (nowheight > this.height) {
               if (nowheight - this.height > 20) {
-                navBtn.classList.remove('hide')
+                navBtn.classList.remove('hide-btn')
               }
               this.height = nowheight
             }
@@ -116,6 +117,9 @@ class Scroll {
   }
 
   private checkTouchMove = (event: TouchEvent) => {
+    if (event.changedTouches[0].identifier === this.lastID) {
+      return
+    }
     if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 &&
       !this.reallyUp) {
       this.notMoveY = true
@@ -129,6 +133,7 @@ class Scroll {
     }
     if (getElement('article').getBoundingClientRect().top >= 0) {
       this.reallyUp = true
+      this.lastID = event.changedTouches[0].identifier
       if (event.changedTouches[0].screenY > this.touchY) {
         this.slideUp()
       } else {
@@ -143,11 +148,17 @@ class Scroll {
     this.touchY = event.changedTouches[0].screenY
     this.notMoveY = false
   }
+  private endTouch = (event: TouchEvent) => {
+    if (event.changedTouches[0].identifier === this.lastID) {
+      this.lastID = -1
+    }
+  }
 
   constructor() {
     document.addEventListener('pjax:success', this.setHTML)
     document.addEventListener('touchstart', this.startTouch)
     document.addEventListener('touchmove', this.checkTouchMove)
+    document.addEventListener('touchend', this.endTouch)
     document.addEventListener('wheel', (event: WheelEvent) => {
       if (document.querySelector('.expanded') || window.innerWidth > 1024) {
         return

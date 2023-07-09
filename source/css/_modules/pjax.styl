@@ -1,35 +1,43 @@
 .loading
+  --loadingbar var(--theme-loadingbar)
+
+.loading.fail
+  --loadingbar var(--theme-loadingbar-fail)
+
+.loading
+  opacity 0
   transition opacity .3s
-  &.loading.reset .loadingBar
+  &.reset .loadingBar
     transition unset
-    width 0
   .loadingBar
     z-index 100
     position fixed
     top 0
-    border-bottom 1px solid var(--theme-loadingbar)
-    width 0%
-    transition width .6s
+    border-bottom 1px solid var(--loadingbar)
+    width 50%
+    transition transform .6s
     &::before 
       width 20px
     &::after 
       width 1px
-    &.left 
-      left 0
-      &::before 
-        box-shadow 10px 0 15px 1px var(--theme-loadingbar)
-        right 0
-      &::after 
-        box-shadow .5px 0 8px 2px var(--theme-loadingbar), .5px 0 2px 1px var(--theme-loadingbar)
-        right 0
-    &.right 
+  .left 
+    left 0
+    transform-origin left
+    &::before 
+      box-shadow 10px 0 15px 1px var(--loadingbar)
       right 0
-      &::before 
-        box-shadow -10px 0 15px 1px var(--theme-loadingbar)
-        left 0
-      &::after 
-        box-shadow -.5px 0 8px 2px var(--theme-loadingbar), -.5px 0 2px 1px var(--theme-loadingbar)
-        left 0
+    &::after 
+      box-shadow .5px 0 8px 2px var(--loadingbar), .5px 0 2px 1px var(--loadingbar)
+      right 0
+  .right 
+    right 0
+    transform-origin right
+    &::before 
+      box-shadow -10px 0 15px 1px var(--loadingbar)
+      left 0
+    &::after 
+      box-shadow -.5px 0 8px 2px var(--loadingbar), -.5px 0 2px 1px var(--loadingbar)
+      left 0
 
 .loadingBar::before,
 .loadingBar::after 
@@ -38,7 +46,6 @@
   position absolute
   top 0
   height 1px
-  transition box-shadow .3s .1s
 
 .pjax-out
   pointer-events none

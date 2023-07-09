@@ -22,15 +22,15 @@
 
 ![主题预览图片](./demo.jpg)
 
-## 系统环境
+## 安装
+
+### 环境
 
 - [Node.js `16.13.x` 以上](https://nodejs.org/zh-cn/)
 - [最新版 Hexo](https://hexo.io/zh-cn/)
   > Hexo `6.0.0` 以上；
   > hexo-cli `4.3.0` 以上；
 - 中国大陆用户推荐使用 `cnpm` 安装依赖包，参考 [中国 NPM 镜像](https://npmmirror.com/)
-
-## 安装
 
 ### 使用 `hexo-cli` 新建博客项目：
 
@@ -53,7 +53,7 @@ yarn 用户：
 yarn add hexo-server hexo-browsersync hexo-renderer-pug
 ```
 
-### 修改配置文件
+## 修改配置文件
 
 - 参照 [Hexo 官网](https://hexo.io/zh-cn/docs/configuration) 修改 `Hexo/` 目录下的 `_config.yml`。
   - 把 `theme:` 的值改为 `arknights`
@@ -68,7 +68,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
   主题的配置文件可参照中文注释修改。
 
-### 修改资源文件
+## 修改资源文件
 
 可按需在 `Hexo/source/` 目录添加以下文件
 - `CNAME`: GitHub Pages 部署时的自定义域名
@@ -93,7 +93,9 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
   ```
 - 在 `<!-- more -->` 之前的内容称之为摘要，会显示在首页上，并且可以设置是否也在正文显示。
 
-## 可在顶部导航栏新建自定义页面
+主题添加了一些 [标签插件](TagPlugin.md) 可在写作中使用。
+
+## 在导航栏中添加页面
 
 - 例如：新建一个 `about` 页面
   在 `Hexo` 目录下执行
@@ -108,16 +110,16 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
     About: /about
   ```
 
-## 归档页怎么只显示十篇文章
+## 禁止归档页翻页
 
-该设置位于 `_config.yml` 约第 92 行。
+该设置位于 Hexo 配置文件 `_config.yml` 约第 92 行。
 
 ```yaml
 ## Set per_page to 0 to disable pagination
 per_page: 10
 ```
 
-改为 0（或某个较大数）即可。
+改为 0 即可。
 
 ## 评论系统
 
@@ -425,12 +427,10 @@ reward: true/false
 ```diff
  # 在 `<head>` 标签内引入 CSS 样式表
  stylesheets:
- - //unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css
 +- /css/custom.css
  
  # 在 `<body>` 尾部引入 JavaScript 脚本
  scripts:
- - //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
 +- /js/custom.js
 ```
 
@@ -440,19 +440,9 @@ reward: true/false
 >
 > ——来自 [Hexo 官方文档](https://hexo.io/zh-cn/docs/setup#source)
 
-## 参与开发
+## 贡献
 
-### 开发人员
-
-- [Yue_plus](https://github.com/Yue-plus)
-- [Laurenfrost](https://github.com/Laurenfrost)
-- [ToUNVRSe](https://github.com/ToUNVRSe)
-- [飞龙project](https://github.com/feilongproject)
-- [DarkLingYun](https://github.com/DarkLingYun)
-- [RyoJerryYu](https://github.com/RyoJerryYu)
-- [TTsdzb](https://github.com/TTsdzb)
-
-> 欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
+欢迎提交 [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) 与 [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)。
 
 ### 分支说明
 
@@ -463,21 +453,11 @@ reward: true/false
 | gh-pages | gh-page 托管                    |
 | hexo     | Hexo 目录，这里有可以用于测试主题的 `.md` 文件 |
 
-### 开发中可能遇见的 BUG 及解决方法
-
-<!--
-
-#### 修改 `.pug` 模板文件无法自动刷新页面。
-解决方法：将 Hexo 目录下的
-`./node_modules/hexo-renderer-pug/lib/pug.js`
-中的
-`pugRenderer.compile = pugCompile;`
-注释掉。
--->
+### 开发中可能遇见的问题及解决方法
 
 #### 修改 TS 文件不生效
 
-这是因为在拆分文件后 TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\source\js\_src` 目录下执行 `tsc` 以编译。
+TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\source\js\_src` 目录下执行 `tsc` 以编译。
 
 #### 运行 `hexo serve --debug` 时，长文章渲染不全
 
@@ -485,7 +465,7 @@ reward: true/false
 
 解决方法：禁用该插件。（反正不影响发布，不管也行）
 
-#### 参与开发可能需要的文档
+### 参与开发可能需要的文档
 
 - [Hexo 官方文档](https://hexo.io/zh-cn/docs/templates)
 - [Stylus 中文网](http://stylus.bootcss.com/)
@@ -497,6 +477,16 @@ reward: true/false
   > - [Hexo主题开发 - ﹏猴子请来的救兵 - 博客园](https://www.cnblogs.com/yyhh/p/11058985.html)
   > - [Hexo主题开发经验杂谈 | MARKSZのBlog](https://molunerfinn.com/make-a-hexo-theme/)
   > - [Hexo 主题开发指南 | Peak Xin's Blog](https://xinyufeng.net/2019/04/15/hexo-theme-guide/)
+
+### 贡献者
+
+- [Yue_plus](https://github.com/Yue-plus)
+- [Laurenfrost](https://github.com/Laurenfrost)
+- [ToUNVRSe](https://github.com/ToUNVRSe)
+- [飞龙project](https://github.com/feilongproject)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
+- [TTsdzb](https://github.com/TTsdzb)
 
 ## 支援主题开发
 

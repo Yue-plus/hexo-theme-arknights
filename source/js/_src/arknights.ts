@@ -7,3 +7,4 @@
 /// <reference path="include/pjaxSupport.ts" />
 /// <reference path="include/ColorMode.ts" />
 /// <reference path="include/Comments.ts" />
+/// <reference path="include/Expands.ts" />

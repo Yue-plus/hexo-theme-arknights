@@ -136,10 +136,9 @@ canvasDust.getPoint = (number = 1) => {
 try {
     var canvasDusts = new canvasDust('#canvas-dust');
 }
-catch (e) {
-    throw new Error('canvasID 无效');
-}
-class Code {
+catch (e) { }
+/// <reference path="common/base.ts" />
+class expands {
     constructor() {
         this.reverse = (item, s0, s1) => {
             const block = getParent(item);
@@ -152,6 +151,29 @@ class Code {
                 block.classList.add(s0);
             }
         };
+        this.addEvent = (header) => {
+            header.addEventListener('click', (click) => {
+                if (click.target.tagName !== 'BUTTON' &&
+                    click.target.tagName !== 'A') {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+            header.addEventListener('keypress', (key) => {
+                if (key.key === 'Enter') {
+                    this.reverse(header, 'open', 'fold');
+                }
+            });
+        };
+        this.setHTML = () => {
+            document.querySelectorAll('.expand-box').forEach((item) => {
+                this.addEvent(item.children[0]);
+            });
+        };
+    }
+}
+let expand = new expands();
+class Code {
+    constructor() {
         this.doAsMermaid = (item) => {
             let Amermaid = item.querySelector('.mermaid');
             item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
@@ -168,44 +190,26 @@ class Code {
             }
             return str.toUpperCase();
         };
-        this.addEvent = (header) => {
-            header.addEventListener('click', (click) => {
-                if (click.target === header) {
-                    this.reverse(header, 'open', 'fold');
-                }
-            });
-            header.addEventListener('keypress', (key) => {
-                if (key.key === 'Enter' && key.target === header) {
-                    this.reverse(header, 'open', 'fold');
-                }
-            });
-        };
         this.doAsCode = (item) => {
             const codeType = this.resetName(item.classList[1]), lineCount = getElement('.gutter', item).children[0].childElementCount >> 1;
             item.classList.add(lineCount < 16 ? 'open' : 'fold');
+            item.classList.add('expand-box');
             item.innerHTML =
-                `<span class="code-header" tabindex='0'>\
-        <span class="code-title">\
-          <div class="code-icon"></div>
-          ${format(config.code.codeInfo, codeType, lineCount)}
-        </span>\
-        <span class="code-header-tail">\
-          <button class="code-copy">${config.code.copy}</button>\
-          <span class="code-space">${config.code.expand}</span>\
-        </span>\
-      </span>\
-      <div class="code-box">${item.innerHTML}</div>`;
+                `<div class="ex-header" tabindex='0'>
+        <i class="i-status"></i>
+        <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
+      </div>
+      <div class="ex-content">${item.innerHTML}
+        <button class="code-copy"></button>
+      </div>`;
             getElement('.code-copy', item).addEventListener('click', (click) => {
                 const button = click.target;
                 navigator.clipboard.writeText(getElement('code', item).innerText);
                 button.classList.add('copied');
-                button.innerText = config.code.copyFinish;
                 setTimeout(() => {
                     button.classList.remove('copied');
-                    button.innerText = config.code.copy;
                 }, 1200);
             });
-            this.addEvent(getElement('.code-header', item));
         };
         this.clearMermaid = () => {
             document.querySelectorAll('.mermaid').forEach((item) => {
@@ -239,8 +243,10 @@ class Code {
             }
             mermaid.init();
             this.clearMermaid();
+            expand.setHTML();
         };
         this.findCode();
+        document.addEventListener('pjax:success', this.findCode);
     }
 }
 let code = new Code();
@@ -253,9 +259,13 @@ class Cursor {
         this.fadeIng = false;
         this.nowX = 0;
         this.nowY = 0;
-        this.attention = "a,input,button,textarea,\
-    .code-header,.gt-user-inner,.navBtnIcon,\
-    .wl-sort>li,.vicon,.clickable,#post-bg img,.lg-container img";
+        this.attention = `a,input,button,textarea,
+    .navBtnIcon,
+    #post-bg img,
+    .ex-header,
+    .gt-user-inner,
+    .lg-container img,
+    .wl-sort>li,.vicon,.clickable`;
         this.set = (X = this.nowX, Y = this.nowY) => {
             this.outer.transform =
                 `translate(calc(${X.toFixed(2)}px - 50%),
@@ -434,7 +444,6 @@ class Header {
         this.readyRev = true;
         this.relabel = () => {
             let navs = this.header.querySelectorAll('.navItem'), mayLen = 0, may = navs.item(0);
-            getElement('.navBtn').classList.add('hide');
             navs.forEach(item => {
                 try {
                     let now = item, link = getElement('a', now);
@@ -553,6 +562,7 @@ class Scroll {
         this.notMoveY = false;
         this.reallyUp = false;
         this.intop = false;
+        this.lastID = -1;
         this.scrolltop = () => {
             getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
             this.totop.style.opacity = '0';
@@ -585,7 +595,7 @@ class Scroll {
             }
             const main = getElement('main').classList;
             if (!document.querySelector('.expanded')) {
-                getElement('.navBtn').classList.add('hide');
+                getElement('.navBtn').classList.add('hide-btn');
             }
             main.remove('up');
             main.add('down');
@@ -602,11 +612,11 @@ class Scroll {
                 return;
             }
             if (!document.querySelector('#search-header')) {
-                getElement('.navBtn').classList.remove('hide');
+                getElement('.navBtn').classList.remove('hide-btn');
                 return;
             }
             const main = getElement('main').classList;
-            getElement('.navBtn').classList.remove('hide');
+            getElement('.navBtn').classList.remove('hide-btn');
             main.remove('down');
             main.add('up');
             main.add('moving');
@@ -624,12 +634,12 @@ class Scroll {
                         }
                         if (!document.querySelector('.expanded')) {
                             if (this.height - nowheight > 100) {
-                                navBtn.classList.add('hide');
+                                navBtn.classList.add('hide-btn');
                                 this.height = nowheight;
                             }
                             else if (nowheight > this.height) {
                                 if (nowheight - this.height > 20) {
-                                    navBtn.classList.remove('hide');
+                                    navBtn.classList.remove('hide-btn');
                                 }
                                 this.height = nowheight;
                             }
@@ -654,6 +664,9 @@ class Scroll {
             catch (e) { }
         };
         this.checkTouchMove = (event) => {
+            if (event.changedTouches[0].identifier === this.lastID) {
+                return;
+            }
             if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 &&
                 !this.reallyUp) {
                 this.notMoveY = true;
@@ -667,6 +680,7 @@ class Scroll {
             }
             if (getElement('article').getBoundingClientRect().top >= 0) {
                 this.reallyUp = true;
+                this.lastID = event.changedTouches[0].identifier;
                 if (event.changedTouches[0].screenY > this.touchY) {
                     this.slideUp();
                 }
@@ -681,9 +695,15 @@ class Scroll {
             this.touchY = event.changedTouches[0].screenY;
             this.notMoveY = false;
         };
+        this.endTouch = (event) => {
+            if (event.changedTouches[0].identifier === this.lastID) {
+                this.lastID = -1;
+            }
+        };
         document.addEventListener('pjax:success', this.setHTML);
         document.addEventListener('touchstart', this.startTouch);
         document.addEventListener('touchmove', this.checkTouchMove);
+        document.addEventListener('touchend', this.endTouch);
         document.addEventListener('wheel', (event) => {
             if (document.querySelector('.expanded') || window.innerWidth > 1024) {
                 return;
@@ -709,45 +729,57 @@ class pjaxSupport {
         this.right = getElement('.loadingBar.right');
         this.timestamp = 0;
         this.start = (need) => {
-            this.left.style.width = need + '%';
-            this.right.style.width = need + '%';
+            this.left.style.transform = `scaleX(${need})`;
+            this.right.style.transform = `scaleX(${need})`;
             ++this.timestamp;
         };
         this.loaded = () => {
-            ++this.timestamp;
-            if (this.loading.style.opacity === '1') {
-                getElement('main').scrollTop = 0;
-                if (this.left.style.width !== "50%") {
-                    this.start(50);
-                    setTimeout((time) => {
-                        if (this.timestamp == time) {
-                            this.loading.style.opacity = '0';
-                        }
-                    }, 600, this.timestamp);
+            getElement('main').scrollTop = 0;
+            this.start(1);
+            setTimeout((time) => {
+                if (this.timestamp === time) {
+                    this.loading.style.opacity = '0';
                 }
-            }
+            }, 600, this.timestamp);
+        };
+        this.fail = () => {
+            setTimeout((time) => {
+                if (this.timestamp !== time) {
+                    return;
+                }
+                this.start(0);
+                this.loading.classList.add('fail');
+                setTimeout((time) => {
+                    if (this.timestamp === time) {
+                        this.loading.style.opacity = '0';
+                        this.loading.classList.remove('fail');
+                    }
+                }, 600, this.timestamp);
+            }, 600, this.timestamp);
         };
         document.addEventListener('pjax:send', () => {
             if (getElement('main').classList.contains('up')) {
                 scrolls.slideDown();
             }
             this.loading.classList.add('reset');
+            this.loading.classList.remove('fail');
             this.start(0);
             setTimeout((time) => {
-                if (this.timestamp == time) {
-                    this.loading.style.opacity = '1';
-                    this.loading.classList.remove('reset');
-                    this.start(15);
-                    setTimeout((time) => {
-                        if (this.timestamp == time) {
-                            this.start(30);
-                        }
-                    }, 800, this.timestamp);
+                if (this.timestamp !== time) {
+                    return;
                 }
-            }, 10, this.timestamp);
+                this.loading.classList.remove('reset');
+                this.start(0.3);
+                this.loading.style.opacity = '1';
+                setTimeout((time) => {
+                    if (this.timestamp === time) {
+                        this.start(0.6);
+                    }
+                }, 1200, this.timestamp);
+            }, 0, this.timestamp);
         });
         document.addEventListener('pjax:start', this.loaded);
-        document.addEventListener('pjax:complete', this.loaded);
+        document.addEventListener('pjax:error', this.fail);
     }
 }
 try {
@@ -771,7 +803,8 @@ class ColorMode {
             document.body.insertBefore(background, document.body.firstChild);
             this.btn.style.pointerEvents = 'none';
             setTimeout(() => {
-                canvasDusts.stop();
+                if (canvasDusts)
+                    canvasDusts.stop();
                 if (this.dark) {
                     this.html.setAttribute('theme-mode', 'light');
                     this.dark = false;
@@ -786,7 +819,8 @@ class ColorMode {
             });
             setTimeout(() => {
                 document.body.removeChild(background);
-                canvasDusts.play();
+                if (canvasDusts)
+                    canvasDusts.play();
             }, 1500);
             setTimeout(() => {
                 this.btn.style.pointerEvents = '';
@@ -804,16 +838,18 @@ class ColorMode {
         });
     }
 }
-var colorMode = new ColorMode();
+try {
+    var colorMode = new ColorMode();
+}
+catch (e) { }
 class Pair {
     constructor(first, second) {
         this.comment = first;
         this.button = second;
     }
 }
-class Comments {
-    constructor() {
-        this.search = ["valine", "gitalk", "waline"];
+class Selectors {
+    constructor(elements = [], active = 0) {
         this.elements = [];
         this.changeTo = (item) => {
             if (item === this.nowActive) {
@@ -825,8 +861,23 @@ class Comments {
             item.button.classList.add('active');
             this.nowActive = item;
         };
+        this.elements = elements;
+        this.nowActive = this.elements[active];
+        this.elements.forEach((item) => item.comment.style.display = 'none');
+        this.nowActive = this.elements[0];
+        for (let i of this.elements) {
+            i.button.addEventListener('click', () => this.changeTo(i));
+        }
+        this.nowActive.comment.style.display = '';
+        this.nowActive.button.classList.add('active');
+    }
+}
+class Comments {
+    constructor() {
+        this.search = ["valine", "gitalk", "waline"];
+        this.elements = [];
         this.setHTML = () => {
-            if (!document.querySelector('#comments'))
+            if (!document.querySelector('#comments .selector'))
                 return;
             this.elements = [];
             this.search.forEach((item) => {
@@ -835,17 +886,10 @@ class Comments {
                 }
                 catch (e) { }
             });
-            this.elements.forEach((item) => item.comment.style.display = 'none');
-            this.nowActive = this.elements[0];
-            for (let i of this.elements) {
-                i.button.addEventListener('click', () => this.changeTo(i));
-            }
-            this.nowActive.comment.style.display = '';
-            this.nowActive.button.classList.add('active');
+            new Selectors(this.elements, 0);
         };
         this.setHTML();
         document.addEventListener('pjax:complete', this.setHTML);
-        this.nowActive = this.elements[0];
     }
 }
 new Comments();
@@ -858,3 +902,4 @@ new Comments();
 /// <reference path="include/pjaxSupport.ts" />
 /// <reference path="include/ColorMode.ts" />
 /// <reference path="include/Comments.ts" />
+/// <reference path="include/Expands.ts" />

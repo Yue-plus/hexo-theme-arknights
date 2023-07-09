@@ -1,0 +1,84 @@
+header
+  pointer-events none
+  top 0
+  z-index 15
+  height 100%
+  font-family BenderLight
+  display inline
+  position fixed
+
+nav
+  position relative
+  height 100%
+  white-space nowrap
+  scrollbar-width none
+  display flex
+  flex-direction column
+  justify-content center
+  &::-webkit-scrollbar
+    display none
+  &::-ms-scrollbar
+    display none
+  li
+    display block
+
+.navBlock
+  transition unset
+  position relative
+  height 40px
+  line-height 40px
+  display inline-block
+  width 100%
+  &:active
+    background unset
+.navContent
+  overflow visible
+  margin unset
+  position relative
+  padding 0
+  pointer-events all
+
+.navItem
+  overflow visible
+  position relative
+  margin unset
+  transition .6s
+  .navItemTitle
+    transition .3s
+    width 100%
+    overflow-wrap break-word
+    white-space normal
+    position relative
+    display block
+.active
+  &>:is(a,.navBlock)>.navItemTitle,&>.navItemTitle
+    color var(--theme-highlight)
+    &::before
+      content ""
+      display block
+      color var(--theme-highlight)
+      border-color var(--theme-highlight)
+      width 100%
+      position absolute
+      left 0
+
+.navItemList
+  overflow visible
+  display none
+  top 0
+  text-align left
+  padding 0
+  .navItem
+    min-width max-content
+    margin 0
+    a
+      min-width max-content
+      padding 0
+      display block
+      width 100%
+      line-height 40px
+
+#shadow-header
+  @extend header
+  @media (min-width 1024px)
+    position static

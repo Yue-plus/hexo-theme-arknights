@@ -6,9 +6,10 @@ favicon:
 # canvas 动态背景
 canvas_dust: true
 
-# 默认颜色模式 dark / light / auto
+# 默认颜色模式 dark / dark-only / light / light-only / auto
 # dark 暗色模式
 # light 亮色模式
+# -only 锁定颜色模式
 # auto 跟随系统
 color: dark
 
@@ -97,7 +98,7 @@ gitalk:
   repo: # 用于存放评论数据的 GitHub 仓库
   owner: # 该 GitHub 仓库所有者
   admin: [] # 具有写该 GitHub 仓库权限的用户，例如: [adminA,adminB]
-  id: location.pathname # (可选) 页面的唯一标识，例如: location.pathname
+  id: location.pathname # (可选) 页面的唯一标识
 
 # Waline
 # 详情: https://waline.js.org/

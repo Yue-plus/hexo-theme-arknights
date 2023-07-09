@@ -224,7 +224,9 @@
 					// Abort any previous request
 					this.abortRequest(this.request);
 
-					trigger(document, "pjax:send", options);
+					if (href !== '/404') {
+						trigger(document, "pjax:send", options);
+					}
 
 					// Do the request
 					this.request = this.doRequest(
@@ -760,7 +762,6 @@
 				// Fail if unable to load HTML via AJAX
 				if (responseText === false) {
 					trigger(document, "pjax:complete pjax:error", options);
-
 					return;
 				}
 
@@ -882,10 +883,16 @@
 					}
 				};
 
-				request.onerror = function (e) {
-					console.log(e);
-					callback(null, request, location, options);
-				};
+				if (location !== '/404') {
+					request.onerror = function (e) {
+						console.log(e);
+						callback(null, request, location, options);
+					};
+				} else {
+					request.onerror = function (e) {
+						console.log(e);
+					};
+				}
 
 				request.ontimeout = function () {
 					callback(null, request, location, options);
@@ -1049,7 +1056,6 @@
 				},
 
 				sideBySide: function (oldEl, newEl, options, switchOptions) {
-					var forEach = Array.prototype.forEach;
 					var elsToRemove = [];
 					var elsToAdd = [];
 					var fragToAppend = document.createDocumentFragment();
