@@ -480,7 +480,13 @@ TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\s
 
 ### 贡献者
 
-[![][contributors-image]][contributors-url]
+- [Yue_plus](https://github.com/Yue-plus)
+- [Laurenfrost](https://github.com/Laurenfrost)
+- [ToUNVRSe](https://github.com/ToUNVRSe)
+- [飞龙project](https://github.com/feilongproject)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
+- [TTsdzb](https://github.com/TTsdzb)
 
 ## 支援主题开发
 
