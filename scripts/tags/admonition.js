@@ -2,13 +2,25 @@
 
 'use strict';
 
+function isStatus(str) {
+    return str === 'open' || str === 'fold';
+}
+
 function genBlock(name, args, data) {
-    let title = args.length > 0 ? args[0] : name[0].toUpperCase() + name.slice(1),
-        status = args.length > 1 ? args[1] : 'open';
-    return `<div class="admonition expand-box ad-${name} ${status}">
+    let title = args.length > 0 ? args[0] : name[0].toUpperCase() + name.slice(1);
+    let color = '', status = 'fold';
+    for (let i = 1; i < args.length; ++i) {
+        if (!isStatus(args[i])) {
+            color = args[i];
+        } else {
+            status = args[i];
+        }
+    }
+    return `<div class="admonition expand-box ad-${name} ${status}"
+        ${color ? `style=--ad-color:${color}` : ''}>
         <div class="ex-header">
             <i class='i-status'></i>
-            <i class='i-ad i-${name}'></i>
+            ${name !== 'detail' ? "<i class='i-ad i-${name}'></i>" : ''}
             <span class="ex-title">${title}</span>
         </div>
         <div class="ex-content">${hexo.render.renderSync({ text: data, engine: 'markdown' })}</div>
@@ -29,4 +41,8 @@ hexo.extend.tag.register('note', (args, data) => {
 
 hexo.extend.tag.register('failure', (args, data) => {
     return genBlock('failure', args, data);
+}, { ends: true })
+
+hexo.extend.tag.register('detail', (args, data) => {
+    return genBlock('detail', args, data);
 }, { ends: true })
