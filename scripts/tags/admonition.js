@@ -20,7 +20,7 @@ function genBlock(name, args, data) {
         ${color ? `style=--ad-color:${color}` : ''}>
         <div class="ex-header">
             <i class='i-status'></i>
-            ${name !== 'detail' ? "<i class='i-ad i-${name}'></i>" : ''}
+            ${name !== 'detail' ? `<i class='i-ad i-${name}'></i>` : ''}
             <span class="ex-title">${title}</span>
         </div>
         <div class="ex-content">${hexo.render.renderSync({ text: data, engine: 'markdown' })}</div>

@@ -15,10 +15,11 @@ post:
   index: Catalog
   reward: reward
   noTitle: No Title
+  next: ← Next
+  prev: Prev →
 
 code:
   codeInfo: $0 - $1 lines
-  expand: expand
 
 btn:
   index: To Catalog
