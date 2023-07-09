@@ -6,7 +6,7 @@ category: Example
 permalink: /mermaid/
 ---
 
-![mermaid](https://mermaid-js.github.io/mermaid/img/header.png)
+![mermaid](https://mermaid.js.org/header.png)
 
 <!-- more -->
 
