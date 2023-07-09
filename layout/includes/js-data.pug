@@ -39,7 +39,7 @@ script.pjax-js reset= () => {
     |  owner: '#{config.owner}',
     |  admin: [#{gitAdmin}],
     |  distractionFreeMode: #{config.distraction_free_mode || false},
-    |  id: #{config.id}
+    |  id: #{config.id ? config.id : ""}
     |});
     |if (document.querySelector("#gitalk")) gitalk.render("gitalk");
   if theme.waline && theme.waline.enable === true
