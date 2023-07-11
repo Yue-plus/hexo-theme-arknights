@@ -16,11 +16,11 @@ function genBlock(name, args, data) {
             status = args[i];
         }
     }
-    return `<div class="admonition expand-box ad-${name} ${status}"
-        ${color ? `style=--ad-color:${color}` : ''}>
+    return `<div class="admonition expand-box adm-${name} ${status}"
+        ${color ? `style="--ex-color:${color}"` : ''}>
         <div class="ex-header">
             <i class='i-status'></i>
-            ${name !== 'detail' ? `<i class='i-ad i-${name}'></i>` : ''}
+            ${name !== 'detail' ? `<i class='i-adm i-${name}'></i>` : ''}
             <span class="ex-title">${title}</span>
         </div>
         <div class="ex-content">${hexo.render.renderSync({ text: data, engine: 'markdown' })}</div>
