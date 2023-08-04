@@ -17,6 +17,7 @@
 - **Dr.Tanle <https://ztblog.work/>**
 - **Dr.Sherkey <https://blog.sherkey.ml/>**
 - **Dr.Angine <https://angine.tech/>**
+- **Dr.sjfhsjfh <http://sjfh.top/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
