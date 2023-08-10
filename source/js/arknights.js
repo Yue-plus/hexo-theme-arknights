@@ -241,8 +241,10 @@ class Code {
                     }
                 });
             }
-            mermaid.init();
-            this.clearMermaid();
+            if (typeof (mermaid) !== 'undefined') {
+                mermaid.init();
+                this.clearMermaid();
+            }
             expand.setHTML();
         };
         this.findCode();
