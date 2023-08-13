@@ -801,7 +801,11 @@ class ColorMode {
             background.innerHTML =
                 `<div style='background: var(--${this.dark ? 'dark' : 'light'}-background);
         height: 100vh; width: 100vw;
-        position: fixed; left: 0; top: 0; z-index: -99999;'></div>`;
+        position: fixed; left: 0; top: 0; z-index: -99999;
+        background-attachment: fixed;
+        background-position: 50% 0;
+        background-repeat: no-repeat;
+        background-size: cover;'></div>`;
             document.body.insertBefore(background, document.body.firstChild);
             this.btn.style.pointerEvents = 'none';
             setTimeout(() => {

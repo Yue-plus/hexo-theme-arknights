@@ -1,14 +1,20 @@
+.social,
+.navItemTitle,
+aside
+  text-shadow 2px 2px 4px var(--theme-text-rev)
+
+.navItemTitle
+  text-shadow 1px 1px 2px var(--theme-text-rev), 1px 1px 2px var(--theme-text-rev)
+
+aside footer,
+  font-weight bold
+
+aside footer
+  text-shadow 1px 1px 2px white
+
 [theme-mode=light]
-  .footer-link a, .social
-    text-shadow 0 0 15px white, 0 0 15px white, 0 0 15px white, 0 0 15px white
-  
-  .navItemTitle,
-  aside footer
-    @extend .footer-link a
+  .navItemTitle
     font-weight bold
-  
-  :where(.recent-post, #paginator a)
-    background-color #fff4
   
   aside a img:hover
     background-color var(--theme-bg-soft)
@@ -16,12 +22,6 @@
   button
     text-shadow 0 0 10px #000
 
-  #Archives,
-  #Categories,
-  #Tags
-    background-color var(--theme-bg-soft)
-    &:hover
-      background-color var(--theme-bg-soft-hover)
   #color-mode
     &:hover::after
       transform rotate(-90deg)
