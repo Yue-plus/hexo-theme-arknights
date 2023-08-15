@@ -51,20 +51,22 @@ if theme.stylesheets && theme.stylesheets.length > 0
 script
   |if (window.localStorage.getItem('theme-mode') === 'light'
   if theme.color === 'auto'
-    |  || window.matchMedia('(prefers-color-scheme:light)').matches)
-  else
-    |)
+    |  || window.matchMedia('(prefers-color-scheme:light)').matches
+  |)
   |  document.documentElement.setAttribute('theme-mode', 'light')
   |if (window.localStorage.getItem('theme-mode') === 'dark'
   if theme.color === 'auto'
-    |  || window.matchMedia('(prefers-color-scheme:dark)').matches)
-  else
-    |)
+    |  || window.matchMedia('(prefers-color-scheme:dark)').matches
+  |)
   |  document.documentElement.setAttribute('theme-mode', 'dark')
 style
   |@font-face {
+  |  font-family: Bender;
+  |  src: local('Bender'), url("#{config.root}font/Bender.ttf"), url("#{config.root}font/Bender.otf");
+  |}
+  |@font-face {
   |  font-family: BenderLight;
-  |  src: local('Bender'), url("#{config.root}font/BenderLight.ttf");
+  |  src: local('BenderLight'), url("#{config.root}font/BenderLight.ttf");
   |}
   |@font-face {
   |  font-family: 'JetBrains Mono';

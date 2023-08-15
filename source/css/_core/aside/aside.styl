@@ -5,7 +5,7 @@ aside
     display none
   scrollbar-width none
   height 100vh
-  position fixed
+  position sticky
   display flex
   flex-direction column
   justify-content space-between
@@ -21,7 +21,8 @@ aside
   footer
     color var(--theme-unimportant)
     padding 0 3px 30px 3px
-    font-family BenderLight
+    font-family Bender
+    font-weight bold
 
 #logo
   user-select none
@@ -42,6 +43,9 @@ aside
   font-family BenderLight
   div
     display inline-block
+
+#navigation, #total
+  background-color var(--theme-bg-trans1)
 
 #total-archives
   color var(--theme-text-light)
@@ -67,7 +71,7 @@ aside
         color var(--theme-highlight)
 
 #total-tags, #total-categories
-  margin 15px 0 0 15px
+  margin 5px 5px 5px 10px
 
 #aside-block
   flex-grow 2
@@ -81,7 +85,7 @@ aside
 #total-archives .total-number
   letter-spacing 2px
 #toc-div
-  background linear-gradient(var(--theme-bg-trans1),var(--theme-bg-trans1) calc(100% - 15px), transparent)
+  background linear-gradient(var(--theme-bg-trans1), var(--theme-bg-trans1) calc(100% - 15px), transparent)
   @media ( min-width 769px )
     &:hover h1
       background-color var(--theme-highlight)
@@ -89,8 +93,3 @@ aside
 #description p
   margin unset
   text-align center
-
-#shadow-aside
-  @extend aside
-  @media (min-width 769px)
-    position static

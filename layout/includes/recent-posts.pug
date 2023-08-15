@@ -1,5 +1,5 @@
 if page.posts.length > 0
-  each post in page.posts.sort('date', -1).limit((config.per_page === 0) ? 9999999 : config.per_page).toArray()
+  each post in page.posts.limit((config.per_page === 0) ? 9999999 : config.per_page).toArray()
     a(href=url_for(post.path)).recent-post
       object
         .recent-info
@@ -19,7 +19,10 @@ if page.posts.length > 0
               span #{__('page.noTag')}
           if post.date
             time(datetime=post.date.toJSON())= date(post.date, date_format)
-        h1.recent-title= post.title
+        h1.recent-title
+          if post.sticky > 0
+            span.post-sticky #{__('page.sticky')}
+          = post.title
         .recent-excerpt
           if post.excerpt.length > 0
             hr

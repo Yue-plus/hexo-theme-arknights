@@ -3,16 +3,6 @@ aside
 header
   order 1
 
-.bottom-btn
-  @media (min-width 769px)
-    right 15px
-  @media (min-width 1024px)
-    right 180px
-  @media (min-width 1440px)
-    right 240px
-  @media (min-width 1920px)
-    right 360px
-
 @media ( min-width 769px )
   header
     left 238px
@@ -21,7 +11,7 @@ header
   aside
     left 0
 
-@media ( min-width 992px, max-width 1919px)
+@media ( min-width 992px, max-width 1919px )
   aside
     padding 0 15px 0 25px
 
@@ -41,24 +31,24 @@ header
       border-right 4px solid
   .navContent:not(.search) .navBlock
     &::before
-      content ""
+      content ''
       height 100%
       width 100%
       position absolute
       top 0
       right 2em
-    &:hover>.navItemTitle
+    &:hover > .navItemTitle
       margin-left -1em
-    &>.navItemList
+    & > .navItemList
       right calc(100% + 2em)
   .navItemList
     right 100%
     .navItem
       padding-left 1px
     .navItemTitle
-      padding-right 0.8em
-      padding-left 0.5em
-  .navItemList>.navItem>.navItemTitle:hover
+      padding-right .8em
+      padding-left .5em
+  .navItemList > .navItem > .navItemTitle:hover
     padding-right 1.8em
 
 @media ( min-width 1440px )
@@ -72,8 +62,3 @@ header
     padding-right 5.25em
   article
    margin 0 2.5%
-
-#shadow-aside
-  @extend aside
-#shadow-header
-  @extend header

@@ -1,22 +1,16 @@
 .social,
 .navItemTitle,
-aside
+#about
   text-shadow 2px 2px 4px var(--theme-text-rev)
 
 .navItemTitle
   text-shadow 1px 1px 2px var(--theme-text-rev), 1px 1px 2px var(--theme-text-rev)
 
-aside footer,
-  font-weight bold
-
-aside footer
-  text-shadow 1px 1px 2px white
-
 [theme-mode=light]
   .navItemTitle
     font-weight bold
   
-  aside a img:hover
+  aside img:hover
     background-color var(--theme-bg-soft)
 
   button
@@ -28,14 +22,11 @@ aside footer
     &::after
       transform rotate(-180deg)
       animation clockwise .3s
-  @keyframes clockwise {
-    0% {
+  @keyframes clockwise
+    0%
       transform rotate(-270deg)
-    }
-    100% {
+    100%
       transform rotate(-180deg)
-    }
-  }
 
 [theme-mode=dark]
   #color-mode:hover::after

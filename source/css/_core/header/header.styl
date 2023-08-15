@@ -3,9 +3,9 @@ header
   top 0
   z-index 15
   height 100%
-  font-family BenderLight
+  font-family Bender
   display inline
-  position fixed
+  position sticky
 
 nav
   position relative
@@ -51,10 +51,11 @@ nav
     position relative
     display block
 .active
-  &>:is(a,.navBlock)>.navItemTitle,&>.navItemTitle
+  & > :is(a, .navBlock) > .navItemTitle,
+  & > .navItemTitle
     color var(--theme-highlight)
     &::before
-      content ""
+      content ''
       display block
       color var(--theme-highlight)
       border-color var(--theme-highlight)
@@ -77,8 +78,3 @@ nav
       display block
       width 100%
       line-height 40px
-
-#shadow-header
-  @extend header
-  @media (min-width 1024px)
-    position static

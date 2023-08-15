@@ -9,8 +9,9 @@ article
     line-height 150%
 
 .posts
+  background-color var(--theme-bg-trans1)
   margin-top 10px
-  padding-bottom 72px
+  margin-bottom 72px
   width 100%
   min-height calc(100vh - 82px)
   @media ( max-width 768px )
@@ -82,6 +83,9 @@ article
       .read-more
         color var(--theme-text-light)
         background-color var(--theme-bg-hover)
+      .post-sticky
+        color var(--theme-text-light)
+        background-color var(--theme-bg-hover)
 
 .recent-info
   min-height 25px
@@ -96,6 +100,12 @@ article
 
 .recent-excerpt
   margin 12px 0 28px 0
+
+.post-sticky
+  background-color var(--theme-highlight)
+  color var(--theme-text-rev)
+  padding 1px 2px
+  margin-right 5px
 
 .read-more
   color var(--theme-background)
@@ -133,6 +143,3 @@ article
   .current
     color var(--theme-text-hover)
     background-color var(--theme-highlight)
-
-:where(.recent-post, #paginator *)
-  background-color var(--theme-bg-trans1)

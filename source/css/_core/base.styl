@@ -13,7 +13,7 @@ body
   background-position 50% 0
   background-repeat no-repeat
   background-size cover
-  font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
+  font-family 'JetBrains Mono', 'Microsoft YaHei', '\5b8b\4f53', sans-serif
 
 main
   height 100vh
@@ -24,10 +24,10 @@ main
 
 h1, h2, h3, h4, h5, h6
   color var(--theme-text-light)
-  margin-block-start 0.33em
-  margin-block-end 0.23em
-  padding-top 0.2em
-  padding-bottom 0.2em
+  margin-block-start .33em
+  margin-block-end .23em
+  padding-top .2em
+  padding-bottom .2em
 
 p
   overflow visible
@@ -36,15 +36,16 @@ a
   text-decoration none
 
 a,
-:is(strong, em)>a
+:is(strong, em) > a
   color var(--theme-highlight)
   padding 0 3px
-  transition color .3s,
-    background-color .3s,
-    line-height .3s,
-    padding .3s,
-    border .3s,
-    opacity .3s
+  transition-duration .3s
+  transition-property color,
+    background-color,
+    line-height,
+    padding,
+    border,
+    opacity
   @media ( min-width 769px )
     &:hover
       color var(--theme-text-hover)
@@ -56,14 +57,14 @@ a,
 button
   background var(--theme-bg-soft)
   color var(--theme-text-light)
-  font-family "JetBrains Mono"
+  font-family 'JetBrains Mono'
   border unset
 
 time
-  font-family BenderLight
+  font-family Bender
 
 code, pre
-  font-family "JetBrains Mono"
+  font-family 'JetBrains Mono'
 code
   margin 0!important
   background-color var(--theme-bg-soft-hover)
@@ -79,15 +80,15 @@ kbd
   margin 0 2px
   border-radius 2px
   padding 0 3px
-  font-family "JetBrains Mono"
+  font-family 'JetBrains Mono'
 
 em
-  font-family Times, "Times New Roman", 'FangSong', 'SimSun', serif
+  font-family Times, 'Times New Roman', 'FangSong', 'SimSun', serif
 strong em, em strong
-  font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
-:not(a)>:is(strong, em)
+  font-family 'JetBrains Mono', 'Microsoft YaHei', '\5b8b\4f53', sans-serif
+:not(a) > :is(strong, em)
   color var(--theme-light)
-:not(a)>:is(strong em, em strong)
+:not(a) > :is(strong em, em strong)
   color var(--theme-stress)
 
 blockquote
@@ -105,8 +106,8 @@ ol
   overflow auto
 
 li
-  margin-block-start 0.2em
-  margin-block-end 0.2em
+  margin-block-start .2em
+  margin-block-end .2em
   blockquote
     margin 0
     padding-right 0
@@ -120,7 +121,7 @@ table
     border var(--theme-border-light) solid 1px
     padding 0 10px
   td
-    padding 0px 8px
+    padding 0 8px
     border var(--theme-td-border) solid 1px
     &:hover
       background-color var(--theme-td-hover)
@@ -136,4 +137,4 @@ a, button, input, textarea
 input
   cursor var(--cursor) 3 3, text
   user-select none
-  font-family "JetBrains Mono", 'Microsoft YaHei', '\5b8b\4f53', sans-serif
+  font-family 'JetBrains Mono', 'Microsoft YaHei', '\5b8b\4f53', sans-serif
