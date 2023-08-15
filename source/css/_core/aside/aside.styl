@@ -5,7 +5,7 @@ aside
     display none
   scrollbar-width none
   height 100vh
-  position fixed
+  position sticky
   display flex
   flex-direction column
   justify-content space-between
@@ -93,11 +93,6 @@ aside
 #description p
   margin unset
   text-align center
-
-#shadow-aside
-  @extend aside
-  @media (min-width 769px)
-    position static
 
 aside, #aside-block
   pointer-events none
