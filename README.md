@@ -12,11 +12,9 @@
 - **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
 - **Dr.XIMU：<http://b.ligzs.cn/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
-- **Dr.Ryo <https://blog.ryo-okami.xyz/>**
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
-- **Dr.Tanle <https://ztblog.work/>**
-- **Dr.Sherkey <https://blog.sherkey.ml/>**
 - **Dr.Angine <https://angine.tech/>**
+- **Dr.sjfhsjfh <http://sjfh.top/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
