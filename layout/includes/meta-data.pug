@@ -63,8 +63,12 @@ script
   |  document.documentElement.setAttribute('theme-mode', 'dark')
 style
   |@font-face {
+  |  font-family: Bender;
+  |  src: local('Bender'), url("#{config.root}font/Bender.ttf");
+  |}
+  |@font-face {
   |  font-family: BenderLight;
-  |  src: local('Bender'), url("#{config.root}font/BenderLight.ttf");
+  |  src: local('BenderLight'), url("#{config.root}font/BenderLight.ttf");
   |}
   |@font-face {
   |  font-family: 'JetBrains Mono';
