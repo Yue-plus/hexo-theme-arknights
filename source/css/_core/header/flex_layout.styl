@@ -5,7 +5,7 @@
       padding-left 0
 extendList()
   display block
-  &>.navItemList
+  & > .navItemList
     display inline-block
     width max-content
     min-width 100%
@@ -13,7 +13,7 @@ extendList()
 
 @media ( max-width 1023px )
   header
-    width max(428px ,100% - 200px)
+    width max(428px, 100% - 200px)
     max-width 100%
     position fixed
   nav
@@ -21,7 +21,7 @@ extendList()
     height max-content
     min-height 100vh
     &::before
-      content ""
+      content ''
       height 100%
       width 100%
       position absolute
@@ -49,7 +49,7 @@ extendList()
     color var(--theme-text-light)
     padding-bottom 5px
     border-bottom 1px solid var(--theme-unimportant)
-  .active>:is(a,.navBlock)>.navItemTitle::before
+  .active > :is(a, .navBlock) > .navItemTitle::before
     border-color var(--theme-highlight)
   .expanded
     .navContent,
@@ -57,7 +57,7 @@ extendList()
       transform translateX(0%)
   .navItemList
     width 100%
-    &>.navItem
+    & > .navItem
       padding 0 0 0 1em
       width calc(100% - 1em)
   .navItemTitle:not(:only-child)::before
@@ -70,11 +70,11 @@ extendList()
     margin 7px 7px 2px 2px
     transform rotate(45deg)
   .expanded,
-  .expanded>.navBlock
-    &>.navItemList
+  .expanded > .navBlock
+    & > .navItemList
       margin-top 6px
       extendList()
-    &>.navItemTitle:not(:only-child)::before
+    & > .navItemTitle:not(:only-child)::before
       transform rotate(135deg)
 
 @media ( min-width 1024px )
@@ -84,11 +84,11 @@ extendList()
     width 120px
   .navBlock
     List-sum = 0
-    for i in hexo-config("menu")
+    for i in hexo-config('menu')
       List-sum += 3
-    if hexo-config("search") && hexo-config("search.enable")
+    if hexo-config('search') && hexo-config('search.enable')
       List-sum += 2
-    padding (30em/List-sum) 0
+    padding (30em / List-sum) 0
   .navBlock:hover
     background-color unset
   .navItemTitle
@@ -110,13 +110,11 @@ extendList()
         color var(--theme-highlight)
       a:hover .navItemTitle
         color var(--theme-text-hover)
-      &:hover>.navItemTitle
+      &:hover > .navItemTitle
         background-color var(--theme-highlight)
         color var(--theme-text-hover)
-  .navBlock,
-  .navItem
-    &:hover
-      extendList()
+  :is(.navBlock, .navItem):hover
+    extendList()
 
 @media ( min-width 1440px )
   header

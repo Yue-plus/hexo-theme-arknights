@@ -1,17 +1,18 @@
 #cursor-outer
   z-index 65536
   position fixed
-  transform translate3d(-50%, -50%, 0px)
+  transform translate3d(-50%, -50%, 0)
   height 36px
   width 36px
   border 1px solid var(--theme-cursor)
   border-radius 50%
   pointer-events none
-  transition background-color .3s, width .3s, height .3s
+  transition-duration .3s
+  transition-property background-color, width, height
 #cursor-effect
   z-index 65535
   position fixed
-  transform translate3d(-50%, -50%, 0px) scale(0)
+  transform translate3d(-50%, -50%, 0) scale(0)
   height 80px
   width 80px
   border 4px solid var(--theme-cursor)

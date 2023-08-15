@@ -20,24 +20,24 @@
       left 0
   .navContent:not(.search) .navBlock
     &::before
-      content ""
+      content ''
       height 100%
       width 100%
       position absolute
       top 0
       left 2em
-    &:hover>.navItemTitle
+    &:hover > .navItemTitle
       margin-left 1em
-    &>.navItemList
+    & > .navItemList
       left calc(100% + 2em)
   .navItemList
     left 100%
     .navItem
       padding-right 1px
     .navItemTitle
-      padding-left 0.8em
-      padding-right 0.5em
-  .navItemList>.navItem>.navItemTitle:hover
+      padding-left .8em
+      padding-right .5em
+  .navItemList > .navItem > .navItemTitle:hover
     padding-left 1.8em
 
 @media ( min-width 1440px )

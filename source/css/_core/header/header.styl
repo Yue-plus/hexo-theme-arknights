@@ -51,10 +51,11 @@ nav
     position relative
     display block
 .active
-  &>:is(a,.navBlock)>.navItemTitle,&>.navItemTitle
+  & > :is(a, .navBlock) > .navItemTitle,
+  & > .navItemTitle
     color var(--theme-highlight)
     &::before
-      content ""
+      content ''
       display block
       color var(--theme-highlight)
       border-color var(--theme-highlight)

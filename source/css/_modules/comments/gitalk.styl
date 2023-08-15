@@ -1,10 +1,10 @@
 .gt-container
-  -webkit-box-sizing border-box
   box-sizing border-box
   font-size 16px
+  -webkit-box-sizing border-box
   *
-    -webkit-box-sizing border-box
     box-sizing border-box
+    -webkit-box-sizing border-box
   a.is--active
     color var(--theme-unimportant-2)
     pointer-events none
@@ -16,18 +16,18 @@
   .gt-svg
     position relative
     top -2px
-    transition .3s
     display inline-block
     width 1em
     height 1em
     vertical-align sub
+    transition .3s
     svg
       width 100%
       height 100%
   .gt-ico
     display inline-block
   &.gt-ico-text
-    margin-left 0.3125em
+    margin-left .3125em
   .gt-header-controls-tip:hover
     color var(--theme-text-hover)
   .gt-ico-github
@@ -42,43 +42,43 @@
   .gt-spinner
     position relative
     &::before
-      content ''
-      -webkit-box-sizing border-box
-      box-sizing border-box
       position absolute
       top 3px
-      width 0.75em
-      height 0.75em
-      margin-top -0.1875em
-      margin-left -0.375em
-      border-radius 50%
+      box-sizing border-box
+      margin-top -.1875em
+      margin-left -.375em
+      width .75em
+      height .75em
       border 1px solid var(--theme-text-hover)
       border-top-color var(--theme-highlight)
-      -webkit-animation gt-kf-rotate 0.6s linear infinite
-      animation gt-kf-rotate 0.6s linear infinite
+      border-radius 50%
+      content ''
+      animation gt-kf-rotate .6s linear infinite
+      -webkit-box-sizing border-box
+      -webkit-animation gt-kf-rotate .6s linear infinite
   .gt-loader
     position relative
-    border 1px solid var(--theme-unimportant)
-    -webkit-animation ease gt-kf-rotate 1.5s infinite
-    animation ease gt-kf-rotate 1.5s infinite
     display inline-block
-    font-style normal
     width 1.75em
     height 1.75em
-    line-height 1.75em
+    border 1px solid var(--theme-unimportant)
     border-radius 50%
+    font-style normal
+    line-height 1.75em
+    animation ease gt-kf-rotate 1.5s infinite
+    -webkit-animation ease gt-kf-rotate 1.5s infinite
     &:before
-      content ''
       position absolute
-      display block
       top 0
       left 50%
-      margin-top -0.1875em
-      margin-left -0.1875em
-      width 0.375em
-      height 0.375em
-      background-color var(--theme-unimportant)
+      display block
+      margin-top -.1875em
+      margin-left -.1875em
+      width .375em
+      height .375em
       border-radius 50%
+      background-color var(--theme-unimportant)
+      content ''
   .gt-avatar
     display inline-block
     width 3.125em
@@ -90,33 +90,33 @@
       fill var(--theme-text-hover)
   .gt-btn
     &:hover
-      transition .3s
-      background-color var(--theme-bg-soft-hover)
       border 1px solid var(--theme-border)
+      background-color var(--theme-bg-soft-hover)
       color var(--theme-subcolor)
+      transition .3s
     &.is--disable
+      opacity .5
       cursor not-allowed
-      opacity 0.5
   .gt-btn-text
     font-weight 400
   .gt-btn-loading
     position relative
-    margin-left 0.5em
     display inline-block
-    width 0.75em
+    margin-left .5em
+    width .75em
     height 1em
     vertical-align top
   .gt-btn-login
     margin-right 0
   .gt-error
-    text-align center
-    margin 0.625em
+    margin .625em
     color var(--theme-stress)
+    text-align center
   .gt-initing
     padding 1.25em 0
     text-align center
   .gt-initing-text
-    margin 0.625em auto
+    margin .625em auto
     font-size 92%
   .gt-no-init
     padding 1.25em 0
@@ -124,30 +124,29 @@
   .gt-link
     border-bottom 1px dotted var(--theme-highlight)
   .gt-meta
-    margin 1.25em 0
-    padding 1em 0
-    position relative
-    border-bottom 1px solid var(--theme-unimportant-2)
-    font-size 1em
     position relative
     z-index 10
+    margin 1.25em 0
+    padding 1em 0
+    border-bottom 1px solid var(--theme-unimportant-2)
+    font-size 1em
     &:after
       clear both
   .gt-counts
-    margin 0 0.625em 0 0
+    margin 0 .625em 0 0
   .gt-user
     float right
     margin 0
     font-size 92%
     .gt-ico
-      margin 0 0 0 0.3125em
+      margin 0 0 0 .3125em
       svg
         fill var(--theme-text)
   .gt-user-pic
+    margin-right .5em
     width 16px
     height 16px
     vertical-align top
-    margin-right 0.5em
   .gt-user-inner
     display inline-block
     .gt-ico-arrdown .gt-svg
@@ -158,81 +157,81 @@
     color var(--theme-text)
     font-size small
   .gt-copyright
-    margin 0 0.7em 0.5em
+    margin 0 .7em .5em
+    padding-top .5em
     border-top 1px solid var(--theme-unimportant-2)
-    padding-top 0.5em
   .gt-link-project
     margin-right 1px
   .gt-popup
     position absolute
-    right 0
     top 2.4em
-    background var(--theme-background)
+    right 0
     display inline-block
+    padding .625em 0
     border 1px solid var(--theme-unimportant-2)
-    padding 0.625em 0
-    font-size 0.875em
+    background var(--theme-background)
+    font-size .875em
     .gt-action
-      display block
-      margin 0.3em 0.7em
       position relative
+      display block
+      margin .3em .7em
       text-decoration none
       letter-spacing 1px
       &.is--active
         &:before
-          content ''
-          width 0.25em
-          height 0.25em
-          background var(--theme-highlight)
           position absolute
+          top .6em
           left -.4em
-          top 0.6em
+          width .25em
+          height .25em
+          background var(--theme-highlight)
+          content ''
   .gt-header
     position relative
     display -webkit-box
     display -ms-flexbox
     display flex
   .gt-header-comment
-    -webkit-box-flex 1
-    -ms-flex 1
     flex 1
     margin-left 1.25em
+    -webkit-box-flex 1
+    -ms-flex 1
   .gt-header-textarea:hover
-    background-color var(--theme-bg-soft-hover)
     border 1px solid var(--theme-border)
+    background-color var(--theme-bg-soft-hover)
   .gt-header-preview
+    overflow auto
+    padding .75em
     min-height 72px
     width 100%
-    overflow auto
-    transition .3s
-    padding 0.75em
-    border-radius 5px
     border 1px solid var(--theme-border-light)
+    border-radius 5px
     background-color var(--theme-bg-soft)
+    transition .3s
     &:hover
-      padding 0.75em
-      border-radius 5px
+      padding .75em
       border 1px solid var(--theme-border)
+      border-radius 5px
       background-color var(--theme-bg-soft-hover)
     p
       width fit-content
   .gt-header-controls
     position relative
-    margin 0.75em 0 0
+    margin .75em 0 0
     &:after
       clear both
   &.gt-input-focused
     position relative
     &:after
-      content ''
       position fixed
+      top 0
+      right 0
       bottom 0%
       left 0
-      right 0
-      top 0
-      background var(--theme-background)
-      opacity 0.6
       z-index 9999
+      background var(--theme-background)
+      content ''
+      opacity .6
     .gt-header-comment
       z-index 10000
   &:after
@@ -247,23 +246,23 @@
     text-align center
   .gt-comment
     position relative
-    padding 0.625em 0
     display -webkit-box
     display -ms-flexbox
     display flex
+    padding .625em 0
   .gt-comment-content
+    flex 1
+    overflow auto
+    margin-left 1.25em
+    padding .75em 1em
+    padding-left 20px
+    border-left #fe2 solid 3px
+    background-color var(--theme-bg-soft)
+    color var(--theme-text)
+    transition .3s
+    transition .3s
     -webkit-box-flex 1
     -ms-flex 1
-    flex 1
-    margin-left 1.25em
-    padding 0.75em 1em
-    overflow auto
-    transition .3s
-    color var(--theme-text)
-    border-left #fe2 solid 3px
-    padding-left 20px
-    background-color var(--theme-bg-soft)
-    transition .3s
     &:hover
       border-color var(--theme-highlight)
       background-color var(--theme-bg-soft-hover)
@@ -275,41 +274,43 @@
       color var(--theme-text-light)
   .gt-comment-block-1
     float right
-    height 1.375em
     width 2em
+    height 1.375em
   .gt-comment-block-2
     float right
-    height 1.375em
     width 4em
+    height 1.375em
   .gt-comment-text, .gt-comment-date
-    margin-left 0.5em
+    margin-left .5em
     color var(--theme-text)
   .gt-comment-body
     .email-hidden-toggle a
       display inline-block
-      height 12px
       padding 0 9px
-      font-size 12px
-      font-weight 600
-      line-height 6px
-      vertical-align middle
+      height 12px
       border-radius 1px
+      vertical-align middle
+      font-weight 600
+      font-size 12px
+      line-height 6px
     .email-hidden-reply
       display none
       white-space pre-wrap
       .email-signature-reply
-        padding 0 15px
         margin 15px 0
-        color var(--theme-unimportant-2)
+        padding 0 15px
         border-left 4px solid var(--theme-border-light)
+        color var(--theme-unimportant-2)
       &.expanded
         display block
+
 a
   .gt-ico
     fill var(--theme-highlight)
   &:hover .gt-ico
     fill var(--theme-text-hover)
-@media ( max-width 479px )
+
+@media (max-width 479px)
   .gt-container .gt-avatar
     width 2em
     height 2em
@@ -317,106 +318,112 @@ a
     width 1.875em
     height 1.875em
   .gt-container .gt-header-comment
-    margin-left 0.875em
+    margin-left .875em
   .gt-container .gt-header-controls
     margin 0
   .gt-container .gt-header-controls-tip
     display none
   .gt-container .gt-header-controls .gt-btn
     float none
+    margin .75em 0 0
     width 100%
-    margin 0.75em 0 0
   .gt-container .gt-comment-content
-    margin-left 0.875em
-    padding 0.625em 0.75em
+    margin-left .875em
+    padding .625em .75em
+
 .gt-container
   .gt-avatar img
     width 100%
     height auto
     border-radius 50%
   .gt-btn
-    transition .3s
-    padding 0.75em 1.25em
     display inline-block
-    line-height 1
-    white-space nowrap
+    padding .75em 1.25em
+    outline none
     border 1px solid var(--theme-border-light)
     border-radius 5px
     background-color var(--theme-bg-soft)
     color var(--theme-text-light)
-    outline none
-    font-size 0.75em
+    white-space nowrap
+    font-size .75em
+    line-height 1
+    transition .3s
   .gt-header-textarea
-    font-family "JetBrains Mono", 'Microsoft YaHei', sans-serif
-    padding 0.75em
     display block
-    -webkit-box-sizing border-box
     box-sizing border-box
-    width 100%
+    padding .75em
     min-height 5.125em
     max-height 15em
-    border-radius 5px
-    border 1px solid var(--theme-border-light)
-    color var(--theme-text-light)
-    font-size 0.875em
-    word-wrap break-word
-    resize vertical
-    background-color var(--theme-bg-soft)
+    width 100%
     outline none
+    border 1px solid var(--theme-border-light)
+    border-radius 5px
+    background-color var(--theme-bg-soft)
+    color var(--theme-text-light)
+    word-wrap break-word
+    font-size .875em
+    font-family 'JetBrains Mono', 'Microsoft YaHei', sans-serif
+    resize vertical
     transition .3s
+    -webkit-box-sizing border-box
   .gt-header-controls-tip
-    font-size 0.875em
     vertical-align sub
+    font-size .875em
   .gt-header-controls .gt-btn
     float right
     margin-left 1.25em
   &:after
-    content ''
     position fixed
+    top 0
+    right 0
     bottom 100%
     left 0
-    right 0
-    top 0
+    content ''
     opacity 0
   .gt-comment-header
-    margin-bottom 0.5em
-    font-size 0.875em
     position relative
-.gt-container .gt-meta:before,
-.gt-container .gt-meta:after,
-.gt-container .gt-header-controls:before,
-.gt-container .gt-header-controls:after
-  content " "
+    margin-bottom .5em
+    font-size .875em
+
+.gt-container .gt-meta:before, .gt-container .gt-meta:after, .gt-container .gt-header-controls:before, .gt-container .gt-header-controls:after
   display table
+  content ' '
+
 .gt-comment-like, .gt-comment-reply
   fill var(--theme-highlight)
   &:hover
     fill var(--theme-text-hover)
+
 .gt-container .gt-comment-like
   height 1.375em
-.gt-container .gt-comment-edit,.gt-container .gt-comment-reply
+
+.gt-container .gt-comment-edit, .gt-container .gt-comment-reply
   position absolute
   height 1.375em
+
 .gt-container .gt-comment-edit:hover
   top 0
-.gt-container .gt-comment-edit,.gt-container .gt-comment-reply
+
+.gt-container .gt-comment-edit, .gt-container .gt-comment-reply
   top 0
   right 0
-@-webkit-keyframes gt-kf-rotate
-  0%
-    -webkit-transform rotate(0)
-    transform rotate(0)
-  100%
-    -webkit-transform rotate(360deg)
-    transform rotate(360deg)
-    -webkit-transform rotate(360deg)
-    transform rotate(360deg)
+
 @keyframes gt-kf-rotate
   0%
-    -webkit-transform rotate(0)
     transform rotate(0)
+    -webkit-transform rotate(0)
   100%
-    -webkit-transform rotate(360deg)
+    transform rotate(360deg)
     transform rotate(360deg)
     -webkit-transform rotate(360deg)
+    -webkit-transform rotate(360deg)
+
+@keyframes gt-kf-rotate
+  0%
+    transform rotate(0)
+    -webkit-transform rotate(0)
+  100%
     transform rotate(360deg)
+    transform rotate(360deg)
+    -webkit-transform rotate(360deg)
+    -webkit-transform rotate(360deg)

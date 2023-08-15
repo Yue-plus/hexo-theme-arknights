@@ -9,8 +9,9 @@ article
     line-height 150%
 
 .posts
+  background-color var(--theme-bg-trans1)
   margin-top 10px
-  padding-bottom 72px
+  margin-bottom 72px
   width 100%
   min-height calc(100vh - 82px)
   @media ( max-width 768px )
@@ -142,6 +143,3 @@ article
   .current
     color var(--theme-text-hover)
     background-color var(--theme-highlight)
-
-:where(.recent-post, #paginator *)
-  background-color var(--theme-bg-trans1)

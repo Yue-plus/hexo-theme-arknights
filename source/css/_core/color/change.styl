@@ -10,7 +10,7 @@
   .navItemTitle
     font-weight bold
   
-  aside a img:hover
+  aside img:hover
     background-color var(--theme-bg-soft)
 
   button
@@ -22,14 +22,11 @@
     &::after
       transform rotate(-180deg)
       animation clockwise .3s
-  @keyframes clockwise {
-    0% {
+  @keyframes clockwise
+    0%
       transform rotate(-270deg)
-    }
-    100% {
+    100%
       transform rotate(-180deg)
-    }
-  }
 
 [theme-mode=dark]
   #color-mode:hover::after
