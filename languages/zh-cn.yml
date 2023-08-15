@@ -5,6 +5,7 @@ page:
   readMore: 阅读文章 +
   noTag: 无标签
   noCategory: 无分类
+  sticky: 置顶
 
 post:
   posted: "文章发布时间: "

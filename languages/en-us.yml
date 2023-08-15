@@ -5,6 +5,7 @@ page:
   readMore: READ MORE +
   noTag: empty
   noCategory: NO CATEGORY
+  sticky: TOP
 
 post:
   posted: "First Post: "
