@@ -98,3 +98,10 @@ aside
   @extend aside
   @media (min-width 769px)
     position static
+
+aside, #aside-block
+  pointer-events none
+  #aside-block > *,
+  #about > * > *,
+  footer
+    pointer-events all
