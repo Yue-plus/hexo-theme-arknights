@@ -1,0 +1,85 @@
+header
+  order 1
+
+@media ( min-width 769px )
+  header
+    left 238px
+  .navBtn
+    left 1em
+
+@media ( max-width 1023px )
+  .navItemTitle:not(:only-child)::before
+    content ''
+    display inline-block
+    height 6px
+    width 6px
+    border-right 2px solid var(--theme-highlight)
+    border-top 2px solid var(--theme-highlight)
+    margin 7px 7px 2px 2px
+    transform rotate(45deg)
+
+@media ( min-width 1024px )
+  header
+    left unset
+    right 0
+  .navContent
+    display flex
+    flex-direction column
+    transform unset
+  .navItem
+    align-self end
+    padding-right 1.2em
+  .navBlock .navItemTitle:only-child::before
+    border-right 4px solid
+  .navContent .navBlock
+    &::before
+      content ''
+      height 100%
+      width 100%
+      position absolute
+      top 0
+      right 2em
+    &:hover > .navItemTitle
+      margin-left -1em
+    & > .navItemList
+      right calc(100% + 2em)
+  .navItemList
+    right 100%
+    .navItemTitle
+      text-align right
+      padding-right .8em
+      padding-left .5em
+    &::before
+      content ''
+      position absolute
+      top 0
+      left 0
+      width calc(100% + 1em)
+      height 100%
+  a.navSecond > .navItemTitle
+    padding-right 1em
+  div.navSecond > .navItemTitle
+    padding-right 2px
+  .navSecond:not(a):hover
+    left -.8em
+  .navSecond:hover::after
+    left .8em
+
+  .navItemTitle:not(:only-child)::after
+    box-sizing border-box
+    content ''
+    display inline-block
+    height 6px
+    width 6px
+    border-left 2px solid var(--theme-highlight)
+    border-bottom 2px solid var(--theme-highlight)
+    margin 7px 2px 2px 7px
+    transform rotate(45deg)
+
+@media ( min-width 1440px )
+  .navItem
+    padding-right 2.25em
+
+@media ( min-width 1920px )
+  .navItem
+    padding-right 5.25em

@@ -5,20 +5,21 @@ mixin expand_list(list)
       - match = config.category_dir + ',' + config.tag_dir
     li.navItem(matchdata=match)
       if typeof(url) === "object"
-        span.navItemTitle= label
-        ol.navItemList
-          +expand_list(url)
+        .navSecond
+          span.navItemTitle= label
+          ol.navItemList
+            +expand_list(url)
       else
-        a(href= url_for(url))
+        a.navSecond(href= url_for(url))
           span.navItemTitle= label
 
 header.closed
+  .navBtn
+    i.navBtnIcon
+      span.navBtnIconBar
+      span.navBtnIconBar
+      span.navBtnIconBar
   nav
-    .navBtn
-      i.navBtnIcon
-        span.navBtnIconBar
-        span.navBtnIconBar
-        span.navBtnIconBar
     if searchConfig !== null
       .navItem#search-header
         span.navItemTitle
@@ -35,7 +36,7 @@ header.closed
           - match = config.category_dir + ',' + config.tag_dir
         li.navItem(matchdata=match)
           if typeof(url) === "object"
-            div.navBlock
+            .navBlock
               span.navItemTitle= label
               ol.navItemList
                 +expand_list(url)

@@ -29,6 +29,8 @@ nav
   line-height 40px
   display inline-block
   width 100%
+  &:hover
+    background-color unset
   &:active
     background unset
 .navContent
@@ -46,35 +48,18 @@ nav
   .navItemTitle
     transition .3s
     width 100%
+    box-sizing border-box
     overflow-wrap break-word
     white-space normal
     position relative
     display block
-.active
-  & > :is(a, .navBlock) > .navItemTitle,
-  & > .navItemTitle
+.active > .navBlock > .navItemTitle
+  color var(--theme-highlight)
+  &::before
+    content ''
+    display block
     color var(--theme-highlight)
-    &::before
-      content ''
-      display block
-      color var(--theme-highlight)
-      border-color var(--theme-highlight)
-      width 100%
-      position absolute
-      left 0
-
-.navItemList
-  overflow visible
-  display none
-  top 0
-  text-align left
-  padding 0
-  .navItem
-    min-width max-content
-    margin 0
-    a
-      min-width max-content
-      padding 0
-      display block
-      width 100%
-      line-height 40px
+    border-color var(--theme-highlight)
+    width 100%
+    position absolute
+    left 0

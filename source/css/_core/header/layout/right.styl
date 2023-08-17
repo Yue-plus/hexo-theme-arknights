@@ -1,12 +1,6 @@
 @media ( min-width 769px )
   header
     left 0
-  aside
-    right 0
-
-@media ( min-width 992px, max-width 1919px )
-  aside
-    padding 0 25px 0 15px
 
 @media ( min-width 1024px )
   .navContent
@@ -15,10 +9,10 @@
     padding-left 1.2em
   .navBlock
     text-align right
-    .navItemTitle::before
+    .navItemTitle:only-child::before
       border-left 4px solid
       left 0
-  .navContent:not(.search) .navBlock
+  .navContent .navBlock
     &::before
       content ''
       height 100%
@@ -32,22 +26,29 @@
       left calc(100% + 2em)
   .navItemList
     left 100%
-    .navItem
-      padding-right 1px
-    .navItemTitle
-      padding-left .8em
-      padding-right .5em
-  .navItemList > .navItem > .navItemTitle:hover
-    padding-left 1.8em
+  a.navSecond > .navItemTitle
+    padding-left 1em
+  div.navSecond > .navItemTitle
+    padding-left 2px
+  .navSecond:not(a):hover
+    left .8em
+  .navSecond:hover::after
+    left -.8em
 
 @media ( min-width 1440px )
   .navItem
     padding-left 2.25em
-  aside
-    margin-left 10px
 
 @media ( min-width 1920px )
   .navItem
     padding-left 5.25em
-  aside
-    margin 0 2.5%
+
+.navItemTitle:not(:only-child)::before
+  content ''
+  display inline-block
+  height 6px
+  width 6px
+  border-right 2px solid var(--theme-highlight)
+  border-top 2px solid var(--theme-highlight)
+  margin 7px 7px 2px 2px
+  transform rotate(45deg)

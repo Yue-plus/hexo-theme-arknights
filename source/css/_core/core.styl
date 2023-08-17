@@ -10,6 +10,8 @@
 @import 'layout/single_page'
 
 if hexo-config('aside.in_left')
-  @import 'layout/left'
+  @import 'aside/layout/left'
+  @import 'header/layout/left'
 else
-  @import 'layout/right'
+  @import 'aside/layout/right'
+  @import 'header/layout/right'
