@@ -1,7 +1,7 @@
 .bottom-btn
   div
     a#to-top.i-top(onClick="scrolls.scrolltop();" title=__('btn.totop') style="opacity: 0; display: none;") ∧ 
-    if page.published
+    if page.content
       - const encrypted = page.encrypt || page.password
       - const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
       if tocContent.length > 0

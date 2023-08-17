@@ -1,0 +1,47 @@
+.navItemList
+  display none
+  overflow visible
+  top 0
+  text-align left
+  background-color var(--theme-background)
+  padding 0
+  width 100%
+  .navItem
+    padding unset
+    min-width max-content
+    margin 0
+  a
+    min-width max-content
+    padding 0
+    display block
+    width 100%
+    line-height 40px
+    &:hover > .navItemTitle
+      color var(--theme-text-hover)
+
+@media ( max-width 1023px )
+  .navItemList
+    padding-left 1em
+  .expanded
+    & > .navItemList
+      display inline-block
+    & > .navItemTitle::before
+      transform rotate(135deg)
+
+@media ( min-width 1024px )
+  .navSecond
+    left 0
+    transition .3s
+    position relative
+    &:hover
+      transition .3s
+    &:hover::after
+      content ''
+      position absolute
+      height 100%
+      width 100%
+      top 0
+  .navItemList
+    position absolute
+  .navItem > div:hover > .navItemList
+    display inline-block

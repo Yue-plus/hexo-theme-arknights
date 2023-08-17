@@ -7,17 +7,20 @@
     #search-header
       left calc(100vw - 238px)
     .search-popup
-      right 6px
-      transform translateX(6px)
-      left calc(100vw - 6px)
+      left calc(100vw - 238px)
+      right 0
+      transform translateX(100%)
       &.open
-        transform translateX(-100%)
+        transform translateX(0)
+  .navBtn
+    left calc(238px + 1em)
   header
     clip-path polygon(0 0, 0 100%, 100vw 100%, 100vw 0)
-  .search-popup
-    left 238px
 
 @media ( min-width 1024px )
+  nav.search,
+  nav.search-moving
+    overflow hidden
   .search .navItem:not(#search-header)
     transform translateX(100%)
   .search-popup
@@ -29,8 +32,9 @@
     input
       padding 0 10px 0 0
     .navItemTitle
-      padding-left 10px
       right 10px
       &::before
         border-right 4px solid var(--theme-border-light)
+        right 0
+      &::after
         right 0

@@ -481,10 +481,9 @@ class Header {
             }
         };
         this.inHeader = (mouse) => {
-            let item = mouse.target;
-            while (item !== this.header && item !== document.body)
-                item = getParent(item);
-            if (item !== this.header) {
+            let range = this.header.getBoundingClientRect();
+            if (mouse.clientX < range.x || mouse.clientY < range.y ||
+                mouse.clientX > range.right || mouse.clientY > range.bottom) {
                 this.close();
             }
         };
@@ -540,12 +539,8 @@ class Header {
         this.button.onclick = () => this.reverse(this.header);
         document.querySelectorAll('.navItemList').forEach((item) => {
             item = getParent(item);
-            if (item.classList.contains('navBlock')) {
-                item = getParent(item);
-            }
             item.addEventListener('click', (event) => {
-                if (getParent(event.target) === item ||
-                    getParent(event.target, 2) === item) {
+                if (getParent(event.target) === item) {
                     this.reverse(item);
                 }
             });

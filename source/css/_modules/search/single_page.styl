@@ -13,9 +13,6 @@
   .up
     .search-popup
       left 100vw
-      transform translateX(0)
-      &.open
-        transform translateX(-100%)
     article
       margin-top 50px
     .closed
@@ -27,25 +24,21 @@
       padding .5em 2em 0 5em
       animation get-in-top .3s
       position absolute
-      transform translateX(-100%)
       input
         animation none
     .search-popup
       top 55px
       height calc(100vh - 55px)
       background-color var(--theme-bg-trans0)
+      transform translateX(100%)
 
   #search-header
+    transition unset
     top 0
     width 100%
     box-sizing border-box
-    transform translateX(-100%)
     .navItemTitle
       border-color var(--theme-border-light)
-
-  .expanded #search-header
-    transition transform .6s
-    transform translateX(0)
   
   .down.moving header:not(.expanded) #search-header
     animation get-out-top .3s
@@ -68,13 +61,13 @@ animate-up(distance)
     0%
       padding .5em 2em 0 5em
       left distance
-      transform translate(-100%, 0)
+      transform translate(0, 0)
       position absolute
     100%
       padding .5em 2em 0 5em
       left distance
       position absolute
-      transform translate(-100%, -100%)
+      transform translate(0, -100%)
 
 @media ( min-width 769px )
   animate-up(calc(100vw - 238px))
@@ -85,8 +78,8 @@ animate-up(distance)
 @keyframes get-in-top
   0%
     padding .5em 2em 0 5em
-    transform translate(-100%, -100%)
+    transform translate(0, -100%)
   100%
     padding .5em 2em 0 5em
-    transform translate(-100%, 0)
+    transform translate(0, 0)
 
