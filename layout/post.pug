@@ -9,9 +9,10 @@ block content
     const excerptConf = theme.post.excerpt
     const reward = theme.post.reward
     const encrypted = page.encrypt || page.password
-    const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
-    const countWord = theme.post.count === true && wordcount !== undefined ? wordcount(page.content) : null
-    const countTime = theme.post.time === true && min2read !== undefined ? min2read(page.content) : null
+    const content = encrypted === undefined ? page.content : page.origin
+    const tocContent = toc(content, theme.toc)
+    const countWord = theme.post.count === true && wordcount !== undefined ? wordcount(content) : null
+    const countTime = theme.post.time === true && min2read !== undefined ? min2read(content) : null
   #post-bg
     #post-title
       h1= page.title

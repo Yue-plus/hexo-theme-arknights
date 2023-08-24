@@ -78,8 +78,9 @@ class Index {
   }
 
   constructor() {
-    document.addEventListener('pjax:success', this.setHTML)
     this.setHTML()
+    document.addEventListener('pjax:success', this.setHTML)
+    window.addEventListener('hexo-blog-decrypt', this.setHTML)
     getElement('main').addEventListener('scroll', () => {
       if (this.tocLink.length) {
         this.modifyIndex()
