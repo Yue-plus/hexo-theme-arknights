@@ -14,7 +14,7 @@
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Angine <https://angine.tech/>**
-- **Dr.sjfhsjfh <http://sjfh.top/>**
+- **Dr.sjfhsjfh <https://sjfh.top/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
