@@ -32,6 +32,10 @@ aside:
   dr: / # 侧边栏 Dr. 链接
   icp: # ICP 备案号，与版权声明相同，但会链接到 https://beian.miit.gov.cn/
   copyright: # 版权声明、备案号等，可自定义键值，不想显示则留空
+    # 萌:
+    #   萌ICP备XXXXXXXX号: https://icp.gov.moe/?keyword=XXXXXXXX
+    # copyright:
+    #   CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh
 
 # 社交链接
 # 格式：链接 || 图标
