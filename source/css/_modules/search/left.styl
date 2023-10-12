@@ -1,6 +1,7 @@
 @media ( max-width 1023px )
   .search .navItem:not(#search-header)
     transform translateX(-100%)
+    pointer-events none
 
 @media ( min-width 769px ) and ( max-width 1023px )
   .up
@@ -23,6 +24,7 @@
     overflow hidden
   .search .navItem:not(#search-header)
     transform translateX(100%)
+    pointer-event none
   .search-popup
     right 6px
     transform translateX(100%)
