@@ -34,7 +34,11 @@ aside
       each content, title in theme.aside.copyright
         nobr
           span.icp-title= title
-          span.icp-content= content
+          if typeof content === 'string'
+            span.icp-content= content
+          else
+            each href, name in content
+              a(href=href).icp-content= name
         br
     nobr #{__('footer.publish')} 
       a(href= 'http://hexo.io') Hexo
