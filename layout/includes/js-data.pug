@@ -59,7 +59,7 @@ script window.addEventListener("load",() => {
   if pjax
     |pjax = new Pjax({
     |  cacheBust: false,
-    |  selectors: ['title','article','#aside-block','.pjax-js'],
+    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax'],
     |  switches: {'article': Pjax.switches.sideBySide},
     |  switchesOptions: {
     |    'article': {

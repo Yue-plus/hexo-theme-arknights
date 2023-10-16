@@ -84,6 +84,7 @@ class Code {
   constructor() {
     this.findCode()
     document.addEventListener('pjax:success', this.findCode)
+    window.addEventListener('hexo-blog-decrypt', this.findCode)
   }
 }
 
