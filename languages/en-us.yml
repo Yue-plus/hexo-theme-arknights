@@ -19,8 +19,12 @@ post:
   next: ← Next
   prev: Prev →
 
+encrypt:
+  confirm: confirm
+
 code:
   codeInfo: $0 - $1 lines
+  copy: copy
 
 btn:
   index: To Catalog

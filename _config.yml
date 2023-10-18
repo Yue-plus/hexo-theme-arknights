@@ -113,7 +113,7 @@ waline:
 # 图表支持
 mermaid:
   enable: true
-  version: "9.2.2"
+  version: "10.5.0"
 
 # pjax 支持
 pjax:

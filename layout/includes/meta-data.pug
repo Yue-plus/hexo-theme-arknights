@@ -17,6 +17,7 @@ if theme.gitalk && theme.gitalk.enable === true
   script(src=url_for("js/gitalk.js"))
 if theme.mermaid && theme.mermaid.enable === true && theme.mermaid.version
   script(src= "//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
+  script mermaid.initialize({startOnLoad: false});
 if theme.mathjax && theme.mathjax.enable === true
   script(src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
   script
@@ -38,10 +39,11 @@ if theme.mathjax && theme.mathjax.enable === true
     |    displayMath: [["\\[", "\\]"]]
     |  }
     |});
+link(type="text/css" rel="stylesheet" href=url_for("/lib/encrypt/hbe.style.css"))
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css")
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css")
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css")
-link(type="text/css" rel="stylesheet" href=url_for('/lib/fontawesome/css/all.min.css'))
+link(type="text/css" rel="stylesheet" href=url_for("/lib/fontawesome/css/all.min.css"))
 
 link(rel="stylesheet", href=url_for("css/arknights.css"))
 if theme.stylesheets && theme.stylesheets.length > 0
