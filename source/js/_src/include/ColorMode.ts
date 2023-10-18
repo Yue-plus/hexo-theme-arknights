@@ -35,6 +35,7 @@ class ColorMode {
         window.localStorage['theme-mode'] = 'dark'
       }
       background.style.opacity = '0'
+      code.resetMermaid()
     })
     setTimeout(() => {
       document.body.removeChild(background)

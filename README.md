@@ -172,7 +172,9 @@ waline:
 
 ### 方案一：静态渲染
 
-可以使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器静态渲染，来显示数学公式：
+可以使用 [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) Hexo 过滤器静态渲染，来显示数学公式。
+
+建议先更换能更好处理数学公式的 markdown 渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)。
 
 1. 在 Hexo 目录下执行以下指令：
 
@@ -225,8 +227,6 @@ mathjax: true
 -\begin{eqnarray*}
 +\begin{eqnarray\*}
 ```
-
-或是更换能更好处理数学公式的渲染器 [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc)。
 
 ### 方案二：动态渲染
 
@@ -345,20 +345,9 @@ post:
 
 **注意： 前端加密并不可靠！**
 
-**注意！** 此加密插件会加密摘要内容，所以使用此插件时不能在正文中隐藏摘要。在 `_config.arknights.yaml` 文件中：
+经过修改的 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件已适配并集成在本主题中（目前仅支持 default 与 up 主题）。
 
-```yaml
-post:
-  excerpt: true # 是否在文章中显示摘要内容（<!-- more--> 以上的内容）
-```
-
-可尝试使用 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件进行文档加密。
-
-> 详细参考 [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md)
-
-```sh
-cnpm install hexo-blog-encrypt --save
-```
+> 详细配置参考 [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md)
 
 在 `Hexo/_config.yml` 文件中添加以下内容：
 
@@ -370,7 +359,6 @@ encrypt: # hexo-blog-encrypt
   tags:
   - {name: tagName, password: 密码A}
   - {name: tagName, password: 密码B}
-  template: <div id="hexo-blog-encrypt" data-wpm="{{hbeWrongPassMessage}}" data-whm="{{hbeWrongHashMessage}}"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="{{hbeMessage}}" /><label>{{hbeMessage}}</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="{{hbeHmacDigest}}">{{hbeEncryptedData}}</script></div>
   wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
   wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
 ```

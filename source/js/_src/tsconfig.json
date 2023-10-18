@@ -6,5 +6,8 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "outFile": "../arknights.js"
+  },
+  "compilerOptions": {
+    "moduleResolution": "node"
   }
 }

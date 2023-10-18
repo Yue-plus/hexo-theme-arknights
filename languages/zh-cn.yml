@@ -19,8 +19,12 @@ post:
   next: ← 下一篇
   prev: 上一篇 →
 
+encrypt:
+  confirm: 确认
+
 code:
   codeInfo: $0 - $1 行
+  copy: 复制
 
 btn:
   totop: 回到顶部

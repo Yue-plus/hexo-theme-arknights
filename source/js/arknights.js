@@ -174,6 +174,7 @@ class expands {
 let expand = new expands();
 class Code {
     constructor() {
+        this.mermaids = [];
         this.doAsMermaid = (item) => {
             let Amermaid = item.querySelector('.mermaid');
             item.outerHTML = '<div class="highlight mermaid">' + Amermaid.innerText + '</div>';
@@ -200,7 +201,7 @@ class Code {
         <span class="ex-title">${format(config.code.codeInfo, codeType, lineCount)}</span>
       </div>
       <div class="ex-content">${item.innerHTML}
-        <button class="code-copy"></button>
+        <button class="code-copy" title="${config.code.copy}"></button>
       </div>`;
             getElement('.code-copy', item).addEventListener('click', (click) => {
                 const button = click.target;
@@ -211,13 +212,12 @@ class Code {
                 }, 1200);
             });
         };
-        this.clearMermaid = () => {
-            document.querySelectorAll('.mermaid').forEach((item) => {
-                let style = item.querySelector('style');
-                if (style) {
-                    style.remove();
-                }
-            });
+        this.paintMermaid = () => {
+            if (typeof (mermaid) === 'undefined')
+                return;
+            mermaid.initialize(document.documentElement.getAttribute('theme-mode') === 'dark' ?
+                { theme: 'dark' } : { theme: 'default' });
+            mermaid.run({ querySelector: '.mermaid' });
         };
         this.findCode = () => {
             let codeBlocks = document.querySelectorAll('.highlight');
@@ -241,11 +241,21 @@ class Code {
                     }
                 });
             }
-            if (typeof (mermaid) !== 'undefined') {
-                mermaid.init();
-                this.clearMermaid();
-            }
+            document.querySelectorAll('.mermaid').forEach((item) => {
+                this.mermaids.push(item.outerHTML);
+            });
             expand.setHTML();
+            this.paintMermaid();
+        };
+        this.resetMermaid = () => {
+            if (typeof (mermaid) === 'undefined')
+                return;
+            let id = 0;
+            document.querySelectorAll('.mermaid').forEach((item) => {
+                item.outerHTML = this.mermaids[id];
+                ++id;
+            });
+            this.paintMermaid();
         };
         this.findCode();
         document.addEventListener('pjax:success', this.findCode);
@@ -819,6 +829,7 @@ class ColorMode {
                     window.localStorage['theme-mode'] = 'dark';
                 }
                 background.style.opacity = '0';
+                code.resetMermaid();
             });
             setTimeout(() => {
                 document.body.removeChild(background);
