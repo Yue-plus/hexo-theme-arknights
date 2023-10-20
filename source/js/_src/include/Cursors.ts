@@ -18,8 +18,9 @@ class Cursor {
     #post-bg img,
     .ex-header,
     .gt-user-inner,
-    .lg-container img,
-    .wl-sort>li,.vicon,.clickable`
+    .wl-sort>li,
+    #valine .vicon,#valine .vat,
+    .lg-container img,.clickable`
 
   private set = (X: number = this.nowX, Y: number = this.nowY) => {
     this.outer.transform =

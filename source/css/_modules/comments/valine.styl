@@ -1,6 +1,8 @@
 #valine
   color var(--theme-text-light)
   padding 10px 0
+  *
+    line-height normal
   code
     font-family 'JetBrains Mono'
   .vwrap
@@ -10,6 +12,7 @@
       background-color var(--theme-bg-soft-hover)
       border-color var(--theme-border)
   .vheader .vinput
+    line-height 1
     border-bottom-style solid
     &:focus
       color var(--theme-highlight)
@@ -22,9 +25,19 @@
     background-color var(--theme-bg-soft-hover)
   .vsys
     background-color transparent
+  .vmeta
+    margin 3px 0 3px 3px
   .vmeta .vat
+    transition .3s
     color var(--theme-subcolor)
+    padding-inline 3px
+  .vmeta .vnick
+    margin-left 3px
+  .vat:hover
+    color var(--theme-text-rev)
+    background-color var(--theme-highlight)
   .vcontent
+    margin-left 3px
     color var(--theme-text)
     border-left var(--theme-subcolor) solid 3px
     padding 0.625em 0 0.625em 20px
@@ -39,6 +52,8 @@
       background var(--theme-bg-trans0)
     p
       color var(--theme-text-light)
+  .vquote
+    margin-left 3px
   a, button, .vicon, .vnick, .vat
     cursor var(--cursor-data) 3 3, pointer
   a
