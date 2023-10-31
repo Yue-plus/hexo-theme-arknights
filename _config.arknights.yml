@@ -44,6 +44,8 @@ post:
   reward: # 文章末显示打赏二维码
     支付宝 | Alipay: img/Alipay.png
     微信 | Wechat: img/WeChat.png
+  count: true # 是否显示字数统计
+  time: true # 是否显示预计阅读时长
 
 # 文章内目录
 toc:
@@ -55,9 +57,27 @@ archives:
   categories_count: true # 是否显示分类总数
   tags_count: true # 是否显示标签总数
 
-# 搜索框
+# 搜索
 search:
   enable: true
+  content: true # 若为 false，仅可搜索标题及 metadata
+  preload: false # 自动加载搜索数据
+  # 设为 post 时，仅可搜索 post 页面
+  # 设为 page 时，仅可搜索非 post 页面
+  # 设为 all 时，可搜索全部页面
+  field: post
+  # 设为 html 时，依据 html 文件生成
+  # 设为 striptags 时，滤除 html tag
+  # 设为 raw 时，依据 markdown 源文件生成
+  format: striptags
+
+# 不蒜子
+# 详见 http://busuanzi.ibruce.info/
+busuanzi:
+  enable: true
+  showPV: true # Page View 单个用户连续点击 n 篇文章，记录 n 次访问量。
+  showUV: true # Unique Visitor 单个用户连续点击 n 篇文章，只记录 1 次访客数。
+
 
 # Valine 无后端评论系统
 valine:
@@ -91,7 +111,7 @@ menu:
 
 # pjax 支持
 pjax:
-  enable: true
+  enable: false
 
 # stylesheets loaded in the <head>
 stylesheets:
