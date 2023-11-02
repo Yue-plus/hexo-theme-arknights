@@ -15,7 +15,7 @@ class Cursor {
   private readonly attention: string =
     `a,input,button,textarea,
     .navBtnIcon,
-    #post-bg img,
+    #post-content img,
     .ex-header,
     .gt-user-inner,
     .wl-sort>li,

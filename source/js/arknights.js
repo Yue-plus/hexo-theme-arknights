@@ -274,11 +274,12 @@ class Cursor {
         this.nowY = 0;
         this.attention = `a,input,button,textarea,
     .navBtnIcon,
-    #post-bg img,
+    #post-content img,
     .ex-header,
     .gt-user-inner,
-    .lg-container img,
-    .wl-sort>li,.vicon,.clickable`;
+    .wl-sort>li,
+    #valine .vicon,#valine .vat,
+    .lg-container img,.clickable`;
         this.set = (X = this.nowX, Y = this.nowY) => {
             this.outer.transform =
                 `translate(calc(${X.toFixed(2)}px - 50%),
