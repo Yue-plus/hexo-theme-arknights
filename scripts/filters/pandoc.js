@@ -17,6 +17,5 @@ function initHeader(str) {
 hexo.extend.filter.register('after_post_render', (data) => {
   data.content = initHeader(data.content)
   data.more = initHeader(data.more)
-  console.log(data)
   return data
 });
