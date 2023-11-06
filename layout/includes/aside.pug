@@ -13,7 +13,7 @@ aside
             i(alt=name,class=value.split('||')[1].trim())
   #aside-block
     block aside-block
-    if page.published === undefined
+    if page.title === undefined
       section#total
         a#total-archives(href= url_for("archives"))
           span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
@@ -25,6 +25,14 @@ aside
           span.total-title #{__('menu.category.plural')}:
           span.total-number= site.categories.length
   footer(style= footerStyle)
+    if theme.aside.busuanzi
+      if page.title === undefined
+        span.busuanzi#busuanzi_container_site_pv(style='display:none') Site view total 
+          span#busuanzi_value_site_pv
+      else
+        span.busuanzi#busuanzi_container_page_pv(style='display:none') Page view total 
+          span#busuanzi_value_page_pv
+      br
     if theme.aside.icp !== null
       nobr
         span.icp-title ICP

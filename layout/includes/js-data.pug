@@ -15,6 +15,8 @@ script(src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js")
 script(src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js")
 script(src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js")
 script(src=url_for("/lib/encrypt/hbe.js"))
+if theme.aside.busuanzi
+  script.pjax-js(src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
 if pjax
   script(src=url_for("js/pjax.js"))
 
@@ -60,7 +62,7 @@ script window.addEventListener("load",() => {
   if pjax
     |pjax = new Pjax({
     |  cacheBust: false,
-    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax'],
+    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
     |  switches: {'article': Pjax.switches.sideBySide},
     |  switchesOptions: {
     |    'article': {
@@ -72,4 +74,10 @@ script window.addEventListener("load",() => {
     |  }
     |});
     |document.addEventListener("pjax:complete", reset);
+    if theme.aside.busuanzi
+      |document.addEventListener('pjax:success', _ => bszCaller.fetch(
+      |  "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+      |   bszTag.texts(a),
+      |   bszTag.shows()
+      |}));
   | reset()})

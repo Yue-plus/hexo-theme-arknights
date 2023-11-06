@@ -27,7 +27,7 @@ header.closed
             placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
             type="text" id="search-input")
       .navItem#search-holder
-      .search-popup
+      .search-popup(tabindex="0")
         #search-result
     ol.navContent
       each url, label in theme.menu
