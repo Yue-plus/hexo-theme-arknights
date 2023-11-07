@@ -24,6 +24,10 @@ aside
         #total-categories
           span.total-title #{__('menu.category.plural')}:
           span.total-number= site.categories.length
+        if theme.busuanzi.enable
+          #total-uv
+            span#busuanzi_container_site_uv(class='total-title') #{__('post.uniqueVisitor')}
+            span#busuanzi_value_site_uv(class='total-number')
   footer(style= footerStyle)
     if theme.aside.icp !== null
       nobr

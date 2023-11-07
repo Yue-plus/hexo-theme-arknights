@@ -13,6 +13,7 @@ block content
     const tocContent = toc(content, theme.toc)
     const countWord = theme.post.count === true && wordcount !== undefined ? wordcount(content) : null
     const countTime = theme.post.time === true && min2read !== undefined ? min2read(content) : null
+    const busuanzi = theme.busuanzi.enable
   #post-bg
     #post-title
       h1= page.title
@@ -44,6 +45,13 @@ block content
               br
             span #{__('post.timeTotal')}
               div.control #{countTime} #{__('post.timeUnit')}
+            - first = false
+          if busuanzi
+            if !first
+              br
+            span#busuanzi_container_site_pv #{__('post.pageView')}
+              span#busuanzi_value_site_pv(class='control')
+            - first = false
     hr
     #post-content
       if excerptConf || encrypted

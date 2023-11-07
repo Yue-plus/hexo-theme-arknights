@@ -85,6 +85,13 @@ search:
   # 设为 raw 时，依据 markdown 源文件生成
   format: striptags
 
+# 不蒜子
+# 详见 http://busuanzi.ibruce.info/
+busuanzi:
+  enable: false
+  showPV: true # Page View 单个用户连续点击 n 篇文章，记录 n 次访问量。
+  showUV: true # Unique Visitor 单个用户连续点击 n 篇文章，只记录 1 次访客数。
+
 # Valine
 # 详见 https://valine.js.org
 valine:
