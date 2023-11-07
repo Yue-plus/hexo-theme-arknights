@@ -341,6 +341,18 @@ post:
   time: true # 是否显示阅读时长统计
 ```
 
+## 浏览量统计
+
+使用 [不蒜子](http://busuanzi.ibruce.info/) 进行浏览量统计。
+修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件启用该功能：
+
+```yaml
+busuanzi:
+  enable: false
+  showPV: true # Page View 单个用户连续点击 n 篇文章，记录 n 次访问量。
+  showUV: true # Unique Visitor 单个用户连续点击 n 篇文章，只记录 1 次访客数。
+```
+
 ## 文档加密
 
 **注意： 前端加密并不可靠！**

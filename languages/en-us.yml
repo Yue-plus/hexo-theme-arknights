@@ -13,6 +13,9 @@ post:
   countTotal: "Word Count: "
   timeTotal: "Read Time: "
   timeUnit: min
+  siteView: "Site View: "
+  siteVisitor: "Visitor: "
+  pageView: "Page View: "
   index: Catalog
   reward: reward
   noTitle: No Title

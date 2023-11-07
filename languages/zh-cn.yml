@@ -13,6 +13,9 @@ post:
   countTotal: "文章总字数: "
   timeTotal: "预计阅读时间: "
   timeUnit: 分钟
+  siteView: "总访问量："
+  siteVisitor: "访客数："
+  pageView: "页面浏览："
   index: 目录
   reward: 打赏
   noTitle: 无标题

@@ -1,5 +1,9 @@
 if searchConfig !== null
   script(src=url_for("js/search.js"))
+
+if theme.busuanzi && theme.busuanzi.enable === true
+  script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
+
 if theme.waline && theme.waline.enable === true
   script(type='module').
     import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
