@@ -50,8 +50,12 @@ class Code {
   public paintMermaid = () => {
     if (typeof (mermaid) === 'undefined') return;
     mermaid.initialize(document.documentElement.getAttribute('theme-mode') === 'dark' ?
-      { theme: 'dark' } : { theme: 'default' });
-    mermaid.run({ querySelector: '.mermaid' })
+      { theme: 'dark' } : { theme: 'default' })
+    if (typeof(mermaid.run) !== 'undefined') {
+      mermaid.run({ querySelector: '.mermaid' })
+    } else {
+      mermaid.init()
+    }
   }
 
   public findCode = () => {
