@@ -217,7 +217,12 @@ class Code {
                 return;
             mermaid.initialize(document.documentElement.getAttribute('theme-mode') === 'dark' ?
                 { theme: 'dark' } : { theme: 'default' });
-            mermaid.run({ querySelector: '.mermaid' });
+            if (typeof (mermaid.run) !== 'undefined') {
+                mermaid.run({ querySelector: '.mermaid' });
+            }
+            else {
+                mermaid.init();
+            }
         };
         this.findCode = () => {
             let codeBlocks = document.querySelectorAll('.highlight');
