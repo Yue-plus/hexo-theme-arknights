@@ -13,7 +13,7 @@ aside
             i(alt=name,class=value.split('||')[1].trim())
   #aside-block
     block aside-block
-    if page.published === undefined
+    if page.title === undefined
       section#total
         a#total-archives(href= url_for("archives"))
           span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
@@ -25,9 +25,14 @@ aside
           span.total-title #{__('menu.category.plural')}:
           span.total-number= site.categories.length
         if theme.busuanzi.enable
-          #total-uv
-            span#busuanzi_container_site_uv(class='total-title') #{__('post.uniqueVisitor')}
-            span#busuanzi_value_site_uv(class='total-number')
+          #total-view
+            if theme.busuanzi.sitePV
+              span#busuanzi_container_site_pv(class='total-title') #{__('busuanzi.siteView')}
+                span#busuanzi_value_site_pv(class='total-number') #{__('busuanzi.loading')}
+              br
+            if theme.busuanzi.siteUV
+              span#busuanzi_container_site_uv(class='total-title') #{__('busuanzi.siteVisitor')}
+                span#busuanzi_value_site_uv(class='total-number') #{__('busuanzi.loading')}
   footer(style= footerStyle)
     if theme.aside.icp !== null
       nobr

@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+(() => {
   let fetched = false, fetching = false, waiting = false
   let datas
   const path = config.root + 'search.json'
@@ -319,4 +319,4 @@ window.addEventListener('DOMContentLoaded', () => {
       EscapeSearch()
     }
   })
-})
+})()

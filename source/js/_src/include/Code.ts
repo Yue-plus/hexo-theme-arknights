@@ -50,8 +50,12 @@ class Code {
   public paintMermaid = () => {
     if (typeof (mermaid) === 'undefined') return;
     mermaid.initialize(document.documentElement.getAttribute('theme-mode') === 'dark' ?
-      { theme: 'dark' } : { theme: 'default' });
-    mermaid.run({ querySelector: '.mermaid' })
+      { theme: 'dark' } : { theme: 'default' })
+    if (typeof(mermaid.run) !== 'undefined') {
+      mermaid.run({ querySelector: '.mermaid' })
+    } else {
+      mermaid.init()
+    }
   }
 
   public findCode = () => {
@@ -78,7 +82,6 @@ class Code {
       this.mermaids.push(item.outerHTML)
     })
     expand.setHTML()
-    this.paintMermaid();
   }
 
   public resetMermaid = () => {
@@ -88,7 +91,7 @@ class Code {
       item.outerHTML = this.mermaids[id]
       ++id
     })
-    this.paintMermaid();
+    this.paintMermaid()
   }
 
   constructor() {

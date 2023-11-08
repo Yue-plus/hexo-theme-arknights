@@ -1,79 +1,57 @@
+script(defer src=url_for("js/arknights.js"))
+
 if searchConfig !== null
-  script(src=url_for("js/search.js"))
+  script(defer src=url_for("js/search.js"))
 
 if theme.busuanzi && theme.busuanzi.enable === true
   script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
 
+if theme.valine && theme.valine.enable === true
+  script(async src='//unpkg.com/valine/dist/Valine.min.js')
+
+if theme.gitalk && theme.gitalk.enable === true
+  script(async src=url_for("js/gitalk.js"))
+
+if theme.mermaid && theme.mermaid.enable === true && theme.mermaid.version
+  script(defer type='module').
+    import mermaid from '#{"//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.esm.mjs"}';
+    window.mermaid = mermaid;
+    code.paintMermaid();
+
 if theme.waline && theme.waline.enable === true
-  script(type='module').
-    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  script(async type='module').
+    import { init } from '//unpkg.com/@waline/client@v2/dist/waline.mjs';
     window.waline = init;
+
+if theme.mathjax && theme.mathjax.enable === true
+  script(async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
+  script.
+    MathJax.Hub.Config({
+      menuSettings: {
+        zoom: "None"
+      },
+      showMathMenu: false,
+      jax: ["input/TeX","output/CommonHTML"],
+      extensions: ["tex2jax.js"],
+      TeX: {
+        extensions: ["AMSmath.js","AMSsymbols.js"],
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]]
+      }
+    });
 
 if theme.scripts && theme.scripts.length > 0
   //- scripts list from config.yml
   each url in theme.scripts
-    script(src=url)
+    script(defer src=url)
 
-script(src=url_for("js/arknights.js"))
-script(src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js")
-script(src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js")
-script(src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js")
-script(src=url_for("/lib/encrypt/hbe.js"))
-if pjax
-  script(src=url_for("js/pjax.js"))
-
-script.pjax-js reset= () => {
-  if theme.valine && theme.valine.enable === true
-    |new Valine({
-    |  el: '#valine'
-    |  , appId: '#{theme.valine.app_id}'
-    |  , appKey: '#{theme.valine.app_key}'
-    if theme.valine.server_url
-      | , serverURLs: '#{theme.valine.server_url}'
-    |  , placeholder: '#{__('valine.placeHolder')}'
-    |  , path: !{'window.location.pathname'}
-    |});
-  if theme.gitalk && theme.gitalk.enable === true
-    - let config = theme.gitalk, gitAdmin = ''
-    for str in theme.gitalk.admin
-      - gitAdmin= gitAdmin + "'" + str + "'"
-    |gitalk = new Gitalk({
-    |  clientID: '#{config.client_id}',
-    |  clientSecret: '#{config.client_secret}',
-    |  repo: '#{config.repo}',
-    |  owner: '#{config.owner}',
-    |  admin: [#{gitAdmin}],
-    |  distractionFreeMode: #{config.distraction_free_mode || false},
-    |  id: #{config.id ? config.id : ""}
-    |});
-    |if (document.querySelector("#gitalk")) gitalk.render("gitalk");
-  if theme.waline && theme.waline.enable === true
-    |if (document.querySelector('#waline'))
-    |  waline({
-    |    el: '#waline',
-    |    dark: ':root[theme-mode="dark"]',
-    |    serverURL: '#{theme.waline.server_url}',
-    |    path: !{'window.location.pathname'},
-    |  });
-  | document.querySelector('.lg-container')?.remove()
-  | lightGallery(document.getElementById('post-bg'), {
-  |   plugins: [lgZoom,lgThumbnail],
-  |   selector: '.item-img'})}
-
-script window.addEventListener("load",() => {
-  if pjax
-    |pjax = new Pjax({
-    |  cacheBust: false,
-    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax'],
-    |  switches: {'article': Pjax.switches.sideBySide},
-    |  switchesOptions: {
-    |    'article': {
-    |      classNames: {
-    |        remove: "pjax-out",
-    |        add: "pjax-in"
-    |      }
-    |    }
-    |  }
-    |});
-    |document.addEventListener("pjax:complete", reset);
-  | reset()})
+script(async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js")
+script(async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js")
+script(async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js")
+script(async src=url_for("/lib/encrypt/hbe.js"))
+include ./pjax.pug

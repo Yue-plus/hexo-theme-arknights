@@ -16,8 +16,8 @@ const defaultConfig = {
   'silent': false,
 };
 
-const keySalt = textToArray('hexo-blog-encrypt的作者们都是大帅比!');
-const ivSalt = textToArray('hexo-blog-encrypt是地表最强Hexo加密插件!');
+const keySalt = crypto.randomBytes(32);
+const ivSalt = crypto.randomBytes(32);
 
 // As we can't detect the wrong password with AES-CBC,
 // so adding an empty tag and check it when decrption.
@@ -79,7 +79,9 @@ hexo.extend.filter.register('after_post_render', (data) => {
 
   // read theme from file
   let template = `<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="{{hbeWrongPassMessage}}" data-whm="{{hbeWrongHashMessage}}">
-      <script id="hbeData" type="hbeData" data-hmacdigest="{{hbeHmacDigest}}">{{hbeEncryptedData}}</script>
+      <script id="hbeData" type="hbeData" data-hmacdigest="{{hbeHmacDigest}}" data-keysalt="{{hbeKeySalt}}" data-ivsalt="{{hbeIvSalt}}">
+        {{hbeEncryptedData}}
+      </script>
       <div class="hbe hbe-content">
         <div class="hbe hbe-input hbe-input-${theme}">
           <input class="hbe hbe-input-field hbe-input-field-${theme}" type="password" id="hbePass">
@@ -116,7 +118,9 @@ hexo.extend.filter.register('after_post_render', (data) => {
     .replace(/{{hbeHmacDigest}}/g, hmacDigest)
     .replace(/{{hbeWrongPassMessage}}/g, config.wrong_pass_message)
     .replace(/{{hbeWrongHashMessage}}/g, config.wrong_hash_message)
-    .replace(/{{hbeMessage}}/g, config.message);
+    .replace(/{{hbeMessage}}/g, config.message)
+    .replace(/{{hbeKeySalt}}/g, keySalt.toString('hex'))
+    .replace(/{{hbeIvSalt}}/g, ivSalt.toString('hex'));
   data.excerpt = data.more = config.abstract;
   return data;
 }, 1000);

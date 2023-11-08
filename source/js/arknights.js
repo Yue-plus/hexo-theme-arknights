@@ -217,7 +217,12 @@ class Code {
                 return;
             mermaid.initialize(document.documentElement.getAttribute('theme-mode') === 'dark' ?
                 { theme: 'dark' } : { theme: 'default' });
-            mermaid.run({ querySelector: '.mermaid' });
+            if (typeof (mermaid.run) !== 'undefined') {
+                mermaid.run({ querySelector: '.mermaid' });
+            }
+            else {
+                mermaid.init();
+            }
         };
         this.findCode = () => {
             let codeBlocks = document.querySelectorAll('.highlight');
@@ -245,7 +250,6 @@ class Code {
                 this.mermaids.push(item.outerHTML);
             });
             expand.setHTML();
-            this.paintMermaid();
         };
         this.resetMermaid = () => {
             if (typeof (mermaid) === 'undefined')
@@ -274,11 +278,12 @@ class Cursor {
         this.nowY = 0;
         this.attention = `a,input,button,textarea,
     .navBtnIcon,
-    #post-bg img,
+    #post-content img,
     .ex-header,
     .gt-user-inner,
-    .lg-container img,
-    .wl-sort>li,.vicon,.clickable`;
+    .wl-sort>li,
+    #valine .vicon,#valine .vat,
+    .lg-container img,.clickable`;
         this.set = (X = this.nowX, Y = this.nowY) => {
             this.outer.transform =
                 `translate(calc(${X.toFixed(2)}px - 50%),
@@ -367,7 +372,7 @@ class Cursor {
         observer.observe(document, { childList: true, subtree: true });
     }
 }
-window.onload = () => new Cursor();
+new Cursor();
 class Index {
     constructor() {
         this.lastIndex = -1;

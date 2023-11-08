@@ -15,11 +15,12 @@ class Cursor {
   private readonly attention: string =
     `a,input,button,textarea,
     .navBtnIcon,
-    #post-bg img,
+    #post-content img,
     .ex-header,
     .gt-user-inner,
-    .lg-container img,
-    .wl-sort>li,.vicon,.clickable`
+    .wl-sort>li,
+    #valine .vicon,#valine .vat,
+    .lg-container img,.clickable`
 
   private set = (X: number = this.nowX, Y: number = this.nowY) => {
     this.outer.transform =
@@ -117,4 +118,4 @@ class Cursor {
     observer.observe(document, { childList: true, subtree: true })
   }
 }
-window.onload = () => new Cursor()
+new Cursor();

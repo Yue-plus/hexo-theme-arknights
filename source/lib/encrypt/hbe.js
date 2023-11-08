@@ -6,19 +6,23 @@ let hbe = () => {
   const storage = window.localStorage;
 
   const storageName = 'hexo-blog-encrypt:#' + window.location.pathname;
-  const keySalt = textToArray('hexo-blog-encrypt的作者们都是大帅比!');
-  const ivSalt = textToArray('hexo-blog-encrypt是地表最强Hexo加密插件!');
 
 // As we can't detect the wrong password with AES-CBC,
 // so adding an empty div and check it when decrption.
 const knownPrefix = "<hbe-prefix></hbe-prefix>";
 
   const mainElement = document.getElementById('hexo-blog-encrypt');
+  if (mainElement === null) {
+    return
+  }
   const wrongPassMessage = mainElement.getAttribute('data-wpm');
   const wrongHashMessage = mainElement.getAttribute('data-whm');
   const dataElement = mainElement.getElementsByTagName('script')['hbeData'];
   const encryptedData = dataElement.innerText;
   const HmacDigist = dataElement.getAttribute('data-hmacdigest');
+  // If the plugin version is updated but the blog is not regenerated (e.g. caching), the legacy fixed salt value is used.
+  const keySalt = dataElement.dataset['keysalt'] ? hexToArray(dataElement.dataset['keysalt']) : textToArray('hexo-blog-encrypt的作者们都是大帅比!');
+  const ivSalt = dataElement.dataset['ivsalt'] ? hexToArray(dataElement.dataset['ivsalt']) : textToArray('hexo-blog-encrypt是地表最强Hexo加密插件!');
 
   function hexToArray(s) {
     return new Uint8Array(s.match(/[\da-f]{2}/gi).map(h => {

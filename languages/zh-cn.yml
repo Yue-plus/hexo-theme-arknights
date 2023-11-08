@@ -7,14 +7,18 @@ page:
   noCategory: 无分类
   sticky: 置顶
 
+busuanzi:
+  loading: "加载中..."
+  siteView: "总访问量："
+  siteVisitor: "访客数："
+  pageView: "页面浏览："
+
 post:
   posted: "文章发布时间: "
   edited: "最后更新时间: "
   countTotal: "文章总字数: "
   timeTotal: "预计阅读时间: "
   timeUnit: 分钟
-  pageView: "页面浏览："
-  uniqueVisitor: "总访问量："
   index: 目录
   reward: 打赏
   noTitle: 无标题

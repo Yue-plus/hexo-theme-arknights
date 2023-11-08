@@ -17,7 +17,7 @@ block content
   #post-bg
     #post-title
       h1= page.title
-      if (dateConf || updatedConf) && page.published
+      if (dateConf || updatedConf) && page.title
         #post-info
           - var first = true
           if dateConf
@@ -49,8 +49,8 @@ block content
           if busuanzi
             if !first
               br
-            span#busuanzi_container_site_pv #{__('post.pageView')}
-              span#busuanzi_value_site_pv(class='control')
+            span#busuanzi_container_page_pv #{__('busuanzi.pageView')}
+              span#busuanzi_value_page_pv(class='control') #{__('busuanzi.loading')}
             - first = false
     hr
     #post-content

@@ -7,14 +7,18 @@ page:
   noCategory: NO CATEGORY
   sticky: TOP
 
+busuanzi:
+  loading: "loading..."
+  siteView: "Site View: "
+  siteVisitor: "Visitor: "
+  pageView: "Page View: "
+
 post:
   posted: "First Post: "
   edited: "Last Update: "
   countTotal: "Word Count: "
   timeTotal: "Read Time: "
   timeUnit: min
-  pageView: "Page View: "
-  uniqueVisitor: "Unique Visitor: "
   index: Catalog
   reward: reward
   noTitle: No Title

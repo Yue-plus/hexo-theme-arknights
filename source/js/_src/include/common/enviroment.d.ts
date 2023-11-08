@@ -14,5 +14,6 @@ declare var config: {
 
 declare var mermaid: {
   run: Function
+  init: Function
   initialize: Function
 } | undefined

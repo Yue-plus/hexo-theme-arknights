@@ -102,8 +102,9 @@
 }
 
 .hbe-confirm {
-	margin-block: 2.5em;
-	height: 50px;
+	font-weight: bold;
+	margin-block: 1.8em;
+	height: 55px;
 	width: 70px;
 	background: #666666;
 }
