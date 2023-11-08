@@ -118,4 +118,4 @@ class Cursor {
     observer.observe(document, { childList: true, subtree: true })
   }
 }
-window.onload = () => new Cursor()
+new Cursor();

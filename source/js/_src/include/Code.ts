@@ -82,7 +82,6 @@ class Code {
       this.mermaids.push(item.outerHTML)
     })
     expand.setHTML()
-    this.paintMermaid();
   }
 
   public resetMermaid = () => {
@@ -92,7 +91,7 @@ class Code {
       item.outerHTML = this.mermaids[id]
       ++id
     })
-    this.paintMermaid();
+    this.paintMermaid()
   }
 
   constructor() {

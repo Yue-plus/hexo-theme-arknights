@@ -250,7 +250,6 @@ class Code {
                 this.mermaids.push(item.outerHTML);
             });
             expand.setHTML();
-            this.paintMermaid();
         };
         this.resetMermaid = () => {
             if (typeof (mermaid) === 'undefined')
@@ -373,7 +372,7 @@ class Cursor {
         observer.observe(document, { childList: true, subtree: true });
     }
 }
-window.onload = () => new Cursor();
+new Cursor();
 class Index {
     constructor() {
         this.lastIndex = -1;

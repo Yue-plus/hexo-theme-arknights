@@ -1,0 +1,64 @@
+if pjax
+  script(async src=url_for("js/pjax.js"))
+
+script.pjax-js reset= () => {
+  if theme.valine && theme.valine.enable === true
+    |new Valine({
+    |  el: '#valine'
+    |  , appId: '#{theme.valine.app_id}'
+    |  , appKey: '#{theme.valine.app_key}'
+    if theme.valine.server_url
+      | , serverURLs: '#{theme.valine.server_url}'
+    |  , placeholder: '#{__('valine.placeHolder')}'
+    |  , path: !{'window.location.pathname'}
+    |});
+  if theme.gitalk && theme.gitalk.enable === true
+    - let config = theme.gitalk, gitAdmin = ''
+    for str in theme.gitalk.admin
+      - gitAdmin= gitAdmin + "'" + str + "'"
+    |gitalk = new Gitalk({
+    |  clientID: '#{config.client_id}',
+    |  clientSecret: '#{config.client_secret}',
+    |  repo: '#{config.repo}',
+    |  owner: '#{config.owner}',
+    |  admin: [#{gitAdmin}],
+    |  distractionFreeMode: #{config.distraction_free_mode || false},
+    |  id: #{config.id ? config.id : ""}
+    |});
+    |if (document.querySelector("#gitalk")) gitalk.render("gitalk");
+  if theme.waline && theme.waline.enable === true
+    |if (document.querySelector('#waline'))
+    |  waline({
+    |    el: '#waline',
+    |    dark: ':root[theme-mode="dark"]',
+    |    serverURL: '#{theme.waline.server_url}',
+    |    path: !{'window.location.pathname'},
+    |  });
+  | document.querySelector('.lg-container')?.remove()
+  | lightGallery(document.getElementById('post-bg'), {
+  |   plugins: [lgZoom,lgThumbnail],
+  |   selector: '.item-img'})}
+
+script window.addEventListener("load",() => {
+  if pjax
+    |pjax = new Pjax({
+    |  cacheBust: false,
+    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+    |  switches: {'article': Pjax.switches.sideBySide},
+    |  switchesOptions: {
+    |    'article': {
+    |      classNames: {
+    |        remove: "pjax-out",
+    |        add: "pjax-in"
+    |      }
+    |    }
+    |  }
+    |});
+    |document.addEventListener("pjax:complete", reset);
+    if theme.busuanzi.enable
+      |document.addEventListener('pjax:success', _ => bszCaller.fetch(
+      |  "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
+      |   bszTag.texts(a),
+      |   bszTag.shows()
+      |}));
+  | reset()})
