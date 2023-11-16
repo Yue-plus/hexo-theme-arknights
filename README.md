@@ -15,6 +15,7 @@
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Angine <https://angine.tech/>**
 - **Dr.sjfhsjfh <https://sjfh.top/>**
+- **Dr.Voilone <https://note.voiblog.top/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
