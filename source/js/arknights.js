@@ -674,6 +674,7 @@ class Scroll {
                 this.height = 0;
                 this.visible = false;
                 this.totop = getElement('#to-top');
+                this.setListener();
             }
             catch (e) { }
         };
@@ -712,6 +713,31 @@ class Scroll {
         this.endTouch = (event) => {
             if (event.changedTouches[0].identifier === this.lastID) {
                 this.lastID = -1;
+            }
+        };
+        /**
+         * used for `supScroll` and `footNoteScroll` functions
+         */
+        this.setListener = () => {
+            getElement('#post-content').addEventListener('click', this.supScroll);
+            getElement('#footnotes').addEventListener('click', this.footNoteScroll);
+        };
+        this.supScroll = (event) => {
+            const target = event.target;
+            const targetParent = getParent(target);
+            if (targetParent?.tagName === 'SUP') {
+                event.preventDefault();
+                const hash = target.href.split('/').pop()?.slice(1) || '';
+                document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+        };
+        this.footNoteScroll = (event) => {
+            const target = event.target;
+            if (target.tagName === 'A') {
+                event.preventDefault();
+                const hash = target.href.split('/').pop()?.slice(1) || '';
+                document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
             }
         };
         document.addEventListener('pjax:success', this.setHTML);
