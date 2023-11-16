@@ -14,7 +14,7 @@
   "homepage": "https://github.com/Yue-plus/hexo-theme-arknights#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p source/js"
+    "build": "tsc -p source/js/_src/tsconfig.json"
   },
   "keywords": [],
   "dependencies": {
