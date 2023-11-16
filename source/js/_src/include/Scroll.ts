@@ -113,6 +113,7 @@ class Scroll {
       this.height = 0
       this.visible = false
       this.totop = getElement('#to-top')
+      this.setListener()
     } catch (e) {}
   }
 
@@ -151,6 +152,35 @@ class Scroll {
   private endTouch = (event: TouchEvent) => {
     if (event.changedTouches[0].identifier === this.lastID) {
       this.lastID = -1
+    }
+  }
+
+  /**
+   * used for `supScroll` and `footNoteScroll` functions
+   */
+  private setListener = () => {
+    getElement('#post-content').addEventListener('click', this.supScroll)
+    getElement('#footnotes').addEventListener('click', this.footNoteScroll)
+  }
+
+  private supScroll = (event: Event) => {
+    const target = event.target as HTMLAnchorElement
+    const targetParent = getParent(target)
+
+    if (targetParent?.tagName === 'SUP') {
+      event.preventDefault()
+      const hash = target.href.split('/').pop()?.slice(1) || ''
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+  }
+
+  private footNoteScroll = (event: Event) => {
+    const target = event.target as HTMLAnchorElement
+    if (target.tagName === 'A') {
+      event.preventDefault()
+      const hash = target.href.split('/').pop()?.slice(1) || ''
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
