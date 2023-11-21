@@ -16,6 +16,7 @@
 - **Dr.Angine <https://angine.tech/>**
 - **Dr.sjfhsjfh <https://sjfh.top/>**
 - **Dr.Voilone <https://note.voiblog.top/>**
+- **Zhongye1 <https://zhongye1.github.io/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
