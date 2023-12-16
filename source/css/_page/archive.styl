@@ -19,9 +19,9 @@
   padding-top 10px
   top 0
   height fit-content
-  max-height 100vh
+  @media ( min-width 769px )
+    max-height 100vh
   display flex
-  order -1
   flex-grow 1
   flex-direction column
 
@@ -47,7 +47,8 @@
 #Archives
   margin-bottom 30px
   margin-top 10px
-  min-height calc(100vh - 40px)
+  @media ( min-width 769px )
+    min-height calc(100vh - 40px)
   flex-grow 5
   position relative
   h2
@@ -71,6 +72,7 @@
   padding-bottom 30px
 
 .article-item
+  display flex
   position relative
   margin-bottom 15px
   &::after
@@ -111,3 +113,5 @@
 .control-archive
   width 75px
   display inline-block
+  & + a
+    width calc(100% - 75px)

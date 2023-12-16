@@ -576,7 +576,6 @@ class Scroll {
         this.notMoveY = false;
         this.reallyUp = false;
         this.intop = false;
-        this.lastID = -1;
         this.scrolltop = () => {
             getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' });
             this.totop.style.opacity = '0';
@@ -679,9 +678,6 @@ class Scroll {
             catch (e) { }
         };
         this.checkTouchMove = (event) => {
-            if (event.changedTouches[0].identifier === this.lastID) {
-                return;
-            }
             if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 &&
                 !this.reallyUp) {
                 this.notMoveY = true;
@@ -693,9 +689,8 @@ class Scroll {
                 document.querySelector('.moving')) {
                 return;
             }
-            if (getElement('article').getBoundingClientRect().top >= 0) {
+            if (this.intop || getElement('article').getBoundingClientRect().top >= 0) {
                 this.reallyUp = true;
-                this.lastID = event.changedTouches[0].identifier;
                 if (event.changedTouches[0].screenY > this.touchY) {
                     this.slideUp();
                 }
@@ -710,9 +705,9 @@ class Scroll {
             this.touchY = event.changedTouches[0].screenY;
             this.notMoveY = false;
         };
-        this.endTouch = (event) => {
-            if (event.changedTouches[0].identifier === this.lastID) {
-                this.lastID = -1;
+        this.checkPos = () => {
+            if (getElement('article').getBoundingClientRect().top < 0 && this.intop) {
+                this.slideDown();
             }
         };
         /**
@@ -743,7 +738,7 @@ class Scroll {
         document.addEventListener('pjax:success', this.setHTML);
         document.addEventListener('touchstart', this.startTouch);
         document.addEventListener('touchmove', this.checkTouchMove);
-        document.addEventListener('touchend', this.endTouch);
+        document.addEventListener('touchend', this.checkPos);
         document.addEventListener('wheel', (event) => {
             if (document.querySelector('.expanded') || window.innerWidth > 1024) {
                 return;

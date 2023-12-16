@@ -19,6 +19,7 @@ block content
     })
 
   #archive-flex
+    include includes/archive-aside.pug
     #Archives
       h1 #{__('menu.category.name')}: #{page.category}
       #Archives-bg
@@ -36,4 +37,3 @@ block content
         - })
         if config.per_page != 0
           #paginator!= paginator()
-    include includes/archive-aside.pug

@@ -13,7 +13,6 @@ class Scroll {
   private reallyUp: boolean = false
   private intop: boolean = false
   private totop: HTMLElement
-  private lastID: number = -1
 
   public scrolltop = () => {
     getElement('main').scroll({ top: 0, left: 0, behavior: 'smooth' })
@@ -118,9 +117,6 @@ class Scroll {
   }
 
   private checkTouchMove = (event: TouchEvent) => {
-    if (event.changedTouches[0].identifier === this.lastID) {
-      return
-    }
     if (Math.abs(event.changedTouches[0].screenX - this.touchX) > 50 &&
       !this.reallyUp) {
       this.notMoveY = true
@@ -132,9 +128,8 @@ class Scroll {
       document.querySelector('.moving')) {
       return
     }
-    if (getElement('article').getBoundingClientRect().top >= 0) {
+    if (this.intop || getElement('article').getBoundingClientRect().top >= 0) {
       this.reallyUp = true
-      this.lastID = event.changedTouches[0].identifier
       if (event.changedTouches[0].screenY > this.touchY) {
         this.slideUp()
       } else {
@@ -149,9 +144,10 @@ class Scroll {
     this.touchY = event.changedTouches[0].screenY
     this.notMoveY = false
   }
-  private endTouch = (event: TouchEvent) => {
-    if (event.changedTouches[0].identifier === this.lastID) {
-      this.lastID = -1
+
+  private checkPos = () => {
+    if(getElement('article').getBoundingClientRect().top < 0 && this.intop) {
+        this.slideDown()
     }
   }
 
@@ -188,7 +184,7 @@ class Scroll {
     document.addEventListener('pjax:success', this.setHTML)
     document.addEventListener('touchstart', this.startTouch)
     document.addEventListener('touchmove', this.checkTouchMove)
-    document.addEventListener('touchend', this.endTouch)
+    document.addEventListener('touchend', this.checkPos)
     document.addEventListener('wheel', (event: WheelEvent) => {
       if (document.querySelector('.expanded') || window.innerWidth > 1024) {
         return
