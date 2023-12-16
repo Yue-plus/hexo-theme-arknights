@@ -25,6 +25,7 @@ aside
           span.total-title #{__('menu.category.plural')}:
           span.total-number= site.categories.length
         if theme.busuanzi.enable
+          br
           #total-view
             if theme.busuanzi.sitePV
               span#busuanzi_container_site_pv(class='total-title') #{__('busuanzi.siteView')}

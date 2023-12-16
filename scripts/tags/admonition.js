@@ -21,7 +21,9 @@ function genBlock(name, args, data) {
         <div class="ex-header">
             <i class='i-status'></i>
             ${name !== 'detail' ? `<i class='i-adm i-${name}'></i>` : ''}
-            <span class="ex-title">${title}</span>
+            <span class="ex-title">${
+                hexo.render.renderSync({ text: title, engine: 'markdown' }).replaceAll(/<p>|<\/p>/g,"")
+            }</span>
         </div>
         <div class="ex-content">${hexo.render.renderSync({ text: data, engine: 'markdown' })}</div>
         </div>`;
