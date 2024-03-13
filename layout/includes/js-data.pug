@@ -24,7 +24,7 @@ if theme.waline && theme.waline.enable === true
     window.waline = init;
 
 if theme.mathjax && theme.mathjax.enable === true
-  script(async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
+  script(src="//cdnjs.cloudflare.com/ajax/libs/mathjax/" + theme.mathjax.version + "/MathJax.js")
   script.
     MathJax.Hub.Config({
       menuSettings: {
