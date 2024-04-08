@@ -106,6 +106,13 @@ waline:
   enable: false
   server_url: #Server_Url
 
+#Artalk
+#详见：https://artalk.js.org/
+artalk:
+  enable: false
+  server: https://artalk.server.instance/
+  site_name: My Blog
+
 # 图表支持
 mermaid:
   enable: true

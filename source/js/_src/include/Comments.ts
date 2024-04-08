@@ -4,7 +4,7 @@
 'use strict'
 
 class Comments {
-  private search: string[] = ["valine", "gitalk", "waline"]
+  private search: string[] = ["valine", "gitalk", "waline", "artalk"]
   private elements: Pair[] = []
 
   private setHTML = () => {
