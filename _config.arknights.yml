@@ -78,13 +78,15 @@ busuanzi:
   showPV: true # Page View 单个用户连续点击 n 篇文章，记录 n 次访问量。
   showUV: true # Unique Visitor 单个用户连续点击 n 篇文章，只记录 1 次访客数。
 
-
-# Valine 无后端评论系统
+# Valine
+# 详见 https://valine.js.org
 valine:
   enable: true
   app_id: LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz # <APP ID>
   app_key: Fu9giJfnidkCamaW89FUpidw # <APP KEY>
 
+# gitalk
+# 详见 https://github.com/gitalk/gitalk
 gitalk:
   enable: true
   client_id: 2beac2cf86ee679d97a7 # GitHub Application Client ID
@@ -95,6 +97,13 @@ gitalk:
   # Example: [adminA,adminB]
   id: location.pathname # (optional) The unique id of the page
   # Example: location.pathname
+
+#Artalk
+#详见：https://artalk.js.org/
+artalk:
+  enable: false
+  server: https://artalk.server.instance/ # 你的 Artalk 服务地址
+  site_name: My Blog # 站点名称，用于区分多个站点（可选）
 
 # 图表支持
 mermaid:
