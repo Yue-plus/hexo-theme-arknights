@@ -28,6 +28,17 @@ script.pjax-js reset= () => {
     |  , placeholder: '#{__('valine.placeHolder')}'
     |  , path: !{'window.location.pathname'}
     |});
+  if theme.artalk && theme.artalk.enable === true
+    |Artalk.init({
+    |  el: '#artalk',
+    |  server: '#{theme.artalk.server}',
+    if theme.color === "dark" || theme.color === "dark-only"
+      |  darkMode: 'true',
+    else if theme.color === "auto"
+      |  darkMode: 'auto',
+    if theme.artalk.site_name
+      |  site: '#{theme.artalk.site_name}',
+    |});
   if theme.gitalk && theme.gitalk.enable === true
     - let config = theme.gitalk, gitAdmin = ''
     for str in theme.gitalk.admin

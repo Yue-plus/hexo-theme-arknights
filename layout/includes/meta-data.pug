@@ -15,6 +15,9 @@ if theme.waline && theme.waline.enable === true
   link(rel="stylesheet", href= url_for('//unpkg.com/@waline/client@v2/dist/waline.css'))
 if theme.gitalk && theme.gitalk.enable === true
   script(src=url_for("js/gitalk.js"))
+if theme.artalk && theme.artalk.enable === true
+  link(type="text/css" rel="stylesheet" href="//unpkg.com/artalk@2.8.4/dist/Artalk.css")
+  script(async src="//unpkg.com/artalk@2.8.4/dist/Artalk.js")
 if theme.mermaid && theme.mermaid.enable === true && theme.mermaid.version
   script(src= "//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.min.js")
 if theme.mathjax && theme.mathjax.enable === true

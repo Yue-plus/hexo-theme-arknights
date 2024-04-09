@@ -168,6 +168,17 @@ waline:
   server_url: #Server_Url
 ```
 
+### Artalk
+
+本主题支持 [Artalk](https://artalk.js.org/) 。  
+请参考 [Waline官方文档](https://artalk.js.org/) 修改 Hexo 目录下的 `_config.arknights.yml` 文件:  
+```yaml
+artalk:
+  enable: false
+  server: https://artalk.server.instance/ # 你的 Artalk 服务地址
+  site_name: My Blog # 站点名称，用于区分多个站点（可选）
+```
+
 ## 数学公式
 
 本主题支持两种方案显示数学公式：
@@ -487,6 +498,7 @@ TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\s
 - [DarkLingYun](https://github.com/DarkLingYun)
 - [RyoJerryYu](https://github.com/RyoJerryYu)
 - [TTsdzb](https://github.com/TTsdzb)
+- [安擎Angine](https://github.com/angine04)
 
 ## 支援主题开发
 
