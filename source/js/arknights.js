@@ -914,7 +914,7 @@ class Selectors {
 }
 class Comments {
     constructor() {
-        this.search = ["valine", "gitalk", "waline"];
+        this.search = ["valine", "gitalk", "waline", "artalk"];
         this.elements = [];
         this.setHTML = () => {
             if (!document.querySelector('#comments .selector'))
