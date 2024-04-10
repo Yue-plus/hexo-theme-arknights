@@ -81,7 +81,7 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 - `CNAME`: GitHub Pages 部署时的自定义域名
 - `img/` 目录下的 `Alipay.png` 与 `WeChat.png` 为自己的收款二维码（1:1 比例的 `png` 图片）；
 
-可按需修改 `Hexo/themes/arknights/source/` 目录下的
+可按需修改 `Hexo/themes/arknights/source/` 目录下的：
 
 - `favicon.ico`：浏览器标签页上的图标（64*64，分辨率高了显示不出）
 - `README.md`: 部署仓库的 README
@@ -127,7 +127,7 @@ per_page: 10
 pagination_dir: page
 ```
 
-改为 0 即可。
+将 `per_page:` 改为 0 即可。
 
 ## 评论系统
 
@@ -162,9 +162,9 @@ gitalk:
   repo: # 用于存放评论数据的 GitHub 仓库
   owner: # 该 GitHub 仓库所有者
   admin: [] # 具有写该 GitHub 仓库权限的用户
-  # 例如: [adminA,adminB]
+            # 例如: [adminA,adminB]
   id: # (可选) 页面的唯一标识
-  # 例如: location.pathname
+      # 例如: location.pathname
 ```
 
 ### Waline
@@ -288,7 +288,7 @@ artalk:
    ```
 
 4. 用这种方案，不会造成 LaTeX 与 Markdown 语法之间的冲突。在文中使用 LaTeX 语法不需要转义。
-  以下公式可以直接使用，不会造成任何问题：
+   以下公式可以直接使用，不会造成任何问题：
 
    ```latex
    \epsilon_0
@@ -492,7 +492,7 @@ TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\s
 - [Stylus 中文网](http://stylus.bootcss.com/)
 - [Pug 模板引擎中文文档](https://www.pugjs.cn/api/getting-started.html)
 
-- 另外引用几个大佬的blog
+- 另外引用几个大佬的 Blog
   > - [Easy Hexo](https://easyhexo.com/)
   > - [让 Hexo 搭建的博客支持 LaTeX](http://cps.ninja/2019/03/16/hexo-with-latex/)
   > - [Hexo主题开发 - ﹏猴子请来的救兵 - 博客园](https://www.cnblogs.com/yyhh/p/11058985.html)

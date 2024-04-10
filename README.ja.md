@@ -127,7 +127,7 @@ per_page: 10
 pagination_dir: page
 ```
 
-0 に変更すればよいです。
+`per_page:` を 0 に変更すればよいです。
 
 ## コメントシステム
 
@@ -162,9 +162,9 @@ gitalk:
   repo: # コメントデータを保存する GitHub リポジトリ
   owner: # その GitHub リポジトリの所有者
   admin: [] # その GitHub リポジトリに書き込み権限を持つユーザー
-  # 例: [adminA,adminB]
+            # 例: [adminA,adminB]
   id: # (オプション) ページの一意の識別子
-  # 例: location.pathname
+      # 例: location.pathname
 ```
 
 ### Waline
