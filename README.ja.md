@@ -20,6 +20,7 @@
 - **Zhongye1 <https://zhongye1.github.io/>**
 - **Dr.yuanli-LFSW<https://blog.yuanli-lfsw.com/>**
 - **Dr.Rimrose: <https://blog.rimrose.site>**
+- **Dr.Laplacian: <https://rhinelab.kr>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 
