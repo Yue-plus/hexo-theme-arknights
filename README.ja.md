@@ -21,6 +21,7 @@
 - **Dr.yuanli-LFSW<https://blog.yuanli-lfsw.com/>**
 - **Dr.Rimrose: <https://blog.rimrose.site>**
 - **Dr.Laplacian: <https://rhinelab.kr>**
+- **Dr.Chen: <https://light-of-hers.github.io>**
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 
