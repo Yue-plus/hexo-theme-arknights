@@ -539,7 +539,10 @@ hexo serve --debug
 このテーマはお気に入れば：
 
 - star 頂戴いたします `(/▽＼)`  
-  > star 100 達成したら、新しいテーマの開発をスケジュールに入れます。  
+  > - star 100 達成したら、新しいテーマの開発をスケジュールに入れます。
+  > - 新しいテーマ開発中：
+  >   + [Yue-plus/astro-arknights](https://github.com/Yue-plus/astro-arknights)
+  >   + [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - 開発者の arknight id：`24444750`（中国 Bilibili 鯖）  
 - Tencent QQ の交流グループ：618221514  
 - Reward：

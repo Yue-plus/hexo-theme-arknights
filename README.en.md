@@ -531,7 +531,9 @@ If you enjoy this theme:
 
 - give me a star `(/▽＼)`
   > - √ `ヾ(✿ﾟ▽ﾟ)ノ` 100star for a new theme~
-  > - new theme developing: [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
+  > - New theme developing:
+  >   + [Yue-plus/astro-arknights](https://github.com/Yue-plus/astro-arknights)
+  >   + [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - Arknights ID of the developer: `24444750` (Chinese Bilibili server)
 - join Tencent QQ discussion group:618221514
 - reward/sponsor:
