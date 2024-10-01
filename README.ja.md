@@ -544,6 +544,6 @@ hexo serve --debug
   >   + [Yue-plus/astro-arknights](https://github.com/Yue-plus/astro-arknights)
   >   + [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - 開発者の arknight id：`24444750`（中国 Bilibili 鯖）  
-- Tencent QQ の交流グループ：618221514  
+- Tencent QQ の交流グループ：[618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - Reward：
   ![QRコード](./support.jpg)  

@@ -533,7 +533,7 @@ TypeScript 需要手动编译，请全局安装 `typescript` 后在 `arknights\s
   >   + [Yue-plus/astro-arknights](https://github.com/Yue-plus/astro-arknights)
   >   + [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - 开发者的B服ID：`24444750`
-- 加入 QQ 群：618221514
+- 加入 QQ 群：[618221514](https://qm.qq.com/q/QJ7NPWiWyK)
   > 群内开发为主，吹水晒卡，分享线索7也都欢迎哦~ `d=====(￣▽￣*)b`
 - 打赏、赞助:
   ![收款二维码](./support.jpg)

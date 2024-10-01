@@ -535,6 +535,6 @@ If you enjoy this theme:
   >   + [Yue-plus/astro-arknights](https://github.com/Yue-plus/astro-arknights)
   >   + [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - Arknights ID of the developer: `24444750` (Chinese Bilibili server)
-- join Tencent QQ discussion group:618221514
+- Join Tencent QQ discussion group: [618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - reward/sponsor:
   ![Reward QR code](./support.jpg)
