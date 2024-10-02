@@ -1,6 +1,7 @@
 | [简体中文](README.md)
 | [English](README.en.md)
 | [日本語](README.ja.md)
+|
 
 # hexo-theme-arknights
 
@@ -14,12 +15,19 @@
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Angine <https://angine.tech/>**
-- **Dr.sjfhsjfh <http://sjfh.top/>**
+- **Dr.sjfhsjfh <https://sjfh.top/>**
 - **Dr.Voilone <https://note.voiblog.top/>**
+- **Zhongye1 <https://zhongye1.github.io/>**
+- **Dr.yuanli-LFSW<https://blog.yuanli-lfsw.com/>**
+- **Dr.Rimrose: <https://blog.rimrose.site>**
+- **Dr.Laplacian: <https://rhinelab.kr>**
+- **Dr.Chen: <https://light-of-hers.github.io>**
 
 If you're using this theme, we will appreciate it if you could put your link here for a preview!  
 
 ![Preview image](./demo.jpg)
+
+## Install
 
 ## System requirements
 
@@ -27,47 +35,43 @@ If you're using this theme, we will appreciate it if you could put your link her
 - [Newest Hexo](https://hexo.io/)
   > Hexo >= `6.0.0`;
   > hexo-cli >= `4.3.0`;
-- It is recommended to use `cnpm` to install dependencies if you're in mainland China. Please refer to [npmmirror](https://npmmirror.com/)
 
-## Install
 
 ### Use `hexo-cli` to create a new blog project
 
-(and clone this repo into it)  
-
-```shell script
+```shell
 hexo init Hexo
 cd Hexo
 npm install
 git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
 ```
 
-Note: For `cnpm` users, please replace `npm` with `cnpm`. Same below.  
-
 ### Install dependencies
 
 For npm users:
 
-```shell script
+```shell
 npm install hexo-server hexo-browsersync hexo-renderer-pug --save
 ```
 
 For yarn users:
 
-```shell script
+```shell
 yarn add hexo-server hexo-browsersync hexo-renderer-pug
 ```
 
 ### Edit configurations
 
 - Edit `_config.yml` under folder `Hexo/`. You can refer to [Hexo](https://hexo.io/docs/configuration).  
-    - Change the value of `theme:` to `arknights`
+    - Change the default value of `theme:` from `landscape` to `arknights`
     - Enable code highlighting:
+
       ```yml
       highlight:
         hljs: true
       ```
-- **Move** `Hexo/themes/arknights/_config.yml` to the root directory of Hexo, and rename it to `_config.arknights.yml`.  
+
+- **Move** `Hexo/themes/arknights/_config.yml` to the root directory of Hexo, and rename it to `_config.arknights.yml`.
   > Please refer to:
   > - [Alternate Theme Config](https://hexo.io/docs/configuration#Alternate-Theme-Config)
   
@@ -75,17 +79,22 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
 ### Edit asset files
 
-These files in folder `Hexo/themes/arknights/source/` can be modified as needed:
-- `favicon.ico`:Icons on browser tabs
+The following files can be added to the `Hexo/source` directory as needed:
+
 - `CNAME`: Custom domain name when GitHub Pages is deployed
+- The `Alipay.png` and `WeChat.png` in the `img/` directory are your own QR codes (1:1 scale `png` images); 
+
+You can modify the `Hexo/themes/arknights/source/` directory as needed:
+
+- `favicon.ico`: Icons on browser tabs (64*64, not displayed if the resolution is high)
 - `README.md`: README for deployment repository
-- `Alipay.png` and `WeChat.png` in folder `img/` can be replaced with your own reward QR code (1:1 scale `png` image);  
 
 ## Writing
 
 - Please refer to [Hexo | Writing](https://hexo.io/docs/writing).
 - There are some [sample texts](https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/_posts) available in the Hexo branch.  
 - To add tags and categories, or for more features, please refer to [Hexo | Front-matter](https://hexo.io/docs/front-matter). Example:
+
   ```markdown
   ---
   title: 'Hello World !'
@@ -100,17 +109,28 @@ These files in folder `Hexo/themes/arknights/source/` can be modified as needed:
 ## Custom pages in the top navigation bar
 
 - Example: Creating an `about` page  
-  Run the following commands in `Hexo` directory  
-  ```shell script
-  hexo new page 'about'
-  ```
-  Hexo will create an `about` folder in `Hexo/source/`  
+  + Run the commands `hexo new page 'about'` in `Hexo` directory
+  + Hexo will create an `about` folder in `Hexo/source/`  
 - Edit file `Hexo/source/about/index.md`  
-- Edit `_config.arknights.yml`, and add a link there:  
+- Edit `_config.arknights.yml`, and add a link there:
+
   ```yml
   menu:
     About: /about
   ```
+
+## Disable Archive Page Turning
+
+This setting is located in the Hexo configuration file `_config.yml` about line 88.
+
+```yaml
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+```
+
+Change `per_page:` to 0。
 
 ## Comment systems
 
@@ -129,7 +149,8 @@ valine:
 
 For notifications with email: [zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
 
-> **Note!** `server_url:` is ONLY required when using *LeanCloud international version* .  
+> **Note!** `server_url:` is ONLY required when using *LeanCloud international version*.
+> This setting can be found in the LeanCloud application in `Settings -> Application Credentials -> Domain Whitelist -> Request Domain` for the domain name ending in '.api.lncldglobal.com' and add the 'https:' prefix.
 
 ### Gitalk
 
@@ -160,6 +181,18 @@ waline:
   server_url: #Server_Url
 ```
 
+### Artalk
+
+The theme supports [Artalk](https://artalk.js.org/).  
+Please refer to Artalk docs and edit `_config.arknights.yml` in your Hexo directory.
+
+```yaml
+artalk:
+  enable: false
+  server: https://artalk.server.instance/ # 你的 Artalk 服务地址
+  site_name: My Blog # 站点名称，用于区分多个站点（可选）
+```
+
 ## Mathematical formulas
 
 The theme supports two scenarios for displaying math formulas:  
@@ -168,57 +201,59 @@ The theme supports two scenarios for displaying math formulas:
 
 You can use [hexo-filter-mathjax](https://github.com/next-theme/hexo-filter-mathjax) filter to render math formulas statically:  
 
+It is recommended to replace the markdown renderer [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) that can better handle mathematical formulas first.
+
 1. Run the following commands in your Hexo directory:  
 
-```shell script
-# Install hexo-filter-mathjax
-cnpm install hexo-filter-mathjax --save
-# Clean the cache
-hexo clean
-```
+   ```shell script
+   # Install hexo-filter-mathjax
+   cnpm install hexo-filter-mathjax --save
+   # Clean the cache
+   hexo clean
+   ```
 
 2. Add the following into `Hexo/_config.yml`:  
 
-```yaml
-mathjax:
-  tags: none # or 'ams' or 'all'
-  single_dollars: true # use single '$' as inline math formula delimiter
-  cjk_width: 0.9 # Relatively CJK character width
-  normal_width: 0.6 # Relatively normal width
-  append_css: true # Add CSS to every pages
-  every_page: false # If true, then every page will be rendered by mathjax, regardless of the `mathjax` setting in the front-matter of each article
-```
+   ```yaml
+   mathjax:
+     tags: none # or 'ams' or 'all'
+     single_dollars: true # use single '$' as inline math formula delimiter
+     cjk_width: 0.9 # Relatively CJK character width
+     normal_width: 0.6 # Relatively normal width
+     append_css: true # Add CSS to every pages
+     every_page: false # If true, then every page will be rendered by mathjax, regardless of the `mathjax` setting in the front-matter of each article
+   ```
 
 3. Add `mathjax: true` in the [Front-matter](https://hexo.io/docs/front-matter) of article that requires mathjax to be enabled:  
 
-```markdown
----
-title: On the Electrodynamics of Moving Bodies
-categories: Physics
-date: 1905-06-30 12:00:00
-mathjax: true
----
-```
+   ```markdown
+   ---
+   title: On the Electrodynamics of Moving Bodies
+   categories: Physics
+   date: 1905-06-30 12:00:00
+   mathjax: true
+   ---
+   ```
 
-Then, you can use LaTeX in your articles.  
+   Then, you can use LaTeX in your articles.  
 
 4. Please note that inline math formulas (… `$<math formula>$` ...) cannot have spaces after the opening `$` and before the closing `$`! For example:  
 
-```diff
--$ \epsilon_0 $
-+$\epsilon_0$
--$ \frac{\partial}{\partial t} $
-+$\frac{\partial}{\partial t}$
-```
+   ```diff
+   - $ \epsilon_0 $
+   + $\epsilon_0$
+   - $ \frac{\partial}{\partial t} $
+   + $\frac{\partial}{\partial t}$
+   ```
 
 5. Be aware of the conflict between LaTeX and Markdown syntax. Use `\` to escape if necessary:  
 
-```diff
--$\epsilon_0$
-+$\epsilon\_0$
--\begin{eqnarray*}
-+\begin{eqnarray\*}
-```
+   ```diff
+   - $\epsilon_0$
+   + $\epsilon\_0$
+   - \begin{eqnarray*}
+   + \begin{eqnarray\*}
+   ```
 
 ### Option 2: Dynamic rendering
 
@@ -226,42 +261,42 @@ The theme also supports [MathJax](https://www.mathjax.org/), to dynamically rend
 
 1. First, uninstall the hexo-renderer-marked renderer that comes with Hexo by default, and replace with [hexo-renderer-kramed](https://github.com/sun11/hexo-renderer-kramed) with better MathJax support:  
 
-```shell
-npm uninstall hexo-renderer-marked --save
-npm install hexo-renderer-kramed --save
-```
+   ```shell
+   npm uninstall hexo-renderer-marked --save
+   npm install hexo-renderer-kramed --save
+   ```
 
 2. Edit `_config.arknights.yml` in your **Hexo directory**:  
 
-```diff
-# Formula support
-mathjax:
--  enable: false
-+  enable: true
-  version: '2.6.1'  # important
-```
+   ```diff
+     # Formula support
+     mathjax:
+   -   enable: false
+   +   enable: true
+       version: '2.6.1'  # important
+   ```
 
 3. Then, you can use LaTeX in your articles:  
 
-```latex
-% Single-line inline formula
-% Note that you need to put "`" on both sides, and there can be no space between "`" and "$"
-`$\sigma$`
-
-% Multi-line formula
-$$
-\begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
-&= x\end{aligned}
-$$
-```
+   ```latex
+   % Single-line inline formula
+   % Note that you need to put "`" on both sides, and there can be no space between "`" and "$"
+   `$\sigma$`
+   
+   % Multi-line formula
+   $$
+   \begin{aligned}f(x) &= \sum_{i=1}^{\infty}{\frac{x}{2^i}} \\
+   &= x\end{aligned}
+   $$
+   ```
 
 4. With this scheme, there will be no conflict between LaTeX and Markdown syntax. Escaping is not required to use LaTeX syntax in the text.  
-The following formulas can be used directly without any problems:  
+   The following formulas can be used directly without any problems:  
 
-```latex
-\epsilon_0
-\begin{eqnarray*}
-```
+   ```latex
+   \epsilon_0
+   \begin{eqnarray*}
+   ```
 
 The hexo-renderer-kramed plugin has other configurable items, please refer to the plugin documentation: https://github.com/sun11/hexo-renderer-kramed  
 
@@ -269,31 +304,32 @@ Advantages and disadvantages of these formula display schemes:
 
 1. Dynamic rendering does not require escaping, and can better support Markdown files exported from other places. But since it needs to be rendered in the browser, the page display will be slightly delayed.  
 2. The static rendering compiles the formula directly into the static file, which has better display performance, but the syntax needs to be escaped.  
+3. [hexo-renderer-pandoc](https://github.com/wzpan/hexo-renderer-pandoc) quickly displays formulas without having to go through the hassle of escaping syntax, but requires Pandoc to be installed.
 
 ## Chart support
 
 Edit `_config.arknights.yml` in your **Hexo directory**:  
 
 ```diff
- # Chart support
- mermaid:
--  enable: false
-+  enable: true
-   version: '8.13.5'
+  # Chart support
+  mermaid:
+-   enable: false
++   enable: true
+    version: '8.13.5'
 ```
 
-The theme renders various charts via mermaid-js. **[Examples](https://ark.theme.yueplus.ink/mermaid/)**
+The theme renders various charts via mermaid-js. **[Examples](https://arknights.theme.hexo.yue.zone/mermaid/)**
 
 Supports:
-[Flow Chart](https://ark.theme.yueplus.ink/mermaid/#%E6%B5%81%E7%A8%8B%E5%9B%BE)
-| [Sequence Diagram](https://ark.theme.yueplus.ink/mermaid/#%E5%BA%8F%E5%88%97%E5%9B%BE)
-| [Class Diagram](https://ark.theme.yueplus.ink/mermaid/#%E7%B1%BB%E5%9B%BE)
-| [State Diagram](https://ark.theme.yueplus.ink/mermaid/#%E7%8A%B6%E6%80%81%E5%9B%BE)
-| [Entity Relationship Diagram](https://ark.theme.yueplus.ink/mermaid/#%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E5%9B%BE)
-| [User Journey Map](https://ark.theme.yueplus.ink/mermaid/#%E7%94%A8%E6%88%B7%E6%97%85%E7%A8%8B%E5%9B%BE)
-| [Gantt Chart](https://ark.theme.yueplus.ink/mermaid/#%E7%94%98%E7%89%B9%E5%9B%BE)
-| [Instruction Map](https://ark.theme.yueplus.ink/mermaid/#%E6%8C%87%E4%BB%A4%E5%9B%BE)
-| [Pie Chart](https://ark.theme.yueplus.ink/mermaid/#%E9%A5%BC%E5%9B%BE)
+[Flow Chart](https://arknights.theme.hexo.yue.zone/mermaid/#%E6%B5%81%E7%A8%8B%E5%9B%BE)
+| [Sequence Diagram](https://arknights.theme.hexo.yue.zone/mermaid/#%E5%BA%8F%E5%88%97%E5%9B%BE)
+| [Class Diagram](https://arknights.theme.hexo.yue.zone/mermaid/#%E7%B1%BB%E5%9B%BE)
+| [State Diagram](https://arknights.theme.hexo.yue.zone/mermaid/#%E7%8A%B6%E6%80%81%E5%9B%BE)
+| [Entity Relationship Diagram](https://arknights.theme.hexo.yue.zone/mermaid/#%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BB%E5%9B%BE)
+| [User Journey Map](https://arknights.theme.hexo.yue.zone/mermaid/#%E7%94%A8%E6%88%B7%E6%97%85%E7%A8%8B%E5%9B%BE)
+| [Gantt Chart](https://arknights.theme.hexo.yue.zone/mermaid/#%E7%94%98%E7%89%B9%E5%9B%BE)
+| [Instruction Map](https://arknights.theme.hexo.yue.zone/mermaid/#%E6%8C%87%E4%BB%A4%E5%9B%BE)
+| [Pie Chart](https://arknights.theme.hexo.yue.zone/mermaid/#%E9%A5%BC%E5%9B%BE)
 
 Syntax:
 
@@ -333,26 +369,26 @@ post:
   time: true # Display reading time statistics
 ```
 
-## Document encryption
+## Views statistics
 
-**Note: Front-end encryption is not reliable!**
-
-**Note!** This encryption plugin encrypts the digest content, so it is not possible to hide digests in the body when using this plugin. In `_config.arknights.yaml`:  
+Use [不蒜子](http://busuanzi.ibruce.info/) for page view statistics.
+Modify the `_config.arknights.yml` file in the **Hexo directory** to enable this feature:
 
 ```yaml
-post:
-  excerpt: true # Whether to show digest in the article(contents before <!-- more--> )   <===== cannot be false
+busuanzi:
+  enable: false
+  sitePV: true # Total Site Visits
+  siteUV: true # Number of site visitors
+  pagePV: true # Page Views
 ```
 
-You can try the [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) plugin for document encryption.  
+## Document encryption
 
-> Detailed reference: [hexo-blog-encrypt/ReadMe.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.md)
+The modified [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) plugin has been adapted and integrated into this theme (currently only the default and up themes are supported).
 
-```sh
-cnpm install hexo-blog-encrypt --save
-```
+> For detailed configuration reference [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt)
 
-Add the following into `Hexo/_config.yml`:  
+Add the following to the `Hexo/_config.yml` file:
 
 ```yml
 # Security
@@ -362,7 +398,6 @@ encrypt: # hexo-blog-encrypt
   tags:
   - {name: tagName, password: PassowrdA}
   - {name: tagName, password: PasswordB}
-  template: <div id="hexo-blog-encrypt" data-wpm="{{hbeWrongPassMessage}}" data-whm="{{hbeWrongHashMessage}}"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="{{hbeMessage}}" /><label>{{hbeMessage}}</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="{{hbeHmacDigest}}">{{hbeEncryptedData}}</script></div>
   wrong_pass_message: Failed to verify password with Rhodes Island™, please try again.
   wrong_hash_message: Failed to validate password with Rhodes Island™, currently viewing with temporary privileges.
 ```
@@ -415,15 +450,15 @@ put JavaScript file into `Hexo/source/js/`;
 Then edit `Hexo/_config.arknights.yml`:  
 
 ```diff
- # Include CSS stylesheets inside `<head>` tags
- stylesheets:
- - //unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css
-+- /css/custom.css
- 
- # Introduce JavaScript at the end of `<body>`
- scripts:
- - //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
-+- /js/custom.js
+  # Include CSS stylesheets inside `<head>` tags
+  stylesheets:
+  - //unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css
++ - /css/custom.css
+  
+  # Introduce JavaScript at the end of `<body>`
+  scripts:
+  - //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
++ - /js/custom.js
 ```
 
 > The resource folder is where a user stores his resources.  
@@ -432,47 +467,63 @@ Then edit `Hexo/_config.arknights.yml`:
 >
 > -- From [Hexo Official Documentation](https://hexo.io/docs/setup#source)
 
-## Contribute
+## Participate in the development
 
-### Developers
-
-- [Yue_plus](https://github.com/Yue-plus)
-- [Laurenfrost](https://github.com/Laurenfrost)
-- [ToUNVRSe](https://github.com/ToUNVRSe)
-- [飞龙project](https://github.com/feilongproject)
-- [DarkLingYun](https://github.com/DarkLingYun)
-- [RyoJerryYu](https://github.com/RyoJerryYu)
-- [TTsdzb](https://github.com/TTsdzb)
-
-> Welcome to submit [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) and [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)  
+Welcome to submit [Issues](https://github.com/Yue-plus/hexo-theme-arknights/issues/new) and [PR](https://github.com/Yue-plus/hexo-theme-arknights/pulls)
 
 ### Branch description
 
-| 分支       | 说明                            |
-|----------|-------------------------------|
-| main     | A relatively stable version    |
-| dev      | Development version            |
-| gh-pages | gh-page hosting               |
+| Branch   | Illustrate                                                        |
+|----------|-------------------------------------------------------------------|
+| main     | A relatively stable version                                       |\
+| gh-pages | gh-page hosting                                                   |
 | hexo     | Hexo directory, where you can fine `.md` files to test your theme |
 
 ### Bugs and solutions that may encounter during development
 
-<!--
-#### Modifying the `.pug` template file does not automatically refresh the page.
-Workaround: Comment out
-`pugRenderer.compile = pugCompile;`
-in the file
-`./node_modules/hexo-renderer-pug/lib/pug.js`.  
--->
-
 #### Modified TS file does not take effect
 
-This is because after splitting the file, JavaScript is compiled manually instead. Please install `typescript` and run `tsc` in `arknights\source\js` to compile.  
+TypeScript needs to be compiled manually, please install `typescript` globally and execute `tsc` in the `arknights\source\js\_src` directory to compile it.
 
 #### Long articles are not fully rendered when running 'hexo serve --debug'
 
-This is caused by `hexo-browsersync`, and will not affect the release.  
-Workaround: Just disable this plugin since it doesn't affect the release.  
+This is caused by `hexo-browsersync`, and will not affect the release.
+
+Workaround: Disable the plugin. (Anyway, it doesn't affect the release, no matter what)
+
+### Documentation that may be required to participate in the development
+
+- [Hexo](https://hexo.io/docs/templates.html)
+- [Stylus](https://stylus-lang.com/)
+- [Pug](https://pugjs.org/api/getting-started.html)
+
+- Also quote a few big guy blogs
+  > - [Easy Hexo](https://easyhexo.com/)
+  > - [让 Hexo 搭建的博客支持 LaTeX](http://cps.ninja/2019/03/16/hexo-with-latex/)
+  > - [Hexo主题开发 - ﹏猴子请来的救兵 - 博客园](https://www.cnblogs.com/yyhh/p/11058985.html)
+  > - [Hexo主题开发经验杂谈 | MARKSZのBlog](https://molunerfinn.com/make-a-hexo-theme/)
+  > - [Hexo 主题开发指南 | Peak Xin's Blog](https://xinyufeng.net/2019/04/15/hexo-theme-guide/)
+
+### Developers
+
+- [ToUNVRSe](https://github.com/ToUNVRSe)
+- [Yue_plus](https://github.com/Yue-plus)
+- [TTsdzb](https://github.com/TTsdzb)
+- [arkerny](https://github.com/arkerny)
+- [DarkLingYun](https://github.com/DarkLingYun)
+- [Laurenfrost](https://github.com/Laurenfrost)
+- [安擎Angine](https://github.com/angine04)
+- [飞龙project](https://github.com/feilongproject)
+- [sjfhsjfh](https://github.com/sjfhsjfh)
+- [Thexvoilone](https://github.com/Thexvoilone)
+- [RyoJerryYu](https://github.com/RyoJerryYu)
+- [wmz1024](https://github.com/wmz1024)
+- [madisontanle](https://github.com/madisontanle)
+- [SherkeyXD](https://github.com/SherkeyXD)
+- [soundofautumn](https://github.com/soundofautumn)
+- [LongFengShuanWu](https://github.com/LongFengShuanWu)
+- [Zhongye1](https://github.com/Zhongye1)
+- [ChisatoNishikigi73](https://github.com/ChisatoNishikigi73)
 
 ## Reward
 
@@ -480,9 +531,10 @@ If you enjoy this theme:
 
 - give me a star `(/▽＼)`
   > - √ `ヾ(✿ﾟ▽ﾟ)ノ` 100star for a new theme~
-  > - new theme developing: [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
+  > - New theme developing:
+  >   + [Yue-plus/astro-arknights](https://github.com/Yue-plus/astro-arknights)
+  >   + [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
 - Arknights ID of the developer: `24444750` (Chinese Bilibili server)
-- join Tencent QQ discussion group:618221514
+- Join Tencent QQ discussion group: [618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - reward/sponsor:
-
-![Reward QR code](./support.jpg)
+  ![Reward QR code](./support.jpg)

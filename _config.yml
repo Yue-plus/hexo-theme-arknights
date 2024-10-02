@@ -119,6 +119,13 @@ waline:
   enable: false
   server_url: #Server_Url
 
+#Artalk
+#详见：https://artalk.js.org/
+artalk:
+  enable: false
+  server: https://artalk.server.instance/ # 你的 Artalk 服务地址
+  site_name: My Blog # 站点名称，用于区分多个站点（可选）
+
 # 图表支持
 mermaid:
   enable: true

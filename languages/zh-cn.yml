@@ -11,7 +11,7 @@ busuanzi:
   loading: "加载中..."
   siteView: "总访问量："
   siteVisitor: "访客数："
-  pageView: "页面浏览："
+  pageView: "页面浏览: "
 
 post:
   posted: "文章发布时间: "
