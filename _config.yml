@@ -39,7 +39,8 @@ aside:
 
 # 社交链接
 # 格式：链接 || 图标
-# 所有可用图标参考：https://fontawesome.com/icons
+# 图标支持链接与 FontAwesome
+# FontAwesome 格式可用图标参考：https://fontawesome.com/icons
 social:
   # GitHub: https://github.com/yourname || fab fa-github
   # E-Mail: mailto:yourname@gmail.com || fa fa-envelope
