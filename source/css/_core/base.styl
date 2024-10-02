@@ -139,3 +139,27 @@ input
   cursor var(--cursor) 3 3, text
   user-select none
   font-family 'JetBrains Mono', 'Microsoft YaHei', '\5b8b\4f53', sans-serif
+
+.task-list
+  padding-left 1em
+  li
+    display block
+    margin-block .5em
+    [type=checkbox]
+      display none
+    &::before
+      content ''
+      display inline-block
+      position relative
+      top 3px
+      height .9em
+      width .9em
+      border-radius 3px
+      background-color var(--theme-bg-soft)
+      border 1px var(--theme-highlight) solid
+  li[checked]::before
+    content '\2713'
+    line-height 1em
+    text-align center
+    color var(--theme-text-light)
+    

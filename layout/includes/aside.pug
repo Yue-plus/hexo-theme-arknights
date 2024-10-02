@@ -9,8 +9,13 @@ aside
     if theme.social
       #social-links
         each value, name in theme.social
-          a.social(href= value.split('||')[0].trim())
-            i(alt=name,class=value.split('||')[1].trim())
+          - let icon = value.split('||')[1].trim(), src = value.split('||')[0].trim()
+          if icon.substring(0,3) === 'fa ' || icon.substring(0,4) === 'fab '
+            a.social(href= src)
+              i(alt= name,class= icon)
+          else
+            a.social.img(href= src)
+              img(alt= name,src= icon)
   #aside-block
     block aside-block
     if page.title === undefined
