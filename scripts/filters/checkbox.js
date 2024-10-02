@@ -9,7 +9,6 @@ function fixCheckBox(str) {
 }
 
 hexo.extend.filter.register('after_post_render', (data) => {
-  console.log(data.content)
   data.content = fixCheckBox(data.content)
   data.more = fixCheckBox(data.more)
   return data
