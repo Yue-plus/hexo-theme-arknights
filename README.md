@@ -432,7 +432,16 @@ search:
 除了 [Hexo 支持的 Front-matter](https://hexo.io/zh-cn/docs/front-matter) 还支持：
 
 ```yaml
-# 文章页右上角发布/更新日期
+# 文章发布/更新日期
+post-time: true/false
+
+# 文章阅读时间/词数统计
+post-count: true/false
+
+# 文章不蒜子统计
+busuanzi: true/false
+
+# 开启/关闭以上全部
 post-info: true/false
 
 # 侧边栏的目录
@@ -441,6 +450,45 @@ post-index: true/false
 # 打赏框
 reward: true/false
 ```
+
+## 额外标签
+
+### admonition
+
+```text
+{% note/warning/success/failure/detail [title] [open/fold] [color] %}
+content
+{% end[note/warning/success/failure/detail] %}
+```
+
+添加提示、警告、错误等块式内容，其中 `note/warning/success/failure` 有图标，`detail` 无图标。
+
+### hide
+
+```
+{% hide content %}
+```
+
+隐藏内容，content 支持 markdown 渲染、可以有空格，无须使用引号。
+
+### link card/linkc
+
+```
+{% linkcard %}
+Title1:
+    avatar: https://someLink/someAvatar.png
+    src: https://someLink/
+    img: https://somelink/somePicture.png
+    descr: someDescr
+    style:
+    	color: someColor
+Title2:
+    avatar: https://someLink/someName.png
+    src: https://someLink/
+{% endlinkcard %}
+```
+
+可生成一组友链，标题（title）、与链接（src）为必选项。样式（style）遵循 CSS 格式。
 
 ## 引入自定义 CSS/JS 文件
 
