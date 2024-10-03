@@ -4,20 +4,20 @@ block content
   -
     const prev = page.prev
     const next = page.next
-    const dateConf = page.time !== false && theme.post.date
-    const updatedConf = page.time !== false && theme.post.updated
+    const dateConf = page['post-time'] !== false && theme.post.date
+    const updatedConf = page['post-time' ] !== false && theme.post.updated
     const excerptConf = theme.post.excerpt
     const reward = theme.post.reward
     const encrypted = page.encrypt || page.password
     const content = encrypted === undefined ? page.content : page.origin
     const tocContent = toc(content, theme.toc)
-    const countWord = page.count !== false && theme.post.count === true && wordcount !== undefined ? wordcount(content) : null
-    const countTime = page.count !== false && theme.post.time === true && min2read !== undefined ? min2read(content) : null
+    const countWord = page['post-count'] !== false && theme.post.count === true && wordcount !== undefined ? wordcount(content) : null
+    const countTime = page['post-count'] !== false && theme.post.time === true && min2read !== undefined ? min2read(content) : null
     const busuanzi = page.busuanzi !== false && theme.busuanzi.enable
   #post-bg
     #post-title
       h1= page.title
-      if (dateConf || updatedConf) && page.title
+      if (dateConf || updatedConf || countWord || countTime || busuanzi) && page.title && page['post-info']
         #post-info
           - var first = true
           if dateConf
