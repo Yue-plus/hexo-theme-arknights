@@ -469,7 +469,7 @@ content
 {% hide content %}
 ```
 
-用黑色隐藏内容（content），支持 markdown 渲染。content 中可以有空格，无须使用引号。
+隐藏内容，content 支持 markdown 渲染、可以有空格，无须使用引号。
 
 ### link card/linkc
 
