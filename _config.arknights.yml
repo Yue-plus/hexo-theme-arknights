@@ -22,7 +22,7 @@ aside:
   block_in_top: false # 目前为侧边栏文章目录置顶
   icp: 赣ICP备19008355号 # ICP 备案号，与版权声明相同，但会链接到 https://beian.miit.gov.cn/
   copyright: # 版权声明、备案号等，可自定义键值，不想显示则留空
-    ©: 1970 to 2020
+    ©: 1970 to 2024
 
 # 社交链接
 # 格式：链接 || 图标
@@ -117,6 +117,7 @@ menu:
   #  Contact: contact/
   Archives: archives/
   独立页面: demo/
+  贡献者: contributors/
 
 # pjax 支持
 pjax:
