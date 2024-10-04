@@ -10,7 +10,7 @@ aside
       #social-links
         each value, name in theme.social
           - let icon = value.split('||')[1].trim(), src = value.split('||')[0].trim()
-          if icon.substring(0,3) === 'fa ' || icon.substring(0,4) === 'fab '
+          if icon.substring(0,2) === 'fa'
             a.social(href= src)
               i(alt= name,class= icon)
           else
