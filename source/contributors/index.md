@@ -108,6 +108,6 @@ Renze Chen:
 
 本页使用了 [额外标签](https://github.com/Yue-plus/hexo-theme-arknights?tab=readme-ov-file#%E9%A2%9D%E5%A4%96%E6%A0%87%E7%AD%BE) 语法。
 
-如果想要参考语法，或者想要更新本页请 [点击查看源文件](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/source/demo/index.md) 。
+如果想要参考语法，或者想要更新本页请 [点击查看源文件](https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/source/contributors/index.md) 。
 
 {% endnote %}
