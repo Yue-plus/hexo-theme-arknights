@@ -432,7 +432,16 @@ search:
 In addition to [Front-matter supported by Hexo](https://hexo.io/docs/front-matter), the theme also supports:  
 
 ```yaml
-# Published/updated date in the top right corner of the article page
+# Article Published/updated date
+post-time: true/false
+
+# Article reading time/word count statistics
+post-count: true/false
+
+# Article busuanzi counter
+busuanzi: true/false
+
+# Turn on/off all of the above
 post-info: true/false
 
 # Sidebar table of contents
@@ -441,6 +450,45 @@ post-index: true/false
 # Rewards
 reward: true/false
 ```
+
+## extra label
+
+### admonition
+
+```text
+{% note/warning/success/failure/detail [title] [open/fold] [color] %}
+content
+{% end[note/warning/success/failure/detail] %}
+```
+
+Add block based content such as note, warning, error, etc. with icons for `note/warning/success/failure` and no icons for `detail`.
+
+### hide
+
+```
+{% hide content %}
+```
+
+Hidden content, supports markdown rendering, can have spaces, and does not require quotation marks.
+
+### link card/linkc
+
+```
+{% linkcard %}
+Title1:
+    avatar: https://someLink/someAvatar.png
+    src: https://someLink/
+    img: https://somelink/somePicture.png
+    descr: someDescr
+    style:
+    	color: someColor
+Title2:
+    avatar: https://someLink/someName.png
+    src: https://someLink/
+{% endlinkcard %}
+```
+
+A set of friendly links can be generated, with the title and link (src) as mandatory options. Style follows CSS format.
 
 ## Import custom CSS/JS files
 

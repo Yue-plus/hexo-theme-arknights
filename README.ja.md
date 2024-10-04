@@ -432,7 +432,16 @@ search:
 [Hexo サポートの Front-matter](https://hexo.io/ja/docs/front-matter.html) もサポート：
 
 ```yaml
-# 記事ページ右上のパブリッシュ/更新日
+# 投稿/更新日
+post-time: true/false
+
+# 記事の読み込み時間/語数の統計
+post-count: true/false
+
+# 記事の読み取り回数
+busuanzi: true/false
+
+# 以上すべてオン/オフ
 post-info: true/false
 
 # サイドバーのディレクトリ
@@ -441,6 +450,45 @@ post-index: true/false
 # に報いる
 reward: true/false
 ```
+
+## 追加ラベル
+
+### admonition
+
+```text
+{% note/warning/success/failure/detail [title] [open/fold] [color] %}
+content
+{% end[note/warning/success/failure/detail] %}
+```
+
+ヒント、警告、エラーなどのブロックコンテンツを追加します。その中で、`note/warning/success/failure` はアイコンがあり、`detail` はアイコンがありません。
+
+### hide
+
+```
+{% hide content %}
+```
+
+コンテンツを非表示にし、content は markdown レンダリングをサポートし、引用符を使用する必要はありません。
+
+### link card/linkc
+
+```
+{% linkcard %}
+Title1:
+    avatar: https://someLink/someAvatar.png
+    src: https://someLink/
+    img: https://somelink/somePicture.png
+    descr: someDescr
+    style:
+    	color: someColor
+Title2:
+    avatar: https://someLink/someName.png
+    src: https://someLink/
+{% endlinkcard %}
+```
+
+友達チェーンのセットを生成できます。タイトル（title）、リンク（src）は必須です。スタイル（style）は CSS フォーマットに準拠しています。
 
 ## カスタム CSS/JS ファイルの導入
 
