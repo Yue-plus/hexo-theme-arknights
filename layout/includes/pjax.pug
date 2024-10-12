@@ -11,6 +11,8 @@ script.pjax-js reset= () => {
       | , serverURLs: '#{theme.valine.server_url}'
     |  , placeholder: '#{__('valine.placeHolder')}'
     |  , path: !{'window.location.pathname'}
+    |  , avatar: '#{theme.valine.avatar}'
+    |  , avatar_cdn: '#{theme.valine.avatar_cdn}'
     |});
   if theme.gitalk && theme.gitalk.enable === true
     - let config = theme.gitalk, gitAdmin = ''
