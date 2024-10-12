@@ -145,6 +145,8 @@ valine:
   app_id: # APP ID
   app_key: # APP KEY
   server_url: # APP DOMAIN（LeanCloud 国际版）
+  avatar: 'retro' # (''/mp/identicon/monsterid/wavatar/robohash/retro/hide)
+  avatar_cdn: 'https://dn-qiniu-avatar.qbox.me/avatar/' # 自定义 avatar cdn
 ```
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)

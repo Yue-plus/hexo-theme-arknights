@@ -144,7 +144,9 @@ valine:
   enable: false
   app_id: # APP ID
   app_key: # APP KEY
-  server_url: # APP DOMAIN（LeanCloud 国际版）
+  server_url: # APP DOMAIN（LeanCloud 国際版）
+  avatar: 'retro' # (''/mp/identicon/monsterid/wavatar/robohash/retro/hide)
+  avatar_cdn: 'https://dn-qiniu-avatar.qbox.me/avatar/' # カスタム avatar CDN
 ```
 
 メール通知を有効にする：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)

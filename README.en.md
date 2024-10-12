@@ -145,6 +145,8 @@ valine:
   app_id: # APP ID
   app_key: # APP KEY
   server_url: # APP DOMAIN (LeanCloud international version requires this)
+  avatar: 'retro' # (''/mp/identicon/monsterid/wavatar/robohash/retro/hide)
+  avatar_cdn: 'https://dn-qiniu-avatar.qbox.me/avatar/' # Custom avatar cdn
 ```
 
 For notifications with email: [zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
