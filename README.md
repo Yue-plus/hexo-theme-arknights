@@ -22,6 +22,7 @@
 - **Dr.Rimrose: <https://blog.rimrose.site>**
 - **Dr.Laplacian: <https://rhinelab.kr>**
 - **Dr.Chen: <https://light-of-hers.github.io>**
+- **Dr.Linyee <https://linyee.world/>**
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
