@@ -23,6 +23,7 @@
 - **Dr.Laplacian: <https://rhinelab.kr>**
 - **Dr.Chen: <https://light-of-hers.github.io>**
 - **Dr.Linyee <https://linyee.world/>**
+- **Dr.Flacier <https://fldicoahkiin.github.io>**
 
 
 If you're using this theme, we will appreciate it if you could put your link here for a preview!  
