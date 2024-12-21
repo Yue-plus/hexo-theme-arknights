@@ -24,7 +24,7 @@
 - **Dr.Chen: <https://light-of-hers.github.io>**
 - **Dr.Linyee <https://linyee.world/>**
 - **Dr.Flacier <https://fldicoahkiin.github.io>**
-- **Dr.LZW <https://lzwnb.github.io/blog/>**
+- **Dr.LZW <https://lzwnb.github.io/blog/>** 😋😋
 
 このテーマを使ったあなたのブログリンク、ここに付けたいなら大歓迎~　　
 
