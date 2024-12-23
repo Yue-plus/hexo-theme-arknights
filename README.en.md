@@ -46,7 +46,7 @@ If you're using this theme, we will appreciate it if you could put your link her
 hexo init Hexo
 cd Hexo
 npm install
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
+git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights --depth=1
 ```
 
 ### Install dependencies

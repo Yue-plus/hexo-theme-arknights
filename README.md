@@ -46,7 +46,7 @@
 hexo init Hexo
 cd Hexo
 cnpm install
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
+git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights --depth=1
 ```
 
 ### 安装依赖
