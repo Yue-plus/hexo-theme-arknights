@@ -1,7 +1,10 @@
 aside
   #about
     a(href=config.root)#logo
-      img(src= asideLogo, alt= "Logo", style={'border-radius': theme.aside.logo_border_radius})
+      img(src= asideLogo, alt= "Logo", style= {
+        margin: theme.aside.logo_margin,
+        'border-radius': theme.aside.logo_border_radius
+      })
     h1#Dr
       a(href= theme.aside.dr)= config.author
     #description
