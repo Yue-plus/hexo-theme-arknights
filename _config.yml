@@ -128,6 +128,7 @@ encrypt: # hexo-blog-encrypt
   enable: true
   abstract: 与 Rhodes Island™ 取得弱神经连接时需要口令
   message: 请输入与 Rhodes Island™ 取得弱神经连接时的口令：
+  theme: default # default / up
   wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
   wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
 

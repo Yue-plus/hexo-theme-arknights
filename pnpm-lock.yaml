@@ -11,9 +11,6 @@ importers:
       hexo:
         specifier: ^7.3.0
         version: 7.3.0(chokidar@3.6.0)
-      hexo-blog-encrypt:
-        specifier: ^3.1.9
-        version: 3.1.9
       hexo-browsersync:
         specifier: ^0.3.0
         version: 0.3.0
@@ -654,9 +651,6 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
-
-  hexo-blog-encrypt@3.1.9:
-    resolution: {integrity: sha512-dzuZiW5mD8t1FOhJXqc+IgV1Tc45YtatJb/w8k4PyT9McQxsROQXsBw+zbDembzuqMnbnkCeT2SapZ/r9AgAcw==}
 
   hexo-browsersync@0.3.0:
     resolution: {integrity: sha512-5grkDUG/jci1LgImUFHTGMhXRYFKYuBVVf1L62UAhd/IC/L3EfGtKXyPVqvxyVb4Pc5STY5tQR46xoBJLlWJNw==}
@@ -2234,8 +2228,6 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
-
-  hexo-blog-encrypt@3.1.9: {}
 
   hexo-browsersync@0.3.0:
     dependencies:
