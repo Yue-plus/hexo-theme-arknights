@@ -389,8 +389,15 @@ busuanzi:
 
 ## Document encryption
 
-The modified [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) plugin has been adapted and integrated into this theme (currently only the default and up themes are supported).
+The modified [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) plugin has been adapted and integrated into this theme (currently only the `default` and `up` themes are supported).
 
+> If previously installed, please remove the `hexo-blog-encrypt` dependency in `package.json` under the hexo directory and execute the following command
+> 
+> ```shell
+> pnpm i
+> hexo clean
+> ```
+> 
 > For detailed configuration reference [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt)
 
 Add the following to the `Hexo/_config.yml` file:

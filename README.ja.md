@@ -389,8 +389,15 @@ busuanzi:
 
 ### ドキュメント暗号化
 
-修正された [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) プラグインはこのトピックに適合して統合されています（現在は default と up トピックのみがサポートされています）。
+修正された [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) プラグインはこのトピックに適合して統合されています（現在は `default` と `up` トピックのみがサポートされています）。
 
+> もしこの前にインストールした場合は、Hexo ディレクトリの `package.json` から `hexo-blog-encrypt` 依存を削除し、次のコマンドを実行してください
+> 
+> ```shell
+> npm i
+> hexo clean
+> ```
+> 
 > 詳細構成リファレンス [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/)
 
 `Hexo/_config.yml` ファイルに次の内容を追加します。

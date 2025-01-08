@@ -389,8 +389,15 @@ busuanzi:
 
 ## 文档加密
 
-经过修改的 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件已适配并集成在本主题中（目前仅支持 default 与 up 主题）。
+经过修改的 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件已适配并集成在本主题中（目前仅支持 `default` 与 `up` 主题）。
 
+> 如果之前安装了，请删除 Hexo 目录下 `package.json` 中的 `hexo-blog-encrypt` 依赖，并且执行以下命令
+> 
+> ```shell
+> pnpm i
+> hexo clean
+> ```
+> 
 > 详细配置参考 [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md)
 
 在 `Hexo/_config.yml` 文件中添加以下内容：
@@ -403,6 +410,7 @@ encrypt: # hexo-blog-encrypt
   tags:
   - {name: tagName, password: 密码A}
   - {name: tagName, password: 密码B}
+  theme: default # default / up
   wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
   wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
 ```
