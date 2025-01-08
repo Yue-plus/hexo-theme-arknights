@@ -325,14 +325,13 @@ mjx-container[display="true"] + br {
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">alt 属性文本</span>](<span class="hljs-link">图片地址</span>)<br>![<span class="hljs-string">alt 属性文本</span>](<span class="hljs-link">图片地址 "可选标题"</span>)<br></code></pre></td></tr></table></figure>
 <p>开头一个感叹号 !<br>接着一个方括号，里面放上图片的替代文字<br>接着一个英文括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的 ‘title’ 属性的文字。</p>
 <blockquote>
-<p><img src="https://ak.hypergryph.com/upload/images/20190228/118078295785f64dac736c6ade50bb76.jpg" alt="罗德岛集结" title="罗德岛集结"></p>
+<p class='item-img' data-src='https://ak.hypergryph.com/upload/images/20190228/118078295785f64dac736c6ade50bb76.jpg'><img src="https://ak.hypergryph.com/upload/images/20190228/118078295785f64dac736c6ade50bb76.jpg" alt="罗德岛集结" title="罗德岛集结"></p>
 </blockquote>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">罗德岛集结</span>](<span class="hljs-link">https://ak.hypergryph.com/upload/images/20190228/118078295785f64dac736c6ade50bb76.jpg "罗德岛集结"</span>)<br></code></pre></td></tr></table></figure>
 <p>当然，你也可以像网址那样对图片网址使用变量:</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">这个链接用 <span class="hljs-code">`2`</span> 作为网址变量 [<span class="hljs-string">凯尔希</span>][<span class="hljs-symbol">2</span>].<br>然后在文档的结尾为变量赋值（网址）<br><br>[<span class="hljs-symbol">2</span>]: <span class="hljs-link">https://ak.hypergryph.com/upload/images/20190228/143666074a406ecaa6cd4271dc7c5127.jpg</span><br></code></pre></td></tr></table></figure>
 <p>Markdown 还没有办法指定图片的高度与宽度，如果需要的话，也可以使用普通的 <code>&lt;img&gt;</code> 标签。</p>
-<blockquote>
-<img src="https://ak.hypergryph.com/assets/index/images/ak/common/story/item_infected.png" width="200px">
+<blockquote class='item-img' data-src='https://ak.hypergryph.com/assets/index/images/ak/common/story/item_infected.png'><img src="https://ak.hypergryph.com/assets/index/images/ak/common/story/item_infected.png" width="200px">
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://ak.hypergryph.com/assets/index/images/ak/common/story/item_infected.png"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"200px"</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
