@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>エラー発生。</title>
+  <style>
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: #FFF;
+      background-color: #141516;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-image: url(https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg);
+    }
+
+    main {
+      text-align: center;
+    }
+
+    #logo {
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    #logo img {
+      width: 300px;
+    }
+
+    #error {
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    #error a {
+      color: #2BF;
+      padding: 3px 10px;
+      font-size: larger;
+      text-decoration: none;
+    }
+
+    #error a:hover {
+      color: #000;
+      background-color: #2BF;
+    }
+
+    h1 {
+      font-size: 60px;
+      color: #FE2;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-family: "JetBrains Mono";
+    }
+
+    @media (max-width: 768px) {
+      #logo img {
+        width: auto;
+        height: 380px;
+        opacity: .23;
+        position: fixed;
+        bottom: -30px;
+        left: -38%;
+        pointer-events: none;
+      }      
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <a id="logo" href="/">
+      <img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="to home" />
+    </a>
+    <div id="error">
+      <h1>エラー発生。</h1>
+      <h2 style="text-align: left;">404 NOT FOUND</h2>
+      <p style="text-align: left;">
+        <a href="/">首页</a>
+        <a onClick="history.back();">上一页</a>
+      </p>
+    </div>
+  </main>
+
+</body>
+
+</html>
