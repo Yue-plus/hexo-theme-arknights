@@ -1,5 +1,6 @@
 declare var config: {
   root: string
+  code_fold: number
   search: {
     preload: string
     activeHolder: string
