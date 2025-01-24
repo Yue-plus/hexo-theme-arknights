@@ -47,3 +47,12 @@ html(lang=config.language theme-mode=theme.color)
       include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust
+
+    if theme.scripts && theme.scripts.length > 0
+      //- scripts list from config.yml
+      each url in theme.scripts
+        if url.length !== undefined && url.length > 0
+          if url[0] === '/'
+            script(defer src=url)
+          else
+            script!=url
