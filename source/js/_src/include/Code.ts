@@ -27,7 +27,7 @@ class Code {
   private doAsCode = (item: Element) => {
     const codeType = this.resetName(item.classList[1]),
       lineCount = getElement('.gutter', item).children[0].childElementCount >> 1
-    item.classList.add(lineCount < 16 ? 'open' : 'fold')
+    item.classList.add(lineCount <= config.code_fold || config.code_fold === -1 ? 'open' : 'fold')
     item.classList.add('expand-box')
     item.innerHTML =
       `<div class="ex-header" tabindex='0'>
