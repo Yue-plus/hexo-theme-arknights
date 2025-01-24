@@ -1,7 +1,10 @@
 aside
   #about
     a(href=config.root)#logo
-      img(src= asideLogo, alt= "Logo")
+      img(src= asideLogo, alt= "Logo", style= {
+        margin: theme.aside.logo_margin,
+        'border-radius': theme.aside.logo_border_radius
+      })
     h1#Dr
       a(href= theme.aside.dr)= config.author
     #description
@@ -10,7 +13,7 @@ aside
       #social-links
         each value, name in theme.social
           - let icon = value.split('||')[1].trim(), src = value.split('||')[0].trim()
-          if icon.substring(0,3) === 'fa ' || icon.substring(0,4) === 'fab '
+          if icon.substring(0,2) === 'fa'
             a.social(href= src)
               i(alt= name,class= icon)
           else

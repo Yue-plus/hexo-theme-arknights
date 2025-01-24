@@ -22,6 +22,9 @@
 - **Dr.Rimrose: <https://blog.rimrose.site>**
 - **Dr.Laplacian: <https://rhinelab.kr>**
 - **Dr.Chen: <https://light-of-hers.github.io>**
+- **Dr.Linyee <https://linyee.world/>**
+- **Dr.Flacier <https://fldicoahkiin.github.io>**
+- **Dr.LZW <https://lzwnb.github.io/blog/>** 
 
 如果使用了这个主题，欢迎在这儿贴预览链接~
 
@@ -43,7 +46,7 @@
 hexo init Hexo
 cd Hexo
 cnpm install
-git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights
+git clone https://github.com/Yue-plus/hexo-theme-arknights.git themes/arknights --depth=1
 ```
 
 ### 安装依赖
@@ -145,6 +148,8 @@ valine:
   app_id: # APP ID
   app_key: # APP KEY
   server_url: # APP DOMAIN（LeanCloud 国际版）
+  avatar: 'retro' # (''/mp/identicon/monsterid/wavatar/robohash/retro/hide)
+  avatar_cdn: 'https://dn-qiniu-avatar.qbox.me/avatar/' # 自定义 avatar cdn
 ```
 
 开启邮件提醒：[zhaojun1998 / Valine-Admin](https://github.com/zhaojun1998/Valine-Admin)
@@ -384,8 +389,15 @@ busuanzi:
 
 ## 文档加密
 
-经过修改的 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件已适配并集成在本主题中（目前仅支持 default 与 up 主题）。
+经过修改的 [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) 插件已适配并集成在本主题中（目前仅支持 `default` 与 `up` 主题）。
 
+> 如果之前安装了，请删除 Hexo 目录下 `package.json` 中的 `hexo-blog-encrypt` 依赖，并且执行以下命令
+> 
+> ```shell
+> pnpm i
+> hexo clean
+> ```
+> 
 > 详细配置参考 [hexo-blog-encrypt/ReadMe.zh.md](https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md)
 
 在 `Hexo/_config.yml` 文件中添加以下内容：
@@ -398,6 +410,7 @@ encrypt: # hexo-blog-encrypt
   tags:
   - {name: tagName, password: 密码A}
   - {name: tagName, password: 密码B}
+  theme: default # default / up
   wrong_pass_message: 与 Rhodes Island™ 效验口令失败，请重试。
   wrong_hash_message: 与 Rhodes Island™ 效验口令失败，当前使用临时权限查看。
 ```

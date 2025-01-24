@@ -17,7 +17,7 @@ block content
   #post-bg
     #post-title
       h1= page.title
-      if (dateConf || updatedConf || countWord || countTime || busuanzi) && page.title && page['post-info']
+      if (dateConf || updatedConf || countWord || countTime || busuanzi) && page.title && page['post-info'] !== false
         #post-info
           - var first = true
           if dateConf
