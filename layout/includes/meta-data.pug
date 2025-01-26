@@ -63,9 +63,15 @@ link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/l
 link(type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css")
 link(type="text/css" rel="stylesheet" href=url_for("/lib/fontawesome/css/all.min.css"))
 
+
 if theme.stylesheets && theme.stylesheets.length > 0
   //- stylesheets list from _config.yml
   each url in theme.stylesheets
+    if url
+      if url[0] === '{' && url[url.length - 1] === '}'
+        style!=url.substr(1, url.length - 2)
+      else
+        style(defer src=url)
     link(rel='stylesheet', href=url)
 script
   |if (window.localStorage.getItem('theme-mode') === 'light'
