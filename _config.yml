@@ -88,6 +88,13 @@ search:
   # 设为 raw 时，依据 markdown 源文件生成
   format: striptags
 
+# 背景音乐
+bgm:
+  enable: true
+  autoplay: true
+  loop: true
+  src: /audio/bgm.mp3
+
 # 不蒜子
 # 详见 http://busuanzi.ibruce.info/
 busuanzi:
