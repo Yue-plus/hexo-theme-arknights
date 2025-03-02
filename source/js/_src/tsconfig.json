@@ -1,13 +1,11 @@
 {
-  "files": ["arknights.ts"],
+  "include": ["./include/**/*.ts"],
   "compilerOptions": {
-    "target": "es2021",
+    "target": "ESNext",
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "outFile": "../arknights.js"
-  },
-  "compilerOptions": {
+    "outFile": "../arknights.js",
     "moduleResolution": "node"
   }
 }
