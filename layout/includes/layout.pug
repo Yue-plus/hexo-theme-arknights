@@ -14,6 +14,7 @@
   if (theme.search !== undefined && theme.search.enable === true) searchConfig = theme.search;
   const configs = JSON.stringify({
     root: config.root,
+    code_fold: config.theme_config.post.code_fold,
     search: {
       preload: searchConfig.preload,
       activeHolder: __('search.activeHolder'),
@@ -46,3 +47,12 @@ html(lang=config.language theme-mode=theme.color)
       include ./aside.pug
     if theme.canvas_dust
       canvas#canvas-dust
+
+    if theme.scripts && theme.scripts.length > 0
+      //- scripts list from config.yml
+      each url in theme.scripts
+        if url
+          if url[0] === '{' && url[url.length - 1] === '}'
+            script!=url
+          else
+            script(defer src=url)

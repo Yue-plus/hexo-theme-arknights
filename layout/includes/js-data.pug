@@ -45,11 +45,6 @@ if theme.mathjax && theme.mathjax.enable === true
       }
     });
 
-if theme.scripts && theme.scripts.length > 0
-  //- scripts list from config.yml
-  each url in theme.scripts
-    script(defer src=url)
-
 script(async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js")
 script(async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js")
 script(async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js")

@@ -62,6 +62,7 @@ post:
   # 以下两项依赖 hexo-wordcount，请参阅 README 开启
   count: false # 是否显示字数统计
   time: false # 是否显示预计阅读时长
+  code_fold: 15 # 当代码小于等此行数时默认展开，设为 -1 则全部展开
 
 # 文章内目录
 toc:
