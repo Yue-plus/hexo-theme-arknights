@@ -7,26 +7,30 @@
 
 ## Preview
 
+Here are all the friendship links of this theme<!--Previously used-->:
+
 - ### **Dr.Yue_plus: <http://arknights.theme.hexo.yue.zone/>**
 - ### **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
-- **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
-- **Dr.XIMU：<http://b.ligzs.cn/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
-- **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Angine <https://angine.tech/>**
 - **Dr.sjfhsjfh <https://sjfh.top/>**
 - **Dr.Voilone <https://note.voiblog.top/>**
-- **Zhongye1 <https://zhongye1.github.io/>**
 - **Dr.yuanli-LFSW<https://blog.yuanli-lfsw.com/>**
-- **Dr.Rimrose: <https://blog.rimrose.site>**
 - **Dr.Laplacian: <https://rhinelab.kr>**
 - **Dr.Chen: <https://light-of-hers.github.io>**
 - **Dr.Linyee <https://linyee.world/>**
 - **Dr.Flacier <https://fldicoahkiin.github.io>**
 - **Dr.LZW <https://lzwnb.github.io/blog/>** 
+- **Dr.GrandpaFox <https://grandpafox.online/>** 
 
-If you're using this theme, we will appreciate it if you could put your link here for a preview!  
+<!-- - **Dr.LingYun: <https://dr-lingyun.gitee.io/>** -->
+<!-- - **Dr.XIMU：<http://www.ligzs.com/>** -->
+<!-- - **Dr.TTsdzb <https://ark.ttsdzb.monster/>** -->
+<!-- - **Dr.Zhongye1 <https://zhongye1.github.io/>** -->
+<!-- - **Dr.Rimrose: <https://blog.rimrose.site>** -->
+
+If you're using this theme, we warmly welcome you to initiate [Pull Requests](https://github.com/Yue-plus/hexo-theme-arknights/compare) to post friends' links here.
 
 ![Preview image](./demo.jpg)
 

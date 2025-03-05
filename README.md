@@ -7,26 +7,32 @@
 
 ## 预览
 
+这里记录了所有本主题使用者<!-- 曾经使用 -->的友链：
+
 - ### **Dr.Yue_plus: <http://arknights.theme.hexo.yue.zone/>**
 - ### **Dr.ToUNVRSe <https://tounvrse.github.io/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
-- **Dr.LingYun: <https://dr-lingyun.gitee.io/>**
-- **Dr.XIMU：<http://b.ligzs.cn/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
-- **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Angine <https://angine.tech/>**
 - **Dr.sjfhsjfh <https://sjfh.top/>**
 - **Dr.Voilone <https://note.voiblog.top/>**
-- **Zhongye1 <https://zhongye1.github.io/>**
 - **Dr.yuanli-LFSW<https://blog.yuanli-lfsw.com/>**
-- **Dr.Rimrose: <https://blog.rimrose.site>**
 - **Dr.Laplacian: <https://rhinelab.kr>**
 - **Dr.Chen: <https://light-of-hers.github.io>**
 - **Dr.Linyee <https://linyee.world/>**
 - **Dr.Flacier <https://fldicoahkiin.github.io>**
 - **Dr.LZW <https://lzwnb.github.io/blog/>** 
+- **Dr.GrandpaFox <https://grandpafox.online/>** 
+- **Dr.未雨屏 <https://weiyuping.top/>**
+- **飞龙project <https://schale.top/>**
 
-如果使用了这个主题，欢迎在这儿贴预览链接~
+<!-- - **Dr.LingYun: <https://dr-lingyun.gitee.io/>** -->
+<!-- - **Dr.XIMU：<http://www.ligzs.com/>** -->
+<!-- - **Dr.TTsdzb <https://ark.ttsdzb.monster/>** -->
+<!-- - **Dr.Zhongye1 <https://zhongye1.github.io/>** -->
+<!-- - **Dr.Rimrose: <https://blog.rimrose.site>** -->
+
+如果使用了这个主题，欢迎发起 [Pull Requests](https://github.com/Yue-plus/hexo-theme-arknights/compare) 在这儿贴友链~
 
 ![主题预览图片](./demo.jpg)
 
