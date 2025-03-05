@@ -11,6 +11,7 @@
 - **Dr.TTsdzb <https://ark.ttsdzb.monster/>**
 - **Dr.Angine <https://angine.tech/>**
 - **Dr.sjfhsjfh <http://sjfh.top/>**
-- **Dr.LZW <https://lzwnb.github.io/blog/>** 
+- **Dr.LZW <https://lzwnb.github.io/blog/>**
+- **Dr.GrandpaFox <https://grandpafox.online/>** 
 
 如果使用了这个主题，欢迎发起 Pull Requests 在这儿贴友链~
