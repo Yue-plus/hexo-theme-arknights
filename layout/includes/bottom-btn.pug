@@ -10,6 +10,6 @@
       a#color-mode.i-color(onClick="colorMode.change()" title=__('btn.colorMode'))
     if theme.bgm.enable
       a(onclick="BgmControl()")
-        svg(id="bgm-control" viewBox="0 0 30 34" fill=theme.bgm.autoplay ? "#18d1ff" : "currentColor" style="width: auto; height: 80%; transition: transform .3s;")
+        svg(id="bgm-control" viewBox="0 0 30 34" fill=theme.bgm.autoplay ? "#18d1ff" : "currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px")
           path(d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z")
         audio(id='bgm' src=theme.bgm.src autoplay=theme.bgm.autoplay loop=theme.bgm.loop crossorigin='anonymous') 
