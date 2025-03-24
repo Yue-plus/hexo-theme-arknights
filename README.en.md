@@ -23,6 +23,9 @@ Here are all the friendship links of this theme<!--Previously used-->:
 - **Dr.Flacier <https://fldicoahkiin.github.io>**
 - **Dr.LZW <https://lzwnb.github.io/blog/>** 
 - **Dr.GrandpaFox <https://grandpafox.online/>** 
+- **Dr.未雨屏 <https://weiyuping.top/>**
+- **飞龙project <https://schale.top/>**
+- **tomorinao-www <https://ghpage.wwnao.xyz>**
 
 <!-- - **Dr.LingYun: <https://dr-lingyun.gitee.io/>** -->
 <!-- - **Dr.XIMU：<http://www.ligzs.com/>** -->
