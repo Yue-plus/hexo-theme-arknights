@@ -60,6 +60,7 @@ footer:
   publish: Published with
   theme: Theme
   by: by
+  modify_by: modified by
 
 valine:
   placeHolder: This comment is sent by Penguin Logistics.
