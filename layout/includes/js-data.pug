@@ -96,6 +96,8 @@ script.pjax-js reset= () => {
     |    serverURL: '#{theme.waline.server_url}',
     |    path: !{'window.location.pathname'},
     |  });
+  if theme.mathjax && theme.mathjax.enable === true
+    |MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   | document.querySelector('.lg-container')?.remove()
   | lightGallery(document.getElementById('post-bg'), {
   |   plugins: [lgZoom,lgThumbnail],
