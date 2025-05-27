@@ -13,6 +13,14 @@ declare var config: {
   }
 }
 
+declare var page_config: {
+  title: string
+  path: string
+  date: string
+  updated: string
+  code_fold: number | null
+}
+
 declare var mermaid: {
   run: Function
   init: Function
