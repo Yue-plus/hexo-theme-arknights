@@ -26,7 +26,15 @@ style.
     src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
   }
 
-script var config = !{configs}
+script.
+  var config = !{configs};
+  var page_config = {
+    title: !{JSON.stringify(page.title)},
+    path: !{JSON.stringify(page.path)},
+    date: !{JSON.stringify(page.date)},
+    updated: !{JSON.stringify(page.updated)},
+    code_fold: !{JSON.stringify(page.code_fold || null)}
+  };
 if theme.waline && theme.waline.enable === true
   link(rel="stylesheet", href= url_for('//unpkg.com/@waline/client@v2/dist/waline.css'))
 link(type="text/css" rel="stylesheet" href=url_for("/lib/encrypt/hbe.style.css"))
