@@ -605,3 +605,7 @@ If you enjoy this theme:
 - Join Tencent QQ discussion group: [618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - reward/sponsor:
   ![Reward QR code](./support.jpg)
+
+### Sponsor
+
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")

@@ -614,3 +614,7 @@ hexo serve --debug
 - Tencent QQ の交流グループ：[618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - Reward：
   ![QRコード](./support.jpg)  
+
+### スポンサー
+
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
