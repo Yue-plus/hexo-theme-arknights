@@ -26,15 +26,20 @@ style.
     src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
   }
 
-script.
+meta(name="page-config" content=JSON.stringify({ code_fold: page.code_fold || null }))
+script(class="pjax-js").
   var config = !{configs};
   var page_config = {
-    title: !{JSON.stringify(page.title)},
-    path: !{JSON.stringify(page.path)},
-    date: !{JSON.stringify(page.date)},
-    updated: !{JSON.stringify(page.updated)},
     code_fold: !{JSON.stringify(page.code_fold || null)}
   };
+  function updatePageConfig() {
+    var newPageConfig = document.querySelector('meta[name="page-config"]');
+    if (newPageConfig) {
+      page_config = JSON.parse(newPageConfig.content);
+    }
+  }
+  document.addEventListener('pjax:complete', function() { updatePageConfig(); });
+  updatePageConfig();
 if theme.waline && theme.waline.enable === true
   link(rel="stylesheet", href= url_for('//unpkg.com/@waline/client@v2/dist/waline.css'))
 link(type="text/css" rel="stylesheet" href=url_for("/lib/encrypt/hbe.style.css"))
