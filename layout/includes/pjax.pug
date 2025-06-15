@@ -45,7 +45,7 @@ script window.addEventListener("load",() => {
   if pjax
     |pjax = new Pjax({
     |  cacheBust: false,
-    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi','meta[name=page-config]'],
     |  switches: {'article': Pjax.switches.sideBySide},
     |  switchesOptions: {
     |    'article': {

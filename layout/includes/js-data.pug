@@ -107,7 +107,7 @@ script window.addEventListener("load",() => {
   if pjax
     |pjax = new Pjax({
     |  cacheBust: false,
-    |  selectors: ['title','article','#aside-block','.pjax-js'],
+    |  selectors: ['title','article','#aside-block','.pjax-js','meta[name=page-config]'],
     |  switches: {'article': Pjax.switches.sideBySide},
     |  switchesOptions: {
     |    'article': {
