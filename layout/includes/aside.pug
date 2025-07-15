@@ -32,16 +32,16 @@ aside
         #total-categories
           span.total-title #{__('menu.category.plural')}:
           span.total-number= site.categories.length
-        if theme.busuanzi.enable
+        if theme.vercount.enable
           br
           #total-view
-            if theme.busuanzi.sitePV
-              span#busuanzi_container_site_pv(class='total-title') #{__('busuanzi.siteView')}
-                span#busuanzi_value_site_pv(class='total-number') #{__('busuanzi.loading')}
+            if theme.vercount.sitePV
+              span#vercount_container_site_pv(class='total-title') #{__('vercount.siteView')}
+                span#vercount_value_site_pv(class='total-number') #{__('vercount.loading')}
               br
-            if theme.busuanzi.siteUV
-              span#busuanzi_container_site_uv(class='total-title') #{__('busuanzi.siteVisitor')}
-                span#busuanzi_value_site_uv(class='total-number') #{__('busuanzi.loading')}
+            if theme.vercount.siteUV
+              span#vercount_container_site_uv(class='total-title') #{__('vercount.siteVisitor')}
+                span#vercount_value_site_uv(class='total-number') #{__('vercount.loading')}
   footer(style= footerStyle)
     if theme.aside.icp !== null
       nobr

@@ -45,7 +45,7 @@ script window.addEventListener("load",() => {
   if pjax
     |pjax = new Pjax({
     |  cacheBust: false,
-    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi','meta[name=page-config]'],
+    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
     |  switches: {'article': Pjax.switches.sideBySide},
     |  switchesOptions: {
     |    'article': {
@@ -57,10 +57,10 @@ script window.addEventListener("load",() => {
     |  }
     |});
     |document.addEventListener("pjax:complete", reset);
-    if theme.busuanzi.enable
-      |document.addEventListener('pjax:success', _ => bszCaller.fetch(
-      |  "//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", a => {
-      |   bszTag.texts(a),
-      |   bszTag.shows()
-      |}));
+    if theme.vercount.enable
+      |document.addEventListener('pjax:success', _ => {
+      |  const script = document.createElement('script');
+      |  script.src = 'https://vercount.one/js';
+      |  document.head.appendChild(script);
+      |});
   | reset()})

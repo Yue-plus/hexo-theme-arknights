@@ -383,11 +383,11 @@ post:
 
 ## Views statistics
 
-Use [不蒜子](http://busuanzi.ibruce.info/) for page view statistics.
+Use [Vercount](https://vercount.one/) for page view statistics. Due to instability of the original Busuanzi service, it has been replaced with the more reliable Vercount service.
 Modify the `_config.arknights.yml` file in the **Hexo directory** to enable this feature:
 
 ```yaml
-busuanzi:
+vercount:
   enable: false
   sitePV: true # Total Site Visits
   siteUV: true # Number of site visitors
@@ -457,8 +457,8 @@ post-time: true/false
 # Article reading time/word count statistics
 post-count: true/false
 
-# Article busuanzi counter
-busuanzi: true/false
+# Article vercount counter
+vercount: true/false
 
 # Turn on/off all of the above
 post-info: true/false

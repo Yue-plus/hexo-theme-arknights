@@ -383,11 +383,11 @@ post:
 
 ## ブラウズ統計
 
-[不蒜子](http://busuanzi.ibruce.info/)  を使用してブラウズ統計を取得します。
+[Vercount](https://vercount.one/) を使用してブラウズ統計を取得します。元の不蒜子サービスの不安定性により、より信頼性の高いVercountサービスに置き換えられました。
 **Hexoディレクトリ** の下にある `_ config.arknights.yml` ファイルを変更して有効にするには：
 
 ```yaml
-busuanzi:
+vercount:
   enable: false
   sitePV: true # サイト総アクセス数
   siteUV: true # サイト訪問者数
@@ -458,7 +458,7 @@ post-time: true/false
 post-count: true/false
 
 # 記事の読み取り回数
-busuanzi: true/false
+vercount: true/false
 
 # 以上すべてオン/オフ
 post-info: true/false

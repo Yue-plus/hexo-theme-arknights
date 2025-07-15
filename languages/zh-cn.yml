@@ -7,7 +7,7 @@ page:
   noCategory: 无分类
   sticky: 置顶
 
-busuanzi:
+vercount:
   loading: "加载中..."
   siteView: "总访问量："
   siteVisitor: "访客数："
