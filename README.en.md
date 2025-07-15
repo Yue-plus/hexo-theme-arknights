@@ -20,7 +20,7 @@ Here are all the friendship links of this theme<!--Previously used-->:
 - **Dr.Laplacian: <https://rhinelab.kr>**
 - **Dr.Chen: <https://light-of-hers.github.io>**
 - **Dr.Linyee <https://linyee.world/>**
-- **Dr.Flacier <https://fldicoahkiin.github.io>**
+- **Dr.Flacier <https://flacier.us.kg/>**
 - **Dr.LZW <https://lzwnb.github.io/blog/>** 
 - **Dr.GrandpaFox <https://grandpafox.online/>** 
 - **Dr.未雨屏 <https://weiyuping.top/>**
