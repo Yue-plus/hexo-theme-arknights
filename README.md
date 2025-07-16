@@ -383,11 +383,11 @@ post:
 
 ## 浏览量统计
 
-使用 [不蒜子](http://busuanzi.ibruce.info/) 进行浏览量统计。
+使用 [Vercount](https://vercount.one/) 进行浏览量统计。由于原不蒜子服务不稳定，已替换为更可靠的 Vercount 服务。
 修改 **Hexo 目录** 下的 `_config.arknights.yml` 文件启用该功能：
 
 ```yaml
-busuanzi:
+vercount:
   enable: false
   sitePV: true # 站点总访问量
   siteUV: true # 站点访客数
@@ -459,7 +459,7 @@ post-time: true/false
 post-count: true/false
 
 # 文章不蒜子统计
-busuanzi: true/false
+vercount: true/false
 
 # 开启/关闭以上全部
 post-info: true/false

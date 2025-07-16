@@ -3,8 +3,8 @@ script(defer src=url_for("js/arknights.js"))
 if searchConfig !== null
   script(defer src=url_for("js/search.js"))
 
-if theme.busuanzi && theme.busuanzi.enable === true
-  script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
+if theme.vercount && theme.vercount.enable === true
+  script(defer src="https://vercount.one/js")
 
 if theme.valine && theme.valine.enable === true
   script(async src='//unpkg.com/valine/dist/Valine.min.js')
@@ -107,7 +107,7 @@ script window.addEventListener("load",() => {
   if pjax
     |pjax = new Pjax({
     |  cacheBust: false,
-    |  selectors: ['title','article','#aside-block','.pjax-js','meta[name=page-config]'],
+    |  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
     |  switches: {'article': Pjax.switches.sideBySide},
     |  switchesOptions: {
     |    'article': {
@@ -119,4 +119,10 @@ script window.addEventListener("load",() => {
     |  }
     |});
     |document.addEventListener("pjax:complete", reset);
+    if theme.vercount.enable
+      |document.addEventListener('pjax:success', _ => {
+      |  const script = document.createElement('script');
+      |  script.src = 'https://vercount.one/js';
+      |  document.head.appendChild(script);
+      |});
   | reset()})

@@ -13,11 +13,11 @@ block content
     const tocContent = toc(content, theme.toc)
     const countWord = page['post-count'] !== false && theme.post.count === true && wordcount !== undefined ? wordcount(content) : null
     const countTime = page['post-count'] !== false && theme.post.time === true && min2read !== undefined ? min2read(content) : null
-    const busuanzi = page.busuanzi !== false && theme.busuanzi.enable
+    const vercount = page.vercount !== false && theme.vercount.enable
   #post-bg
     #post-title
       h1= page.title
-      if (dateConf || updatedConf || countWord || countTime || busuanzi) && page.title && page['post-info'] !== false
+      if (dateConf || updatedConf || countWord || countTime || vercount) && page.title && page['post-info'] !== false
         #post-info
           - var first = true
           if dateConf
@@ -46,11 +46,11 @@ block content
             span #{__('post.timeTotal')}
               div.control #{countTime} #{__('post.timeUnit')}
             - first = false
-          if busuanzi
+          if vercount
             if !first
               br
-            span#busuanzi_container_page_pv #{__('busuanzi.pageView')}
-              span#busuanzi_value_page_pv(class='control') #{__('busuanzi.loading')}
+            span#vercount_container_page_pv #{__('vercount.pageView')}
+              span#vercount_value_page_pv(class='control') #{__('vercount.loading')}
             - first = false
     hr
     #post-content

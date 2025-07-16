@@ -7,7 +7,7 @@ page:
   noCategory: NO CATEGORY
   sticky: TOP
 
-busuanzi:
+vercount:
   loading: "loading..."
   siteView: "Site View: "
   siteVisitor: "Visitor: "
