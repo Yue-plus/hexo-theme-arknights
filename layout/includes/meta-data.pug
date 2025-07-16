@@ -15,15 +15,15 @@ link(rel="stylesheet", href=url_for("css/arknights.css"))
 style.
   @font-face {
     font-family: Bender;
-    src: local('Bender'), url("#{config.root}font/Bender.ttf"), url("#{config.root}font/Bender.otf");
+    src: url("#{config.root}font/Bender.ttf");
   }
   @font-face {
     font-family: BenderLight;
-    src: local('BenderLight'), url("#{config.root}font/BenderLight.ttf");
+    src: url("#{config.root}font/BenderLight.woff2");
   }
   @font-face {
     font-family: 'JetBrains Mono';
-    src: local('JetBrains Mono'), url('#{config.root}font/JetBrainsMono-Regular.woff2') format('woff2');
+    src: url('#{config.root}font/JetBrainsMono-Regular.woff2');
   }
 
 meta(name="page-config" content=JSON.stringify({ code_fold: page.code_fold || null }))
