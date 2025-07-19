@@ -97,14 +97,18 @@ script.pjax-js reset= () => {
     |    path: !{'window.location.pathname'},
     |  });
   if theme.utterances && theme.utterances.enable === true
-    |const utterancesScript = document.createElement('script');
-    |utterancesScript.src = 'https://utteranc.es/client.js';
-    |utterancesScript.setAttribute('repo', '#{theme.utterances.repo}');
-    |utterancesScript.setAttribute('issue-term', '#{theme.utterances.issue_term}');
-    |utterancesScript.setAttribute('theme', '#{theme.utterances.theme}');
-    |utterancesScript.setAttribute('crossorigin', 'anonymous');
-    |utterancesScript.async = true;
-    |document.getElementById('utterances').appendChild(utterancesScript);
+    |const utterancesContainer = document.getElementById('utterances');
+    |if (utterancesContainer) {
+    |  utterancesContainer.innerHTML = '';
+    |  const utterancesScript = document.createElement('script');
+    |  utterancesScript.src = 'https://utteranc.es/client.js';
+    |  utterancesScript.setAttribute('repo', '#{theme.utterances.repo}');
+    |  utterancesScript.setAttribute('issue-term', '#{theme.utterances.issue_term}');
+    |  utterancesScript.setAttribute('theme', '#{theme.utterances.theme}');
+    |  utterancesScript.setAttribute('crossorigin', 'anonymous');
+    |  utterancesScript.async = true;
+    |  utterancesContainer.appendChild(utterancesScript);
+    |}
   if theme.mathjax && theme.mathjax.enable === true
     |MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   | document.querySelector('.lg-container')?.remove()

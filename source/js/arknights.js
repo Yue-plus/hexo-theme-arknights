@@ -379,7 +379,7 @@ class Selectors {
     }
 }
 class Comments {
-    search = ["valine", "gitalk", "waline", "artalk"];
+    search = ["valine", "gitalk", "waline", "artalk", "utterances"];
     elements = [];
     setHTML = () => {
         if (!document.querySelector('#comments .selector'))
