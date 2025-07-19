@@ -96,6 +96,19 @@ script.pjax-js reset= () => {
     |    serverURL: '#{theme.waline.server_url}',
     |    path: !{'window.location.pathname'},
     |  });
+  if theme.utterances && theme.utterances.enable === true
+    |if (document.getElementById('utterances')) {
+    |  const utterancesContainer = document.getElementById('utterances');
+    |  utterancesContainer.innerHTML = '';
+    |  const script = document.createElement('script');
+    |  script.src = 'https://utteranc.es/client.js';
+    |  script.setAttribute('repo', '#{theme.utterances.repo}');
+    |  script.setAttribute('issue-term', '#{theme.utterances.issue_term}');
+    |  script.setAttribute('theme', '#{theme.utterances.theme}');
+    |  script.setAttribute('crossorigin', 'anonymous');
+    |  script.async = true;
+    |  utterancesContainer.appendChild(script);
+    |}
   if theme.mathjax && theme.mathjax.enable === true
     |MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   | document.querySelector('.lg-container')?.remove()

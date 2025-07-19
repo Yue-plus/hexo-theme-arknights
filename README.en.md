@@ -140,7 +140,7 @@ per_page: 10
 pagination_dir: page
 ```
 
-Change `per_page:` to 0。
+Change `per_page:` to 0.
 
 ## Comment systems
 
@@ -204,6 +204,24 @@ artalk:
   server: https://artalk.server.instance/ # 你的 Artalk 服务地址
   site_name: My Blog # 站点名称，用于区分多个站点（可选）
 ```
+
+### Utterances
+
+The theme supports [Utterances](https://utteranc.es/).  
+Please refer to Utterances docs and edit `_config.arknights.yml` in your Hexo directory:
+
+```yaml
+utterances:
+  enable: false
+  repo: # GitHub repository owner and name, format: owner/repo
+  issue_term: pathname # Options: pathname | url | title | og:title
+  theme: github-light # Options: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light
+```
+
+> Before using, you need to:
+> 1. Ensure the GitHub repository is public
+> 2. Install the [utterances app](https://github.com/apps/utterances) in your repository
+> 3. Ensure Issues are enabled for the repository
 
 ## Mathematical formulas
 

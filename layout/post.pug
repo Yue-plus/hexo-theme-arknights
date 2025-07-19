@@ -89,7 +89,8 @@ block content
       let count = (theme.valine.enable === true) +
                   (theme.gitalk.enable === true) +
                   (theme.waline.enable === true) +
-                  (theme.artalk.enable === true)
+                  (theme.artalk.enable === true) +
+                  (theme.utterances.enable === true)
     if page.comments && count
       #comments
         if count > 1
@@ -102,6 +103,8 @@ block content
               button.waline-sel
             if theme.artalk.enable === true
               button.artalk-sel
+            if theme.utterances.enable === true
+              button.utterances-sel
         if theme.valine.enable === true
           #valine
         if theme.gitalk.enable === true
@@ -109,7 +112,9 @@ block content
         if theme.waline.enable === true
           #waline
         if theme.artalk.enable === true
-          #artalk 
+          #artalk
+        if theme.utterances.enable === true
+          #utterances
 
 block aside-block
   - 
