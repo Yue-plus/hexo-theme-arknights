@@ -205,6 +205,24 @@ artalk:
   site_name: My Blog # サイト名、複数のサイトを区別するために使用（オプション）
 ```
 
+### Utterances
+
+このテーマは [Utterances](https://utteranc.es/) をサポートしています。
+Utterances 公式ドキュメントを参考に、Hexo ディレクトリの `_config.arknights.yml` ファイルを変更してください:
+
+```yaml
+utterances:
+  enable: false
+  repo: # GitHub リポジトリの所有者と名前、形式：owner/repo
+  issue_term: pathname # 選択肢: pathname | url | title | og:title
+  theme: github-light # 選択肢: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light
+```
+
+> 使用前に必要な設定：
+> 1. GitHub リポジトリが公開されていることを確認
+> 2. リポジトリに [utterances app](https://github.com/apps/utterances) をインストール
+> 3. リポジトリで Issues が有効になっていることを確認
+
 ## 数学公式
 
 このテーマは数学公式を表示するための2つの方法をサポートしています：
@@ -610,7 +628,7 @@ hexo serve --debug
   > - 新しいテーマ開発中：
   >   + [Yue-plus/astro-arknights](https://github.com/Yue-plus/astro-arknights)
   >   + [Yue-plus/vuepress-theme-rhinelab](https://github.com/Yue-plus/vuepress-theme-rhinelab)
-- 開発者の arknight id：`24444750`（中国 Bilibili 鯖）  
+- 開発者の arknight id：`24444750`（中国 Bilibili 鯉）
 - Tencent QQ の交流グループ：[618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - Reward：
   ![QRコード](./support.jpg)  
