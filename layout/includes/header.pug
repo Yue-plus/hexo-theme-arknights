@@ -30,16 +30,22 @@ header.closed
       .search-popup(tabindex="0")
         #search-result
     ol.navContent
+      - var finalMenu = {}
       each url, label in theme.menu
+        - finalMenu[url_for(url)] = {url: url, label: label}
+      if config.menu
+        each url, label in config.menu
+          - finalMenu[url_for(url)] = {url: url, label: label}
+      each item in Object.values(finalMenu)
         - var match = null
-        if typeof(url) === "string" && url.match(config.archive_dir)
+        if typeof(item.url) === "string" && item.url.match(config.archive_dir)
           - match = config.category_dir + ',' + config.tag_dir
         li.navItem(matchdata=match)
-          if typeof(url) === "object"
+          if typeof(item.url) === "object"
             .navBlock
-              span.navItemTitle= label
+              span.navItemTitle= item.label
               ol.navItemList
-                +expand_list(url)
+                +expand_list(item.url)
           else
-            a.navBlock(href= url_for(url))
-              span.navItemTitle= label
+            a.navBlock(href= url_for(item.url))
+              span.navItemTitle= item.label
