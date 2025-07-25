@@ -66,3 +66,9 @@ aside
     wbr
     nobr  #{__('footer.by')} 
       a(href= 'https://github.com/Yue-plus') Yue_plus
+    if config.build_time
+      wbr
+      nobr  #{__('footer.build_time')}
+        script.
+          const buildTime = new Date("#{config.build_time}");
+          document.write(' ' + buildTime.toLocaleString());
