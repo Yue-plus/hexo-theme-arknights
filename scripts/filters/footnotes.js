@@ -6,15 +6,11 @@
 /**
  * Render markdown footnotes
  * @param {String} text
+ * @param {Boolean} useMarkdown
  * @returns {String} text
  */
-function renderFootnotes(text) {
-  const marked = require('marked');
-  try {
-    marked.parse('# 123');
-  } catch (e) {
-    return text;
-  }
+function renderFootnotes(text, useMarkdown) {
+  const md_parse = useMarkdown? require('marked').parse : text => text;
 
   const footnotes = [];
   const reFootnoteContent = /\[\^(\d+)]: ?([\S\s]+?)(?=\[\^(\d+)]|\n\n|$)/g;
@@ -68,13 +64,13 @@ function renderFootnotes(text) {
       if (!indexMap[index]) {
         return '';
       }
-      const tooltip = replaceLink(removeHtmlWhitespace(marked.parse(indexMap[index].content)));
+      const tooltip = replaceLink(removeHtmlWhitespace(md_parse(indexMap[index].content)));
 
-      return '<sup id="fnref:' + index + '">'
+      return '{% raw %}' + '<sup id="fnref:' + index + '">'
         + '<a href="#fn:' + index + '" rel="footnote">'
         + '<span class="footnote--top">[' + index + ']'
         + '<span class="footnote--pop-ups">' + tooltip + '</span>'
-        + '</span></a></sup>';
+        + '</span></a></sup>' + '{% endraw %}';
     });
 
   // sort footnotes by their index
@@ -89,7 +85,7 @@ function renderFootnotes(text) {
     html += footNote.index;
     html += '.</span>';
     html += '<span style="display: inline-block; vertical-align: top; margin-left: 10px;">';
-    html += removeHtmlWhitespace(marked.parse(footNote.content.trim()));
+    html += removeHtmlWhitespace(md_parse(footNote.content.trim()));
     html += '<a href="#fnref:' + footNote.index + '"> ↩</a></span></li>';
   });
 
@@ -116,7 +112,7 @@ function replaceLink(text) {
 hexo.extend.filter.register('before_post_render', data => {
   const themeConfig = hexo.theme.config;
   if (themeConfig.footnote && themeConfig.footnote.enable) {
-    data.content = renderFootnotes(data.content);
+    data.content = renderFootnotes(data.content, themeConfig.footnote.markdown || false);
   }
 
   return data;
