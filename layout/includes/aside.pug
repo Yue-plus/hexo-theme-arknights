@@ -23,7 +23,7 @@ aside
     block aside-block
     if page.title === undefined
       section#total
-        a#total-archives(href= url_for("archives"))
+        a#total-archives(href= url_for("archives/"))
           span.total-title #{__('menu.archive.plural')} #{__('menu.total')}:
           span.total-number= site.posts.length
         #total-tags
