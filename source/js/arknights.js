@@ -284,7 +284,7 @@ try {
     var canvasDusts = new canvasDust('#canvas-dust');
 }
 catch (e) { }
-function sendMessage(message) {
+function sendGiscusMessage(message) {
     const iframe = document.getElementsByClassName("giscus-frame");
     if (iframe.length > 1) {
         console.warn("There are multiple giscus frames.");
@@ -323,13 +323,13 @@ class ColorMode {
                 canvasDusts.stop();
             if (this.dark) {
                 this.html.setAttribute('theme-mode', 'light');
-                sendMessage({ setConfig: { theme: 'light_high_contrast' } });
+                sendGiscusMessage({ setConfig: { theme: 'light_high_contrast' } });
                 this.dark = false;
                 window.localStorage['theme-mode'] = 'light';
             }
             else {
                 this.html.setAttribute('theme-mode', 'dark');
-                sendMessage({ setConfig: { theme: 'dark_high_contrast' } });
+                sendGiscusMessage({ setConfig: { theme: 'dark_high_contrast' } });
                 this.dark = true;
                 window.localStorage['theme-mode'] = 'dark';
             }
