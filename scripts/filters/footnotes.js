@@ -68,7 +68,7 @@ function renderFootnotes(text) {
       if (!indexMap[index]) {
         return '';
       }
-      const tooltip = replaceLink(handleHtml(marked.parse(indexMap[index].content)));
+      const tooltip = replaceLink(removeHtmlWhitespace(marked.parse(indexMap[index].content)));
 
       return '<sup id="fnref:' + index + '">'
         + '<a href="#fn:' + index + '" rel="footnote">'
@@ -89,7 +89,7 @@ function renderFootnotes(text) {
     html += footNote.index;
     html += '.</span>';
     html += '<span style="display: inline-block; vertical-align: top; margin-left: 10px;">';
-    html += handleHtml(marked.parse(footNote.content.trim()));
+    html += removeHtmlWhitespace(marked.parse(footNote.content.trim()));
     html += '<a href="#fnref:' + footNote.index + '"> ↩</a></span></li>';
   });
 
@@ -104,7 +104,7 @@ function renderFootnotes(text) {
   return text;
 }
 
-function handleHtml(text) {
+function removeHtmlWhitespace(text) {
   text = text.replace(/^(\s|<p>|<\/p>)+|(\s|<p>|<\/p>)+$/g, '');
   return text;
 }
