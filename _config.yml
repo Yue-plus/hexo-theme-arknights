@@ -15,7 +15,7 @@ color: dark
 
 # <body> 背景图片链接
 background_image:
-  dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # 暗色模式
+  dark: /img/bg.jpg # 暗色模式
   light: /img/bk.jpg # 亮色模式
 
 # 导航栏
