@@ -61,6 +61,7 @@ footer:
   theme: 使用主题
   by: 主题作者
   modify_by: 修改自
+  build_time: 构建时间
 
 valine:
   placeHolder: 此条评论委托企鹅物流发送

@@ -69,3 +69,9 @@ aside
     wbr
     nobr  #{__('footer.modify_by')} 
       a(href= 'https://github.com/weilycoder') weilycoder
+    if config.build_time
+      wbr
+      nobr  #{__('footer.build_time')}
+        script.
+          const buildTime = new Date("#{config.build_time}");
+          document.write(' ' + buildTime.toLocaleString());
