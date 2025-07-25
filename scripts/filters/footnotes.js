@@ -68,12 +68,12 @@ function renderFootnotes(text) {
       if (!indexMap[index]) {
         return '';
       }
-      const tooltip = handleHtml(marked.parse(indexMap[index].content));
+      const tooltip = replaceLink(handleHtml(marked.parse(indexMap[index].content)));
 
       return '<sup id="fnref:' + index + '">'
         + '<a href="#fn:' + index + '" rel="footnote">'
         + '<span class="footnote--top">[' + index + ']'
-        + '<content class="footnote--pop-ups">' + tooltip + '</content>'
+        + '<span class="footnote--pop-ups">' + tooltip + '</span>'
         + '</span></a></sup>';
     });
 
@@ -107,6 +107,10 @@ function renderFootnotes(text) {
 function handleHtml(text) {
   text = text.replace(/^(\s|<p>|<\/p>)+|(\s|<p>|<\/p>)+$/g, '');
   return text;
+}
+
+function replaceLink(text) {
+  return text.replace(/<a\b[^>]*>([\s\S]*?)<\/a>/gi, '<u>$1</u>');
 }
 
 hexo.extend.filter.register('before_post_render', data => {
