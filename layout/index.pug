@@ -3,4 +3,22 @@ extends includes/layout.pug
 block content
   .posts
     include includes/recent-posts.pug
-  #paginator!= paginator()
+  if config.index_generator.bin_paginator
+    -
+      const prev = (page.current * 2 - 1) % page.total + 1;
+      const next = (page.current * 2) % page.total + 1;
+      const fixedUrl = ((str) => str.endsWith('/') ? str : str + '/')(config.pagination_dir || 'page');
+      const page_url_for = (pageNum) => {
+        if (pageNum === 1) {
+          return url_for("/");
+        } else {
+          return url_for(fixedUrl + pageNum + "/");
+        }
+      };
+    #paginator
+      a(class="page-number" href=page_url_for(prev)) #{prev}
+      span(class="page-number current") current: #{page.current}
+      span(class="page-number current") total: #{page.total}
+      a(class="page-number" href=page_url_for(next)) #{next}
+  else
+    #paginator!= paginator()
