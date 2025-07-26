@@ -223,6 +223,37 @@ utterances:
 > 2. Install the [utterances app](https://github.com/apps/utterances) in your repository
 > 3. Ensure Issues are enabled for the repository
 
+### Giscus
+
+The theme supports [Giscus](https://giscus.app/).  
+Please refer to Giscus docs and edit `_config.arknights.yml` in your Hexo directory:
+
+```yaml
+giscus:
+  enable: false
+  repo: # GitHub repository owner and name, format: owner/repo
+  repo_id: # Repository ID, get it from giscus page
+  category: # Discussion category name
+  category_id: # Category ID, get it from giscus page
+  mapping: pathname # Page ↔️ discussion mapping: pathname | url | title | og:title | specific
+  term: # Used when mapping is specific, the specified string
+  strict: 0 # Enable strict title matching: 0 | 1
+  reactions_enabled: 1 # Enable reactions on main post: 0 | 1
+  emit_metadata: 0 # Emit discussion metadata: 0 | 1
+  input_position: bottom # Comment input position: top | bottom
+  theme: preferred_color_scheme # Theme: light | dark | dark_dimmed | dark_high_contrast | dark_tritanopia | light_high_contrast | light_tritanopia | light_protanopia | dark_protanopia | preferred_color_scheme or custom CSS URL
+  lang: en # Language: de | en | es | fr | gsw | id | it | ja | ko | pl | ro | ru | tr | vi | zh-CN | zh-TW
+  loading: lazy # Lazy loading: lazy | leave empty to disable
+  crossorigin: anonymous # CORS setting: anonymous | use-credentials | leave empty
+```
+
+> Before using, you need to:
+> 1. Ensure the GitHub repository is public
+> 2. Install the [giscus app](https://github.com/apps/giscus) in your repository
+> 3. Ensure Discussions are enabled for the repository
+> 
+> **Smart Theme Sync**: When the website theme switches, the Giscus comment system will automatically sync and switch themes
+
 ## Mathematical formulas
 
 The theme supports two scenarios for displaying math formulas:  

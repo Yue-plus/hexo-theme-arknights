@@ -223,6 +223,37 @@ utterances:
 > 2. 在仓库中安装 [utterances app](https://github.com/apps/utterances)
 > 3. 确保仓库启用了 Issues 功能
 
+### Giscus
+
+本主题支持 [Giscus](https://giscus.app/) 。
+请参考 Giscus 官方文档修改 Hexo 目录下的 `_config.arknights.yml` 文件：
+
+```yaml
+giscus:
+  enable: false
+  repo: # Github 仓库所有者和名称，格式：owner/repo
+  repo_id: # 仓库 ID，可在 giscus 页面获取
+  category: # discussion 分类名称
+  category_id: # 分类 ID，可在 giscus 页面获取
+  mapping: pathname # 页面 ↔️ discussion 映射关系，可选值: pathname | url | title | og:title | specific
+  term: # 当 mapping 为 specific 时使用，指定的字符串
+  strict: 0 # 是否启用严格标题匹配 0 | 1
+  reactions_enabled: 1 # 是否启用主帖子上的反应 0 | 1
+  emit_metadata: 0 # 是否输出 discussion 的元数据 0 | 1
+  input_position: bottom # 评论输入框位置，可选值: top | bottom
+  theme: preferred_color_scheme # 主题，可选值: light | dark | dark_dimmed | dark_high_contrast | dark_tritanopia | light_high_contrast | light_tritanopia | light_protanopia | dark_protanopia | preferred_color_scheme 或自定义 CSS 链接
+  lang: zh-CN # 语言，可选值: de | en | es | fr | gsw | id | it | ja | ko | pl | ro | ru | tr | vi | zh-CN | zh-TW
+  loading: lazy # 懒加载，可选值: lazy | 留空表示不使用懒加载
+  crossorigin: anonymous # CORS 设置，可选值: anonymous | use-credentials | 留空
+```
+
+> 使用前需要：
+> 1. 确保 GitHub 仓库是公开的
+> 2. 在仓库中安装 [giscus app](https://github.com/apps/giscus)
+> 3. 确保仓库启用了 Discussions 功能
+> 
+> **智能主题同步**：当网站主题切换时，Giscus 评论系统会自动同步切换主题
+
 ## 数学公式
 
 本主题支持两种方案显示数学公式：

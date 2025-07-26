@@ -223,6 +223,37 @@ utterances:
 > 2. リポジトリに [utterances app](https://github.com/apps/utterances) をインストール
 > 3. リポジトリで Issues が有効になっていることを確認
 
+### Giscus
+
+このテーマは [Giscus](https://giscus.app/) をサポートしています。
+Giscus 公式ドキュメントを参考に、Hexo ディレクトリの `_config.arknights.yml` ファイルを変更してください:
+
+```yaml
+giscus:
+  enable: false
+  repo: # GitHub リポジトリの所有者と名前、形式：owner/repo
+  repo_id: # リポジトリ ID、giscus ページから取得
+  category: # discussion カテゴリ名
+  category_id: # カテゴリ ID、giscus ページから取得
+  mapping: pathname # ページ ↔️ discussion マッピング関係、選択肢: pathname | url | title | og:title | specific
+  term: # mapping が specific の場合に使用、指定された文字列
+  strict: 0 # 厳密なタイトルマッチングを有効にする 0 | 1
+  reactions_enabled: 1 # メイン投稿でのリアクションを有効にする 0 | 1
+  emit_metadata: 0 # discussion のメタデータを出力する 0 | 1
+  input_position: bottom # コメント入力ボックスの位置、選択肢: top | bottom
+  theme: preferred_color_scheme # テーマ、選択肢: light | dark | dark_dimmed | dark_high_contrast | dark_tritanopia | light_high_contrast | light_tritanopia | light_protanopia | dark_protanopia | preferred_color_scheme またはカスタム CSS URL
+  lang: ja # 言語、選択肢: de | en | es | fr | gsw | id | it | ja | ko | pl | ro | ru | tr | vi | zh-CN | zh-TW
+  loading: lazy # 懒惰読み込み、選択肢: lazy | 空で無効化
+  crossorigin: anonymous # CORS 設定、選択肢: anonymous | use-credentials | 空
+```
+
+> 使用前に必要な設定：
+> 1. GitHub リポジトリが公開されていることを確認
+> 2. リポジトリに [giscus app](https://github.com/apps/giscus) をインストール
+> 3. リポジトリで Discussions が有効になっていることを確認
+> 
+> **スマートテーマ同期**：ウェブサイトのテーマが切り替わると、Giscus コメントシステムも自動的にテーマを同期して切り替わります
+
 ## 数学公式
 
 このテーマは数学公式を表示するための2つの方法をサポートしています：

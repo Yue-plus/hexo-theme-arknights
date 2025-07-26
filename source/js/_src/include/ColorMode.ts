@@ -1,5 +1,6 @@
 /// <reference path="common/base.ts" />
 /// <reference path="canvaDust.ts" />
+/// <reference path="GiscusManager.ts" />
 
 'use strict'
 
@@ -36,6 +37,17 @@ class ColorMode {
       }
       background.style.opacity = '0'
       code.resetMermaid()
+      
+      // 延迟同步 Giscus 主题，确保主题切换完成
+      setTimeout(() => {
+        try {
+          if (typeof giscusManager !== 'undefined' && giscusManager.isLoaded()) {
+            giscusManager.syncTheme()
+          }
+        } catch (e) {
+          // 静默处理错误，不影响主题切换
+        }
+      }, 200)
     })
     setTimeout(() => {
       document.body.removeChild(background)

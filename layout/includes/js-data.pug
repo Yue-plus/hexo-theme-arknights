@@ -109,6 +109,60 @@ script.pjax-js reset= () => {
     |  script.async = true;
     |  utterancesContainer.appendChild(script);
     |}
+  if theme.giscus && theme.giscus.enable === true
+    |// Giscus 评论系统初始化
+    |if (document.getElementById('giscus')) {
+    |  const giscusContainer = document.getElementById('giscus');
+    |  if (giscusContainer) {
+    |    // 清理现有内容
+    |    giscusContainer.innerHTML = '';
+    |    
+    |    // 创建脚本元素
+    |    const script = document.createElement('script');
+    |    script.src = 'https://giscus.app/client.js';
+    |    script.async = true;
+    |    
+    |    // 设置必需属性
+    |    script.setAttribute('data-repo', '#{theme.giscus.repo}');
+    |    script.setAttribute('data-repo-id', '#{theme.giscus.repo_id}');
+    |    script.setAttribute('data-category', '#{theme.giscus.category}');
+    |    script.setAttribute('data-category-id', '#{theme.giscus.category_id}');
+    |    script.setAttribute('data-mapping', '#{theme.giscus.mapping}');
+    |    script.setAttribute('data-strict', '#{theme.giscus.strict}');
+    |    script.setAttribute('data-reactions-enabled', '#{theme.giscus.reactions_enabled}');
+    |    script.setAttribute('data-emit-metadata', '#{theme.giscus.emit_metadata}');
+    |    script.setAttribute('data-input-position', '#{theme.giscus.input_position}');
+    |    script.setAttribute('data-theme', '#{theme.giscus.theme}');
+    |    script.setAttribute('data-lang', '#{theme.giscus.lang}');
+    |    
+    |    // 设置可选属性
+    if theme.giscus.term
+      |    script.setAttribute('data-term', '#{theme.giscus.term}');
+    if theme.giscus.loading
+      |    script.setAttribute('data-loading', '#{theme.giscus.loading}');
+    if theme.giscus.crossorigin
+      |    script.setAttribute('crossorigin', '#{theme.giscus.crossorigin}');
+    |    
+    |    // 添加加载监听器
+    |    script.onload = function() {
+    |      console.log('Giscus loaded successfully');
+    |      // 通知 GiscusManager 重新初始化
+    |      setTimeout(() => {
+    |        if (typeof giscusManager !== 'undefined') {
+    |          giscusManager.reinitialize();
+    |        }
+    |      }, 500);
+    |    };
+    |    
+    |    script.onerror = function() {
+    |      console.warn('Failed to load Giscus');
+    |      giscusContainer.innerHTML = '<div style="text-align:center;color:var(--theme-text-secondary);padding:20px;">评论加载失败</div>';
+    |    };
+    |    
+    |    // 添加到容器
+    |    giscusContainer.appendChild(script);
+    |  }
+    |}
   if theme.mathjax && theme.mathjax.enable === true
     |MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   | document.querySelector('.lg-container')?.remove()
