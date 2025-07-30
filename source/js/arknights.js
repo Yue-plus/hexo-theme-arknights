@@ -284,152 +284,55 @@ try {
     var canvasDusts = new canvasDust('#canvas-dust');
 }
 catch (e) { }
-/**
- * Giscus 管理器类
- * 提供动态配置更新、主题同步等高级功能
- */
 class GiscusManager {
     iframe = null;
-    container = null;
-    messageHandler = null;
-    initialized = false;
-    constructor() {
-        this.init();
+    findIframe() {
+        this.iframe = document.querySelector('iframe.giscus-frame');
     }
-    /**
-     * 初始化 Giscus 管理器
-     */
-    init() {
-        // 延迟初始化，等待 DOM 完全加载
-        setTimeout(() => {
-            this.findElements();
-            this.setupMessageListener();
-            this.initialized = true;
-        }, 1000);
-    }
-    /**
-     * 查找 Giscus 相关元素
-     */
-    findElements() {
-        try {
-            this.container = getElement('#giscus');
-            this.iframe = document.querySelector('iframe.giscus-frame');
-        }
-        catch (e) {
-            // Giscus 容器不存在或未加载
-        }
-    }
-    /**
-     * 设置消息监听器
-     */
-    setupMessageListener() {
-        const handleMessage = (event) => {
-            if (event.origin !== 'https://giscus.app')
-                return;
-            if (!(typeof event.data === 'object' && event.data.giscus))
-                return;
-            const giscusData = event.data.giscus;
-            // 处理错误消息
-            if (giscusData.error) {
-                console.warn('Giscus Error:', giscusData.error);
-            }
-            // 调用自定义消息处理器
-            if (this.messageHandler) {
-                this.messageHandler(giscusData);
-            }
-        };
-        window.addEventListener('message', handleMessage, { passive: true });
-    }
-    /**
-     * 动态更新 Giscus 配置
-     * @param config 要更新的配置项
-     * @returns 是否更新成功
-     */
-    updateConfig(config) {
-        if (!this.initialized) {
-            console.warn('GiscusManager not initialized yet');
+    syncTheme(theme) {
+        this.findIframe();
+        if (!this.iframe || !this.iframe.contentWindow)
             return false;
-        }
-        this.findElements(); // 重新查找元素（适应 PJAX）
-        if (!this.iframe || !this.iframe.contentWindow) {
-            console.warn('Giscus iframe not found or not ready');
-            return false;
-        }
+        const currentTheme = theme || document.documentElement.getAttribute('theme-mode');
+        const giscusTheme = currentTheme === 'dark' ? 'dark' :
+            currentTheme === 'light' ? 'light' :
+                'preferred_color_scheme';
         try {
-            const message = {
-                giscus: {
-                    setConfig: config
-                }
-            };
-            this.iframe.contentWindow.postMessage(message, 'https://giscus.app');
+            this.iframe.contentWindow.postMessage({
+                giscus: { setConfig: { theme: giscusTheme } }
+            }, 'https://giscus.app');
             return true;
         }
         catch (error) {
-            console.error('Failed to update Giscus config:', error);
             return false;
         }
     }
-    /**
-     * 根据当前网站主题同步更新 Giscus 主题
-     * @returns 是否更新成功
-     */
-    syncTheme() {
-        if (!this.initialized)
-            return false;
-        const currentTheme = document.documentElement.getAttribute('theme-mode');
-        let giscusTheme;
-        // 根据当前主题确定 Giscus 主题
-        switch (currentTheme) {
-            case 'dark':
-                giscusTheme = 'dark';
-                break;
-            case 'light':
-                giscusTheme = 'light';
-                break;
-            default:
-                giscusTheme = 'preferred_color_scheme';
-        }
-        return this.updateConfig({ theme: giscusTheme });
-    }
-    /**
-     * 设置消息事件处理器
-     * @param handler 消息处理函数
-     */
-    onMessage(handler) {
-        this.messageHandler = handler;
-    }
-    /**
-     * 检查 Giscus 是否已加载
-     * @returns 是否已加载
-     */
     isLoaded() {
-        this.findElements();
-        return !!(this.container && this.iframe);
+        this.findIframe();
+        return !!this.iframe;
     }
-    /**
-     * 重新初始化（用于 PJAX 页面切换）
-     */
     reinitialize() {
         this.iframe = null;
-        this.container = null;
-        this.init();
+        this.findIframe();
     }
 }
-// 创建全局实例
 let giscusManager;
-// 确保在适当时机创建实例
 if (typeof window !== 'undefined') {
-    // 延迟创建，避免阻塞页面加载
-    setTimeout(() => {
+    document.addEventListener('DOMContentLoaded', () => {
         giscusManager = new GiscusManager();
         window.giscusManager = giscusManager;
-    }, 500);
+    });
 }
 class ColorMode {
     html = document.documentElement;
     dark = this.html.getAttribute('theme-mode') === 'dark';
     inChanging = false;
     btn = getElement('#color-mode');
+    syncGiscusTheme = () => {
+        if (typeof giscusManager !== 'undefined' && giscusManager.isLoaded()) {
+            giscusManager.syncTheme();
+        }
+    };
     change = () => {
         this.inChanging = true;
         let background = document.createElement('div');
@@ -459,17 +362,7 @@ class ColorMode {
             }
             background.style.opacity = '0';
             code.resetMermaid();
-            // 延迟同步 Giscus 主题，确保主题切换完成
-            setTimeout(() => {
-                try {
-                    if (typeof giscusManager !== 'undefined' && giscusManager.isLoaded()) {
-                        giscusManager.syncTheme();
-                    }
-                }
-                catch (e) {
-                    // 静默处理错误，不影响主题切换
-                }
-            }, 200);
+            this.syncGiscusTheme();
         });
         setTimeout(() => {
             document.body.removeChild(background);
@@ -544,24 +437,8 @@ class Comments {
             catch (e) { }
         });
         new Selectors(this.elements, 0);
-        // 如果有 Giscus，重新初始化管理器
-        this.initializeGiscus();
-    };
-    /**
-     * 初始化 Giscus 管理器
-     */
-    initializeGiscus = () => {
-        try {
-            const giscusContainer = document.querySelector('#giscus');
-            if (giscusContainer && typeof giscusManager !== 'undefined') {
-                // 延迟重新初始化，确保 Giscus 脚本已加载
-                setTimeout(() => {
-                    giscusManager.reinitialize();
-                }, 1000);
-            }
-        }
-        catch (e) {
-            // 静默处理，Giscus 可能未启用
+        if (document.querySelector('#giscus') && typeof giscusManager !== 'undefined') {
+            giscusManager.reinitialize();
         }
     };
     constructor() {
@@ -678,108 +555,6 @@ class Cursor {
     }
 }
 new Cursor();
-/**
- * Giscus 工具函数
- * 提供便捷的 Giscus 操作接口
- */
-var GiscusUtils;
-(function (GiscusUtils) {
-    /**
-     * 等待 Giscus 加载完成
-     * @param timeout 超时时间（毫秒）
-     * @returns Promise<boolean> 是否加载成功
-     */
-    function waitForLoad(timeout = 10000) {
-        return new Promise((resolve) => {
-            const startTime = Date.now();
-            const checkLoaded = () => {
-                if (typeof giscusManager !== 'undefined' && giscusManager.isLoaded()) {
-                    resolve(true);
-                    return;
-                }
-                if (Date.now() - startTime > timeout) {
-                    resolve(false);
-                    return;
-                }
-                setTimeout(checkLoaded, 100);
-            };
-            checkLoaded();
-        });
-    }
-    GiscusUtils.waitForLoad = waitForLoad;
-    /**
-     * 安全地更新 Giscus 配置
-     * @param config 配置项
-     * @param retries 重试次数
-     * @returns Promise<boolean> 是否更新成功
-     */
-    async function safeUpdateConfig(config, retries = 3) {
-        for (let i = 0; i < retries; i++) {
-            if (await waitForLoad()) {
-                if (giscusManager.updateConfig(config)) {
-                    return true;
-                }
-            }
-            // 等待一段时间后重试
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-        return false;
-    }
-    GiscusUtils.safeUpdateConfig = safeUpdateConfig;
-    /**
-     * 安全地同步主题
-     * @param retries 重试次数
-     * @returns Promise<boolean> 是否同步成功
-     */
-    async function safeSyncTheme(retries = 3) {
-        for (let i = 0; i < retries; i++) {
-            if (await waitForLoad()) {
-                if (giscusManager.syncTheme()) {
-                    return true;
-                }
-            }
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-        return false;
-    }
-    GiscusUtils.safeSyncTheme = safeSyncTheme;
-    /**
-     * 获取当前 Giscus 状态
-     * @returns 状态信息
-     */
-    function getStatus() {
-        const managerExists = typeof giscusManager !== 'undefined';
-        const hasContainer = !!document.querySelector('#giscus');
-        const hasIframe = !!document.querySelector('iframe.giscus-frame');
-        return {
-            managerExists,
-            isLoaded: managerExists ? giscusManager.isLoaded() : false,
-            hasContainer,
-            hasIframe
-        };
-    }
-    GiscusUtils.getStatus = getStatus;
-    /**
-     * 调试用：打印 Giscus 状态
-     */
-    function debugStatus() {
-        const status = getStatus();
-        console.group('🔧 Giscus Debug Status');
-        console.log('Manager exists:', status.managerExists);
-        console.log('Is loaded:', status.isLoaded);
-        console.log('Has container:', status.hasContainer);
-        console.log('Has iframe:', status.hasIframe);
-        if (status.hasContainer) {
-            const container = document.querySelector('#giscus');
-            console.log('Container content:', container?.innerHTML?.slice(0, 200) + '...');
-        }
-        console.groupEnd();
-    }
-    GiscusUtils.debugStatus = debugStatus;
-})(GiscusUtils || (GiscusUtils = {}));
-// 暴露到全局作用域供开发者使用
-;
-window.GiscusUtils = GiscusUtils;
 class Header {
     header = getElement('header');
     button = getElement('.navBtnIcon');

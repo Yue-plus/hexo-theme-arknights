@@ -10,6 +10,13 @@ class ColorMode {
   private inChanging: boolean = false
   private btn: HTMLElement = getElement('#color-mode')
 
+  private syncGiscusTheme = (): void => {
+    if (typeof giscusManager !== 'undefined' && giscusManager.isLoaded()) {
+      giscusManager.syncTheme()
+    }
+  }
+
+
   public change = () => {
     this.inChanging = true
     let background = document.createElement('div')
@@ -37,17 +44,7 @@ class ColorMode {
       }
       background.style.opacity = '0'
       code.resetMermaid()
-      
-      // 延迟同步 Giscus 主题，确保主题切换完成
-      setTimeout(() => {
-        try {
-          if (typeof giscusManager !== 'undefined' && giscusManager.isLoaded()) {
-            giscusManager.syncTheme()
-          }
-        } catch (e) {
-          // 静默处理错误，不影响主题切换
-        }
-      }, 200)
+      this.syncGiscusTheme()
     })
     setTimeout(() => {
       document.body.removeChild(background)
