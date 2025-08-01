@@ -154,16 +154,33 @@ giscus:
   repo_id: # 仓库 ID，可在 giscus 页面获取
   category: # discussion 分类名称
   category_id: # 分类 ID，可在 giscus 页面获取
-  mapping: pathname # 页面 ↔️ discussion 映射关系，可选值: pathname | url | title | og:title | specific
+  mapping: pathname # 页面 ↔️ discussion 映射关系，可选值: pathname | url | title | og:title | specific | number
   term: # 当 mapping 为 specific 时使用，指定的字符串
+  discussion_number: # 当 mapping 为 number 时使用，指定的 discussion 号码
   strict: 0 # 是否启用严格标题匹配 0 | 1
   reactions_enabled: 1 # 是否启用主帖子上的反应 0 | 1
   emit_metadata: 0 # 是否输出 discussion 的元数据 0 | 1
   input_position: bottom # 评论输入框位置，可选值: top | bottom
-  theme: preferred_color_scheme # 主题，可选值: light | dark | dark_dimmed | dark_high_contrast | dark_tritanopia | light_high_contrast | light_tritanopia | light_protanopia | dark_protanopia | preferred_color_scheme 或自定义 CSS 链接
+  
+  # 主题配置 - 三种配置方式任选其一：
+  # 方式一：使用单一主题（固定主题，不随网站主题切换）
+  theme: preferred_color_scheme # 主题，可选值详见 README.md 或 giscus 官网
+  
+  # 方式二：分别设置明暗主题（推荐，支持主题自动切换）
+  # theme_light: light # 亮色模式主题
+  # theme_dark: dark # 暗色模式主题
+  
+  # 方式三：使用自定义 CSS（高级用法）
+  # theme: https://your-domain.com/path/to/custom-giscus-theme.css
+  
   lang: zh-CN # 语言，可选值: de | en | es | fr | gsw | id | it | ja | ko | pl | ro | ru | tr | vi | zh-CN | zh-TW
   loading: lazy # 懒加载，可选值: lazy | 留空表示不使用懒加载
   crossorigin: anonymous # CORS 设置，可选值: anonymous | use-credentials | 留空
+  
+  # 高级配置选项
+  description: # 自定义 discussion 描述
+  origin: # 限制域名，用于安全控制
+  backlink: # 自定义返回链接，用于 giscus:backlink meta 标签
 
 # 图表支持
 mermaid:

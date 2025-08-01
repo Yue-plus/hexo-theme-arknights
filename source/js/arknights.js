@@ -286,42 +286,179 @@ try {
 catch (e) { }
 class GiscusManager {
     iframe = null;
+    messageHandlers = [];
+    errorHandlers = [];
+    metadataHandlers = [];
+    config = null;
+    loaded = false;
+    async loadConfig() {
+        if (this.loaded)
+            return this.config;
+        try {
+            const response = await fetch('/giscus.json');
+            if (response.ok)
+                this.config = await response.json();
+        }
+        catch { }
+        this.loaded = true;
+        return this.config;
+    }
+    async validateOrigin() {
+        const currentOrigin = window.location.origin;
+        const settings = window.giscusSettings;
+        if (settings?.origin === currentOrigin)
+            return true;
+        const config = await this.loadConfig();
+        if (!config)
+            return true;
+        if (config.origins?.includes(currentOrigin))
+            return true;
+        if (config.originsRegex?.length) {
+            for (const pattern of config.originsRegex) {
+                try {
+                    if (new RegExp(pattern).test(currentOrigin))
+                        return true;
+                }
+                catch { }
+            }
+        }
+        return !(config.origins?.length || config.originsRegex?.length);
+    }
+    async getDefaultCommentOrder() {
+        return (await this.loadConfig())?.defaultCommentOrder || 'oldest';
+    }
     findIframe() {
         this.iframe = document.querySelector('iframe.giscus-frame');
     }
+    handleMessage = (event) => {
+        if (event.origin !== 'https://giscus.app')
+            return;
+        if (!(typeof event.data === 'object' && event.data.giscus))
+            return;
+        const giscusData = event.data.giscus;
+        this.messageHandlers.forEach(handler => handler(giscusData));
+        if ('error' in giscusData) {
+            this.errorHandlers.forEach(handler => handler(giscusData.error));
+        }
+        else if ('discussion' in giscusData) {
+            this.metadataHandlers.forEach(handler => handler(giscusData));
+        }
+    };
+    getGiscusTheme(siteTheme) {
+        const themeConfig = window.giscusThemeConfig;
+        if (themeConfig?.theme)
+            return themeConfig.theme;
+        if (themeConfig?.light && themeConfig?.dark) {
+            return siteTheme === 'dark' ? themeConfig.dark : themeConfig.light;
+        }
+        return siteTheme === 'auto' || !siteTheme ? 'preferred_color_scheme'
+            : siteTheme === 'dark' ? 'dark' : 'light';
+    }
     syncTheme(theme) {
+        return this.sendMessage({
+            setConfig: {
+                theme: this.getGiscusTheme(theme || document.documentElement.getAttribute('theme-mode'))
+            }
+        });
+    }
+    sendMessage(message) {
         this.findIframe();
-        if (!this.iframe || !this.iframe.contentWindow)
+        if (!this.iframe?.contentWindow)
             return false;
-        const currentTheme = theme || document.documentElement.getAttribute('theme-mode');
-        const giscusTheme = currentTheme === 'dark' ? 'dark' :
-            currentTheme === 'light' ? 'light' :
-                'preferred_color_scheme';
         try {
-            this.iframe.contentWindow.postMessage({
-                giscus: { setConfig: { theme: giscusTheme } }
-            }, 'https://giscus.app');
+            this.iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
             return true;
         }
-        catch (error) {
+        catch {
             return false;
         }
+    }
+    setConfig(config) {
+        return this.sendMessage({ setConfig: config });
+    }
+    addMessageHandler(handler) {
+        this.messageHandlers.push(handler);
+    }
+    removeMessageHandler(handler) {
+        const index = this.messageHandlers.indexOf(handler);
+        if (index > -1)
+            this.messageHandlers.splice(index, 1);
+    }
+    addErrorHandler(handler) {
+        this.errorHandlers.push(handler);
+    }
+    removeErrorHandler(handler) {
+        const index = this.errorHandlers.indexOf(handler);
+        if (index > -1)
+            this.errorHandlers.splice(index, 1);
+    }
+    addMetadataHandler(handler) {
+        this.metadataHandlers.push(handler);
+    }
+    removeMetadataHandler(handler) {
+        const index = this.metadataHandlers.indexOf(handler);
+        if (index > -1)
+            this.metadataHandlers.splice(index, 1);
     }
     isLoaded() {
         this.findIframe();
         return !!this.iframe;
     }
+    loadGiscusScript() {
+        const container = document.querySelector('#giscus');
+        if (!container)
+            return;
+        container.innerHTML = '';
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.async = true;
+        const settings = window.giscusSettings;
+        if (settings) {
+            const attributes = {
+                'data-repo': settings.repo,
+                'data-repo-id': settings.repoId,
+                'data-category': settings.category,
+                'data-category-id': settings.categoryId,
+                'data-mapping': settings.mapping,
+                'data-strict': settings.strict,
+                'data-reactions-enabled': settings.reactionsEnabled,
+                'data-emit-metadata': settings.emitMetadata,
+                'data-input-position': settings.inputPosition,
+                'data-lang': settings.lang,
+                'data-theme': this.getGiscusTheme(document.documentElement.getAttribute('theme-mode')),
+                'crossorigin': settings.crossorigin || 'anonymous'
+            };
+            Object.entries(attributes).forEach(([key, value]) => {
+                if (value)
+                    script.setAttribute(key, value);
+            });
+            const optionalAttrs = ['term', 'discussionNumber', 'description', 'origin', 'loading'];
+            optionalAttrs.forEach(attr => {
+                if (settings[attr])
+                    script.setAttribute(`data-${attr.toLowerCase().replace(/[A-Z]/g, '-$&')}`, settings[attr]);
+            });
+        }
+        container.appendChild(script);
+    }
     reinitialize() {
         this.iframe = null;
         this.findIframe();
     }
+    destroy() {
+        window.removeEventListener('message', this.handleMessage);
+        this.messageHandlers = [];
+        this.errorHandlers = [];
+        this.metadataHandlers = [];
+        this.iframe = null;
+    }
+    constructor() {
+        window.addEventListener('message', this.handleMessage);
+    }
 }
 let giscusManager;
 if (typeof window !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', () => {
-        giscusManager = new GiscusManager();
-        window.giscusManager = giscusManager;
-    });
+    giscusManager = new GiscusManager();
+    window.giscusManager = giscusManager;
 }
 class ColorMode {
     html = document.documentElement;
@@ -426,20 +563,36 @@ class Selectors {
 class Comments {
     search = ["valine", "gitalk", "waline", "artalk", "utterances", "giscus"];
     elements = [];
-    setHTML = () => {
-        if (!document.querySelector('#comments .selector'))
+    async validateGiscusOrigin() {
+        return typeof giscusManager !== 'undefined' ? await giscusManager.validateOrigin() : true;
+    }
+    async loadGiscus() {
+        const container = document.querySelector('#giscus');
+        if (!container)
             return;
-        this.elements = [];
-        this.search.forEach((item) => {
-            try {
-                this.elements.push(new Pair(getElement(`#${item}`), getElement(`.${item}-sel`)));
-            }
-            catch (e) { }
-        });
-        new Selectors(this.elements, 0);
-        if (document.querySelector('#giscus') && typeof giscusManager !== 'undefined') {
-            giscusManager.reinitialize();
+        const isOriginValid = await this.validateGiscusOrigin();
+        if (!isOriginValid)
+            return;
+        if (typeof giscusManager !== 'undefined') {
+            giscusManager.loadGiscusScript();
         }
+    }
+    setHTML = async () => {
+        const commentsContainer = document.querySelector('#comments');
+        if (!commentsContainer)
+            return;
+        const selectorContainer = commentsContainer.querySelector('.selector');
+        if (selectorContainer) {
+            this.elements = [];
+            this.search.forEach((item) => {
+                try {
+                    this.elements.push(new Pair(getElement(`#${item}`), getElement(`.${item}-sel`)));
+                }
+                catch (e) { }
+            });
+            new Selectors(this.elements, 0);
+        }
+        await this.loadGiscus();
     };
     constructor() {
         this.setHTML();

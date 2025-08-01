@@ -225,8 +225,10 @@ utterances:
 
 ### Giscus
 
-このテーマは [Giscus](https://giscus.app/) をサポートしています。
+このテーマは [Giscus](https://giscus.app/) コメントシステムをサポートしています。
 Giscus 公式ドキュメントを参考に、Hexo ディレクトリの `_config.arknights.yml` ファイルを変更してください:
+
+#### 基本設定
 
 ```yaml
 giscus:
@@ -235,24 +237,110 @@ giscus:
   repo_id: # リポジトリ ID、giscus ページから取得
   category: # discussion カテゴリ名
   category_id: # カテゴリ ID、giscus ページから取得
-  mapping: pathname # ページ ↔️ discussion マッピング関係、選択肢: pathname | url | title | og:title | specific
-  term: # mapping が specific の場合に使用、指定された文字列
+  mapping: pathname # ページ ↔️ discussion マッピング関係
   strict: 0 # 厳密なタイトルマッチングを有効にする 0 | 1
   reactions_enabled: 1 # メイン投稿でのリアクションを有効にする 0 | 1
   emit_metadata: 0 # discussion のメタデータを出力する 0 | 1
-  input_position: bottom # コメント入力ボックスの位置、選択肢: top | bottom
-  theme: preferred_color_scheme # テーマ、選択肢: light | dark | dark_dimmed | dark_high_contrast | dark_tritanopia | light_high_contrast | light_tritanopia | light_protanopia | dark_protanopia | preferred_color_scheme またはカスタム CSS URL
-  lang: ja # 言語、選択肢: de | en | es | fr | gsw | id | it | ja | ko | pl | ro | ru | tr | vi | zh-CN | zh-TW
-  loading: lazy # 懒惰読み込み、選択肢: lazy | 空で無効化
-  crossorigin: anonymous # CORS 設定、選択肢: anonymous | use-credentials | 空
+  input_position: bottom # コメント入力ボックスの位置: top | bottom
+  lang: ja # 言語
+  loading: lazy # 懒惰読み込み: lazy | 空で無効化
+  crossorigin: anonymous # CORS 設定
 ```
 
-> 使用前に必要な設定：
+#### テーマ設定（3つの方法から1つを選択）
+
+**方法1：単一テーマ（固定テーマ、サイトテーマに追従しない）**
+```yaml
+giscus:
+  theme: preferred_color_scheme # または他のテーマ名
+```
+
+**方法2：明暗テーマ個別設定（推奨、自動テーマ切り替えサポート）**
+```yaml
+giscus:
+  theme_light: light # ライトモードテーマ
+  theme_dark: dark # ダークモードテーマ
+```
+
+**方法3：カスタムCSS（上級者向け）**
+```yaml
+giscus:
+  theme: https://your-domain.com/path/to/custom-giscus-theme.css
+```
+
+#### 利用可能なテーマオプション
+
+- **GitHub テーマシリーズ**: `light`, `dark`, `dark_dimmed`, `dark_high_contrast`, `dark_tritanopia`, `light_high_contrast`, `light_tritanopia`, `light_protanopia`, `dark_protanopia`
+- **特殊テーマ**: `preferred_color_scheme`, `transparent_dark`
+- **ボーダーレステーマ**: `noborder_light`, `noborder_dark`, `noborder_gray`
+- **サードパーティテーマ**: `gruvbox`, `gruvbox_dark`, `gruvbox_light`, `purple_dark`, `cobalt`
+- **Catppuccin テーマ**: `catppuccin_latte`, `catppuccin_frappe`, `catppuccin_macchiato`, `catppuccin_mocha`
+- **その他**: `fro`
+
+#### マッピングオプション
+
+```yaml
+giscus:
+  mapping: pathname # 選択肢：
+    # pathname - ページパスを使用
+    # url - 完全なURLを使用  
+    # title - ページタイトルを使用
+    # og:title - og:title メタタグを使用
+    # specific - 特定の文字列を使用（term と組み合わせ）
+    # number - 特定のdiscussion番号を使用（discussion_number と組み合わせ）
+  
+  # mapping が specific の場合に使用
+  term: "your-specific-term"
+  
+  # mapping が number の場合に使用
+  discussion_number: 123
+```
+
+#### 上級設定オプション
+
+```yaml
+giscus:
+  # カスタム discussion 説明
+  description: "コメント"
+  
+  # ドメイン制限
+  origin: "https://your-domain.com"
+  
+  # カスタムバックリンク
+  backlink: "https://your-domain.com"
+```
+
+より良いセキュリティ制御のため、サイトルートに `source/giscus.json` ファイルを作成できます：
+
+```json
+{
+  "origins": ["https://your-domain.com"],
+  "originsRegex": ["http://localhost:[0-9]+"],
+  "defaultCommentOrder": "newest"
+}
+```
+
+ドメイン検証優先順位：YAML設定 > JSON完全一致 > JSON正規表現 > デフォルト許可
+
+#### メッセージイベント API
+
+```javascript
+// メッセージイベントを監視
+giscusManager.addMessageHandler((data) => {
+  console.log('Giscus message:', data)
+})
+
+// 設定を更新
+giscusManager.setConfig({ theme: 'dark' })
+
+// テーマを同期
+giscusManager.syncTheme()
+```
+
+> **使用前に必要な設定：**
 > 1. GitHub リポジトリが公開されていることを確認
 > 2. リポジトリに [giscus app](https://github.com/apps/giscus) をインストール
 > 3. リポジトリで Discussions が有効になっていることを確認
-> 
-> **スマートテーマ同期**：ウェブサイトのテーマが切り替わると、Giscus コメントシステムも自動的にテーマを同期して切り替わります
 
 ## 数学公式
 

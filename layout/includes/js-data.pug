@@ -110,35 +110,33 @@ script.pjax-js reset= () => {
     |  container.appendChild(script);
     |}
   if theme.giscus && theme.giscus.enable === true
-    |if (document.querySelector('#giscus')) {
-    |  const container = document.querySelector('#giscus');
-    |  container.innerHTML = '';
-    |  const script = document.createElement('script');
-    |  script.src = 'https://giscus.app/client.js';
-    |  script.async = true;
-    |  script.setAttribute('data-repo', '#{theme.giscus.repo}');
-    |  script.setAttribute('data-repo-id', '#{theme.giscus.repo_id}');
-    |  script.setAttribute('data-category', '#{theme.giscus.category}');
-    |  script.setAttribute('data-category-id', '#{theme.giscus.category_id}');
-    |  script.setAttribute('data-mapping', '#{theme.giscus.mapping}');
-    |  script.setAttribute('data-strict', '#{theme.giscus.strict}');
-    |  script.setAttribute('data-reactions-enabled', '#{theme.giscus.reactions_enabled}');
-    |  script.setAttribute('data-emit-metadata', '#{theme.giscus.emit_metadata}');
-    |  script.setAttribute('data-input-position', '#{theme.giscus.input_position}');
-    |  const currentTheme = document.documentElement.getAttribute('theme-mode');
-    |  const giscusTheme = currentTheme === 'dark' ? 'dark' : 
-    |                     currentTheme === 'light' ? 'light' : 
-    |                     'preferred_color_scheme';
-    |  script.setAttribute('data-theme', giscusTheme);
-    |  script.setAttribute('data-lang', '#{theme.giscus.lang}');
+    |window.giscusSettings = {
+    |  repo: '#{theme.giscus.repo}',
+    |  repoId: '#{theme.giscus.repo_id}',
+    |  category: '#{theme.giscus.category}',
+    |  categoryId: '#{theme.giscus.category_id}',
+    |  mapping: '#{theme.giscus.mapping}',
+    |  strict: '#{theme.giscus.strict}',
+    |  reactionsEnabled: '#{theme.giscus.reactions_enabled}',
+    |  emitMetadata: '#{theme.giscus.emit_metadata}',
+    |  inputPosition: '#{theme.giscus.input_position}',
+    |  lang: '#{theme.giscus.lang}',
+    |  crossorigin: '#{theme.giscus.crossorigin || "anonymous"}'
     if theme.giscus.term
-      |  script.setAttribute('data-term', '#{theme.giscus.term}');
+      |  , term: '#{theme.giscus.term}'
+    if theme.giscus.discussion_number
+      |  , discussionNumber: '#{theme.giscus.discussion_number}'
+    if theme.giscus.description
+      |  , description: '#{theme.giscus.description}'
+    if theme.giscus.origin
+      |  , origin: '#{theme.giscus.origin}'
     if theme.giscus.loading
-      |  script.setAttribute('data-loading', '#{theme.giscus.loading}');
-    if theme.giscus.crossorigin
-      |  script.setAttribute('crossorigin', '#{theme.giscus.crossorigin}');
-    |  container.appendChild(script);
-    |}
+      |  , loading: '#{theme.giscus.loading}'
+    |};
+    if theme.giscus.theme_light && theme.giscus.theme_dark
+      |window.giscusThemeConfig = { light: '#{theme.giscus.theme_light}', dark: '#{theme.giscus.theme_dark}' };
+    else if theme.giscus.theme
+      |window.giscusThemeConfig = { theme: '#{theme.giscus.theme}' };
   if theme.mathjax && theme.mathjax.enable === true
     |MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   | document.querySelector('.lg-container')?.remove()

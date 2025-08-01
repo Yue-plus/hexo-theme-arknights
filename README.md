@@ -225,8 +225,10 @@ utterances:
 
 ### Giscus
 
-本主题支持 [Giscus](https://giscus.app/) 。
+本主题支持 [Giscus](https://giscus.app/) 评论系统。
 请参考 Giscus 官方文档修改 Hexo 目录下的 `_config.arknights.yml` 文件：
+
+#### 基础配置
 
 ```yaml
 giscus:
@@ -235,24 +237,110 @@ giscus:
   repo_id: # 仓库 ID，可在 giscus 页面获取
   category: # discussion 分类名称
   category_id: # 分类 ID，可在 giscus 页面获取
-  mapping: pathname # 页面 ↔️ discussion 映射关系，可选值: pathname | url | title | og:title | specific
-  term: # 当 mapping 为 specific 时使用，指定的字符串
+  mapping: pathname # 页面 ↔️ discussion 映射关系
   strict: 0 # 是否启用严格标题匹配 0 | 1
   reactions_enabled: 1 # 是否启用主帖子上的反应 0 | 1
   emit_metadata: 0 # 是否输出 discussion 的元数据 0 | 1
   input_position: bottom # 评论输入框位置，可选值: top | bottom
-  theme: preferred_color_scheme # 主题，可选值: light | dark | dark_dimmed | dark_high_contrast | dark_tritanopia | light_high_contrast | light_tritanopia | light_protanopia | dark_protanopia | preferred_color_scheme 或自定义 CSS 链接
-  lang: zh-CN # 语言，可选值: de | en | es | fr | gsw | id | it | ja | ko | pl | ro | ru | tr | vi | zh-CN | zh-TW
+  lang: zh-CN # 语言
   loading: lazy # 懒加载，可选值: lazy | 留空表示不使用懒加载
-  crossorigin: anonymous # CORS 设置，可选值: anonymous | use-credentials | 留空
+  crossorigin: anonymous # CORS 设置
 ```
 
-> 使用前需要：
+#### 主题配置（三种方式任选其一）
+
+**方式一：使用单一主题（固定主题，不随网站主题切换）**
+```yaml
+giscus:
+  theme: preferred_color_scheme # 或其他主题名称
+```
+
+**方式二：分别设置明暗主题（推荐，支持主题自动切换）**
+```yaml
+giscus:
+  theme_light: light # 亮色模式主题
+  theme_dark: dark # 暗色模式主题
+```
+
+**方式三：使用自定义 CSS（高级用法）**
+```yaml
+giscus:
+  theme: https://your-domain.com/path/to/custom-giscus-theme.css
+```
+
+#### 可用主题选项
+
+- **GitHub 主题系列**: `light`, `dark`, `dark_dimmed`, `dark_high_contrast`, `dark_tritanopia`, `light_high_contrast`, `light_tritanopia`, `light_protanopia`, `dark_protanopia`
+- **特殊主题**: `preferred_color_scheme`, `transparent_dark`
+- **无边框主题**: `noborder_light`, `noborder_dark`, `noborder_gray`
+- **第三方主题**: `gruvbox`, `gruvbox_dark`, `gruvbox_light`, `purple_dark`, `cobalt`
+- **Catppuccin 主题**: `catppuccin_latte`, `catppuccin_frappe`, `catppuccin_macchiato`, `catppuccin_mocha`
+- **其他**: `fro`
+
+#### 映射关系选项
+
+```yaml
+giscus:
+  mapping: pathname # 可选值：
+    # pathname - 使用页面路径
+    # url - 使用完整 URL
+    # title - 使用页面标题
+    # og:title - 使用 og:title meta 标签
+    # specific - 使用特定字符串（需配合 term）
+    # number - 使用特定 discussion 号码（需配合 discussion_number）
+  
+  # 当 mapping 为 specific 时使用
+  term: "your-specific-term"
+  
+  # 当 mapping 为 number 时使用
+  discussion_number: 123
+```
+
+#### 高级配置选项
+
+```yaml
+giscus:
+  # 自定义 discussion 描述
+  description: "评论区"
+  
+  # 限制域名
+  origin: "https://your-domain.com"
+  
+  # 自定义返回链接
+  backlink: "https://your-domain.com"
+```
+
+为了更好的安全控制，可在站点根目录创建 `source/giscus.json` 文件：
+
+```json
+{
+  "origins": ["https://your-domain.com"],
+  "originsRegex": ["http://localhost:[0-9]+"],
+  "defaultCommentOrder": "newest"
+}
+```
+
+域名验证优先级：YAML配置 > JSON精确匹配 > JSON正则匹配 > 默认允许
+
+#### 消息事件 API
+
+```javascript
+// 监听消息事件
+giscusManager.addMessageHandler((data) => {
+  console.log('Giscus message:', data)
+})
+
+// 更新配置
+giscusManager.setConfig({ theme: 'dark' })
+
+// 同步主题
+giscusManager.syncTheme()
+```
+
+> **使用前需要：**
 > 1. 确保 GitHub 仓库是公开的
 > 2. 在仓库中安装 [giscus app](https://github.com/apps/giscus)
 > 3. 确保仓库启用了 Discussions 功能
-> 
-> **智能主题同步**：当网站主题切换时，Giscus 评论系统会自动同步切换主题
 
 ## 数学公式
 
