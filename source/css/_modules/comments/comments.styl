@@ -16,6 +16,10 @@ if hexo-config('utterances.enable')
   $comment-count = $comment-count + 1
   @import 'utterances'
 
+if hexo-config('giscus.enable')
+  $comment-count = $comment-count + 1
+  @import 'giscus'
+
 if $comment-count > 0
   #comments
     border-top var(--theme-border) solid 2px

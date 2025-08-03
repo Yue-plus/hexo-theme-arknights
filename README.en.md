@@ -223,6 +223,125 @@ utterances:
 > 2. Install the [utterances app](https://github.com/apps/utterances) in your repository
 > 3. Ensure Issues are enabled for the repository
 
+### Giscus
+
+The theme supports [Giscus](https://giscus.app/) comment system.
+Please refer to Giscus official documentation and edit `_config.arknights.yml` in your Hexo directory:
+
+#### Basic Configuration
+
+```yaml
+giscus:
+  enable: false
+  repo: # GitHub repository owner and name, format: owner/repo
+  repo_id: # Repository ID, get it from giscus page
+  category: # Discussion category name
+  category_id: # Category ID, get it from giscus page
+  mapping: pathname # Page ↔️ discussion mapping
+  strict: 0 # Enable strict title matching: 0 | 1
+  reactions_enabled: 1 # Enable reactions on main post: 0 | 1
+  emit_metadata: 0 # Emit discussion metadata: 0 | 1
+  input_position: bottom # Comment input position: top | bottom
+  lang: en # Language
+  loading: lazy # Lazy loading: lazy | leave empty to disable
+  crossorigin: anonymous # CORS setting
+```
+
+#### Theme Configuration (Choose One)
+
+**Option 1: Single Theme (Fixed theme, doesn't follow site theme)**
+```yaml
+giscus:
+  theme: preferred_color_scheme # or other theme name
+```
+
+**Option 2: Separate Light/Dark Themes (Recommended, supports auto theme switching)**
+```yaml
+giscus:
+  theme_light: light # Light mode theme
+  theme_dark: dark # Dark mode theme
+```
+
+**Option 3: Custom CSS (Advanced usage)**
+```yaml
+giscus:
+  theme: https://your-domain.com/path/to/custom-giscus-theme.css
+```
+
+#### Available Theme Options
+
+- **GitHub Theme Series**: `light`, `dark`, `dark_dimmed`, `dark_high_contrast`, `dark_tritanopia`, `light_high_contrast`, `light_tritanopia`, `light_protanopia`, `dark_protanopia`
+- **Special Themes**: `preferred_color_scheme`, `transparent_dark`
+- **Borderless Themes**: `noborder_light`, `noborder_dark`, `noborder_gray`
+- **Third Party Themes**: `gruvbox`, `gruvbox_dark`, `gruvbox_light`, `purple_dark`, `cobalt`
+- **Catppuccin Themes**: `catppuccin_latte`, `catppuccin_frappe`, `catppuccin_macchiato`, `catppuccin_mocha`
+- **Others**: `fro`
+
+#### Mapping Options
+
+```yaml
+giscus:
+  mapping: pathname # Available options:
+    # pathname - Use page path
+    # url - Use full URL
+    # title - Use page title
+    # og:title - Use og:title meta tag
+    # specific - Use specific string (requires term)
+    # number - Use specific discussion number (requires discussion_number)
+  
+  # Used when mapping is specific
+  term: "your-specific-term"
+  
+  # Used when mapping is number
+  discussion_number: 123
+```
+
+#### Advanced Configuration Options
+
+```yaml
+giscus:
+  # Custom discussion description
+  description: "Comments"
+  
+  # Domain restriction
+  origin: "https://your-domain.com"
+  
+  # Custom backlink
+  backlink: "https://your-domain.com"
+```
+
+For better security control, create `source/giscus.json` file in your site root:
+
+```json
+{
+  "origins": ["https://your-domain.com"],
+  "originsRegex": ["http://localhost:[0-9]+"],
+  "defaultCommentOrder": "newest"
+}
+```
+
+Domain validation priority: YAML config > JSON exact match > JSON regex match > default allow
+
+#### Message Events API
+
+```javascript
+// Listen to message events
+giscusManager.addMessageHandler((data) => {
+  console.log('Giscus message:', data)
+})
+
+// Update configuration
+giscusManager.setConfig({ theme: 'dark' })
+
+// Sync theme
+giscusManager.syncTheme()
+```
+
+> **Before using, you need to:**
+> 1. Ensure the GitHub repository is public
+> 2. Install the [giscus app](https://github.com/apps/giscus) in your repository
+> 3. Ensure Discussions are enabled for the repository
+
 ## Mathematical formulas
 
 The theme supports two scenarios for displaying math formulas:  
