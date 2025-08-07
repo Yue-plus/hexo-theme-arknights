@@ -2,15 +2,16 @@
 
 这里是原项目的分支，实现一些我个人博客需要的 feature。
 
-**注意，不要直接应用我的修改，项目中 `source/js/_src/include/InitializeGiscus.ts` 和编译出的 `source/js/arknights.js` 中均填写的是我的 Giscus 信息。请自行生成 Giscus API 并修改，否则后果自负。**
-
 原项目地址：[hexo-theme-arknights](https://github.com/Yue-plus/hexo-theme-arknights)
 
 ## 修改日志
 
-提交线乱了，最近重新提交了一遍。
++ daff415: 修改 404 页面；
++ c1cb794: 在侧栏增加 modified by；
++ a1579f2: 禁用鼠标动画；
++ 392840f: 使用 Giscus 作为评论系统；随博客主题更改 Giscus 主题；
 
-Commit 信息都比较明确，不对我的修改做额外声明了。
+以上修改也保存在 [Arknights Theme 修改日志](https://weilycoder.github.io/2025/03/30/theme-modify/)，有顺序差异。
 
 ## 许可证
 
