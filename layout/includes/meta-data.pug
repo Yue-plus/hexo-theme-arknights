@@ -27,6 +27,10 @@ style.
 link(rel="stylesheet", href=url_for("css/arknights.css"))
 
 meta(name="page-config" content=JSON.stringify({ code_fold: page.code_fold || null }))
+
+if theme.giscus && theme.giscus.enable === true && theme.giscus.backlink
+  meta(name="giscus:backlink" content=theme.giscus.backlink)
+
 script(class="pjax-js").
   var config = !{configs};
   var page_config = {

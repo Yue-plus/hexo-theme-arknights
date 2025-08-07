@@ -97,9 +97,9 @@ script.pjax-js reset= () => {
     |    path: !{'window.location.pathname'},
     |  });
   if theme.utterances && theme.utterances.enable === true
-    |if (document.getElementById('utterances')) {
-    |  const utterancesContainer = document.getElementById('utterances');
-    |  utterancesContainer.innerHTML = '';
+    |if (document.querySelector('#utterances')) {
+    |  const container = document.querySelector('#utterances');
+    |  container.innerHTML = '';
     |  const script = document.createElement('script');
     |  script.src = 'https://utteranc.es/client.js';
     |  script.setAttribute('repo', '#{theme.utterances.repo}');
@@ -107,12 +107,41 @@ script.pjax-js reset= () => {
     |  script.setAttribute('theme', '#{theme.utterances.theme}');
     |  script.setAttribute('crossorigin', 'anonymous');
     |  script.async = true;
-    |  utterancesContainer.appendChild(script);
+    |  container.appendChild(script);
     |}
+  if theme.giscus && theme.giscus.enable === true
+    |window.giscusSettings = {
+    |  repo: '#{theme.giscus.repo}',
+    |  repoId: '#{theme.giscus.repo_id}',
+    |  category: '#{theme.giscus.category}',
+    |  categoryId: '#{theme.giscus.category_id}',
+    |  mapping: '#{theme.giscus.mapping}',
+    |  strict: '#{theme.giscus.strict}',
+    |  reactionsEnabled: '#{theme.giscus.reactions_enabled}',
+    |  emitMetadata: '#{theme.giscus.emit_metadata}',
+    |  inputPosition: '#{theme.giscus.input_position}',
+    |  lang: '#{theme.giscus.lang}',
+    |  crossorigin: '#{theme.giscus.crossorigin || "anonymous"}'
+    if theme.giscus.term
+      |  , term: '#{theme.giscus.term}'
+    if theme.giscus.discussion_number
+      |  , discussionNumber: '#{theme.giscus.discussion_number}'
+    if theme.giscus.description
+      |  , description: '#{theme.giscus.description}'
+    if theme.giscus.origin
+      |  , origin: '#{theme.giscus.origin}'
+    if theme.giscus.loading
+      |  , loading: '#{theme.giscus.loading}'
+    |};
+    if theme.giscus.theme_light && theme.giscus.theme_dark
+      |window.giscusThemeConfig = { light: '#{theme.giscus.theme_light}', dark: '#{theme.giscus.theme_dark}' };
+    else if theme.giscus.theme
+      |window.giscusThemeConfig = { theme: '#{theme.giscus.theme}' };
   if theme.mathjax && theme.mathjax.enable === true
     |MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   | document.querySelector('.lg-container')?.remove()
-  | lightGallery(document.getElementById('post-bg'), {
+  | const postBg = document.querySelector('#post-bg');
+  | if (postBg) lightGallery(postBg, {
   |   plugins: [lgZoom,lgThumbnail],
   |   selector: '.item-img'})}
 

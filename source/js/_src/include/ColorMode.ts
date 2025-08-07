@@ -1,5 +1,6 @@
 /// <reference path="common/base.ts" />
 /// <reference path="canvaDust.ts" />
+/// <reference path="GiscusManager.ts" />
 
 'use strict'
 
@@ -8,6 +9,13 @@ class ColorMode {
   private dark: boolean = this.html.getAttribute('theme-mode') === 'dark'
   private inChanging: boolean = false
   private btn: HTMLElement = getElement('#color-mode')
+
+  private syncGiscusTheme = (): void => {
+    if (typeof giscusManager !== 'undefined' && giscusManager.isLoaded()) {
+      giscusManager.syncTheme()
+    }
+  }
+
 
   public change = () => {
     this.inChanging = true
@@ -36,6 +44,7 @@ class ColorMode {
       }
       background.style.opacity = '0'
       code.resetMermaid()
+      this.syncGiscusTheme()
     })
     setTimeout(() => {
       document.body.removeChild(background)

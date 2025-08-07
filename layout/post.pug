@@ -90,7 +90,8 @@ block content
                   (theme.gitalk.enable === true) +
                   (theme.waline.enable === true) +
                   (theme.artalk.enable === true) +
-                  (theme.utterances.enable === true)
+                  (theme.utterances.enable === true) +
+                  (theme.giscus.enable === true)
     if page.comments && count
       #comments
         if count > 1
@@ -105,6 +106,8 @@ block content
               button.artalk-sel
             if theme.utterances.enable === true
               button.utterances-sel
+            if theme.giscus.enable === true
+              button.giscus-sel
         if theme.valine.enable === true
           #valine
         if theme.gitalk.enable === true
@@ -115,6 +118,8 @@ block content
           #artalk
         if theme.utterances.enable === true
           #utterances
+        if theme.giscus.enable === true
+          #giscus
 
 block aside-block
   - 
