@@ -44,3 +44,13 @@ h1, h2, h3, h4, h5, h6
 
 #aside-block
   transition --theme-bg-trans1 1s
+
+[theme-mode=light]
+  img
+    filter: none;
+    transition: filter 1.0s ease-in-out;
+
+[theme-mode=dark]
+  img
+    filter: brightness(0.8) contrast(1.1);
+    transition: filter 1.0s ease-in-out;
