@@ -141,13 +141,17 @@ class GiscusManager {
   loadGiscusScript(): void {
     const container = document.querySelector('#giscus')
     if (!container) return
-    
+
     container.innerHTML = ''
     const script = document.createElement('script')
     script.src = 'https://giscus.app/client.js'
     script.async = true
-    
+
     const settings = (window as any).giscusSettings
+    if (settings === undefined) {
+      setTimeout(() => this.loadGiscusScript(), 100)
+      return
+    }
     if (settings) {
       const attributes = {
         'data-repo': settings.repo,
@@ -167,14 +171,14 @@ class GiscusManager {
       Object.entries(attributes).forEach(([key, value]) => {
         if (value) script.setAttribute(key, value)
       })
-      
+
       const optionalAttrs = ['term', 'discussionNumber', 'description', 'origin', 'loading']
       optionalAttrs.forEach(attr => {
         if (settings[attr]) script.setAttribute(`data-${attr.toLowerCase().replace(/[A-Z]/g, '-$&')}`, settings[attr])
       })
+
+      container.appendChild(script)
     }
-    
-    container.appendChild(script)
   }
 
   reinitialize(): void {
