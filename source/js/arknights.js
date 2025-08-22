@@ -413,6 +413,10 @@ class GiscusManager {
         script.src = 'https://giscus.app/client.js';
         script.async = true;
         const settings = window.giscusSettings;
+        if (settings === undefined) {
+            setTimeout(() => this.loadGiscusScript(), 100);
+            return;
+        }
         if (settings) {
             const attributes = {
                 'data-repo': settings.repo,
@@ -437,8 +441,8 @@ class GiscusManager {
                 if (settings[attr])
                     script.setAttribute(`data-${attr.toLowerCase().replace(/[A-Z]/g, '-$&')}`, settings[attr]);
             });
+            container.appendChild(script);
         }
-        container.appendChild(script);
     }
     reinitialize() {
         this.iframe = null;
