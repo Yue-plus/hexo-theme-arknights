@@ -485,20 +485,19 @@ class GiscusManager {
             }
             const errorDiv = document.createElement('div');
             errorDiv.className = 'giscus-error-message';
-            errorDiv.style.cssText = 'display:flex;align-items:center;padding:20px;background:#fff3cd;border:1px solid #ffeaa7;border-radius:8px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:400px;margin:20px auto';
             const iconDiv = document.createElement('div');
-            iconDiv.style.cssText = 'font-size:20px;margin-right:12px';
+            iconDiv.className = 'giscus-error-icon';
             iconDiv.textContent = '⏳';
             const contentDiv = document.createElement('div');
-            contentDiv.style.cssText = 'flex:1';
+            contentDiv.className = 'giscus-error-content';
             const titleDiv = document.createElement('div');
-            titleDiv.style.cssText = 'font-weight:600;color:#856404;margin-bottom:8px';
+            titleDiv.className = 'giscus-error-title';
             titleDiv.textContent = '评论系统加载较慢';
             const messageDiv = document.createElement('div');
-            messageDiv.style.cssText = 'font-size:13px;color:#856404;margin-bottom:12px';
+            messageDiv.className = 'giscus-error-message-text';
             messageDiv.textContent = msg;
             const retryButton = document.createElement('button');
-            retryButton.style.cssText = 'background:#ffc107;color:#212529;border:none;padding:6px 12px;border-radius:4px;font-size:12px;cursor:pointer;font-weight:500';
+            retryButton.className = 'giscus-error-retry';
             retryButton.textContent = '重新加载';
             retryButton.addEventListener('click', () => {
                 retryButton.disabled = true;

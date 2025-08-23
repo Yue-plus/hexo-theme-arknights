@@ -11,3 +11,83 @@
 .giscus-frame
   color-scheme light
   cursor var(--cursor-data) 3 3, default !important
+
+.giscus-error-message
+  display flex
+  align-items center
+  padding 20px
+  border-radius 8px
+  max-width 400px
+  margin 20px auto
+  background-color var(--giscus-error-bg, #fff3cd)
+  border 1px solid var(--giscus-error-border, #ffeaa7)
+  font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
+  color var(--giscus-error-color, #856404)
+  transition background-color 3s, border-color 3s, color 3s, box-shadow 3s
+  will-change background-color, border-color, color, box-shadow
+
+.giscus-error-message .giscus-error-icon
+  font-size 20px
+  margin-right 12px
+
+.giscus-error-message .giscus-error-content
+  flex 1
+
+.giscus-error-message .giscus-error-title
+  font-weight 600
+  margin-bottom 8px
+  color inherit
+
+.giscus-error-message .giscus-error-message-text
+  font-size 13px
+  margin-bottom 12px
+  color inherit
+
+.giscus-error-message .giscus-error-retry
+  background-color var(--giscus-error-retry-bg, #ffc107)
+  color var(--giscus-error-retry-color, #212529)
+  border none
+  padding 6px 12px
+  border-radius 4px
+  font-size 12px
+  cursor pointer
+  font-weight 500
+  transition background-color 3s, border-color 3s, color 3s, box-shadow 3s
+
+.giscus-error-message .giscus-error-retry:hover
+  filter brightness(.98)
+
+// dark theme tweaks
+[theme-mode=dark]
+  .giscus-error-message
+    background-color rgba(255, 243, 205, 0.04)
+    border-color rgba(255, 234, 167, 0.12)
+    color var(--giscus-error-color-dark, #ffd28a)
+  .giscus-error-message .giscus-error-retry
+    background-color #d49a00
+    color #111
+
+// light theme tweaks
+[theme-mode=light]
+  .giscus-error-message
+    background-color var(--giscus-error-bg-light, #fff9ec)
+    border-color var(--giscus-error-border-light, #ffe6a3)
+    color var(--giscus-error-color-light, #5a3d00)
+
+  .giscus-error-message .giscus-error-icon
+    color var(--giscus-error-icon-color-light, #8a5a00)
+
+  .giscus-error-message .giscus-error-title
+    color var(--giscus-error-title-color-light, #402a00)
+
+  .giscus-error-message .giscus-error-message-text
+    color var(--giscus-error-text-color-light, #5a3d00)
+    opacity 0.95
+
+  .giscus-error-message .giscus-error-retry
+    background-color var(--giscus-error-retry-bg-light, #ffd166)
+    color var(--giscus-error-retry-color-light, #111)
+    border 1px solid rgba(#000, .06)
+    box-shadow 0 1px 0 rgba(#000, .04)
+    &:hover
+      filter brightness(.98)
