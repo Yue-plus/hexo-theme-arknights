@@ -19,32 +19,11 @@
     border-left 1px solid var(--theme-border)
     display flex
     align-items center
+    justify-content center
+    font-size 16px
     &.active
       background transparent
     &:hover:not(.active)
       background var(--theme-bg-soft-hover)
-    &::after
-      display block
-      width 100%
-      text-align center
-      font-size 16px
     &:last-child
       border-right 1px solid var(--theme-border)
-
-.valine-sel::after
-  content "Valine"
-
-.gitalk-sel::after
-  content "Gitalk"
-
-.waline-sel::after
-  content "Waline"
-
-.artalk-sel::after
-  content "Artalk"
-
-.utterances-sel::after
-  content "Utterances"
-
-.giscus-sel::after
-  content "Giscus"
