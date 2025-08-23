@@ -584,6 +584,14 @@ search:
   enable: false
 ```
 
+## 构建时间显示
+
+可选择在边栏添加构建时间显示，默认关闭，若要开启，可以在 `Hexo/_config.arknights.yml` 文件中：
+
+```yaml
+build_time: true
+```
+
 ## Front-matter
 
 除了 [Hexo 支持的 Front-matter](https://hexo.io/zh-cn/docs/front-matter) 还支持：

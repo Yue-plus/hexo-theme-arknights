@@ -583,6 +583,14 @@ search:
   enable: false
 ```
 
+## Build time display
+
+You can choose to add a build time display in the sidebar. It is disabled by default. To enable it, add the following to `Hexo/_config.arknights.yml`:
+
+```yaml
+build_time: true
+```
+
 ## Front-matter
 
 In addition to [Front-matter supported by Hexo](https://hexo.io/docs/front-matter), the theme also supports:  
