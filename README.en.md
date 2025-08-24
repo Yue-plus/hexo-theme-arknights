@@ -331,7 +331,7 @@ giscusManager.addMessageHandler((data) => {
 })
 
 // Update configuration
-giscusManager.setConfig({ theme: 'dark' })
+giscusManager.sendMessage({ setConfig: { theme: 'dark' } })
 
 // Sync theme
 giscusManager.syncTheme()
@@ -602,7 +602,7 @@ post-time: true/false
 # Article reading time/word count statistics
 post-count: true/false
 
-# Article vercount counter
+# Article Vercount statistics
 vercount: true/false
 
 # Turn on/off all of the above

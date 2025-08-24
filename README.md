@@ -331,7 +331,7 @@ giscusManager.addMessageHandler((data) => {
 })
 
 // 更新配置
-giscusManager.setConfig({ theme: 'dark' })
+giscusManager.sendMessage({ setConfig: { theme: 'dark' } })
 
 // 同步主题
 giscusManager.syncTheme()
@@ -603,7 +603,7 @@ post-time: true/false
 # 文章阅读时间/词数统计
 post-count: true/false
 
-# 文章不蒜子统计
+# 文章 Vercount 统计
 vercount: true/false
 
 # 开启/关闭以上全部
