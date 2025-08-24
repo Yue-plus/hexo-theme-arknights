@@ -1,0 +1,283 @@
+.hbe,
+.hbe::after,
+.hbe::before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.hbe-container{
+	margin: 0 auto;
+	overflow: hidden;
+}
+.hbe-content {
+	text-align: center;
+	font-size: 150%;
+	padding: 1em 0;
+}
+
+.hbe-input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 1em;
+	width: 80%;
+	min-width: 200px;
+	vertical-align: top;
+}
+
+.hbe-input-field {
+	line-height: normal;
+	font-size: 100%;
+	margin: 0;
+	position: relative;
+	display: block;
+	float: right;
+	padding: 0.8em;
+	width: 60%;
+	border: none;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #aaa;
+	font-weight: 400;
+	font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.hbe-input-field:focus {
+	outline: none;
+}
+
+.hbe-input-label {
+	display: inline-block;
+	padding: 0 1em;
+	width: 40%;
+	color: #696969;
+	font-weight: bold;
+	font-size: 70.25%;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.hbe-input-label-content {
+	position: relative;
+	display: block;
+	padding: 1.6em 0;
+	width: 100%;
+}
+
+.hbe-graphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	fill: none;
+}
+
+/* hbe button in post page */
+.hbe-button {
+	display: block;
+	margin: auto;
+	padding: 0.75em 1.25em;
+  outline: none;
+  border: 1px solid var(--theme-border-light);
+  border-radius: 5px;
+  background-color: var(--theme-bg-soft);
+  color: var(--theme-text-light);
+  white-space: nowrap;
+  font-size: 0.75em;
+  line-height: 1;
+  transition: 0.3s;
+}
+
+.hbe-button:hover {
+  border: 1px solid var(--theme-border);
+  background-color: var(--theme-bg-soft-hover);
+  color: var(--theme-subcolor);
+  transition: 0.3s;
+}
+
+.hbe-confirm {
+	font-weight: bold;
+	margin-block: 1.8em;
+	height: 55px;
+	width: 70px;
+	background: #666666;
+}
+.hbe-confirm::before {
+	content: var(--theme-encrypt-confirm);
+}
+/* hbe button in post page */
+
+/* default theme {{{ */
+.hbe-input-default {
+	overflow: hidden;
+}
+
+.hbe-input-field-default {
+	width: 100%;
+	background: transparent;
+	padding: 0.5em;
+	margin-bottom: 2em;
+	color: #f9f7f6;
+	z-index: 100;
+	opacity: 0;
+}
+
+.hbe-input-label-default {
+	width: 100%;
+	position: absolute;
+	text-align: left;
+	padding: 0.5em 0;
+	pointer-events: none;
+	font-size: 1em;
+}
+
+.hbe-input-label-default::before,
+.hbe-input-label-default::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	left: 0;
+}
+
+.hbe-input-label-default::before {
+	height: 100%;
+	background: #666666;
+	top: 0;
+	-webkit-transform: translate3d(0, -100%, 0);
+	transform: translate3d(0, -100%, 0);
+	-webkit-transition: -webkit-transform 0.2s;
+	transition: transform 0.2s;
+}
+
+.hbe-input-label-default::after {
+	height: 2px;
+	background: #666666;
+	top: 100%;
+	-webkit-transition: opacity 0.2s;
+	transition: opacity 0.2s;
+}
+
+.hbe-input-label-content-default {
+	padding: 0;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-webkit-transition: -webkit-transform 0.2s, color 0.2s;
+	transition: transform 0.2s, color 0.2s;
+}
+
+.hbe-input-field-default:focus,
+.hbe-input--filled .hbe-input-field-default {
+	opacity: 1;
+	-webkit-transition: opacity 0s 0.2s;
+	transition: opacity 0s 0.2s;
+}
+
+.hbe-input-label-default::before,
+.hbe-input-label-default::after,
+.hbe-input-label-content-default,
+.hbe-input-field-default:focus,
+.hbe-input--filled .hbe-input-field-default {
+	-webkit-transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+	transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+}
+
+.hbe-input-field-default:focus + .hbe-input-label-default::before,
+.hbe-input--filled .hbe-input-label-default::before {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.hbe-input-field-default:focus + .hbe-input-label-default::after,
+.hbe-input--filled .hbe-input-label-default::after {
+	opacity: 0;
+}
+
+.hbe-input-field-default:focus + .hbe-input-label-default .hbe-input-label-content-default,
+.hbe-input--filled .hbe-input-label-default .hbe-input-label-content-default {
+	color: #555555;
+	-webkit-transform: translate3d(0, 2.1em, 0) scale3d(0.65, 0.65, 1);
+	transform: translate3d(0, 2.1em, 0) scale3d(0.65, 0.65, 1);
+}
+/* default theme }}} */
+
+/* up theme {{{ */
+.hbe-input-up {
+	overflow: hidden;
+	padding-top: 2em;
+}
+
+.hbe-input-field-up {
+	width: 100%;
+	background: transparent;
+	opacity: 0;
+	padding: 0.35em;
+	z-index: 100;
+	color: #837482;
+}
+
+.hbe-input-label-up {
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+	pointer-events: none;
+	text-align: left;
+	color: #8E9191;
+	padding: 0 0.5em;
+}
+
+.hbe-input-label-up::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 4em;
+	top: 100%;
+	left: 0;
+	background: #fff;
+	border-top: 4px solid #9B9F9F;
+	-webkit-transform: translate3d(0, -3px, 0);
+	transform: translate3d(0, -3px, 0);
+	-webkit-transition: -webkit-transform 0.4s;
+	transition: transform 0.4s;
+	-webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.hbe-input-label-content-up {
+	padding: 0.5em 0;
+	-webkit-transform-origin: 0% 100%;
+	transform-origin: 0% 100%;
+	-webkit-transition: -webkit-transform 0.4s, color 0.4s;
+	transition: transform 0.4s, color 0.4s;
+	-webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.hbe-input-field-up:focus,
+.input--filled .hbe-input-field-up {
+	cursor: text;
+	opacity: 1;
+	-webkit-transition: opacity 0s 0.4s;
+	transition: opacity 0s 0.4s;
+}
+
+.hbe-input-field-up:focus + .hbe-input-label-up::before,
+.input--filled .hbe-input-label-up::before {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+	-webkit-transform: translate3d(0, -3.3em, 0);
+	transform: translate3d(0, -3.3em, 0);
+}
+
+.hbe-input-field-up:focus + .hbe-input-label-up .hbe-input-label-content-up,
+.input--filled .hbe-input-label-content-up {
+	color: #6B6E6E;
+	-webkit-transform: translate3d(0, -3.3em, 0) scale3d(0.81, 0.81, 1);
+	transform: translate3d(0, -3.3em, 0) scale3d(0.81, 0.81, 1);
+}
+/* up theme }}} */
