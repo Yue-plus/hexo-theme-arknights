@@ -6,6 +6,19 @@ class MonacoEditor {
   // keep references to editors to avoid garbage collection
   private editors = new Map<HTMLElement, any>();
 
+  private updateEditorLayout = () => {
+    for (const [container, ed] of Array.from(this.editors.entries())) {
+      if (!(container instanceof HTMLElement) || !container.isConnected) {
+        this.editors.delete(container);
+        continue;
+      }
+
+      try {
+        ed.layout();
+      } catch (e) { /* ignore */ }
+    }
+  }
+
   private createEditor = (container: HTMLElement, lang: string, theme: string, readOnly: boolean, height: string, options: any) => {
     if (container.getAttribute('data-initialized') === 'true') return;
     container.setAttribute('data-initialized', 'true');
@@ -33,7 +46,6 @@ class MonacoEditor {
 
       // store editor instance to avoid garbage collection
       this.editors.set(container, editor);
-      try { editor.layout(); } catch (e) { /* ignore layout errors */ }
     } catch (e) {
       console.error('MonacoEditor: failed to create editor', e);
     }
@@ -65,9 +77,10 @@ class MonacoEditor {
 
       this.createEditor(editor as HTMLElement, lang, theme, Boolean(readOnly), height, options);
     });
+    this.updateEditorLayout();
   }
 
-  public loadMonaco = () => {
+  private loadMonaco = () => {
     if (typeof (window as any).hexo_monaco === 'undefined') {
       const loader = document.createElement('script');
       loader.src = 'https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js';
@@ -91,12 +104,7 @@ class MonacoEditor {
     this.loadMonaco()
     document.addEventListener('pjax:success', this.loadMonaco)
     window.addEventListener('hexo-blog-decrypt', this.loadMonaco)
-
-    window.addEventListener('resize', () => {
-      this.editors.forEach((ed) => {
-        try { ed.layout(); } catch (e) { /* ignore */ }
-      });
-    });
+    window.addEventListener('resize', this.updateEditorLayout);
   }
 };
 

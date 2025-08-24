@@ -1067,6 +1067,18 @@ let indexs = new Index();
 class MonacoEditor {
     // keep references to editors to avoid garbage collection
     editors = new Map();
+    updateEditorLayout = () => {
+        for (const [container, ed] of Array.from(this.editors.entries())) {
+            if (!(container instanceof HTMLElement) || !container.isConnected) {
+                this.editors.delete(container);
+                continue;
+            }
+            try {
+                ed.layout();
+            }
+            catch (e) { /* ignore */ }
+        }
+    };
     createEditor = (container, lang, theme, readOnly, height, options) => {
         if (container.getAttribute('data-initialized') === 'true')
             return;
@@ -1090,10 +1102,6 @@ class MonacoEditor {
             });
             // store editor instance to avoid garbage collection
             this.editors.set(container, editor);
-            try {
-                editor.layout();
-            }
-            catch (e) { /* ignore layout errors */ }
         }
         catch (e) {
             console.error('MonacoEditor: failed to create editor', e);
@@ -1125,6 +1133,7 @@ class MonacoEditor {
             }
             this.createEditor(editor, lang, theme, Boolean(readOnly), height, options);
         });
+        this.updateEditorLayout();
     };
     loadMonaco = () => {
         if (typeof window.hexo_monaco === 'undefined') {
@@ -1150,14 +1159,7 @@ class MonacoEditor {
         this.loadMonaco();
         document.addEventListener('pjax:success', this.loadMonaco);
         window.addEventListener('hexo-blog-decrypt', this.loadMonaco);
-        window.addEventListener('resize', () => {
-            this.editors.forEach((ed) => {
-                try {
-                    ed.layout();
-                }
-                catch (e) { /* ignore */ }
-            });
-        });
+        window.addEventListener('resize', this.updateEditorLayout);
     }
 }
 ;
