@@ -602,7 +602,7 @@ post-time: true/false
 # 記事の読み込み時間/語数の統計
 post-count: true/false
 
-# 記事のVercount統計
+# 記事の読み取り回数
 vercount: true/false
 
 # 以上すべてオン/オフ
@@ -653,6 +653,65 @@ Title2:
 ```
 
 友達チェーンのセットを生成できます。タイトル（title）、リンク（src）は必須です。スタイル（style）は CSS フォーマットに準拠しています。
+
+### Monaco Editor
+
+Hexo 標準の [コードブロック](https://hexo.io/ja/docs/tag-plugins.html#%E3%82%B3%E3%83%BC%E3%83%89%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF) に加え、本テーマは VS Code スタイルの [Monaco Editor](https://github.com/microsoft/monaco-editor) をサポートしています。
+
+```text
+{% editor javascript %}
+/* global hexo */
+
+'use strict';
+
+function render(data) {
+    return hexo.render.renderSync({ text: data, engine: 'markdown' });
+}
+
+hexo.extend.tag.register('hide', (args) => {
+    let content = ''
+    args.forEach((item) => {
+        content += ' ' + item
+    });
+    return `<span class="hide"><object>${render(content.slice(1)).trim()}</object></span>`;
+})
+{% endeditor %}
+```
+
+`editor` タグは次のパラメータをサポートします：
+
+```text
+[language, [theme, [readOnly, [height]]], [...extras(key:value)]]
+```
+
++ `language` のデフォルトは `plaintext` です；
++ `theme` のデフォルトは `vs-dark` です；
++ `readOnly` のデフォルトは `true` です；
++ `height` のデフォルトは `300px` です。
+
+あまり使われないパラメータは `extras` で渡すことができます。例えば、下の例は列数が 40 を超えた時に折り返し（ワードラップ）を有効にします：
+
+```
+{% editor javascript hc-black wordWrap:`wordWrapColumn` wordWrapColumn:40 wrappingIndent:`indent` %}
+/* global hexo */
+
+'use strict';
+
+function render(data) {
+    return hexo.render.renderSync({ text: data, engine: 'markdown' });
+}
+
+hexo.extend.tag.register('hide', (args) => {
+    let content = ''
+    args.forEach((item) => {
+        content += ' ' + item
+    });
+    return `<span class="hide"><object>${render(content.slice(1)).trim()}</object></span>`;
+})
+{% endeditor %}
+```
+
+追加の拡張パラメータは [Monaco Editor ドキュメント](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html) を参照してください。具体的なスタイルの反映例は [PR #215](https://github.com/Yue-plus/hexo-theme-arknights/pull/215) をご覧ください。
 
 ## カスタム CSS/JS ファイルの導入
 
