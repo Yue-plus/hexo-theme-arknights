@@ -13,6 +13,8 @@ canvas_dust: true
 # auto 跟随系统
 color: dark
 
+build_time: false # 是否开启构建时间显示，开启后会在生成的站点配置中添加 build_time 字段，值为 UTC 时间字符串
+
 # <body> 背景图片链接
 background_image:
   dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # 暗色模式

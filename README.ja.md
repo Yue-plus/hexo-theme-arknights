@@ -531,7 +531,7 @@ vercount:
   pagePV: true # ページアクセス数
 ```
 
-### ドキュメント暗号化
+## ドキュメント暗号化
 
 修正された [hexo-blog-encrypt](https://github.com/D0n9X1n/hexo-blog-encrypt) プラグインはこのトピックに適合して統合されています（現在は `default` と `up` トピックのみがサポートされています）。
 
@@ -574,13 +574,21 @@ wrong_hash_message：Rhodes Islandと™ 有効パスワードが失敗しまし
 ---
 ```
 
-### 検索
+## 検索
 
 デフォルトでオンになっています。オフにするには、`Hexo/_config.arknights.yml` ファイルで次の手順に従います。
 
 ```yaml
 search:
   enable: false
+```
+
+## ビルド時間の表示
+
+サイドバーにビルド時間の表示を追加できます。デフォルトでは無効になっています。有効にするには、`Hexo/_config.arknights.yml` ファイルで次のように設定してください：
+
+```yaml
+build_time: true
 ```
 
 ## Front-matter
@@ -750,4 +758,4 @@ hexo serve --debug
 - 開発者の arknight id：`24444750`（中国 Bilibili 鯉）
 - Tencent QQ の交流グループ：[618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - Reward：
-  ![QRコード](./support.jpg)  
+  ![QRコード](./support.jpg)
