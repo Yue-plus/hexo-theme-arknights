@@ -646,6 +646,65 @@ Title2:
 
 A set of friendly links can be generated, with the title and link (src) as mandatory options. Style follows CSS format.
 
+### Monaco Editor
+
+In addition to Hexo's built-in [code blocks](https://hexo.io/docs/tag-plugins.html#Code-Block), this theme also supports the VS Code-style [Monaco Editor](https://github.com/microsoft/monaco-editor).
+
+```text
+{% editor javascript %}
+/* global hexo */
+
+'use strict';
+
+function render(data) {
+    return hexo.render.renderSync({ text: data, engine: 'markdown' });
+}
+
+hexo.extend.tag.register('hide', (args) => {
+    let content = ''
+    args.forEach((item) => {
+        content += ' ' + item
+    });
+    return `<span class="hide"><object>${render(content.slice(1)).trim()}</object></span>`;
+})
+{% endeditor %}
+```
+
+The `editor` tag supports the following parameters:
+
+```text
+[language, [theme, [readOnly, [height]]], [...extras(key:value)]]
+```
+
++ `language` defaults to `plaintext`;
++ `theme` defaults to `vs-dark`;
++ `readOnly` defaults to `true`;
++ `height` defaults to `300px`.
+
+Less commonly used options can be passed through the `extras` field. For example, the following example enables word wrapping when the line exceeds 40 columns:
+
+```
+{% editor javascript hc-black wordWrap:`wordWrapColumn` wordWrapColumn:40 wrappingIndent:`indent` %}
+/* global hexo */
+
+'use strict';
+
+function render(data) {
+    return hexo.render.renderSync({ text: data, engine: 'markdown' });
+}
+
+hexo.extend.tag.register('hide', (args) => {
+    let content = ''
+    args.forEach((item) => {
+        content += ' ' + item
+    });
+    return `<span class="hide"><object>${render(content.slice(1)).trim()}</object></span>`;
+})
+{% endeditor %}
+```
+
+For more construction options see the [Monaco Editor documentation](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html); for concrete styling examples see [PR #215](https://github.com/Yue-plus/hexo-theme-arknights/pull/215).
+
 ## Import custom CSS/JS files
 
 You can put your own CSS snippets into `Hexo/source/css/`;  
