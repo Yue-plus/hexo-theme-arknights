@@ -331,7 +331,7 @@ giscusManager.addMessageHandler((data) => {
 })
 
 // 設定を更新
-giscusManager.setConfig({ theme: 'dark' })
+giscusManager.sendMessage({ setConfig: { theme: 'dark' } })
 
 // テーマを同期
 giscusManager.syncTheme()
