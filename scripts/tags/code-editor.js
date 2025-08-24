@@ -21,7 +21,7 @@ hexo.extend.tag.register('editor', (args, data) => {
     positional.push(item);
   });
 
-  const lang = (positional && positional[0]) ? positional[0] : 'javascript';
+  const lang = (positional && positional[0]) ? positional[0] : 'plaintext';
   const theme = (positional && positional[1]) ? positional[1] : 'vs-dark';
   const readOnly = (positional && positional[2]) ? positional[2] : 'true';
   let height = (positional && positional[3]) ? positional[3] : '300px';

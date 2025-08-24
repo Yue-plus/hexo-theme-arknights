@@ -54,7 +54,7 @@ class MonacoEditor {
   private findEditor = () => {
     const editors = document.querySelectorAll('.monaco-editor-code');
     editors.forEach((editor) => {
-      const lang = editor.getAttribute('data-lang') || 'javascript';
+      const lang = editor.getAttribute('data-lang') || 'plaintext';
       const theme = editor.getAttribute('data-theme') || 'vs-dark';
       const readOnly = editor.getAttribute('data-readonly') || 'false';
       const height = editor.getAttribute('data-height') || '300px';
