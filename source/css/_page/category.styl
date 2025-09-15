@@ -5,14 +5,18 @@
 
 .category-list
   padding 0
+.category-list-child
+  list-style-type unset
+  padding-left 15px
 .category-list-item
   position relative
+  a:hover
+    background-color var(--theme-bg-soft-hover)
   @media ( min-width 769px )
     &:hover
-      a
+      &>a
         color var(--theme-highlight)
         border-left var(--theme-highlight) solid 5px
-        background-color var(--theme-bg-soft-hover)
       span
         color var(--theme-text-light)
 .category-list-link
