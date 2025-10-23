@@ -89,13 +89,19 @@ script.pjax-js reset= () => {
     |});
     |if (document.querySelector("#gitalk")) gitalk.render("gitalk");
   if theme.waline && theme.waline.enable === true
-    |if (document.querySelector('#waline'))
-    |  waline({
+    |if (document.querySelector('#waline')) {
+    |  const walineOptions = {
     |    el: '#waline',
     |    dark: ':root[theme-mode="dark"]',
     |    serverURL: '#{theme.waline.server_url}',
-    |    path: !{'window.location.pathname'},
-    |  });
+    |    path: window.location.pathname,
+    |  };
+    |  
+    if theme.waline.locale
+    |  walineOptions.locale = !{JSON.stringify(theme.waline.locale)};
+    |  
+    |  waline(walineOptions);
+    |}
   if theme.utterances && theme.utterances.enable === true
     |if (document.querySelector('#utterances')) {
     |  const container = document.querySelector('#utterances');

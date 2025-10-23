@@ -132,6 +132,13 @@ gitalk:
 waline:
   enable: false
   server_url: #Server_Url
+  locale:
+    placeholder: "期待您的评论~"
+    # sofa: "来发评论吧~"
+    # nick: "昵称"
+    # mail: "邮箱"
+    # link: "网址"
+    # submit: "提交"
 
 #Artalk
 #详见：https://artalk.js.org/
