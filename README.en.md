@@ -191,6 +191,91 @@ Please refer to [Waline docs](https://waline.js.org/) and edit `_config.arknight
 waline:
   enable: false 
   server_url: #Server_Url
+  locale:
+  placeholder: "Looking forward to your comments~"
+    # sofa: "Be the first to comment~"
+    # nick: "Nickname"
+    # mail: "Email"
+    # link: "Link"
+    # submit: "Submit"
+```
+
+Waline provides a `locale` option for customizing the interface language and displayed text. By default, Waline uses built-in multilingual texts. If the current language is not supported, it will automatically fall back to en-US (American English).  <br/>You can override the default displayed text by setting specific fields. In the `locale` option, all fields are optional, and unspecified fields will retain their default values
+
+```yaml
+Level Related:
+level${number}: Text for level number
+```
+```yaml
+Reaction Related:
+reactionTitle: Reaction Title
+reaction0: Reaction 1 Text
+reaction1: Reaction 2 Text
+reaction2: Reaction 3 Text
+reaction3: Reaction 4 Text
+reaction4: Reaction 5 Text
+reaction5: Reaction 6 Text
+reaction6: Reaction 7 Text
+reaction7: Reaction 8 Text
+reaction8: Reaction 9 Text
+```
+```yaml
+UI Related:
+nick: Nickname
+mail: Email
+link: Link
+placeholder: Default comment box text
+sofa: Text displayed when comment area is empty
+submit: Submit button text
+comment: Comment button text
+refresh: Refresh button text
+more: Load More button text
+uploading: Text displayed during upload
+login: Login button text
+admin: Admin label
+sticky: Pinned text
+word: Word
+anonymous: Default name for anonymous user
+optional: Text indicating an optional field
+gifSearchPlaceholder: GIF search placeholder text
+oldest: Oldest comments
+latest: Latest comments
+hottest: Hottest comments
+```
+> The text for the settings above will be displayed on the page.
+```yaml
+Notification Related:
+nickError: Error message for invalid nickname
+mailError: Error message for invalid email
+wordHint: Error message for comment word count. $0, $1, $2 will be automatically replaced with the minimum allowed words, maximum allowed words, and current word count respectively.
+```
+```yaml
+Comment Time Related:
+seconds: seconds ago
+minutes: minutes ago
+hours: hours ago
+days: days ago
+now: Just now
+```
+```yaml
+Moderation Related:
+approved: Approved
+waiting: Pending Review
+spam: Spam
+unsticky: Unpin
+```
+```yaml
+Accessibility Related (For enhancing accessibility services only, not displayed on the page):
+like: Like text
+cancelLike: Cancel Like text
+reply: Label text for reply button
+cancelReply: Label text for cancel reply button
+preview: Label text for preview button
+emoji: Label text for emoji button
+gif: Label text for GIF button
+uploadImage: Label text for upload image button
+profile: Label text for profile page
+logout: Label text for logout button
 ```
 
 ### Artalk
@@ -809,3 +894,5 @@ If you enjoy this theme:
 - Join Tencent QQ discussion group: [618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - reward/sponsor:
   ![Reward QR code](./support.jpg)
+
+

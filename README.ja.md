@@ -191,6 +191,91 @@ Waline の公式ドキュメントを参考に、Hexo ディレクトリの `_co
 waline:
   enable: false
   server_url: # Server_Url
+  locale:
+    placeholder: "コメントをお待ちしています～"
+    # sofa: "コメントをお待ちしています～"
+    # nick: "ニックネーム"
+    # mail: "メールアドレス"
+    # link: "URL"
+    # submit: "送信"
+```
+
+Walineはロケールオプションを提供しており、インターフェースの言語と表示テキストをカスタマイズするために使用できます。デフォルトでは、Walineは組み込みの多言語テキストを使用します。現在の言語がサポートされていない場合、自動的にen-US（アメリカ英語）にフォールバックします。<br/>デフォルトで表示されるテキストを上書きするために、一部のフィールドを設定できます。ロケールオプションでは、すべてのフィールドはオプションであり、指定されていないフィールドはデフォルト値を保持します。<br/>
+```yaml
+レベル関連:
+level${number}: レベル${number}の表示テキスト
+```
+```yaml
+リアクション関連:
+reactionTitle: リアクションタイトル
+reaction0: リアクション1のテキスト
+reaction1: リアクション2のテキスト
+reaction2: リアクション3のテキスト
+reaction3: リアクション4のテキスト
+reaction4: リアクション5のテキスト
+reaction5: リアクション6のテキスト
+reaction6: リアクション7のテキスト
+reaction7: リアクション8のテキスト
+reaction8: リアクション9のテキスト
+```
+```yaml
+UI関連:
+nick: ニックネーム
+mail: メールアドレス
+link: ウェブサイト
+placeholder: コメント欄プレースホルダー
+sofa: コメントがまだない時の表示テキスト
+submit: 送信ボタンテキスト
+comment: コメントボタンテキスト
+refresh: 更新ボタンテキスト
+more: さらに読み込むボタンテキスト
+uploading: アップロード中表示テキスト
+login: ログインボタンテキスト
+admin: 管理者バッジ
+sticky: 固定表示
+word: 文字
+anonymous: 匿名ユーザー名
+optional: 任意項目表示テキスト
+gifSearchPlaceholder: GIF検索プレースホルダー
+oldest: 古い順
+latest: 新しい順
+hottest: 人気順
+```
+> 上記設定項目のテキストはページに表示されます。
+
+```yaml
+エラーメッセージ関連:
+nickError: ニックネームが条件を満たしていない場合のエラーメッセージ
+mailError: メールアドレスが条件を満たしていない場合のエラーメッセージ
+wordHint: コメント文字数に関するエラーメッセージ。$0、$1、$2は自動的に文字数の下限、上限、現在の文字数に置き換えられます。
+```
+```yaml
+コメント時間関連:
+seconds: 秒前
+minutes: 分前
+hours: 時間前
+days: 日前
+now: たった今
+```
+```yaml
+管理関連:
+approved: 承認済み
+waiting: 承認待ち
+spam: スパムコメント
+unsticky: 固定を解除
+```
+```yaml
+アクセシビリティ関連(アクセシビリティサービスのみで使用され、ページには表示されません):
+like: いいね
+cancelLike: いいね取消
+reply: 返信ボタンのラベル
+cancelReply: 返信取消ボタンのラベル
+preview: プレビューボタンのラベル
+emoji: 絵文字ボタンのラベル
+gif: GIFボタンのラベル
+uploadImage: 画像アップロードボタンのラベル
+profile: プロフィールページのラベル
+logout: ログアウトボタンのラベル
 ```
 
 ### Artalk
