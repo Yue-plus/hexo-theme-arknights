@@ -187,6 +187,19 @@ gitalk:
 本主题支持 [Waline](https://waline.js.org/) 。  
 请参考 Waline 官方文档 修改 Hexo 目录下的 `_config.arknights.yml` 文件:  
 
+```yaml
+waline:
+  enable: false 
+  server_url: # Server_Url
+  locale:
+    placeholder: "期待您的评论~"
+    # sofa: "来发评论吧~"
+    # nick: "昵称"
+    # mail: "邮箱"
+    # link: "网址"
+    # submit: "提交"
+```
+
 Waline 提供了 locale 选项，可用于自定义界面语言与显示文本。默认情况下，Waline 会使用内置的多语言文本。若当前语言不受支持，则自动回退到 en-US（英语美国）。<br/>你可以设置部分字段以覆盖默认显示的文本。在 locale 选项中，所有字段均为可选，未指定的字段将保留其默认值。<br/>
 
 ```yaml
@@ -264,19 +277,6 @@ gif: 表情包按钮的标签文字
 uploadImage: 上传图片按钮的标签文字
 profile: 档案页标签文字
 logout: 退出登录按钮的标签文字
-```
-
-```yaml
-waline:
-  enable: false 
-  server_url: # Server_Url
-  locale:
-    placeholder: "期待您的评论~"
-    # sofa: "来发评论吧~"
-    # nick: "昵称"
-    # mail: "邮箱"
-    # link: "网址"
-    # submit: "提交"
 ```
 
 ### Artalk
