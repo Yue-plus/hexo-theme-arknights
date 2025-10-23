@@ -191,6 +191,13 @@ Please refer to [Waline docs](https://waline.js.org/) and edit `_config.arknight
 waline:
   enable: false 
   server_url: #Server_Url
+  locale:
+  placeholder: "Looking forward to your comments~"
+    # sofa: "Be the first to comment~"
+    # nick: "Nickname"
+    # mail: "Email"
+    # link: "Link"
+    # submit: "Submit"
 ```
 
 Waline provides a `locale` option for customizing the interface language and displayed text. By default, Waline uses built-in multilingual texts. If the current language is not supported, it will automatically fall back to en-US (American English).  <br/>You can override the default displayed text by setting specific fields. In the `locale` option, all fields are optional, and unspecified fields will retain their default values
@@ -216,7 +223,7 @@ reaction8: Reaction 9 Text
 UI Related:
 nick: Nickname
 mail: Email
-link: Website
+link: Link
 placeholder: Default comment box text
 sofa: Text displayed when comment area is empty
 submit: Submit button text
@@ -887,4 +894,5 @@ If you enjoy this theme:
 - Join Tencent QQ discussion group: [618221514](https://qm.qq.com/q/QJ7NPWiWyK)
 - reward/sponsor:
   ![Reward QR code](./support.jpg)
+
 
