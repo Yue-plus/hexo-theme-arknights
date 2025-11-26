@@ -38,7 +38,7 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
 }</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer src="https://vercount.one/js"></script><script async src="//unpkg.com/valine/dist/Valine.min.js"></script><script async src="/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@8.13.5/dist/mermaid.esm.mjs';
 window.mermaid = mermaid;
 code.paintMermaid();
-</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {new Valine({
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script class="pjax-js">reset= () => {new Valine({
  el: '#valine'
  , appId: 'LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz'
  , appKey: 'Fu9giJfnidkCamaW89FUpidw' , placeholder: 'This comment is sent by Penguin Logistics.'
@@ -57,24 +57,7 @@ code.paintMermaid();
 if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
 lightGallery(document.getElementById('post-bg'), {
   plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
- cacheBust: false,
- selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
- switches: {'article': Pjax.switches.sideBySide},
- switchesOptions: {
-   'article': {
-     classNames: {
-       remove: "pjax-out",
-       add: "pjax-in"
-     }
-   }
- }
-});
-document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => {
- const script = document.createElement('script');
- script.src = 'https://vercount.one/js';
- document.head.appendChild(script);
-});reset()})</script><script class="pjax-js">reset= () => {new Valine({
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {reset()})</script><script class="pjax-js">reset= () => {new Valine({
  el: '#valine'
  , appId: 'LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz'
  , appKey: 'Fu9giJfnidkCamaW89FUpidw' , placeholder: 'This comment is sent by Penguin Logistics.'
@@ -94,24 +77,7 @@ if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySel
 const postBg = document.querySelector('#post-bg');
 if (postBg) lightGallery(postBg, {
   plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
- cacheBust: false,
- selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
- switches: {'article': Pjax.switches.sideBySide},
- switchesOptions: {
-   'article': {
-     classNames: {
-       remove: "pjax-out",
-       add: "pjax-in"
-     }
-   }
- }
-});
-document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => {
- const script = document.createElement('script');
- script.src = 'https://vercount.one/js';
- document.head.appendChild(script);
-});reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/demo/"><span class="navItemTitle">独立页面</span></a></li><li class="navItem"><a class="navBlock" href="/contributors/"><span class="navItemTitle">贡献者</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>kotlin 基本类型</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2020-07-14T00:34:40.000Z" id="date"> 2020-07-14</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-26T01:47:37.134Z" id="updated"> 2025-11-26</time></div></span><br><span>Word Count: <div class="control">4k</div></span><br><span>Read Time: <div class="control">16 min</div></span><br><span id="vercount_container_page_pv">Page View: <span class="control" id="vercount_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h1><p>在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以在任何变量上调用成员函数与属性。<br>一些类型可以有特殊的内部表示——例如，数字、字符以及布尔值可以在运行时表示为原生类型值，但是对于用户来说，它们看起来就像普通的类。<br>在本节中，我们会描述 Kotlin 中使用的基本类型：数字、字符、布尔值、数组与字符串。</p>
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/demo/"><span class="navItemTitle">独立页面</span></a></li><li class="navItem"><a class="navBlock" href="/contributors/"><span class="navItemTitle">贡献者</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>kotlin 基本类型</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2020-07-14T00:34:40.000Z" id="date"> 2020-07-14</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-26T01:47:37.134Z" id="updated"> 2025-11-26</time></div></span><br><span>Word Count: <div class="control">4k</div></span><br><span>Read Time: <div class="control">16 min</div></span><br><span id="vercount_container_page_pv">Page View: <span class="control" id="vercount_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h1><p>在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以在任何变量上调用成员函数与属性。<br>一些类型可以有特殊的内部表示——例如，数字、字符以及布尔值可以在运行时表示为原生类型值，但是对于用户来说，它们看起来就像普通的类。<br>在本节中，我们会描述 Kotlin 中使用的基本类型：数字、字符、布尔值、数组与字符串。</p>
 <span id="more"></span>
 
 <blockquote>

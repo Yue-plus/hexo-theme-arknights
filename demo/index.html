@@ -38,7 +38,7 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
 }</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer src="https://vercount.one/js"></script><script async src="//unpkg.com/valine/dist/Valine.min.js"></script><script async src="/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@8.13.5/dist/mermaid.esm.mjs';
 window.mermaid = mermaid;
 code.paintMermaid();
-</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {new Valine({
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script class="pjax-js">reset= () => {new Valine({
  el: '#valine'
  , appId: 'LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz'
  , appKey: 'Fu9giJfnidkCamaW89FUpidw' , placeholder: 'This comment is sent by Penguin Logistics.'
@@ -57,24 +57,7 @@ code.paintMermaid();
 if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
 lightGallery(document.getElementById('post-bg'), {
   plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
- cacheBust: false,
- selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
- switches: {'article': Pjax.switches.sideBySide},
- switchesOptions: {
-   'article': {
-     classNames: {
-       remove: "pjax-out",
-       add: "pjax-in"
-     }
-   }
- }
-});
-document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => {
- const script = document.createElement('script');
- script.src = 'https://vercount.one/js';
- document.head.appendChild(script);
-});reset()})</script><script class="pjax-js">reset= () => {new Valine({
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {reset()})</script><script class="pjax-js">reset= () => {new Valine({
  el: '#valine'
  , appId: 'LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz'
  , appKey: 'Fu9giJfnidkCamaW89FUpidw' , placeholder: 'This comment is sent by Penguin Logistics.'
@@ -94,24 +77,7 @@ if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySel
 const postBg = document.querySelector('#post-bg');
 if (postBg) lightGallery(postBg, {
   plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
- cacheBust: false,
- selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
- switches: {'article': Pjax.switches.sideBySide},
- switchesOptions: {
-   'article': {
-     classNames: {
-       remove: "pjax-out",
-       add: "pjax-in"
-     }
-   }
- }
-});
-document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => {
- const script = document.createElement('script');
- script.src = 'https://vercount.one/js';
- document.head.appendChild(script);
-});reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/demo/"><span class="navItemTitle">独立页面</span></a></li><li class="navItem"><a class="navBlock" href="/contributors/"><span class="navItemTitle">贡献者</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>独立页面</h1></div><hr><div id="post-content"><h1 id="嘿！这儿是一个独立页面！"><a href="#嘿！这儿是一个独立页面！" class="headerlink" title="嘿！这儿是一个独立页面！"></a>嘿！这儿是一个独立页面！</h1><p>可以在 <code>&lt;Hexo&gt;/soure/&lt;文件夹名&gt;/</code> 下建立 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/demo/index.md"><code>index.md</code></a> 或 <code>index.html</code></p>
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/demo/"><span class="navItemTitle">独立页面</span></a></li><li class="navItem"><a class="navBlock" href="/contributors/"><span class="navItemTitle">贡献者</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>独立页面</h1></div><hr><div id="post-content"><h1 id="嘿！这儿是一个独立页面！"><a href="#嘿！这儿是一个独立页面！" class="headerlink" title="嘿！这儿是一个独立页面！"></a>嘿！这儿是一个独立页面！</h1><p>可以在 <code>&lt;Hexo&gt;/soure/&lt;文件夹名&gt;/</code> 下建立 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights/tree/hexo/source/demo/index.md"><code>index.md</code></a> 或 <code>index.html</code></p>
 <p>就可以通过 http(s):&#x2F;&#x2F;&lt;域名&gt;&#x2F;&lt;文件夹名&gt;&#x2F; 访问独立页面。</p>
 <p>在 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights/blob/hexo/_config.arknights.yml"><code>&lt;Hexo&gt;/_config.arknights.yml</code></a> 文件添加：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">menu:</span><br>  <span class="hljs-string">独立页面:</span> <span class="hljs-string">&lt;文件夹名&gt;/</span><br></code></pre></td></tr></table></figure>
