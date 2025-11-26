@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>kotlin 基本类型 | Arknights</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><meta name="page-config" content="{&quot;code_fold&quot;:null}"><script class="pjax-js">var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}};
+var page_config = {
+  code_fold: null
+};
+function updatePageConfig() {
+  var newPageConfig = document.querySelector('meta[name="page-config"]');
+  if (newPageConfig) {
+    page_config = JSON.parse(newPageConfig.content);
+  }
+}
+document.addEventListener('pjax:complete', function() { updatePageConfig(); });
+updatePageConfig();</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="/js/gitalk.js"></script><script src="//unpkg.com/mermaid@8.13.5/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><style defer src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css"></style><link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/atom-one-dark-reasonable.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer src="https://vercount.one/js"></script><script async src="//unpkg.com/valine/dist/Valine.min.js"></script><script async src="/js/gitalk.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@8.13.5/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {new Valine({
+ el: '#valine'
+ , appId: 'LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz'
+ , appKey: 'Fu9giJfnidkCamaW89FUpidw' , placeholder: 'This comment is sent by Penguin Logistics.'
+ , path: window.location.pathname
+ , avatar: 'retro'
+ , avatar_cdn: 'https://dn-qiniu-avatar.qbox.me/avatar/'
+});gitalk = new Gitalk({
+ clientID: '2beac2cf86ee679d97a7',
+ clientSecret: 'fdf2eb7803b21867d7737011667fe1b00f0b3be0',
+ repo: 'GitalkTest',
+ owner: 'Yue-plus',
+ admin: ['Yue-plus'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => {
+ const script = document.createElement('script');
+ script.src = 'https://vercount.one/js';
+ document.head.appendChild(script);
+});reset()})</script><script class="pjax-js">reset= () => {new Valine({
+ el: '#valine'
+ , appId: 'LSe7mf1XYliLqgIrc3jlqXfT-gzGzoHsz'
+ , appKey: 'Fu9giJfnidkCamaW89FUpidw' , placeholder: 'This comment is sent by Penguin Logistics.'
+ , path: window.location.pathname
+ , avatar: 'retro'
+ , avatar_cdn: 'https://dn-qiniu-avatar.qbox.me/avatar/'
+});gitalk = new Gitalk({
+ clientID: '2beac2cf86ee679d97a7',
+ clientSecret: 'fdf2eb7803b21867d7737011667fe1b00f0b3be0',
+ repo: 'GitalkTest',
+ owner: 'Yue-plus',
+ admin: ['Yue-plus'],
+ distractionFreeMode: false,
+ id: location.pathname
+});
+if (document.querySelector("#gitalk")) gitalk.render("gitalk");document.querySelector('.lg-container')?.remove()
+const postBg = document.querySelector('#post-bg');
+if (postBg) lightGallery(postBg, {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.vercount','meta[name=page-config]'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);document.addEventListener('pjax:success', _ => {
+ const script = document.createElement('script');
+ script.src = 'https://vercount.one/js';
+ document.head.appendChild(script);
+});reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/demo/"><span class="navItemTitle">独立页面</span></a></li><li class="navItem"><a class="navBlock" href="/contributors/"><span class="navItemTitle">贡献者</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>kotlin 基本类型</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2020-07-14T00:34:40.000Z" id="date"> 2020-07-14</time></div></span><br><span>Last Update: <div class="control"><time datetime="2025-11-26T01:47:37.134Z" id="updated"> 2025-11-26</time></div></span><br><span>Word Count: <div class="control">4k</div></span><br><span>Read Time: <div class="control">16 min</div></span><br><span id="vercount_container_page_pv">Page View: <span class="control" id="vercount_value_page_pv">loading...</span></span></div></div><hr><div id="post-content"><h1 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h1><p>在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以在任何变量上调用成员函数与属性。<br>一些类型可以有特殊的内部表示——例如，数字、字符以及布尔值可以在运行时表示为原生类型值，但是对于用户来说，它们看起来就像普通的类。<br>在本节中，我们会描述 Kotlin 中使用的基本类型：数字、字符、布尔值、数组与字符串。</p>
+<span id="more"></span>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.kotlincn.net/docs/reference/basic-types.html">原文地址</a>，此处仅作展示！</p>
+</blockquote>
+<h1 id="基本类型-1"><a href="#基本类型-1" class="headerlink" title="基本类型"></a>基本类型</h1><p>在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以在任何变量上调用成员函数与属性。<br>一些类型可以有特殊的内部表示——例如，数字、字符以及布尔值可以在运行时表示为原生类型值，但是对于用户来说，它们看起来就像普通的类。<br>在本节中，我们会描述 Kotlin 中使用的基本类型：数字、字符、布尔值、数组与字符串。</p>
+<h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><p>Kotlin 提供了一组表示数字的内置类型。<br>对于整数，有四种不同大小的类型，因此值的范围也不同。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小（比特数）</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Byte</td>
+<td>8</td>
+<td>-128</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Short</td>
+<td>16</td>
+<td>-32768</td>
+<td>32767</td>
+</tr>
+<tr>
+<td>Int</td>
+<td>32</td>
+<td>-2,147,483,648 (-2<sup>31</sup>)</td>
+<td>2,147,483,647 (2<sup>31</sup> - 1)</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>64</td>
+<td>-9,223,372,036,854,775,808 (-2<sup>63</sup>)</td>
+<td>9,223,372,036,854,775,807 (2<sup>63</sup> - 1)</td>
+</tr>
+</tbody></table>
+<p>所有以未超出 <code>Int</code> 最大值的整型值初始化的变量都会推断为 <code>Int</code> 类型。如果初始值超过了其最大值，那么推断为 <code>Long</code> 类型。<br>如需显式指定 <code>Long</code> 型值，请在该值后追加 <code>L</code> 后缀。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> one = <span class="hljs-number">1</span> <span class="hljs-comment">// Int</span><br><span class="hljs-keyword">val</span> threeBillion = <span class="hljs-number">3000000000</span> <span class="hljs-comment">// Long</span><br><span class="hljs-keyword">val</span> oneLong = <span class="hljs-number">1L</span> <span class="hljs-comment">// Long</span><br><span class="hljs-keyword">val</span> oneByte: <span class="hljs-built_in">Byte</span> = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>对于浮点数，Kotlin 提供了 <code>Float</code> 与 <code>Double</code> 类型。<br>根据 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/IEEE_754">IEEE 754 标准</a>，<br>两种浮点类型的<em>十进制位数</em>（即可以存储多少位十进制数）不同。<br><code>Float</code> 反映了 IEEE 754 <em>单精度</em>，而 <code>Double</code> 提供了<em>双精度</em>。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小（比特数）</th>
+<th>有效数字比特数</th>
+<th>指数比特数</th>
+<th>十进制位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Float</td>
+<td>32</td>
+<td>24</td>
+<td>8</td>
+<td>6-7</td>
+</tr>
+<tr>
+<td>Double</td>
+<td>64</td>
+<td>53</td>
+<td>11</td>
+<td>15-16</td>
+</tr>
+</tbody></table>
+<p>对于以小数初始化的变量，编译器会推断为 <code>Double</code> 类型。<br>如需将一个值显式指定为 <code>Float</code> 类型，请添加 <code>f</code> 或 <code>F</code> 后缀。<br>如果这样的值包含多于 6～7 位十进制数，那么会将其舍入。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> pi = <span class="hljs-number">3.14</span> <span class="hljs-comment">// Double</span><br><span class="hljs-keyword">val</span> e = <span class="hljs-number">2.7182818284</span> <span class="hljs-comment">// Double</span><br><span class="hljs-keyword">val</span> eFloat = <span class="hljs-number">2.7182818284f</span> <span class="hljs-comment">// Float，实际值为 2.7182817</span><br></code></pre></td></tr></table></figure>
+
+<p>请注意，与一些其他语言不同，Kotlin 中的数字没有隐式拓宽转换。<br>例如，具有 <code>Double</code> 参数的函数只能对 <code>Double</code> 值调用，而不能对 <code>Float</code>、<br><code>Int</code> 或者其他数字值调用。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">printDouble</span><span class="hljs-params">(d: <span class="hljs-type">Double</span>)</span></span> &#123; print(d) &#125;<br><br>    <span class="hljs-keyword">val</span> i = <span class="hljs-number">1</span>    <br>    <span class="hljs-keyword">val</span> d = <span class="hljs-number">1.1</span><br>    <span class="hljs-keyword">val</span> f = <span class="hljs-number">1.1f</span> <br><br>    printDouble(d)<br><span class="hljs-comment">//    printDouble(i) // 错误：类型不匹配</span><br><span class="hljs-comment">//    printDouble(f) // 错误：类型不匹配</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如需将数值转换为不同的类型，请使用<a href="#%E6%98%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2">显示转换</a>。</p>
+<h3 id="字面常量"><a href="#字面常量" class="headerlink" title="字面常量"></a>字面常量</h3><p>数值常量字面值有以下几种:</p>
+<ul>
+<li>十进制: <code>123</code><ul>
+<li>Long 类型用大写 <code>L</code> 标记: <code>123L</code></li>
+</ul>
+</li>
+<li>十六进制: <code>0x0F</code></li>
+<li>二进制: <code>0b00001011</code></li>
+</ul>
+<p>注意: 不支持八进制</p>
+<p>Kotlin 同样支持浮点数的常规表示方法:</p>
+<ul>
+<li>默认 double：<code>123.5</code>、<code>123.5e10</code></li>
+<li>Float 用 <code>f</code> 或者 <code>F</code> 标记: <code>123.5f</code></li>
+</ul>
+<h3 id="数字字面值中的下划线（自-1-1-起）"><a href="#数字字面值中的下划线（自-1-1-起）" class="headerlink" title="数字字面值中的下划线（自 1.1 起）"></a>数字字面值中的下划线（自 1.1 起）</h3><p>你可以使用下划线使数字常量更易读：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> oneMillion = <span class="hljs-number">1_000_000</span><br><span class="hljs-keyword">val</span> creditCardNumber = <span class="hljs-number">1234_5678_9012_3456L</span><br><span class="hljs-keyword">val</span> socialSecurityNumber = <span class="hljs-number">999_99_9999L</span><br><span class="hljs-keyword">val</span> hexBytes = <span class="hljs-number">0xFF_EC_DE_5E</span><br><span class="hljs-keyword">val</span> bytes = <span class="hljs-number">0b11010010_01101001_10010100_10010010</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="表示方式"><a href="#表示方式" class="headerlink" title="表示方式"></a>表示方式</h3><p>在 Java 平台数字是物理存储为 JVM 的原生类型，除非我们需要一个可空的引用（如 <code>Int?</code>）或泛型。<br>后者情况下会把数字装箱。</p>
+<p>注意数字装箱不一定保留同一性:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> a: <span class="hljs-built_in">Int</span> = <span class="hljs-number">100</span><br>    <span class="hljs-keyword">val</span> boxedA: <span class="hljs-built_in">Int</span>? = a<br>    <span class="hljs-keyword">val</span> anotherBoxedA: <span class="hljs-built_in">Int</span>? = a<br>    <br>    <span class="hljs-keyword">val</span> b: <span class="hljs-built_in">Int</span> = <span class="hljs-number">10000</span><br>    <span class="hljs-keyword">val</span> boxedB: <span class="hljs-built_in">Int</span>? = b<br>    <span class="hljs-keyword">val</span> anotherBoxedB: <span class="hljs-built_in">Int</span>? = b<br>    <br>    println(boxedA === anotherBoxedA) <span class="hljs-comment">// true</span><br>    println(boxedB === anotherBoxedB) <span class="hljs-comment">// false</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>另一方面，它保留了相等性:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> a: <span class="hljs-built_in">Int</span> = <span class="hljs-number">10000</span><br>    println(a == a) <span class="hljs-comment">// 输出“true”</span><br>    <span class="hljs-keyword">val</span> boxedA: <span class="hljs-built_in">Int</span>? = a<br>    <span class="hljs-keyword">val</span> anotherBoxedA: <span class="hljs-built_in">Int</span>? = a<br>    println(boxedA == anotherBoxedA) <span class="hljs-comment">// 输出“true”</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h3><p>由于不同的表示方式，较小类型并不是较大类型的子类型。<br>如果它们是的话，就会出现下述问题：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 假想的代码，实际上并不能编译：</span><br><span class="hljs-keyword">val</span> a: <span class="hljs-built_in">Int</span>? = <span class="hljs-number">1</span> <span class="hljs-comment">// 一个装箱的 Int (java.lang.Integer)</span><br><span class="hljs-keyword">val</span> b: <span class="hljs-built_in">Long</span>? = a <span class="hljs-comment">// 隐式转换产生一个装箱的 Long (java.lang.Long)</span><br>print(b == a) <span class="hljs-comment">// 惊！这将输出“false”鉴于 Long 的 equals() 会检测另一个是否也为 Long</span><br></code></pre></td></tr></table></figure>
+
+<p>所以相等性会在所有地方悄无声息地失去，更别说同一性了。</p>
+<p>因此较小的类型<strong>不能</strong>隐式转换为较大的类型。<br>这意味着在不进行显式转换的情况下我们不能把 <code>Byte</code> 型值赋给一个 <code>Int</code> 变量。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> b: <span class="hljs-built_in">Byte</span> = <span class="hljs-number">1</span> <span class="hljs-comment">// OK, 字面值是静态检测的</span><br>    <span class="hljs-keyword">val</span> i: <span class="hljs-built_in">Int</span> = b <span class="hljs-comment">// 错误</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们可以显式转换来拓宽数字</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> b: <span class="hljs-built_in">Byte</span> = <span class="hljs-number">1</span><br>    <span class="hljs-keyword">val</span> i: <span class="hljs-built_in">Int</span> = b.toInt() <span class="hljs-comment">// OK：显式拓宽</span><br>    print(i)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>每个数字类型支持如下的转换:</p>
+<ul>
+<li><code>toByte(): Byte</code></li>
+<li><code>toShort(): Short</code></li>
+<li><code>toInt(): Int</code></li>
+<li><code>toLong(): Long</code></li>
+<li><code>toFloat(): Float</code></li>
+<li><code>toDouble(): Double</code></li>
+<li><code>toChar(): Char</code></li>
+</ul>
+<p>缺乏隐式类型转换很少会引起注意，因为类型会从上下文推断出来，而算术运算会有重载做适当转换，例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> l = <span class="hljs-number">1L</span> + <span class="hljs-number">3</span> <span class="hljs-comment">// Long + Int =&gt; Long</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><p>Kotlin支持数字运算的标准集（<code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code>），运算被定义为相应的类成员（但编译器会将函数调用优化为相应的指令）。<br>参见<a href="operator-overloading.html">运算符重载</a>。</p>
+<h4 id="整数除法"><a href="#整数除法" class="headerlink" title="整数除法"></a>整数除法</h4><p>请注意，整数间的除法总是返回整数。会丢弃任何小数部分。例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> x = <span class="hljs-number">5</span> / <span class="hljs-number">2</span><br>    <span class="hljs-comment">//println(x == 2.5) // ERROR: Operator &#x27;==&#x27; cannot be applied to &#x27;Int&#x27; and &#x27;Double&#x27;</span><br>    println(x == <span class="hljs-number">2</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于任何两个整数类型之间的除法来说都是如此。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> x = <span class="hljs-number">5L</span> / <span class="hljs-number">2</span><br>    println(x == <span class="hljs-number">2L</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如需返回浮点类型，请将其中的一个参数显式转换为浮点类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> x = <span class="hljs-number">5</span> / <span class="hljs-number">2.</span>toDouble()<br>    println(x == <span class="hljs-number">2.5</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h4><p>对于位运算，没有特殊字符来表示，而只可用中缀方式调用具名函数，例如:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> x = (<span class="hljs-number">1</span> shl <span class="hljs-number">2</span>) and <span class="hljs-number">0x000FF000</span><br></code></pre></td></tr></table></figure>
+
+<p>这是完整的位运算列表（只用于 <code>Int</code> 与 <code>Long</code>）：</p>
+<ul>
+<li><code>shl(bits)</code> – 有符号左移</li>
+<li><code>shr(bits)</code> – 有符号右移</li>
+<li><code>ushr(bits)</code> – 无符号右移</li>
+<li><code>and(bits)</code> – 位<strong>与</strong></li>
+<li><code>or(bits)</code> – 位<strong>或</strong></li>
+<li><code>xor(bits)</code> – 位<strong>异或</strong></li>
+<li><code>inv()</code> – 位非</li>
+</ul>
+<h3 id="浮点数比较"><a href="#浮点数比较" class="headerlink" title="浮点数比较"></a>浮点数比较</h3><p>本节讨论的浮点数操作如下：</p>
+<ul>
+<li>相等性检测：<code>a == b</code> 与 <code>a != b</code></li>
+<li>比较操作符：<code>a &lt; b</code>、 <code>a &gt; b</code>、 <code>a &lt;= b</code>、 <code>a &gt;= b</code></li>
+<li>区间实例以及区间检测：<code>a..b</code>、 <code>x in a..b</code>、 <code>x !in a..b</code></li>
+</ul>
+<p>当其中的操作数 <code>a</code> 与 <code>b</code> 都是静态已知的 <code>Float</code> 或 <code>Double</code> 或者它们对应的可空类型（声明为该类型，或者推断为该类型，或者<a href="typecasts.html#%E6%99%BA%E8%83%BD%E8%BD%AC%E6%8D%A2">智能类型转换</a>的结果是该类型），两数字所形成的操作或者区间遵循 IEEE 754 浮点运算标准。</p>
+<p>然而，为了支持泛型场景并提供全序支持，当这些操作数<strong>并非</strong>静态类型为浮点数（例如是 <code>Any</code>、 <code>Comparable&lt;……&gt;</code>、 类型参数）时，这些操作使用为 <code>Float</code> 与 <code>Double</code> 实现的不符合标准的 <code>equals</code> 与 <code>compareTo</code>，这会出现：</p>
+<ul>
+<li>认为 <code>NaN</code> 与其自身相等</li>
+<li>认为 <code>NaN</code> 比包括正无穷大（<code>POSITIVE_INFINITY</code>）在内的任何其他元素都大</li>
+<li>认为 <code>-0.0</code> 小于 <code>0.0</code></li>
+</ul>
+<h2 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h2><p>字符用 <code>Char</code> 类型表示。它们不能直接当作数字</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">check</span><span class="hljs-params">(c: <span class="hljs-type">Char</span>)</span></span> &#123;<br>    <span class="hljs-keyword">if</span> (c == <span class="hljs-number">1</span>) &#123; <span class="hljs-comment">// 错误：类型不兼容</span><br>        <span class="hljs-comment">// ……</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>字符字面值用单引号括起来: <code>&#39;1&#39;</code>。<br>特殊字符可以用反斜杠转义。<br>支持这几个转义序列：<code>\t</code>、 <code>\b</code>、<code>\n</code>、<code>\r</code>、<code>\&#39;</code>、<code>\&quot;</code>、<code>\\</code> 与 <code>\$</code>。<br>编码其他字符要用 Unicode 转义序列语法：<code>&#39;\uFF00&#39;</code>。</p>
+<p>我们可以显式把字符转换为 <code>Int</code> 数字：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">decimalDigitValue</span><span class="hljs-params">(c: <span class="hljs-type">Char</span>)</span></span>: <span class="hljs-built_in">Int</span> &#123;<br>    <span class="hljs-keyword">if</span> (c !<span class="hljs-keyword">in</span> <span class="hljs-string">&#x27;0&#x27;</span>..<span class="hljs-string">&#x27;9&#x27;</span>)<br>        <span class="hljs-keyword">throw</span> IllegalArgumentException(<span class="hljs-string">&quot;Out of range&quot;</span>)<br>    <span class="hljs-keyword">return</span> c.toInt() - <span class="hljs-string">&#x27;0&#x27;</span>.toInt() <span class="hljs-comment">// 显式转换为数字</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性。</p>
+<h2 id="布尔"><a href="#布尔" class="headerlink" title="布尔"></a>布尔</h2><p>布尔用 <code>Boolean</code> 类型表示，它有两个值：<em>true</em>{: .keyword } 与 <em>false</em>{: .keyword }。</p>
+<p>若需要可空引用布尔会被装箱。</p>
+<p>内置的布尔运算有：</p>
+<ul>
+<li><code>||</code> – 短路逻辑或</li>
+<li><code>&amp;&amp;</code> – 短路逻辑与</li>
+<li><code>!</code> - 逻辑非</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组在 Kotlin 中使用 <code>Array</code> 类来表示，它定义了 <code>get</code> 与 <code>set</code> 函数（按照运算符重载约定这会转变为 <code>[]</code>）以及 <code>size</code> 属性，以及一些其他有用的成员函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Array</span>&lt;<span class="hljs-type">T</span>&gt; <span class="hljs-keyword">private</span> <span class="hljs-keyword">constructor</span>() &#123;<br>    <span class="hljs-keyword">val</span> size: <span class="hljs-built_in">Int</span><br>    <span class="hljs-keyword">operator</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">get</span><span class="hljs-params">(index: <span class="hljs-type">Int</span>)</span></span>: T<br>    <span class="hljs-keyword">operator</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">set</span><span class="hljs-params">(index: <span class="hljs-type">Int</span>, value: <span class="hljs-type">T</span>)</span></span>: <span class="hljs-built_in">Unit</span><br><br>    <span class="hljs-keyword">operator</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">iterator</span><span class="hljs-params">()</span></span>: Iterator&lt;T&gt;<br>    <span class="hljs-comment">// ……</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们可以使用库函数 <code>arrayOf()</code> 来创建一个数组并传递元素值给它，这样 <code>arrayOf(1, 2, 3)</code> 创建了 array <code>[1, 2, 3]</code>。<br>或者，库函数 <code>arrayOfNulls()</code> 可以用于创建一个指定大小的、所有元素都为空的数组。</p>
+<p>另一个选项是用接受数组大小以及一个函数参数的 <code>Array</code> 构造函数，用作参数的函数能够返回给定索引的每个元素初始值：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建一个 Array&lt;String&gt; 初始化为 [&quot;0&quot;, &quot;1&quot;, &quot;4&quot;, &quot;9&quot;, &quot;16&quot;]</span><br>    <span class="hljs-keyword">val</span> asc = Array(<span class="hljs-number">5</span>) &#123; i -&gt; (i * i).toString() &#125;<br>    asc.forEach &#123; println(it) &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如上所述，<code>[]</code> 运算符代表调用成员函数 <code>get()</code> 与 <code>set()</code>。</p>
+<p>Kotlin 中数组是<em>不型变的（invariant）</em>。这意味着 Kotlin 不让我们把 <code>Array&lt;String&gt;</code><br>赋值给 <code>Array&lt;Any&gt;</code>，以防止可能的运行时失败（但是你可以使用 <code>Array&lt;out Any&gt;</code>,<br>参见<a href="generics.html#%E7%B1%BB%E5%9E%8B%E6%8A%95%E5%BD%B1">类型投影</a>）。</p>
+<h3 id="原生类型数组"><a href="#原生类型数组" class="headerlink" title="原生类型数组"></a>原生类型数组</h3><p>Kotlin 也有无装箱开销的专门的类来表示原生类型数组: <code>ByteArray</code>、<br><code>ShortArray</code>、<code>IntArray</code> 等等。这些类与 <code>Array</code> 并没有继承关系，但是它们有同样的方法属性集。它们也都有相应的工厂方法:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> x: IntArray = intArrayOf(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br>x[<span class="hljs-number">0</span>] = x[<span class="hljs-number">1</span>] + x[<span class="hljs-number">2</span>]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 大小为 5、值为 [0, 0, 0, 0, 0] 的整型数组</span><br><span class="hljs-keyword">val</span> arr = IntArray(<span class="hljs-number">5</span>)<br><br><span class="hljs-comment">// 例如：用常量初始化数组中的值</span><br><span class="hljs-comment">// 大小为 5、值为 [42, 42, 42, 42, 42] 的整型数组</span><br><span class="hljs-keyword">val</span> arr = IntArray(<span class="hljs-number">5</span>) &#123; <span class="hljs-number">42</span> &#125;<br><br><span class="hljs-comment">// 例如：使用 lambda 表达式初始化数组中的值</span><br><span class="hljs-comment">// 大小为 5、值为 [0, 1, 2, 3, 4] 的整型数组（值初始化为其索引值）</span><br><span class="hljs-keyword">var</span> arr = IntArray(<span class="hljs-number">5</span>) &#123; it * <span class="hljs-number">1</span> &#125; <br></code></pre></td></tr></table></figure>
+
+
+<h2 id="无符号整型"><a href="#无符号整型" class="headerlink" title="无符号整型"></a>无符号整型</h2><blockquote>
+<p>无符号类型自 Kotlin 1.3 起才可用，并且目前是<em>实验性的</em>。详见<a href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E5%9E%8B%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%80%A7%E7%8A%B6%E6%80%81">下文</a><br>{:.note}</p>
+</blockquote>
+<p>Kotlin 为无符号整数引入了以下类型：</p>
+<ul>
+<li><code>kotlin.UByte</code>: 无符号 8 比特整数，范围是 0 到 255</li>
+<li><code>kotlin.UShort</code>: 无符号 16 比特整数，范围是 0 到 65535</li>
+<li><code>kotlin.UInt</code>: 无符号 32 比特整数，范围是 0 到 2^32 - 1</li>
+<li><code>kotlin.ULong</code>: 无符号 64 比特整数，范围是 0 到 2^64 - 1</li>
+</ul>
+<p>无符号类型支持其对应有符号类型的大多数操作。</p>
+<blockquote>
+<p>请注意，将类型从无符号类型更改为对应的有符号类型（反之亦然）是<em>二进制不兼容</em>变更<br>{:.note}</p>
+</blockquote>
+<p>无符号类型是使用另一个实验性特性（即<a href="inline-classes.html">内联类</a>）实现的。</p>
+<h3 id="特化的类"><a href="#特化的类" class="headerlink" title="特化的类"></a>特化的类</h3><p>与原生类型相同，每个无符号类型都有相应的为该类型特化的表示数组的类型：</p>
+<ul>
+<li><code>kotlin.UByteArray</code>: 无符号字节数组</li>
+<li><code>kotlin.UShortArray</code>: 无符号短整型数组</li>
+<li><code>kotlin.UIntArray</code>: 无符号整型数组</li>
+<li><code>kotlin.ULongArray</code>: 无符号长整型数组</li>
+</ul>
+<p>与有符号整型数组一样，它们提供了类似于 <code>Array</code> 类的 API 而没有装箱开销。</p>
+<p>此外，<a href="ranges.html">区间与数列</a>也支持 <code>UInt</code> 与 <code>ULong</code>（通过这些类 <code>kotlin.ranges.UIntRange</code>、 <code>kotlin.ranges.UIntProgression</code>、 <code>kotlin.ranges.ULongRange</code>、 <code>kotlin.ranges.ULongProgression</code>）</p>
+<h3 id="字面值"><a href="#字面值" class="headerlink" title="字面值"></a>字面值</h3><p>为使无符号整型更易于使用，Kotlin 提供了用后缀标记整型字面值来表示指定无符号类型（类似于 Float&#x2F;Long）：</p>
+<ul>
+<li>后缀 <code>u</code> 与 <code>U</code> 将字面值标记为无符号。确切类型会根据预期类型确定。如果没有提供预期的类型，会根据字面值大小选择 <code>UInt</code> 或者 <code>ULong</code></li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> b: UByte = 1u  <span class="hljs-comment">// UByte，已提供预期类型</span><br><span class="hljs-keyword">val</span> s: UShort = 1u <span class="hljs-comment">// UShort，已提供预期类型</span><br><span class="hljs-keyword">val</span> l: ULong = 1u  <span class="hljs-comment">// ULong，已提供预期类型</span><br><br><span class="hljs-keyword">val</span> a1 = 42u <span class="hljs-comment">// UInt：未提供预期类型，常量适于 UInt</span><br><span class="hljs-keyword">val</span> a2 = 0xFFFF_FFFF_FFFFu <span class="hljs-comment">// ULong：未提供预期类型，常量不适于 UInt</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>后缀 <code>uL</code> 与 <code>UL</code> 显式将字面值标记为无符号长整型。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> a = 1UL <span class="hljs-comment">// ULong，即使未提供预期类型并且常量适于 UInt</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="无符号整型的实验性状态"><a href="#无符号整型的实验性状态" class="headerlink" title="无符号整型的实验性状态"></a>无符号整型的实验性状态</h3><p>无符号类型的设计是实验性的，这意味着这个特性改进很快并且没有给出兼容性保证。当在 Kotlin 1.3+ 中使用无符号算术时，会报出警告表明这个特性是实验性的。如需移除警告，必须选择加入（opt-in）无符号类型的实验性使用。</p>
+<p>选择加入无符号整型有两种可行的方式：将 API 标记为实验性的，或者无需标记。</p>
+<ul>
+<li>如需传播实验性，请以 <code>@ExperimentalUnsignedTypes</code> 标注使用了无符号整型的声明。</li>
+<li>如需选择加入而不传播实验性，要么使用 <code>@OptIn(ExperimentalUnsignedTypes::class)</code> 注解标注声明，要么将 <code>-Xopt-in=kotlin.ExperimentalUnsignedTypes</code> 传给编译器。</li>
+</ul>
+<p>你的客户是否必须选择使用你的 API 取决于你，不过请记住，无符号整型是一个实验性特性，因此使用它们的 API 可能会因语言的变更而发生突然破坏。</p>
+<p>技术细节也参见实验性 API <a target="_blank" rel="noopener" href="https://github.com/Kotlin/KEEP/blob/master/proposals/experimental.md">KEEP</a>。</p>
+<h3 id="深入探讨"><a href="#深入探讨" class="headerlink" title="深入探讨"></a>深入探讨</h3><p>关于技术细节与深入探讨请参见<a target="_blank" rel="noopener" href="https://github.com/Kotlin/KEEP/blob/master/proposals/unsigned-types.md">无符号类型的语言提案</a>。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串用 <code>String</code> 类型表示。字符串是不可变的。<br>字符串的元素——字符可以使用索引运算符访问: <code>s[i]</code>。<br>可以用 <em>for</em>{: .keyword } 循环迭代字符串:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> str = <span class="hljs-string">&quot;abcd&quot;</span><br>    <span class="hljs-keyword">for</span> (c <span class="hljs-keyword">in</span> str) &#123;<br>        println(c)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以用 <code>+</code> 操作符连接字符串。这也适用于连接字符串与其他类型的值，<br>只要表达式中的第一个元素是字符串：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br><span class="hljs-keyword">val</span> s = <span class="hljs-string">&quot;abc&quot;</span> + <span class="hljs-number">1</span><br>println(s + <span class="hljs-string">&quot;def&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>请注意，在大多数情况下，优先使用<a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF">字符串模板</a>或原始字符串而不是字符串连接。</p>
+<h3 id="字符串字面值"><a href="#字符串字面值" class="headerlink" title="字符串字面值"></a>字符串字面值</h3><p>Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，<br>以及原始字符串可以包含换行以及任意文本。以下是转义字符串的一个示例:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> s = <span class="hljs-string">&quot;Hello, world!\n&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>转义采用传统的反斜杠方式。参见上面的 <a href="#%E5%AD%97%E7%AC%A6">字符</a> 查看支持的转义序列。</p>
+<p><em>原始字符串</em> 使用三个引号（<code>&quot;&quot;&quot;</code>）分界符括起来，内部没有转义并且可以包含换行以及任何其他字符:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> text = <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    for (c in &quot;foo&quot;)</span><br><span class="hljs-string">        print(c)</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>你可以通过 <a target="_blank" rel="noopener" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/trim-margin.html"><code>trimMargin()</code></a> 函数去除前导空格：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> text = <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    |Tell me and I forget.</span><br><span class="hljs-string">    |Teach me and I remember.</span><br><span class="hljs-string">    |Involve me and I learn.</span><br><span class="hljs-string">    |(Benjamin Franklin)</span><br><span class="hljs-string">    &quot;&quot;&quot;</span>.trimMargin()<br></code></pre></td></tr></table></figure>
+
+<p>默认 <code>|</code> 用作边界前缀，但你可以选择其他字符并作为参数传入，比如 <code>trimMargin(&quot;&gt;&quot;)</code>。</p>
+<h3 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h3><p>字符串字面值可以包含<em>模板表达式</em> ，即一些小段代码，会求值并把结果合并到字符串中。<br>模板表达式以美元符（<code>$</code>）开头，由一个简单的名字构成:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> i = <span class="hljs-number">10</span><br>    println(<span class="hljs-string">&quot;i = <span class="hljs-variable">$i</span>&quot;</span>) <span class="hljs-comment">// 输出“i = 10”</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>或者用花括号括起来的任意表达式:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> s = <span class="hljs-string">&quot;abc&quot;</span><br>    println(<span class="hljs-string">&quot;<span class="hljs-variable">$s</span>.length is <span class="hljs-subst">$&#123;s.length&#125;</span>&quot;</span>) <span class="hljs-comment">// 输出“abc.length is 3”</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>原始字符串与转义字符串内部都支持模板。<br>如果你需要在原始字符串中表示字面值 <code>$</code> 字符（它不支持反斜杠转义），你可以用下列语法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> price = <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"><span class="hljs-subst">$&#123;<span class="hljs-string">&#x27;$&#x27;</span>&#125;</span>9.99</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2020/12/01/encrypt/">← Next 加密文档（密码：yueplus）</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2020/04/19/nihonngo/">ロドス・アイランド Prev →</a></div></div></div><details id="reward"><summary>reward</summary><div><span>支付宝 | Alipay</span><br><img src="/img/Alipay.png"></div><div><span>微信 | Wechat</span><br><img src="/img/WeChat.png"></div></details><div id="comments"><div class="selector"><button class="valine-sel">Valine</button><button class="gitalk-sel">Gitalk</button></div><div id="valine"></div><div id="gitalk"></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="#18d1ff" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" autoplay loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Dr.Yue_plus</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/Yue-plus"><i class="fab fa-github" alt="GitHub"></i></a><a class="social" href="mailto:Yue_plus@foxmail.com"><i class="fa fa-envelope" alt="E-Mail"></i></a><a class="social" target="_blank" rel="noopener" href="https://space.bilibili.com/28606851"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">基本类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B-1"><span class="toc-number">2.</span> <span class="toc-text">基本类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97"><span class="toc-number">2.1.</span> <span class="toc-text">数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E5%B8%B8%E9%87%8F"><span class="toc-number">2.1.1.</span> <span class="toc-text">字面常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%AD%97%E9%9D%A2%E5%80%BC%E4%B8%AD%E7%9A%84%E4%B8%8B%E5%88%92%E7%BA%BF%EF%BC%88%E8%87%AA-1-1-%E8%B5%B7%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">数字字面值中的下划线（自 1.1 起）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.3.</span> <span class="toc-text">表示方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.1.4.</span> <span class="toc-text">显式转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97"><span class="toc-number">2.1.5.</span> <span class="toc-text">运算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95"><span class="toc-number">2.1.5.1.</span> <span class="toc-text">整数除法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">2.1.5.2.</span> <span class="toc-text">位运算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E6%AF%94%E8%BE%83"><span class="toc-number">2.1.6.</span> <span class="toc-text">浮点数比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6"><span class="toc-number">2.2.</span> <span class="toc-text">字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94"><span class="toc-number">2.3.</span> <span class="toc-text">布尔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">2.4.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="toc-number">2.4.1.</span> <span class="toc-text">原生类型数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E5%9E%8B"><span class="toc-number">2.5.</span> <span class="toc-text">无符号整型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%8C%96%E7%9A%84%E7%B1%BB"><span class="toc-number">2.5.1.</span> <span class="toc-text">特化的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E5%80%BC"><span class="toc-number">2.5.2.</span> <span class="toc-text">字面值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E5%9E%8B%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%80%A7%E7%8A%B6%E6%80%81"><span class="toc-number">2.5.3.</span> <span class="toc-text">无符号整型的实验性状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5%E6%8E%A2%E8%AE%A8"><span class="toc-number">2.5.4.</span> <span class="toc-text">深入探讨</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.6.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E9%9D%A2%E5%80%BC"><span class="toc-number">2.6.1.</span> <span class="toc-text">字符串字面值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.6.2.</span> <span class="toc-text">字符串模板</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="icp-title">©</span><span class="icp-content">1970 to 2025</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script defer src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js"></script></body></html>
