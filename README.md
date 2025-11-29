@@ -191,6 +191,92 @@ gitalk:
 waline:
   enable: false 
   server_url: # Server_Url
+  locale:
+    placeholder: "期待您的评论~"
+    # sofa: "来发评论吧~"
+    # nick: "昵称"
+    # mail: "邮箱"
+    # link: "网址"
+    # submit: "提交"
+```
+
+Waline 提供了 locale 选项，可用于自定义界面语言与显示文本。默认情况下，Waline 会使用内置的多语言文本。若当前语言不受支持，则自动回退到 en-US（英语美国）。<br/>你可以设置部分字段以覆盖默认显示的文本。在 locale 选项中，所有字段均为可选，未指定的字段将保留其默认值。<br/>
+
+```yaml
+等级相关:
+level${number}: number 等级的文字
+```
+```yaml
+反应相关：
+reactionTitle: 反应标题
+reaction0: 反应 1 文字
+reaction1: 反应 2 文字
+reaction2: 反应 3 文字
+reaction3: 反应 4 文字
+reaction4: 反应 5 文字
+reaction5: 反应 6 文字
+reaction6: 反应 7 文字
+reaction7: 反应 8 文字
+reaction8: 反应 9 文字
+```
+```yaml
+UI相关：
+nick: 昵称
+mail: 邮箱
+link: 网址
+placeholder: 评论框默认文字
+sofa: 评论区为空时的显示文字
+submit: 提交按钮文字
+comment: 评论按钮文字
+refresh: 刷新按钮文字
+more: 加载更多按钮文字
+uploading: 上传时显示文字
+login: 登录按钮文字
+admin: 管理员的标签
+sticky: 置顶文字
+word: 字
+anonymous: 匿名用户默认名称
+optional: 标明可选项的文字
+gifSearchPlaceholder: 表情包搜索占位文字
+oldest: 最早的评论
+latest: 最新的评论
+hottest: 最热的评论
+```
+> 上述设置项的文字会显示在页面上。
+
+```yaml
+提示信息相关:
+nickError: 昵称不满足条件的错误信息
+mailError: 邮箱不满足条件的错误信息
+wordHint: 评论字数的错误提示，其中 $0 $1 $2 会被自动替换为字数允许下限、字数允许上限、当前字数。
+```
+```yaml
+评论时间相关:
+seconds: 秒前
+minutes: 分钟前
+hours: 小时前
+days: 天前
+now: 刚刚
+```
+```yaml
+管理相关:
+approved: 审核通过
+waiting: 等待审核
+spam: 垃圾评论
+unsticky: 取消置顶
+```
+```yaml
+无障碍相关(只用于无障碍服务增强，不会显示在页面中):
+like: 喜欢文字
+cancelLike: 取消喜欢文字
+reply: 回复按钮的标签文字
+cancelReply: 取消回复按钮的标签文字
+preview: 预览按钮的标签文字
+emoji: 表情按钮的标签文字
+gif: 表情包按钮的标签文字
+uploadImage: 上传图片按钮的标签文字
+profile: 档案页标签文字
+logout: 退出登录按钮的标签文字
 ```
 
 ### Artalk
