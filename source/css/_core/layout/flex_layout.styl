@@ -22,6 +22,22 @@
       text-align center
       padding 10px 0
       position static
+  #toc-div
+    z-index 65534
+    display flex
+    flex-direction column
+    position fixed
+    top 0
+    left 20vw
+    transform translateX(100vw)
+    background var(--theme-bg-trans0)
+    transition .6s
+    height 100vh
+    width 80vw
+    .toc
+      margin-block auto
+    &.open
+      transform translateX(0)
   #paginator
     margin 20px 0 0 0
     a, span
@@ -46,10 +62,6 @@
     width auto
     .total-title
       display inline-block
-  #to-index
-    bottom 56px
-  #to-top
-    bottom 16px
   #post-index
     margin 16px 10px 0 10px
   #archive-flex

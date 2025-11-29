@@ -47,9 +47,7 @@ class Header {
   }
 
   public inHeader = (mouse: MouseEvent) => {
-    let range = this.header.getBoundingClientRect()
-    if (mouse.clientX < range.x || mouse.clientY < range.y ||
-      mouse.clientX > range.right || mouse.clientY > range.bottom){
+    if (!isParent(this.header, mouse.target) && !isParent(this.button, mouse.target)) {
       this.close()
     }
   }

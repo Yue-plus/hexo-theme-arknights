@@ -20,6 +20,14 @@ function getElement(string, item = document.documentElement) {
     }
     return tmp;
 }
+function isParent(parent, child) {
+    for (; child !== null; child = child.offsetParent) {
+        if (child === parent) {
+            return true;
+        }
+    }
+    return false;
+}
 function getParent(item, level = 1) {
     while (level--) {
         let tmp = item.parentElement;
@@ -913,9 +921,7 @@ class Header {
         }
     };
     inHeader = (mouse) => {
-        let range = this.header.getBoundingClientRect();
-        if (mouse.clientX < range.x || mouse.clientY < range.y ||
-            mouse.clientX > range.right || mouse.clientY > range.bottom) {
+        if (!isParent(this.header, mouse.target) && !isParent(this.button, mouse.target)) {
             this.close();
         }
     };
@@ -1356,6 +1362,35 @@ class Scroll {
     }
 }
 var scrolls = new Scroll();
+class TocControl {
+    inToc = (mouse) => {
+        const indexBtn = getElement('#to-index');
+        const toc = getElement('#toc-div');
+        if (!isParent(toc, mouse.target) && !isParent(indexBtn, mouse.target)) {
+            this.change();
+            document.removeEventListener('mousedown', this.inToc);
+        }
+    };
+    ifClick = () => {
+        document.addEventListener('mouseup', this.inToc);
+    };
+    change = () => {
+        const indexBtn = getElement('#to-index');
+        const toc = getElement('#toc-div');
+        if (toc.className === 'open') {
+            toc.className = '';
+            indexBtn.classList.remove('open');
+            document.removeEventListener('mousedown', this.ifClick);
+            document.removeEventListener('mouseup', this.inToc);
+        }
+        else {
+            toc.className = 'open';
+            indexBtn.classList.add('open');
+            document.addEventListener('mousedown', this.ifClick);
+        }
+    };
+}
+var tocControl = new TocControl();
 class pjaxSupport {
     loading = getElement('.loading');
     left = getElement('.loadingBar.left');
