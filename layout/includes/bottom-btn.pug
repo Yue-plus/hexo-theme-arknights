@@ -5,7 +5,10 @@
       - const encrypted = page.encrypt || page.password
       - const tocContent = encrypted === undefined ? toc(page.content, theme.toc) : toc(page.origin, theme.toc)
       if tocContent.length > 0
-        a#to-index.i-index(href="#toc-div" title=__('btn.index')) ≡
+        a#to-index.i-index(onClick="tocControl.change()" title=__('btn.index'))
+          span.tocBtnIconBar
+          span.tocBtnIconBar
+          span.tocBtnIconBar
     if theme.color !== 'dark-only' && theme.color !== 'light-only'
       a#color-mode.i-color(onClick="colorMode.change()" title=__('btn.colorMode'))
     if theme.bgm.enable

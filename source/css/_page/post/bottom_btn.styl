@@ -14,6 +14,7 @@
     right 8px
     bottom 8px
   a
+    position absolute
     overflow hidden
     display block
     right 0
@@ -26,6 +27,12 @@
     font-weight 900
     padding 0
     user-select none
+    &:nth-last-child(1)
+      bottom 0
+    &:nth-last-child(2)
+      bottom 40px
+    &:nth-last-child(3)
+      bottom 80px
     @media ( min-width 769px )
       &:hover
         background-color var(--theme-subcolor)
@@ -51,3 +58,29 @@
     background linear-gradient(45deg, transparent 10px,
       var(--theme-bg-light) 12px, var(--theme-bg-light))
     transition transform .3s, filter .3s
+.i-index
+  .tocBtnIconBar
+    background-color var(--theme-text-light)
+    width 25px
+    position absolute
+    top 50%
+    width 24px
+    height 0.1em
+    text-indent 101%
+    white-space nowrap
+    overflow hidden
+    transition transform ease-in-out 0.3s
+    left 8px
+    &:nth-child(1)
+      transform translate(0, -250%)
+    &:nth-child(2)
+      transform translate(0, -50%)
+    &:nth-child(3)
+      transform translate(0, 150%)
+  &.open .tocBtnIconBar
+    &:nth-child(1)
+      transform translate(0, -50%) rotate(45deg) scaleX(1.2)
+    &:nth-child(2)
+      transform translate(0, -50%) translateX(-300%)
+    &:nth-child(3)
+      transform translate(0, -50%) rotate(-45deg) scaleX(1.2)

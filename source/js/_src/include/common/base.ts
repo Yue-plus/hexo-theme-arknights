@@ -10,6 +10,15 @@ function getElement(string: string, item: Element = document.documentElement): H
   return tmp
 }
 
+function isParent(parent: Element, child: any): boolean {
+  for (; child !== null; child = child.offsetParent) {
+    if (child === parent) {
+      return true
+    }
+  }
+  return false
+}
+
 function getParent(item: Element, level: number = 1): HTMLElement {
   while (level--) {
     let tmp: HTMLElement | null = item.parentElement
