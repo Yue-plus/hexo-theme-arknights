@@ -27,8 +27,15 @@
     }
   })
 
+  let htmlThemeMode = theme.color
+  if (theme.color === 'dark-only') {
+    htmlThemeMode = 'dark'
+  } else if (theme.color === 'light-only') {
+    htmlThemeMode = 'light'
+  }
+
 doctype html
-html(lang=config.language theme-mode=theme.color)
+html(lang=config.language theme-mode=htmlThemeMode)
   head
     include ./meta-data.pug
   body
