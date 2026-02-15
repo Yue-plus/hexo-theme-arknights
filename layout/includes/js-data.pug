@@ -14,7 +14,7 @@ if theme.gitalk && theme.gitalk.enable === true
 
 if theme.mermaid && theme.mermaid.enable === true && theme.mermaid.version
   script(defer type='module').
-    import mermaid from '#{"//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.esm.mjs"}';
+    import mermaid from '#{"//unpkg.com/mermaid@" + theme.mermaid.version + "/dist/mermaid.esm.min.mjs"}';
     window.mermaid = mermaid;
     code.paintMermaid();
 
