@@ -293,15 +293,19 @@ try {
 }
 catch (e) { }
 class GiscusManager {
+    giscusSrc = 'https://giscus.app/client.js';
+    giscusOrigin = 'https://giscus.app';
+    settingsTimeout = 8000;
+    scriptTimeout = 15000;
+    errorDelay = 5000;
+    loadingFallbackTimeout = 12000;
     messageHandlers = [];
     config = null;
     loaded = false;
-    settingsLoadedPromise = null;
-    containerPromise = null;
     isLoading = false;
     loadStartTime = 0;
     showErrorTimeoutId = null;
-    activeTimeouts = new Set();
+    loadingFallbackTimeoutId = null;
     async loadConfig() {
         if (this.loaded)
             return this.config;
@@ -342,196 +346,112 @@ class GiscusManager {
         }
         return !(config.origins?.length || config.originsRegex?.length);
     }
-    waitForGiscusSettings(timeout = 8000) {
-        if (this.settingsLoadedPromise) {
-            return this.settingsLoadedPromise;
-        }
-        this.settingsLoadedPromise = new Promise((resolve, reject) => {
-            const settings = window.giscusSettings;
-            if (settings !== undefined) {
-                resolve(settings);
-                return;
+    getContainer() {
+        if (typeof document === 'undefined')
+            return null;
+        return document.querySelector('#giscus');
+    }
+    clearErrorTimer() {
+        if (!this.showErrorTimeoutId)
+            return;
+        clearTimeout(this.showErrorTimeoutId);
+        this.showErrorTimeoutId = null;
+    }
+    clearLoadingTimer() {
+        if (!this.loadingFallbackTimeoutId)
+            return;
+        clearTimeout(this.loadingFallbackTimeoutId);
+        this.loadingFallbackTimeoutId = null;
+    }
+    clearLoadingMessage(container) {
+        this.clearLoadingTimer();
+        const target = container || this.getContainer();
+        if (!target)
+            return;
+        const loadingMessage = target.querySelector('.giscus-loading-message');
+        if (loadingMessage)
+            loadingMessage.remove();
+    }
+    clearErrorMessage(container) {
+        const target = container || this.getContainer();
+        if (!target)
+            return;
+        const errorMessage = target.querySelector('.giscus-error-message');
+        if (errorMessage)
+            errorMessage.remove();
+    }
+    clearAllMessages(container) {
+        this.clearErrorTimer();
+        this.clearLoadingMessage(container);
+        this.clearErrorMessage(container);
+    }
+    showLoadingMessage(container) {
+        this.clearLoadingMessage(container);
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'giscus-loading-message';
+        loadingDiv.setAttribute('aria-live', 'polite');
+        loadingDiv.innerHTML = '<i class="giscus-loader" aria-hidden="true"></i><p class="giscus-loading-text">与神经网络取得连接 ...</p>';
+        container.appendChild(loadingDiv);
+    }
+    getErrorMessage(error) {
+        const loadTime = Math.round((Date.now() - this.loadStartTime) / 1000);
+        if (error.message.includes('超时'))
+            return `神经网络响应超时 (${loadTime}秒)`;
+        if (error.message.includes('失败'))
+            return '神经网络链路建立失败';
+        return '神经网络链路不稳定';
+    }
+    showErrorWithDelay(container, error) {
+        this.clearErrorTimer();
+        this.showErrorTimeoutId = setTimeout(() => {
+            this.clearLoadingMessage(container);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'giscus-error-message';
+            errorDiv.innerHTML =
+                `<div class="giscus-error-content">
+           <div class="giscus-error-title">神经网络连接异常</div>
+           <div class="giscus-error-message-text">${this.getErrorMessage(error)}</div>
+           <button class="giscus-error-retry">重新连接</button>
+         </div>`;
+            this.clearErrorMessage(container);
+            container.appendChild(errorDiv);
+            const retryButton = errorDiv.querySelector('.giscus-error-retry');
+            if (retryButton) {
+                retryButton.addEventListener('click', () => {
+                    retryButton.disabled = true;
+                    retryButton.textContent = '重新建立连接中...';
+                    this.loadGiscusScript().finally(() => {
+                        retryButton.disabled = false;
+                        retryButton.textContent = '重新连接';
+                    });
+                });
             }
-            let timeoutId;
+            this.showErrorTimeoutId = null;
+        }, this.errorDelay);
+    }
+    scheduleLoadingFallbackClear() {
+        this.clearLoadingTimer();
+        this.loadingFallbackTimeoutId = setTimeout(() => {
+            this.clearLoadingMessage();
+        }, this.loadingFallbackTimeout);
+    }
+    waitForGiscusSettings(timeout = this.settingsTimeout) {
+        return new Promise((resolve, reject) => {
             const startTime = Date.now();
             const checkSettings = () => {
-                const currentSettings = window.giscusSettings;
-                if (currentSettings !== undefined) {
-                    this.activeTimeouts.delete(timeoutId);
-                    resolve(currentSettings);
+                const settings = window.giscusSettings;
+                if (settings !== undefined) {
+                    resolve(settings);
                     return;
                 }
                 if (Date.now() - startTime > timeout) {
-                    this.activeTimeouts.delete(timeoutId);
                     reject(new Error(`Giscus配置加载超时 (${timeout}ms)`));
                     return;
                 }
-                timeoutId = setTimeout(checkSettings, 100);
-                this.activeTimeouts.add(timeoutId);
+                setTimeout(checkSettings, 100);
             };
             checkSettings();
         });
-        return this.settingsLoadedPromise;
-    }
-    waitForContainer(timeout = 5000) {
-        if (this.containerPromise) {
-            return this.containerPromise;
-        }
-        this.containerPromise = new Promise((resolve, reject) => {
-            let timeoutId;
-            const checkContainer = () => {
-                const container = document.querySelector('#giscus');
-                if (container) {
-                    this.activeTimeouts.delete(timeoutId);
-                    resolve(container);
-                    return;
-                }
-                timeoutId = setTimeout(checkContainer, 100);
-                this.activeTimeouts.add(timeoutId);
-            };
-            if (typeof document === 'undefined') {
-                reject(new Error('文档对象不可用'));
-                return;
-            }
-            setTimeout(() => {
-                this.activeTimeouts.delete(timeoutId);
-                reject(new Error(`Giscus容器未找到 (${timeout}ms)`));
-            }, timeout);
-            if (document.readyState === 'loading') {
-                const domContentLoadedHandler = () => {
-                    checkContainer();
-                };
-                document.addEventListener('DOMContentLoaded', domContentLoadedHandler, { once: true });
-            }
-            else {
-                checkContainer();
-            }
-        });
-        return this.containerPromise;
-    }
-    async loadGiscusScript() {
-        if (this.isLoading) {
-            throw new Error('Giscus脚本正在加载中');
-        }
-        this.isLoading = true;
-        this.loadStartTime = Date.now();
-        this.settingsLoadedPromise = null;
-        this.containerPromise = null;
-        this.clearAllMessages();
-        try {
-            const [container, settings] = await Promise.all([
-                this.waitForContainer(),
-                this.waitForGiscusSettings()
-            ]);
-            const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
-            const existingIframe = container.querySelector('iframe.giscus-frame');
-            if (existingScript)
-                existingScript.remove();
-            if (existingIframe)
-                existingIframe.remove();
-            const script = document.createElement('script');
-            script.src = 'https://giscus.app/client.js';
-            script.async = true;
-            const attributes = {
-                'data-repo': settings.repo,
-                'data-repo-id': settings.repoId,
-                'data-category': settings.category,
-                'data-category-id': settings.categoryId,
-                'data-mapping': settings.mapping,
-                'data-strict': settings.strict,
-                'data-reactions-enabled': settings.reactionsEnabled,
-                'data-emit-metadata': settings.emitMetadata,
-                'data-input-position': settings.inputPosition,
-                'data-lang': settings.lang,
-                'data-theme': this.getGiscusTheme(document.documentElement.getAttribute('theme-mode')),
-                'crossorigin': settings.crossorigin || 'anonymous'
-            };
-            Object.entries(attributes).forEach(([key, value]) => {
-                if (value !== undefined && value !== null && value !== '') {
-                    script.setAttribute(key, String(value));
-                }
-            });
-            container.appendChild(script);
-            await new Promise((resolve, reject) => {
-                const timeoutId = setTimeout(() => {
-                    reject(new Error('Giscus脚本加载超时'));
-                }, 15000);
-                script.onload = () => {
-                    clearTimeout(timeoutId);
-                    resolve();
-                };
-                script.onerror = () => {
-                    clearTimeout(timeoutId);
-                    reject(new Error('Giscus脚本加载失败'));
-                };
-            });
-            this.clearAllMessages();
-        }
-        catch (error) {
-            const container = document.querySelector('#giscus');
-            if (container) {
-                this.showErrorWithDelay(container, error);
-            }
-            throw error;
-        }
-        finally {
-            this.isLoading = false;
-        }
-    }
-    showErrorWithDelay(container, error) {
-        if (this.showErrorTimeoutId) {
-            clearTimeout(this.showErrorTimeoutId);
-        }
-        this.showErrorTimeoutId = setTimeout(() => {
-            const loadTime = Math.round((Date.now() - this.loadStartTime) / 1000);
-            let msg = '网络连接较慢';
-            if (error.message.includes('超时')) {
-                msg = `加载超时 (${loadTime}秒)`;
-            }
-            else if (error.message.includes('失败')) {
-                msg = '网络连接失败';
-            }
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'giscus-error-message';
-            const iconDiv = document.createElement('div');
-            iconDiv.className = 'giscus-error-icon';
-            iconDiv.textContent = '⏳';
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'giscus-error-content';
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'giscus-error-title';
-            titleDiv.textContent = '评论系统加载较慢';
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'giscus-error-message-text';
-            messageDiv.textContent = msg;
-            const retryButton = document.createElement('button');
-            retryButton.className = 'giscus-error-retry';
-            retryButton.textContent = '重新加载';
-            retryButton.addEventListener('click', () => {
-                retryButton.disabled = true;
-                retryButton.textContent = '重新加载中...';
-                const manager = window.giscusManager;
-                if (manager?.loadGiscusScript) {
-                    manager.loadGiscusScript().finally(() => {
-                        retryButton.disabled = false;
-                        retryButton.textContent = '重新加载';
-                    });
-                }
-            });
-            contentDiv.appendChild(titleDiv);
-            contentDiv.appendChild(messageDiv);
-            contentDiv.appendChild(retryButton);
-            errorDiv.appendChild(iconDiv);
-            errorDiv.appendChild(contentDiv);
-            const existingError = container.querySelector('.giscus-error-message');
-            if (existingError)
-                existingError.remove();
-            container.appendChild(errorDiv);
-            this.showErrorTimeoutId = null;
-        }, 5000);
-    }
-    async getDefaultCommentOrder() {
-        return (await this.loadConfig())?.defaultCommentOrder || 'oldest';
     }
     getGiscusTheme(siteTheme) {
         const themeConfig = window.giscusThemeConfig;
@@ -542,6 +462,90 @@ class GiscusManager {
         }
         return siteTheme === 'auto' || !siteTheme ? 'preferred_color_scheme'
             : siteTheme === 'dark' ? 'dark' : 'light';
+    }
+    getScriptAttributes(settings) {
+        const attributes = {
+            'data-repo': String(settings.repo),
+            'data-repo-id': String(settings.repoId),
+            'data-category': String(settings.category),
+            'data-category-id': String(settings.categoryId),
+            'data-mapping': settings.mapping || 'pathname',
+            'data-strict': String(settings.strict ?? 0),
+            'data-reactions-enabled': String(settings.reactionsEnabled ?? 1),
+            'data-emit-metadata': String(settings.emitMetadata ?? 0),
+            'data-input-position': settings.inputPosition || 'bottom',
+            'data-lang': settings.lang || 'zh-CN',
+            'data-theme': this.getGiscusTheme(document.documentElement.getAttribute('theme-mode')),
+            'crossorigin': settings.crossorigin || 'anonymous'
+        };
+        if (settings.term)
+            attributes['data-term'] = String(settings.term);
+        if (settings.discussionNumber !== undefined && settings.discussionNumber !== null) {
+            attributes['data-discussion-number'] = String(settings.discussionNumber);
+        }
+        if (settings.description)
+            attributes['data-description'] = String(settings.description);
+        if (settings.origin)
+            attributes['data-origin'] = String(settings.origin);
+        if (settings.loading)
+            attributes['data-loading'] = String(settings.loading);
+        return attributes;
+    }
+    appendGiscusScript(container, settings) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = this.giscusSrc;
+            script.async = true;
+            const attributes = this.getScriptAttributes(settings);
+            Object.entries(attributes).forEach(([key, value]) => {
+                if (value !== '')
+                    script.setAttribute(key, value);
+            });
+            const timeoutId = setTimeout(() => {
+                reject(new Error('Giscus脚本加载超时'));
+            }, this.scriptTimeout);
+            script.onload = () => {
+                clearTimeout(timeoutId);
+                resolve();
+            };
+            script.onerror = () => {
+                clearTimeout(timeoutId);
+                reject(new Error('Giscus脚本加载失败'));
+            };
+            container.appendChild(script);
+        });
+    }
+    async loadGiscusScript() {
+        if (this.isLoading)
+            return;
+        const container = this.getContainer();
+        if (!container)
+            return;
+        this.isLoading = true;
+        this.loadStartTime = Date.now();
+        this.clearAllMessages(container);
+        this.showLoadingMessage(container);
+        try {
+            const settings = await this.waitForGiscusSettings();
+            if (!settings.repo || !settings.repoId || !settings.category || !settings.categoryId) {
+                throw new Error('Giscus配置不完整');
+            }
+            const existingScript = container.querySelector(`script[src*="${this.giscusSrc}"]`);
+            const existingIframe = container.querySelector('iframe.giscus-frame');
+            if (existingScript)
+                existingScript.remove();
+            if (existingIframe)
+                existingIframe.remove();
+            await this.appendGiscusScript(container, settings);
+            this.scheduleLoadingFallbackClear();
+        }
+        catch (error) {
+            this.showErrorWithDelay(container, error);
+            console.warn('Giscus 加载异常:', error);
+        }
+        finally {
+            this.isLoading = false;
+        }
     }
     syncTheme(theme) {
         return this.sendMessage({
@@ -557,7 +561,7 @@ class GiscusManager {
         if (!iframe?.contentWindow)
             return false;
         try {
-            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+            iframe.contentWindow.postMessage({ giscus: message }, this.giscusOrigin);
             return true;
         }
         catch (e) {
@@ -579,17 +583,11 @@ class GiscusManager {
         if (typeof window !== 'undefined') {
             window.removeEventListener('message', this.handleMessage);
         }
-        if (this.showErrorTimeoutId) {
-            clearTimeout(this.showErrorTimeoutId);
-            this.showErrorTimeoutId = null;
-        }
-        this.settingsLoadedPromise = null;
-        this.containerPromise = null;
+        this.clearErrorTimer();
+        this.clearLoadingTimer();
         this.messageHandlers = [];
         this.isLoading = false;
         this.loadStartTime = 0;
-        this.activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
-        this.activeTimeouts.clear();
     }
     constructor() {
         if (typeof window !== 'undefined') {
@@ -597,10 +595,11 @@ class GiscusManager {
         }
     }
     handleMessage = (event) => {
-        if (!event || event.origin !== 'https://giscus.app')
+        if (!event || event.origin !== this.giscusOrigin)
             return;
         if (!(typeof event.data === 'object' && event.data?.giscus))
             return;
+        this.clearLoadingMessage();
         const giscusData = event.data.giscus;
         try {
             this.messageHandlers.forEach(handler => {
@@ -613,18 +612,6 @@ class GiscusManager {
             console.warn('Giscus 消息处理异常:', e);
         }
     };
-    clearAllMessages() {
-        if (this.showErrorTimeoutId) {
-            clearTimeout(this.showErrorTimeoutId);
-            this.showErrorTimeoutId = null;
-        }
-        const container = document.querySelector('#giscus');
-        if (container) {
-            const existingError = container.querySelector('.giscus-error-message');
-            if (existingError)
-                existingError.remove();
-        }
-    }
 }
 let giscusManager;
 if (typeof window !== 'undefined') {
