@@ -1,7 +1,10 @@
 meta(charset='UTF-8')
 meta(name='viewport' content='width=device-width, initial-scale=1.0')
 title= pageTitle
-
+- var keywords = page.keywords || page.tags && page.tags.map(function(t){return t.name}).join(',') || config.keywords || ''
+if keywords
+  meta(name="keywords" content=typeof keywords === 'string' ? keywords : keywords.join(','))
+!= open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id})
 link(
   rel="icon"
   type=(theme.favicon.type ? theme.favicon.type : "image/x-icon")
