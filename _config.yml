@@ -194,7 +194,7 @@ giscus:
 # 图表支持
 mermaid:
   enable: true
-  version: "10.5.0"
+  version: "11.12.2"
 
 # pjax 支持
 pjax:
