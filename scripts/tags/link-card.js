@@ -7,8 +7,8 @@ function getStyle(arg) {
     return '';
   }
   let result = 'style="';
-  for (let key in arg[0]) {
-    result += key + ':' + arg[0][key] + ';';
+  for (let key in arg) {
+    result += key + ':' + arg[key] + ';';
   }
   return result + '" ';
 }
@@ -32,7 +32,7 @@ function linkCard(_args, data) {
       name = `<div class="link-title">${i}</div>`,
       href = item.src,
       avatar = item.avatar ? `<div class="link-ico"><img src=${quote(item.avatar)}></div>` : '',
-      descr = item.descr ? `<div class="link-descr">${quote(item.descr)}</div>` : '',
+      descr = item.descr ? `<div class="link-descr">${item.descr}</div>` : '',
       img = item.img ? `<img class="link-background" src=${quote(item.img)}>` : '',
       content = `<div class="link-data">${name}${descr}</div>`;
     if (!href.match('//')) {
