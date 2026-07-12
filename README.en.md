@@ -10,7 +10,7 @@
 Here are all the friendship links of this theme<!--Previously used-->:
 
 - ### **Dr.Yue_plus: <http://arknights.theme.hexo.yue.zone/>**
-- ### **Dr.ToUNVRSe <https://tounvrse.github.io/>**
+- ### **Dr.Ocatator <https://ocatator.github.io/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Angine <https://angine.tech/>**

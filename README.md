@@ -10,7 +10,7 @@
 这里记录了所有本主题使用者<!-- 曾经使用 -->的友链：
 
 - ### **Dr.Yue_plus: <http://arknights.theme.hexo.yue.zone/>**
-- ### **Dr.ToUNVRSe <https://tounvrse.github.io/>**
+- ### **Dr.Ocatator <https://ocatator.github.io/>**
 - **Dr.Ye: <https://laurenfrost.github.io/>**
 - **Dr.tyqtyq <https://tyq0712.github.io/>**
 - **Dr.Angine <https://angine.tech/>**
