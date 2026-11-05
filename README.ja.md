@@ -88,6 +88,22 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
   テーマの設定ファイルは、中国語のコメントを参考に変更できます。
 
+### Referrer ポリシー（外部画像）
+
+`Hexo/_config.arknights.yml` の `referrer` を設定すると、リソースの取得やリンク先への移動時にブラウザーが送信する参照元情報（`Referer` リクエストヘッダー）を制御できます。デフォルトは空欄で、テーマは Referrer のメタタグを出力せず、ブラウザーの既存のポリシーを維持します。
+
+`web.hycdn.cn` など、一部の画像ホスティングサービスは参照元に基づいて直リンクを制限します。元のサイトでは閲覧できる画像がブログでは表示されない場合、参照元情報を送信しない設定を試せます：
+
+```yaml
+referrer: no-referrer
+```
+
+これにより、ページの `<head>` に `<meta name="referrer" content="no-referrer">` が追加され、本文の画像だけでなく、lightgallery が読み込む拡大画像やサムネイルにも適用されます。サイトを再生成してデプロイすると反映されます。`hexo server` を使用する場合はサービスを再起動してください。
+
+> `no-referrer` は画像だけでなくページ全体に適用され、外部リンクへの移動時にも参照元情報が送信されなくなります。`Referer` に基づくドメインチェックを行うコメントシステムなど、参照元情報に依存する外部サービスに影響する場合があります。元のポリシーに戻すには、`referrer` を空欄にしてください。
+
+その他の設定値と動作は [MDN の Referrer-Policy ドキュメント](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Referrer-Policy)を参照してください。
+
 ### リソースファイルの変更
 
 必要に応じて `Hexo/source/` ディレクトリに以下のファイルを追加します
