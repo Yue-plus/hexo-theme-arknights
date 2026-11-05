@@ -1,4 +1,6 @@
 meta(charset='UTF-8')
+if theme.referrer
+  meta(name='referrer' content=theme.referrer)
 meta(name='viewport' content='width=device-width, initial-scale=1.0')
 title= pageTitle
 - var keywords = page.keywords || page.tags && page.tags.map(function(t){return t.name}).join(',') || config.keywords || ''
