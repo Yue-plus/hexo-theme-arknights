@@ -88,6 +88,22 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
   
   The configuration file of the theme can be modified by referring to the Chinese comments.  
 
+#### Referrer policy (external images)
+
+Set `referrer` in `Hexo/_config.arknights.yml` to control the referrer information sent by the browser in the `Referer` header when requesting resources and following links. It is empty by default: the theme emits no referrer meta tag and leaves the browser's existing policy in place.
+
+Some image hosts, such as `web.hycdn.cn`, restrict hotlinking based on the referrer. An image may open on the original site but fail to load in your blog. In this case, you can try omitting referrer information:
+
+```yaml
+referrer: no-referrer
+```
+
+This adds `<meta name="referrer" content="no-referrer">` to the page's `<head>`, covering article images as well as full-size images and thumbnails loaded by lightgallery. Regenerate and deploy the site for the change to take effect; restart the service if you use `hexo server`.
+
+> `no-referrer` applies to the entire page, not just images: outgoing links also omit referrer information. Third-party services that rely on `Referer`, such as comment systems with referrer-based domain checks, may be affected. Leave `referrer` empty to restore the previous policy.
+
+See [MDN's Referrer-Policy documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) for other supported values and their behavior.
+
 ### Edit asset files
 
 The following files can be added to the `Hexo/source` directory as needed:

@@ -88,6 +88,22 @@ yarn add hexo-server hexo-browsersync hexo-renderer-pug
 
   主题的配置文件可参照中文注释修改。
 
+### Referrer 策略（外链图片）
+
+在 `Hexo/_config.arknights.yml` 中设置 `referrer`，可控制浏览器在请求资源和跳转链接时发送的来源信息（`Referer` 请求头）。默认留空，主题不会输出 Referrer 元标签，保留浏览器原有策略。
+
+部分图床（如 `web.hycdn.cn`）会根据来源限制外链访问，导致图片在原站可以查看，放到博客后却无法显示。遇到这类情况，可尝试不发送来源信息：
+
+```yaml
+referrer: no-referrer
+```
+
+这会在页面的 `<head>` 中生成 `<meta name="referrer" content="no-referrer">`，同时作用于正文图片及 lightgallery 加载的放大图和缩略图。重新生成并部署站点后生效；使用 `hexo server` 时需重启服务。
+
+> `no-referrer` 对整个页面生效，不限于图片：外链跳转也不再发送来源信息，依赖 `Referer` 的第三方服务（如评论系统的安全域名校验）可能受影响。若要恢复原有策略，将 `referrer` 留空即可。
+
+其他可选值及其行为参见 [MDN Referrer-Policy 文档](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referrer-Policy)。
+
 ## 修改资源文件
 
 可按需在 `Hexo/source/` 目录添加以下文件：

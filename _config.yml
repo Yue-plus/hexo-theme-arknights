@@ -20,10 +20,7 @@ background_image:
   dark: https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg # 暗色模式
   light: /img/bk.jpg # 亮色模式
 
-# 页面的 Referrer 策略，填写后会在 <head> 中生成 <meta name="referrer">；留空则使用浏览器默认策略
-# 部分图床（如 web.hycdn.cn）会按 Referer 防盗链，外链这类图片时可设为 no-referrer
-# 注意：no-referrer 对全站生效，依赖 Referer 的第三方服务（如评论系统的安全域名校验）可能受影响
-# 可选值参考：https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referrer-Policy
+# 页面 Referrer 策略，留空不设置，详见 README.md
 referrer:
 
 # 导航栏
